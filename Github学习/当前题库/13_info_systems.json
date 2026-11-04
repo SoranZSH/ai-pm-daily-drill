@@ -1,0 +1,1789 @@
+{
+  "category": "信息系统与技术基础",
+  "category_en": "Information Systems & Tech Literacy",
+  "domain": "SYS",
+  "items": [
+    {
+      "id": "SYS-F001",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "前后端",
+        "客户端服务器"
+      ],
+      "concepts": [
+        "sys.client_server"
+      ],
+      "prereq": [],
+      "q_cn": "前端、后端和数据库分别负责什么？",
+      "q_en": "What do the front end, back end, and database each do?",
+      "gist": {
+        "cn": "前端负责展示和交互，后端负责业务规则和权限校验，数据库负责长期保存数据。",
+        "en": "The front end shows and collects, the back end decides and enforces, the database remembers."
+      },
+      "points": [
+        {
+          "en": "shows information and collects what you click and type",
+          "cn": "前端展示信息、收集用户操作"
+        },
+        {
+          "en": "where business rules are applied",
+          "cn": "后端执行规则、校验权限、对接其他系统"
+        },
+        {
+          "en": "stores data permanently",
+          "cn": "数据库长期保存数据"
+        },
+        {
+          "en": "important rules must live in the back end",
+          "cn": "重要规则必须放在后端校验"
+        },
+        {
+          "en": "helps you estimate work",
+          "cn": "理解分工有助于估算改动范围"
+        }
+      ],
+      "concept": {
+        "cn": "大多数软件采用客户端—服务器结构，可粗分为三层。前端运行在用户的浏览器或手机 App 中，负责界面展示和收集用户操作；后端运行在服务器上，负责执行业务规则、校验权限、处理数据并与其他系统交互；数据库负责持久保存数据。三层之间通过接口通信。对产品经理而言，理解这种分工有两个直接用处：关键规则和权限必须在后端校验，因为前端可被绕过；评估需求时能判断改动涉及哪几层，从而更准确地估计工作量。",
+        "en": "Most software follows a client-server structure that can be roughly divided into three layers. The front end runs in the user's browser or mobile app and handles the interface and user input; the back end runs on servers and applies business rules, checks permissions, processes data, and interacts with other systems; the database stores data persistently. The layers communicate through interfaces. For a product manager this split has two direct uses: key rules and permissions must be checked in the back end, because the front end can be bypassed; and when assessing a requirement, you can tell which layers a change touches and estimate the work more accurately."
+      },
+      "a_pairs": [
+        {
+          "en": "I explain it with a restaurant: the front end is the dining room, the back end is the kitchen, and the database is the pantry.",
+          "cn": "我用餐厅来解释：前端是餐厅大堂，后端是后厨，数据库是食材仓库。"
+        },
+        {
+          "en": "The front end is what runs in your browser or app; it's what shows information and collects what you click and type.",
+          "cn": "前端运行在你的浏览器或 App 里，负责展示信息、收集你的点击和输入。"
+        },
+        {
+          "en": "The back end runs on servers; it's where business rules are applied, permissions are checked, and other systems are called.",
+          "cn": "后端运行在服务器上，在这里执行业务规则、检查权限、调用其他系统。"
+        },
+        {
+          "en": "The database stores data permanently, so your order still exists after you close the page.",
+          "cn": "数据库长期保存数据，所以你关掉页面后订单依然存在。"
+        },
+        {
+          "en": "The key point for a PM is that important rules must live in the back end, because anything in the front end can be bypassed.",
+          "cn": "对产品经理来说，关键在于重要规则必须放在后端，因为前端的任何东西都可能被绕过。"
+        },
+        {
+          "en": "For example, hiding a discount button isn't enough; the server has to refuse an unauthorized discount too.",
+          "cn": "比如，把折扣按钮藏起来是不够的，服务器也必须拒绝未经授权的折扣。"
+        },
+        {
+          "en": "Knowing the split also helps you estimate work, since a text change is a front-end tweak while a new rule may touch all three layers.",
+          "cn": "了解这种分工也有助于估算工作量，因为改一段文字只是前端的小调整，而新增一条规则可能三层都要动。"
+        },
+        {
+          "en": "My rule of thumb: show it in the front end, decide it in the back end, and keep it in the database.",
+          "cn": "我的经验法则是：在前端展示，在后端决策，在数据库保存。"
+        }
+      ],
+      "a_en": "I explain it with a restaurant: the front end is the dining room, the back end is the kitchen, and the database is the pantry. The front end is what runs in your browser or app; it's what shows information and collects what you click and type. The back end runs on servers; it's where business rules are applied, permissions are checked, and other systems are called. The database stores data permanently, so your order still exists after you close the page. The key point for a PM is that important rules must live in the back end, because anything in the front end can be bypassed. For example, hiding a discount button isn't enough; the server has to refuse an unauthorized discount too. Knowing the split also helps you estimate work, since a text change is a front-end tweak while a new rule may touch all three layers. My rule of thumb: show it in the front end, decide it in the back end, and keep it in the database.",
+      "a_cn": "我用餐厅来解释：前端是餐厅大堂，后端是后厨，数据库是食材仓库。前端运行在你的浏览器或 App 里，负责展示信息、收集你的点击和输入。后端运行在服务器上，在这里执行业务规则、检查权限、调用其他系统。数据库长期保存数据，所以你关掉页面后订单依然存在。对产品经理来说，关键在于重要规则必须放在后端，因为前端的任何东西都可能被绕过。比如，把折扣按钮藏起来是不够的，服务器也必须拒绝未经授权的折扣。了解这种分工也有助于估算工作量，因为改一段文字只是前端的小调整，而新增一条规则可能三层都要动。我的经验法则是：在前端展示，在后端决策，在数据库保存。",
+      "key_phrases": [
+        {
+          "en": "can be bypassed",
+          "cn": "可以被绕过",
+          "type": "搭配",
+          "usage": "bypass 指绕过检查，常接 controls / security"
+        },
+        {
+          "en": "isn't enough",
+          "cn": "还不够",
+          "type": "句型",
+          "usage": "X isn't enough; Y has to… 先否定再补必要条件"
+        },
+        {
+          "en": "front-end tweak",
+          "cn": "前端小调整",
+          "type": "搭配",
+          "usage": "tweak 指小幅调整，可作名词或动词"
+        },
+        {
+          "en": "touch all three layers",
+          "cn": "三层都要动",
+          "type": "搭配",
+          "usage": "touch 指改动波及，如 touch the database"
+        }
+      ],
+      "basics": [
+        {
+          "term": "服务器",
+          "term_en": "server",
+          "explain": "放在机房或云上、全天运行的计算机，专门接收和处理来自很多用户的请求，再把结果返回给他们的浏览器或 App。",
+          "analogy": "银行后台，专门处理各窗口递进来的单子。"
+        },
+        {
+          "term": "绕过",
+          "term_en": "bypass",
+          "explain": "不经过界面设计好的路径，直接向服务器发送请求的做法。懂技术的人可以伪造请求，所以只在界面上隐藏按钮并不安全。",
+          "analogy": "不走前台，直接从员工通道进办公室。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "没有权限的用户看不到这个按钮，所以这个操作就是安全的。",
+          "why": "隐藏按钮只是前端展示，懂技术的人可以直接向服务器发请求；如果后端不校验权限，越权操作照样会成功。",
+          "right": "写权限和关键规则需求时，明确要求后端校验，前端隐藏只作为体验上的优化。"
+        }
+      ],
+      "approach": "采分点是讲清三层各自的职责，并点出「关键规则必须在后端」这一产品含义。推荐结构：餐厅类比 → 前端 → 后端 → 数据库 → 折扣按钮的例子 → 估算工作量的用处。用「前端展示、后端决策、数据库保存」收尾。会失分的是只背技术名词，没有产品层面的含义。",
+      "tips": "必备术语 front end、back end、database。可延伸：接口与接口文档、认证与权限。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "SYS-F002",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "API",
+        "接口文档",
+        "状态码"
+      ],
+      "concepts": [
+        "sys.api"
+      ],
+      "prereq": [
+        "SYS-F001"
+      ],
+      "q_cn": "什么是 API？产品经理如何读懂一份接口文档？",
+      "q_en": "What is an API, and how should a PM read API documentation?",
+      "gist": {
+        "cn": "API 是系统间收发请求的约定；读文档看端点、鉴权、参数、返回、报错、限制。",
+        "en": "An API is a contract for requests and responses; read endpoints, auth, parameters, responses, errors, and limits."
+      },
+      "points": [
+        {
+          "en": "a contract that lets one system ask another",
+          "cn": "API 是系统间请求数据或动作的约定"
+        },
+        {
+          "en": "a method like GET to read or POST to create",
+          "cn": "地址、方法、数据三要素"
+        },
+        {
+          "en": "I check six things",
+          "cn": "读文档看六件事：端点、鉴权、参数、返回、报错、限制"
+        },
+        {
+          "en": "Status codes tell a story",
+          "cn": "状态码区分成功、调用方错误、服务器错误"
+        },
+        {
+          "en": "Limits matter for product decisions",
+          "cn": "调用限制和返回字段会影响产品决策"
+        }
+      ],
+      "concept": {
+        "cn": "API（应用程序编程接口）是系统之间交换数据或调用功能的约定。常见的网络 API 通过一个地址（端点）接收请求，用 GET、POST 等方法表示读取或创建等动作，数据多以 JSON 格式传递，并用状态码表示结果：2 开头为成功，4 开头为调用方错误，5 开头为服务端错误。接口文档说明每个端点的用途、鉴权方式、参数、返回字段、错误码以及调用频率等限制。产品经理读懂这些，就能判断集成需求是否可行、需要哪些数据字段、会受哪些限制。",
+        "en": "An API (application programming interface) is an agreement for exchanging data or invoking functions between systems. A typical web API receives requests at an address called an endpoint, uses methods such as GET and POST to indicate reading or creating, usually passes data as JSON, and reports results with status codes: codes starting with 2 mean success, 4 means a caller error, and 5 means a server error. API documentation explains each endpoint's purpose, authentication, parameters, returned fields, error codes, and limits such as call frequency. A product manager who can read these can judge whether an integration is feasible, which data fields are available, and which limits apply."
+      },
+      "a_pairs": [
+        {
+          "en": "An API is a contract that lets one system ask another for data or an action in an agreed format.",
+          "cn": "API 是一份约定，让一个系统按约定的格式向另一个系统请求数据或动作。"
+        },
+        {
+          "en": "A typical web API call has an address, called an endpoint, a method like GET to read or POST to create, and usually some data, sent or returned as JSON.",
+          "cn": "一个典型的网络 API 调用包括一个地址（称为端点）、一个方法（比如用 GET 读取、用 POST 创建），通常还有以 JSON 格式发送或返回的数据。"
+        },
+        {
+          "en": "When I read the docs, I check six things: what each endpoint does, how you authenticate, which parameters are required, what comes back, what the error codes mean, and what the limits are.",
+          "cn": "读文档时我会看六件事：每个端点做什么、怎么鉴权、哪些参数必填、返回什么、错误码代表什么、有哪些限制。"
+        },
+        {
+          "en": "Status codes tell a story: two hundreds mean success, four hundreds mean the caller got something wrong, and five hundreds mean the server failed.",
+          "cn": "状态码本身就在讲故事：200 段表示成功，400 段表示调用方出了错，500 段表示服务器出了故障。"
+        },
+        {
+          "en": "Limits matter for product decisions; if a partner's rate limits allow only a hundred calls a minute, a real-time sync for ten thousand users won't work.",
+          "cn": "限制会影响产品决策：如果合作方的调用频率限制每分钟只允许一百次，给一万个用户做实时同步就行不通。"
+        },
+        {
+          "en": "I also look at what data fields exist, because a feature can't show something the API doesn't return.",
+          "cn": "我还会看有哪些数据字段，因为 API 不返回的东西，功能就没法展示。"
+        },
+        {
+          "en": "You don't need to write code to do this, but it saves weeks of surprises in integration projects.",
+          "cn": "做这些不需要写代码，但能在集成项目中省掉好几周的意外。"
+        },
+        {
+          "en": "My rule of thumb: before promising an integration, read the API, not the sales deck.",
+          "cn": "我的经验法则是：承诺做集成之前，先读 API 文档，而不是对方的销售材料。"
+        }
+      ],
+      "a_en": "An API is a contract that lets one system ask another for data or an action in an agreed format. A typical web API call has an address, called an endpoint, a method like GET to read or POST to create, and usually some data, sent or returned as JSON. When I read the docs, I check six things: what each endpoint does, how you authenticate, which parameters are required, what comes back, what the error codes mean, and what the limits are. Status codes tell a story: two hundreds mean success, four hundreds mean the caller got something wrong, and five hundreds mean the server failed. Limits matter for product decisions; if a partner's rate limits allow only a hundred calls a minute, a real-time sync for ten thousand users won't work. I also look at what data fields exist, because a feature can't show something the API doesn't return. You don't need to write code to do this, but it saves weeks of surprises in integration projects. My rule of thumb: before promising an integration, read the API, not the sales deck.",
+      "a_cn": "API 是一份约定，让一个系统按约定的格式向另一个系统请求数据或动作。一个典型的网络 API 调用包括一个地址（称为端点）、一个方法（比如用 GET 读取、用 POST 创建），通常还有以 JSON 格式发送或返回的数据。读文档时我会看六件事：每个端点做什么、怎么鉴权、哪些参数必填、返回什么、错误码代表什么、有哪些限制。状态码本身就在讲故事：200 段表示成功，400 段表示调用方出了错，500 段表示服务器出了故障。限制会影响产品决策：如果合作方的调用频率限制每分钟只允许一百次，给一万个用户做实时同步就行不通。我还会看有哪些数据字段，因为 API 不返回的东西，功能就没法展示。做这些不需要写代码，但能在集成项目中省掉好几周的意外。我的经验法则是：承诺做集成之前，先读 API 文档，而不是对方的销售材料。",
+      "key_phrases": [
+        {
+          "en": "in an agreed format",
+          "cn": "按约定格式",
+          "type": "搭配",
+          "usage": "in an agreed format 强调双方事先达成共识"
+        },
+        {
+          "en": "tell a story",
+          "cn": "能说明问题",
+          "type": "搭配",
+          "usage": "X tells a story 表数据本身就能说明情况"
+        },
+        {
+          "en": "rate limits",
+          "cn": "调用频率限制",
+          "type": "词汇",
+          "usage": "rate limit 指单位时间内允许的调用次数上限"
+        },
+        {
+          "en": "saves weeks of surprises",
+          "cn": "省掉几周的意外",
+          "type": "句型",
+          "usage": "saves weeks of X 表提前投入能省掉大量麻烦"
+        },
+        {
+          "en": "the sales deck",
+          "cn": "销售演示材料",
+          "type": "词汇",
+          "usage": "deck 指幻灯片，常说 pitch deck"
+        }
+      ],
+      "basics": [
+        {
+          "term": "端点",
+          "term_en": "endpoint",
+          "explain": "API 中一个具体功能对应的访问地址，比如查询订单是一个地址、创建订单是另一个地址，调用方把请求发到对应地址即可。",
+          "analogy": "政务大厅里不同业务对应不同窗口。"
+        },
+        {
+          "term": "JSON 格式",
+          "term_en": "JSON (JavaScript Object Notation)",
+          "explain": "一种用大括号和「名称：值」成对表示数据的文本格式，人和程序都容易读，比如一行写出订单号、金额和状态，是网络 API 最常用的格式。",
+          "analogy": "格式统一的快递面单，每栏写什么都固定。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "对方说有开放接口，集成需求就肯定能做。",
+          "why": "有接口不代表有你需要的字段和动作，调用频率、权限范围和数据时效也可能受限；不读文档就承诺，常在开发中途发现做不了。",
+          "right": "承诺前对照接口文档核实端点、字段、权限和限制，必要时请研发做一次小规模的验证调用。"
+        }
+      ],
+      "approach": "采分点是讲清 API 的约定本质和三要素，并给出读文档的六个检查点。推荐结构：定义 → 地址方法数据 → 六个检查点 → 状态码 → 限制与字段对决策的影响。用「承诺集成前先读 API」收尾。会失分的是只说 API 是接口，讲不出读文档看什么。",
+      "tips": "必备术语 endpoint、status code、rate limit。可延伸：系统集成方式、单点登录与权限。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "SYS-F003",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "数据库",
+        "主键",
+        "SQL"
+      ],
+      "concepts": [
+        "sys.database"
+      ],
+      "prereq": [
+        "SYS-F001"
+      ],
+      "q_cn": "关系型数据库的表、主键和关联是什么意思？",
+      "q_en": "What do tables, primary keys, and relationships mean in a relational database?",
+      "gist": {
+        "cn": "表按行列存同类记录，主键唯一标识每一行，外键把不同表关联起来、避免重复存储。",
+        "en": "Tables store records in rows, primary keys identify each row, and foreign keys link tables without duplication."
+      },
+      "points": [
+        {
+          "en": "one table per kind of thing",
+          "cn": "每类事物一张表，像电子表格"
+        },
+        {
+          "en": "Each row is one record",
+          "cn": "行是记录，列是属性"
+        },
+        {
+          "en": "uniquely identifies each row",
+          "cn": "主键唯一标识每一行，通常是编号"
+        },
+        {
+          "en": "through foreign keys",
+          "cn": "用外键关联，避免复制数据"
+        },
+        {
+          "en": "spot missing fields",
+          "cn": "读懂表结构能提前发现缺字段"
+        }
+      ],
+      "concept": {
+        "cn": "关系型数据库是企业系统最常用的数据存储方式，它把数据组织成多张二维表：每张表对应一类业务对象，每行是一条记录，每列是一个属性。主键是能唯一标识每一行的字段或字段组合，通常是系统生成的编号；外键是一张表中引用另一张表主键的字段，用来建立表与表之间的关联，避免重复存储。SQL 是查询和操作这些表的标准语言，可以把多张表连接起来回答业务问题。看懂表结构，有助于产品经理及早发现缺失字段和口径问题。",
+        "en": "A relational database is the most common way enterprise systems store data. It organizes data into tables: each table corresponds to one type of business object, each row is a record, and each column is an attribute. A primary key is a field, or set of fields, that uniquely identifies each row, usually a system-generated ID; a foreign key is a field in one table that references another table's primary key, linking the tables and avoiding duplicated storage. SQL is the standard language for querying and manipulating these tables, and it can join several tables to answer business questions. Being able to read a table structure helps a product manager spot missing fields and definition problems early."
+      },
+      "a_pairs": [
+        {
+          "en": "A relational database stores data in tables that look like spreadsheets, with one table per kind of thing, such as customers or orders.",
+          "cn": "关系型数据库把数据存在看起来像电子表格的表里，每类事物一张表，比如客户表、订单表。"
+        },
+        {
+          "en": "Each row is one record, and each column is one attribute, like a customer's name or an order's amount.",
+          "cn": "每一行是一条记录，每一列是一个属性，比如客户姓名或订单金额。"
+        },
+        {
+          "en": "The primary key uniquely identifies each row, usually with a single ID column, because names and phone numbers can repeat or change.",
+          "cn": "主键用来唯一标识每一行，通常是一个编号列，因为姓名和电话可能重复或变化。"
+        },
+        {
+          "en": "Relationships work through foreign keys: the orders table stores a customer ID instead of copying the customer's details into every order.",
+          "cn": "关联通过外键实现：订单表里存的是客户编号，而不是把客户信息复制到每一笔订单里。"
+        },
+        {
+          "en": "That's why updating a customer's phone number in one place updates it everywhere, and it's also why messy IDs across systems cause so much pain.",
+          "cn": "这就是为什么在一处更新客户电话就能处处生效，也是为什么各系统编号混乱会带来那么多麻烦。"
+        },
+        {
+          "en": "SQL is the language for asking questions across tables, like 'total sales by region last month', which joins orders to customers.",
+          "cn": "SQL 是跨表提问的语言，比如「上个月各区域的销售总额」，这需要把订单表和客户表连接起来。"
+        },
+        {
+          "en": "A PM doesn't need to write complex SQL, but being able to read a table structure helps you spot missing fields before they become missing reports.",
+          "cn": "产品经理不需要写复杂的 SQL，但能看懂表结构，有助于在缺字段变成缺报表之前就发现问题。"
+        },
+        {
+          "en": "My rule of thumb: if a report needs it, make sure a table stores it.",
+          "cn": "我的经验法则是：报表要用的数据，先确认有表在存它。"
+        }
+      ],
+      "a_en": "A relational database stores data in tables that look like spreadsheets, with one table per kind of thing, such as customers or orders. Each row is one record, and each column is one attribute, like a customer's name or an order's amount. The primary key uniquely identifies each row, usually with a single ID column, because names and phone numbers can repeat or change. Relationships work through foreign keys: the orders table stores a customer ID instead of copying the customer's details into every order. That's why updating a customer's phone number in one place updates it everywhere, and it's also why messy IDs across systems cause so much pain. SQL is the language for asking questions across tables, like 'total sales by region last month', which joins orders to customers. A PM doesn't need to write complex SQL, but being able to read a table structure helps you spot missing fields before they become missing reports. My rule of thumb: if a report needs it, make sure a table stores it.",
+      "a_cn": "关系型数据库把数据存在看起来像电子表格的表里，每类事物一张表，比如客户表、订单表。每一行是一条记录，每一列是一个属性，比如客户姓名或订单金额。主键用来唯一标识每一行，通常是一个编号列，因为姓名和电话可能重复或变化。关联通过外键实现：订单表里存的是客户编号，而不是把客户信息复制到每一笔订单里。这就是为什么在一处更新客户电话就能处处生效，也是为什么各系统编号混乱会带来那么多麻烦。SQL 是跨表提问的语言，比如「上个月各区域的销售总额」，这需要把订单表和客户表连接起来。产品经理不需要写复杂的 SQL，但能看懂表结构，有助于在缺字段变成缺报表之前就发现问题。我的经验法则是：报表要用的数据，先确认有表在存它。",
+      "key_phrases": [
+        {
+          "en": "uniquely identifies",
+          "cn": "唯一标识",
+          "type": "搭配",
+          "usage": "uniquely identify 常接 a record / a customer"
+        },
+        {
+          "en": "cause so much pain",
+          "cn": "带来大麻烦",
+          "type": "搭配",
+          "usage": "cause pain 口语中指带来很多麻烦"
+        },
+        {
+          "en": "asking questions across tables",
+          "cn": "跨表提问",
+          "type": "搭配",
+          "usage": "across tables 指跨越多张表，也说 join tables"
+        },
+        {
+          "en": "spot missing fields",
+          "cn": "发现缺失字段",
+          "type": "搭配",
+          "usage": "spot 指及早发现，可换 catch"
+        },
+        {
+          "en": "before they become missing reports",
+          "cn": "在变成缺报表之前",
+          "type": "句型",
+          "usage": "before X become Y 表在问题升级前处理"
+        }
+      ],
+      "basics": [
+        {
+          "term": "外键",
+          "term_en": "foreign key",
+          "explain": "一张表里存放另一张表主键的字段，用来表明两条记录之间的关系，比如订单表里的客户编号指向客户表中的某个客户。",
+          "analogy": "学生表里的班级编号，能查到对应班级。"
+        },
+        {
+          "term": "SQL 查询语言",
+          "term_en": "SQL (Structured Query Language)",
+          "explain": "一种专门用来查询和操作关系型数据库的语言，可以按条件筛选、汇总、排序，并把多张表连接起来，回答诸如各区域销售额之类的问题。",
+          "analogy": "给图书管理员递一张写清条件的借书单。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "客户名称就能区分客户，没必要专门设一个编号。",
+          "why": "名称会重名、会改名，也有不同写法；用名称关联数据，改名后历史订单就对不上，同名客户还会被合并，报表随之出错。",
+          "right": "每类业务对象都用系统生成的唯一编号作主键，名称只作为可以修改的展示属性。"
+        }
+      ],
+      "approach": "采分点是讲清表、行列、主键、外键四个概念，并落到产品含义上。推荐结构：表格类比 → 行与列 → 主键为何用编号 → 外键避免复制 → SQL 跨表提问 → 看懂表结构的用处。用「报表要用，先确认有表在存」收尾。会失分的是背定义却说不出对需求的影响。",
+      "tips": "必备术语 primary key、foreign key、SQL。可延伸：领域模型、主数据与数据治理。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "SYS-F004",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "企业系统",
+        "ERP",
+        "CRM"
+      ],
+      "concepts": [
+        "sys.enterprise_apps"
+      ],
+      "prereq": [],
+      "q_cn": "ERP、CRM、ITSM 等企业系统各管哪一段业务？",
+      "q_en": "Which parts of the business do enterprise systems like ERP, CRM, and ITSM each cover?",
+      "gist": {
+        "cn": "CRM 管客户与销售，ERP 管钱和货，HCM 管人，ITSM 管服务工单。",
+        "en": "CRM runs customers and sales, ERP runs money and goods, HCM runs people, ITSM runs service requests."
+      },
+      "points": [
+        {
+          "en": "owning a slice of the business",
+          "cn": "每个系统掌管一段业务和核心数据"
+        },
+        {
+          "en": "it owns the customer and the deal",
+          "cn": "CRM 管客户与交易"
+        },
+        {
+          "en": "it owns the money and the goods",
+          "cn": "ERP 管财务、采购、库存和生产"
+        },
+        {
+          "en": "handles incidents, service requests, and changes",
+          "cn": "ITSM 管故障、请求和变更，以工单为核心"
+        },
+        {
+          "en": "the source of truth for each record",
+          "cn": "先弄清每类数据以哪个系统为准"
+        }
+      ],
+      "concept": {
+        "cn": "企业信息系统可以按「各管一段业务、各掌一类核心数据」来理解。CRM（客户关系管理）覆盖营销、销售与客户服务，掌管客户和商机；ERP（企业资源计划）覆盖财务、采购、库存和生产，掌管资金与物料；HCM（人力资本管理）等人力资源系统掌管员工、薪酬和组织架构；ITSM（IT 服务管理）处理故障、服务请求和变更，以工单流程为核心；此外还有协同办公工具和数据平台。产品经理需要知道每类数据以哪个系统为准，新产品应优先接入而不是重复建设。",
+        "en": "Enterprise information systems can be understood as each owning one slice of the business and one kind of core data. CRM (customer relationship management) covers marketing, sales, and customer service, and owns customers and opportunities; ERP (enterprise resource planning) covers finance, procurement, inventory, and manufacturing, and owns money and materials; HR systems such as HCM (human capital management) own employees, payroll, and the org structure; ITSM (IT service management) handles incidents, service requests, and changes, built around ticket workflows; around them are collaboration tools and data platforms. A product manager needs to know which system is authoritative for each type of data, and a new product should integrate with it rather than duplicate it."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd describe enterprise systems as each owning a slice of the business and its core records.",
+          "cn": "我会把企业系统描述为各自掌管一段业务及其核心数据。"
+        },
+        {
+          "en": "CRM, customer relationship management, covers marketing, sales opportunities, and often customer service, so it owns the customer and the deal.",
+          "cn": "CRM 即客户关系管理，覆盖营销、销售商机，常常还包括客户服务，所以它掌管客户和交易。"
+        },
+        {
+          "en": "ERP, enterprise resource planning, covers finance, procurement, inventory, and manufacturing, so it owns the money and the goods.",
+          "cn": "ERP 即企业资源计划，覆盖财务、采购、库存和生产，所以它掌管钱和货。"
+        },
+        {
+          "en": "HR systems, often called HCM, for human capital management, own employees, payroll, and the org structure.",
+          "cn": "人力资源系统常被称为 HCM（人力资本管理），掌管员工、薪酬和组织架构。"
+        },
+        {
+          "en": "ITSM, IT service management, handles incidents, service requests, and changes, and that's why ticket workflows are central to it.",
+          "cn": "ITSM 即 IT 服务管理，处理故障、服务请求和变更，这就是为什么工单流程是它的核心。"
+        },
+        {
+          "en": "Around them sit collaboration tools for approvals and documents, plus data platforms that pull everything together for reporting.",
+          "cn": "在它们周围还有用于审批和文档的协同办公工具，以及把所有数据汇总起来做报表的数据平台。"
+        },
+        {
+          "en": "The PM question is always which system is the source of truth for each record, because a new product that copies customer or employee data without syncing it doesn't stay accurate for long.",
+          "cn": "产品经理要问的永远是：每类数据以哪个系统为准，因为一个新产品如果复制客户或员工数据却不同步，很快就会不准。"
+        },
+        {
+          "en": "My rule of thumb: before building anything, find out which system already owns that data, and plug into it rather than compete with it.",
+          "cn": "我的经验法则是：动手做任何东西之前，先弄清哪个系统已经掌管这份数据，然后接入它，而不是和它竞争。"
+        }
+      ],
+      "a_en": "I'd describe enterprise systems as each owning a slice of the business and its core records. CRM, customer relationship management, covers marketing, sales opportunities, and often customer service, so it owns the customer and the deal. ERP, enterprise resource planning, covers finance, procurement, inventory, and manufacturing, so it owns the money and the goods. HR systems, often called HCM, for human capital management, own employees, payroll, and the org structure. ITSM, IT service management, handles incidents, service requests, and changes, and that's why ticket workflows are central to it. Around them sit collaboration tools for approvals and documents, plus data platforms that pull everything together for reporting. The PM question is always which system is the source of truth for each record, because a new product that copies customer or employee data without syncing it doesn't stay accurate for long. My rule of thumb: before building anything, find out which system already owns that data, and plug into it rather than compete with it.",
+      "a_cn": "我会把企业系统描述为各自掌管一段业务及其核心数据。CRM 即客户关系管理，覆盖营销、销售商机，常常还包括客户服务，所以它掌管客户和交易。ERP 即企业资源计划，覆盖财务、采购、库存和生产，所以它掌管钱和货。人力资源系统常被称为 HCM（人力资本管理），掌管员工、薪酬和组织架构。ITSM 即 IT 服务管理，处理故障、服务请求和变更，这就是为什么工单流程是它的核心。在它们周围还有用于审批和文档的协同办公工具，以及把所有数据汇总起来做报表的数据平台。产品经理要问的永远是：每类数据以哪个系统为准，因为一个新产品如果复制客户或员工数据却不同步，很快就会不准。我的经验法则是：动手做任何东西之前，先弄清哪个系统已经掌管这份数据，然后接入它，而不是和它竞争。",
+      "key_phrases": [
+        {
+          "en": "a slice of the business",
+          "cn": "一段业务",
+          "type": "搭配",
+          "usage": "a slice of 指一部分，如 a slice of the market"
+        },
+        {
+          "en": "are central to it",
+          "cn": "是它的核心",
+          "type": "搭配",
+          "usage": "be central to 表对某物至关重要"
+        },
+        {
+          "en": "pull everything together",
+          "cn": "把一切汇总起来",
+          "type": "搭配",
+          "usage": "pull together 指汇总整合，也指团结协作"
+        },
+        {
+          "en": "plug into it",
+          "cn": "接入它",
+          "type": "搭配",
+          "usage": "plug into 指接入现有系统，比 connect 形象"
+        },
+        {
+          "en": "rather than compete with it",
+          "cn": "而不是和它竞争",
+          "type": "句型",
+          "usage": "do X rather than Y 表取舍，强调前者"
+        }
+      ],
+      "basics": [
+        {
+          "term": "客户关系管理系统",
+          "term_en": "CRM (customer relationship management)",
+          "explain": "管理企业与客户之间全部往来的系统，记录客户信息、销售机会、报价合同和服务记录，帮助销售和服务团队协作。",
+          "analogy": "一本记满客户往来的超级通讯录。"
+        },
+        {
+          "term": "IT 服务管理系统",
+          "term_en": "ITSM (IT service management)",
+          "explain": "主要受理企业内部员工提出的故障报修、服务请求和系统变更，以工单流转和服务时限管理为核心；面向外部客户的服务多用客户服务管理系统。",
+          "analogy": "物业报修平台：报修、派单、上门、回访。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "新产品自带一份客户和员工数据，用起来更方便，不必对接现有系统。",
+          "why": "数据各存一份很快就不一致，客户改了地址、员工调了岗，新产品还是旧信息，报表对不上，用户也不再信任它。",
+          "right": "先确认每类数据的权威系统，新产品通过接口同步或直接读取，只在本系统维护自己独有的数据。"
+        }
+      ],
+      "approach": "采分点是按「各管一段业务、各掌一类数据」讲清主要企业系统，并落到权威数据源。推荐结构：总框架 → CRM → ERP → HCM → ITSM → 协同与数据平台 → 关键问题。用「先找掌管数据的系统，接入而非竞争」收尾。会失分的是只背英文全称。",
+      "tips": "必备术语 CRM、ERP、ITSM、source of truth。可延伸：系统集成方式、主数据与数据治理。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "SYS-F005",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "系统集成",
+        "消息队列",
+        "数据同步"
+      ],
+      "concepts": [
+        "sys.integration"
+      ],
+      "prereq": [
+        "SYS-F002",
+        "SYS-F003"
+      ],
+      "q_cn": "系统之间怎么打通？接口、消息队列和数据同步有何区别？",
+      "q_en": "How do systems connect, and how do APIs, message queues, and data syncs differ?",
+      "gist": {
+        "cn": "接口实时一问一答；消息队列异步投递、解耦；批量同步定时搬数据，便宜但有延迟。",
+        "en": "APIs answer in real time, message queues deliver asynchronously, batch syncs move data on a schedule."
+      },
+      "points": [
+        {
+          "en": "how fresh does the data need to be",
+          "cn": "按数据时效和对方宕机影响来选"
+        },
+        {
+          "en": "a real-time question and answer",
+          "cn": "接口直连实时，但受对方可用性牵连"
+        },
+        {
+          "en": "decouples systems and absorbs spikes",
+          "cn": "消息队列异步，解耦并吸收高峰"
+        },
+        {
+          "en": "copies large amounts of data on a schedule",
+          "cn": "批量同步定时搬运大量数据"
+        },
+        {
+          "en": "the other system calls you the moment something changes",
+          "cn": "Webhook 在数据变化时主动通知"
+        }
+      ],
+      "concept": {
+        "cn": "系统集成是让多个系统交换数据或协同完成业务的方式，常见有四种。接口直连是同步调用，适合用户在等结果的场景，但受对方可用性牵连；消息队列是异步方式，接收方按自身节奏处理，能解耦并缓冲高峰；批量同步（如 ETL，即抽取、转换、加载）定时把数据搬进数据仓库（集中存放历史数据、专供分析的库），成本低但有延迟；Webhook 在数据变化时由对方主动推送。异步消息可能重复到达，接收方要让重复处理无害（这叫幂等）。",
+        "en": "System integration is how multiple systems exchange data or cooperate, and there are four common styles. A direct API call is synchronous and suits cases where a user is waiting, but it depends on the other system's availability. A message queue is asynchronous: receivers process events at their own pace, which decouples systems and buffers spikes. A batch sync, such as ETL (extract, transform, load), moves data on a schedule into places like a data warehouse, a store of historical data built for analysis, which is cheap but delayed. A webhook has the other system push a notification when data changes. Asynchronous messages can arrive twice, so receivers must make repeats harmless, a property called idempotency."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd pick the integration style based on two questions: how fresh does the data need to be, and what happens if the other system is down?",
+          "cn": "我会根据两个问题选择集成方式：数据需要多新？对方系统宕机时会怎样？"
+        },
+        {
+          "en": "A direct API call is a real-time question and answer, like checking stock before confirming an order, but if the inventory system is down, so is your checkout.",
+          "cn": "直接调用 API 是实时的一问一答，比如确认订单前先查库存，但如果库存系统宕机，你的结账也跟着停摆。"
+        },
+        {
+          "en": "A message queue is asynchronous: one system drops an event like 'order placed' into a queue, and others pick it up when they're ready.",
+          "cn": "消息队列是异步的：一个系统把「订单已下」这样的事件放进队列，其他系统准备好了再去取。"
+        },
+        {
+          "en": "That decouples systems and absorbs spikes, so it suits jobs like sending invoices or updating loyalty points.",
+          "cn": "这能让系统之间解耦并吸收流量高峰，所以适合开发票、更新积分这类事情。"
+        },
+        {
+          "en": "A batch sync, such as an ETL job, copies large amounts of data on a schedule, like loading yesterday's sales into a data warehouse nightly.",
+          "cn": "批量同步（比如 ETL 作业）按计划搬运大量数据，比如每晚把前一天的销售数据搬进数据仓库。"
+        },
+        {
+          "en": "Webhooks flip the direction: the other system calls you the moment something changes, so you don't have to keep asking.",
+          "cn": "Webhook 则把方向反过来：对方系统在数据变化的那一刻主动通知你，你就不用反复去问。"
+        },
+        {
+          "en": "One catch: the same message can arrive twice, so receivers should make repeats harmless; you don't want to charge a customer twice.",
+          "cn": "这里有个坑：同一条消息可能到达两次，所以接收方要让重复处理无害，毕竟你不会想重复扣客户的钱。"
+        },
+        {
+          "en": "My rule of thumb: use real-time calls only where a user is waiting, and let everything else flow asynchronously or in batches.",
+          "cn": "我的经验法则是：只有用户在等结果的地方才用实时调用，其余的都让它异步流转或批量处理。"
+        }
+      ],
+      "a_en": "I'd pick the integration style based on two questions: how fresh does the data need to be, and what happens if the other system is down? A direct API call is a real-time question and answer, like checking stock before confirming an order, but if the inventory system is down, so is your checkout. A message queue is asynchronous: one system drops an event like 'order placed' into a queue, and others pick it up when they're ready. That decouples systems and absorbs spikes, so it suits jobs like sending invoices or updating loyalty points. A batch sync, such as an ETL job, copies large amounts of data on a schedule, like loading yesterday's sales into a data warehouse nightly. Webhooks flip the direction: the other system calls you the moment something changes, so you don't have to keep asking. One catch: the same message can arrive twice, so receivers should make repeats harmless; you don't want to charge a customer twice. My rule of thumb: use real-time calls only where a user is waiting, and let everything else flow asynchronously or in batches.",
+      "a_cn": "我会根据两个问题选择集成方式：数据需要多新？对方系统宕机时会怎样？直接调用 API 是实时的一问一答，比如确认订单前先查库存，但如果库存系统宕机，你的结账也跟着停摆。消息队列是异步的：一个系统把「订单已下」这样的事件放进队列，其他系统准备好了再去取。这能让系统之间解耦并吸收流量高峰，所以适合开发票、更新积分这类事情。批量同步（比如 ETL 作业）按计划搬运大量数据，比如每晚把前一天的销售数据搬进数据仓库。Webhook 则把方向反过来：对方系统在数据变化的那一刻主动通知你，你就不用反复去问。这里有个坑：同一条消息可能到达两次，所以接收方要让重复处理无害，毕竟你不会想重复扣客户的钱。我的经验法则是：只有用户在等结果的地方才用实时调用，其余的都让它异步流转或批量处理。",
+      "key_phrases": [
+        {
+          "en": "drops an event",
+          "cn": "投入一个事件",
+          "type": "搭配",
+          "usage": "drop an event into a queue 指把事件放进队列"
+        },
+        {
+          "en": "absorbs spikes",
+          "cn": "吸收高峰",
+          "type": "搭配",
+          "usage": "absorb spikes 也可说 smooth out peaks"
+        },
+        {
+          "en": "on a schedule",
+          "cn": "按计划定时",
+          "type": "搭配",
+          "usage": "on a schedule 反义 on demand"
+        },
+        {
+          "en": "flip the direction",
+          "cn": "把方向反过来",
+          "type": "搭配",
+          "usage": "flip 指翻转，flip the direction 表调用方向对调"
+        },
+        {
+          "en": "where a user is waiting",
+          "cn": "用户在等待的地方",
+          "type": "句型",
+          "usage": "only where… 用来限定方案的适用场景"
+        }
+      ],
+      "basics": [
+        {
+          "term": "异步",
+          "term_en": "asynchronous",
+          "explain": "发出请求后不原地等待结果，而是先去做别的事，等对方处理完再通过通知或回调得知结果。适合不需要立刻得到答复的任务。",
+          "analogy": "发微信留言，而不是打电话等对方接。"
+        },
+        {
+          "term": "解耦",
+          "term_en": "decoupling",
+          "explain": "降低系统之间的直接依赖，让一个系统变更、变慢或宕机时，不会立刻拖垮与它相连的其他系统。",
+          "analogy": "餐厅用取餐号，后厨慢了前台照常点单。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "实时接口最先进，所有系统之间都用实时调用打通。",
+          "why": "实时调用把各系统串成一条链，任何一个变慢或宕机都会拖垮整条业务链路，高峰期还可能互相压垮。",
+          "right": "只在用户等待结果的环节用实时调用，其余通过消息队列异步处理或按时批量同步。"
+        }
+      ],
+      "approach": "采分点是给出时效与故障影响两个选择标准，并对比四种集成方式的适用场景。推荐结构：选择标准 → 接口直连与库存例子 → 消息队列与解耦 → 批量同步 → Webhook。用「只有用户在等的地方才用实时」收尾。会失分的是只罗列技术名词而不讲取舍。",
+      "tips": "必备术语 message queue、ETL、webhook。可延伸：老系统集成方案、读懂系统架构图。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "SYS-F006",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "SaaS",
+        "私有化部署",
+        "多租户"
+      ],
+      "concepts": [
+        "sys.deployment"
+      ],
+      "prereq": [
+        "SYS-F001"
+      ],
+      "q_cn": "SaaS、私有化部署和多租户有什么区别？",
+      "q_en": "What are the differences between SaaS, on-premises deployment, and multi-tenancy?",
+      "gist": {
+        "cn": "SaaS 厂商托管、多租户共享、升级快；私有化部署在客户环境，控制强但升级慢。",
+        "en": "SaaS is vendor-hosted and usually multi-tenant; on-premises runs in the customer's environment, with more control but slower upgrades."
+      },
+      "points": [
+        {
+          "en": "the vendor runs the software in its own cloud",
+          "cn": "SaaS 由厂商托管，客户订阅使用"
+        },
+        {
+          "en": "many customers share one running system",
+          "cn": "多租户共享一套系统，数据逻辑隔离"
+        },
+        {
+          "en": "ship updates to everyone at once",
+          "cn": "多租户让统一更新、降低成本"
+        },
+        {
+          "en": "each install becomes its own version",
+          "cn": "私有化满足掌控与合规，但版本分散"
+        },
+        {
+          "en": "release cadence",
+          "cn": "部署形态影响发版节奏与功能承诺"
+        }
+      ],
+      "concept": {
+        "cn": "部署形态决定软件运行在哪里、由谁维护。SaaS（软件即服务）由厂商在自己的云上运行，客户按订阅付费、通过浏览器使用；多数 SaaS 采用多租户架构，多个客户共享同一套系统，数据在逻辑上隔离，因此厂商能统一升级、降低成本。私有化部署把软件装在客户自己的数据中心或私有云中，满足数据掌控和合规要求，但每套部署都要单独升级维护。介于两者之间的还有单租户专属云等形态。部署形态会直接影响发版节奏、定制空间和成本结构。",
+        "en": "The deployment model determines where software runs and who maintains it. SaaS (software as a service) runs in the vendor's own cloud, and customers pay by subscription and use it through a browser; most SaaS uses a multi-tenant architecture in which many customers share one system with logically separated data, so the vendor can upgrade everyone at once and keep costs down. On-premises or private deployment installs the software in the customer's own data center or private cloud, meeting data-control and compliance requirements, but every installation must be upgraded and maintained separately. In between are options such as dedicated single-tenant cloud. The deployment model directly affects release cadence, room for customization, and cost structure."
+      },
+      "a_pairs": [
+        {
+          "en": "SaaS means the vendor runs the software in its own cloud and customers subscribe and use it through a browser.",
+          "cn": "SaaS 指厂商在自己的云上运行软件，客户订阅后通过浏览器使用。"
+        },
+        {
+          "en": "Most SaaS products are multi-tenant: many customers share one running system, with their data logically separated, like tenants in one apartment building.",
+          "cn": "大多数 SaaS 产品是多租户的：许多客户共用一套运行中的系统，数据在逻辑上相互隔离，就像住在同一栋公寓楼里的租户。"
+        },
+        {
+          "en": "That's what lets the vendor ship updates to everyone at once and keep costs low.",
+          "cn": "正是这一点让厂商能一次性给所有客户推送更新，并把成本压低。"
+        },
+        {
+          "en": "On-premises, or private deployment, means the software runs in the customer's own data center or private cloud.",
+          "cn": "本地部署，也就是私有化部署，指软件运行在客户自己的数据中心或私有云中。"
+        },
+        {
+          "en": "Banks and government agencies often insist on it for data control and compliance, but each install becomes its own version to upgrade and support.",
+          "cn": "银行和政府机构常常坚持这样做，以便掌控数据并满足合规，但每一套部署都会变成需要单独升级和维护的版本。"
+        },
+        {
+          "en": "It isn't all or nothing, though: a dedicated single-tenant cloud instance trades some cost for more isolation.",
+          "cn": "不过这并非非此即彼：专属的单租户云实例用更高一些的成本换取更强的隔离。"
+        },
+        {
+          "en": "For a PM, the model shapes everything from release cadence to which features you can promise, since a customization that's fine on-premises can break a shared SaaS platform.",
+          "cn": "对产品经理来说，部署形态影响方方面面，从发版节奏到能承诺哪些功能，因为在私有化环境里可行的定制，放到共享的 SaaS 平台上可能会出问题。"
+        },
+        {
+          "en": "My rule of thumb: every private deployment you sell is a product version you'll maintain for years.",
+          "cn": "我的经验法则是：你卖出去的每一套私有化部署，都是你要维护好几年的一个产品版本。"
+        }
+      ],
+      "a_en": "SaaS means the vendor runs the software in its own cloud and customers subscribe and use it through a browser. Most SaaS products are multi-tenant: many customers share one running system, with their data logically separated, like tenants in one apartment building. That's what lets the vendor ship updates to everyone at once and keep costs low. On-premises, or private deployment, means the software runs in the customer's own data center or private cloud. Banks and government agencies often insist on it for data control and compliance, but each install becomes its own version to upgrade and support. It isn't all or nothing, though: a dedicated single-tenant cloud instance trades some cost for more isolation. For a PM, the model shapes everything from release cadence to which features you can promise, since a customization that's fine on-premises can break a shared SaaS platform. My rule of thumb: every private deployment you sell is a product version you'll maintain for years.",
+      "a_cn": "SaaS 指厂商在自己的云上运行软件，客户订阅后通过浏览器使用。大多数 SaaS 产品是多租户的：许多客户共用一套运行中的系统，数据在逻辑上相互隔离，就像住在同一栋公寓楼里的租户。正是这一点让厂商能一次性给所有客户推送更新，并把成本压低。本地部署，也就是私有化部署，指软件运行在客户自己的数据中心或私有云中。银行和政府机构常常坚持这样做，以便掌控数据并满足合规，但每一套部署都会变成需要单独升级和维护的版本。不过这并非非此即彼：专属的单租户云实例用更高一些的成本换取更强的隔离。对产品经理来说，部署形态影响方方面面，从发版节奏到能承诺哪些功能，因为在私有化环境里可行的定制，放到共享的 SaaS 平台上可能会出问题。我的经验法则是：你卖出去的每一套私有化部署，都是你要维护好几年的一个产品版本。",
+      "key_phrases": [
+        {
+          "en": "ship updates",
+          "cn": "发布更新",
+          "type": "搭配",
+          "usage": "ship 在产品语境指发布上线，可接 features"
+        },
+        {
+          "en": "insist on",
+          "cn": "坚持要求",
+          "type": "搭配",
+          "usage": "insist on 后接名词或动名词"
+        },
+        {
+          "en": "all or nothing",
+          "cn": "非此即彼",
+          "type": "词汇",
+          "usage": "all or nothing 常用否定式，表非此即彼"
+        },
+        {
+          "en": "trades some cost for",
+          "cn": "用一些成本换取",
+          "type": "句型",
+          "usage": "trade X for Y 表以 X 换取 Y"
+        },
+        {
+          "en": "release cadence",
+          "cn": "发版节奏",
+          "type": "词汇",
+          "usage": "cadence 指节奏，如 a weekly release cadence"
+        }
+      ],
+      "basics": [
+        {
+          "term": "多租户",
+          "term_en": "multi-tenancy",
+          "explain": "多个客户共用同一套运行中的软件和基础设施，每个客户的数据和配置在逻辑上隔离、互不可见，从而摊薄成本、便于统一升级。",
+          "analogy": "同一栋公寓楼，各户有自己的门锁。"
+        },
+        {
+          "term": "私有化部署",
+          "term_en": "on-premises deployment",
+          "explain": "把软件安装在客户自己的机房或私有云环境中运行，数据不出客户边界，由客户或厂商为这一套环境单独升级和维护。",
+          "analogy": "自己盖独栋：钥匙全在自己手里，修房子得单独请人。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "大客户要私有化部署就答应，收入高，多一套环境而已。",
+          "why": "每套私有化部署都会形成独立版本，升级、补丁、排障都要单独投入，部署多了会拖慢整个产品的迭代速度，长期成本常被低估。",
+          "right": "评估私有化需求时算入多年的维护成本，优先推荐单租户专属云等折中方案，并约定私有化版本的升级节奏。"
+        }
+      ],
+      "approach": "采分点是讲清三种形态由谁运行、数据在哪，以及对产品节奏和成本的影响。推荐结构：SaaS 定义 → 多租户类比 → 统一更新 → 私有化的动因与代价 → 折中方案 → 对产品的影响。用「每套私有化都是要维护多年的版本」收尾。会失分的是只说私有化更安全。",
+      "tips": "必备术语 SaaS、multi-tenancy、on-premises。可延伸：标准化与定制化、非功能需求。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "SYS-F007",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "单点登录",
+        "角色权限",
+        "认证授权"
+      ],
+      "concepts": [
+        "sys.auth"
+      ],
+      "prereq": [
+        "SYS-F002"
+      ],
+      "q_cn": "单点登录和角色权限是怎么实现的？",
+      "q_en": "How do single sign-on and role-based permissions work?",
+      "gist": {
+        "cn": "认证确认你是谁，授权决定你能做什么；单点登录统一认证，角色权限批量授权。",
+        "en": "Authentication proves who you are, authorization decides what you can do; SSO and roles handle each at scale."
+      },
+      "points": [
+        {
+          "en": "authentication is proving who you are",
+          "cn": "认证是你是谁，授权是能做什么"
+        },
+        {
+          "en": "you log in once with your corporate account",
+          "cn": "单点登录：登录一次，各应用都信任"
+        },
+        {
+          "en": "a central identity provider",
+          "cn": "统一身份提供方，可集中阻止离职员工登录"
+        },
+        {
+          "en": "permissions attach to roles",
+          "cn": "权限挂在角色上，人再获得角色"
+        },
+        {
+          "en": "a matrix of roles, actions, and data scope",
+          "cn": "叠加数据范围，用矩阵写权限需求"
+        }
+      ],
+      "concept": {
+        "cn": "认证确认用户是谁，授权决定用户能做什么。单点登录（SSO）让员工登录一次即可访问多个系统：各应用把登录交给统一的身份提供方，常用 SAML、OpenID Connect 等标准，员工离职时可统一阻止登录。OAuth 则是授权协议，让一个应用经用户许可去访问另一个系统的数据，OpenID Connect 在它之上补上了身份认证。基于角色的访问控制（RBAC）把权限授予角色，再把角色分配给用户；B 端产品通常还叠加数据范围控制，例如只看本区域数据。",
+        "en": "Authentication confirms who a user is, and authorization decides what the user can do. Single sign-on (SSO) lets employees log in once to access many systems: each application hands login to a central identity provider using standards such as SAML or OpenID Connect, and IT can block a leaver's logins in one place. OAuth, by contrast, is an authorization protocol that lets one application access another system's data with the user's permission, and OpenID Connect adds authentication on top of it. Role-based access control (RBAC) grants permissions to roles and assigns roles to users; B2B products usually add data-scope control on top, such as seeing only one's own region's data."
+      },
+      "a_pairs": [
+        {
+          "en": "I separate two questions: authentication is proving who you are, and authorization is deciding what you're allowed to do.",
+          "cn": "我会区分两个问题：认证是证明你是谁，授权是决定你被允许做什么。"
+        },
+        {
+          "en": "Single sign-on handles the first one for a whole company: you log in once with your corporate account, and every connected app trusts that login.",
+          "cn": "单点登录在全公司范围解决第一个问题：你用公司账号登录一次，所有接入的应用都信任这次登录。"
+        },
+        {
+          "en": "It works because each app hands the login to a central identity provider, using standards like SAML or OpenID Connect, so IT can also block a departing employee's logins in one place.",
+          "cn": "它之所以可行，是因为每个应用都把登录交给统一的身份提供方，采用 SAML 或 OpenID Connect 等标准，所以 IT 也能在一个地方统一阻止离职员工登录。"
+        },
+        {
+          "en": "Role-based access control handles the second question: permissions attach to roles like 'sales rep' or 'finance approver', and people get roles.",
+          "cn": "基于角色的访问控制解决第二个问题：权限挂在「销售代表」「财务审批人」这样的角色上，再把角色分配给人。"
+        },
+        {
+          "en": "OAuth isn't a login standard by itself: it's for authorization, like letting an app read your calendar, and OpenID Connect adds login on top of it.",
+          "cn": "OAuth 本身不是登录标准：它管的是授权，比如允许某个应用读取你的日历，OpenID Connect 则在它之上补上了登录。"
+        },
+        {
+          "en": "Real B2B products usually add data scope on top, so a sales rep sees only their own region's deals.",
+          "cn": "真实的 B 端产品通常还会叠加数据范围，让销售代表只看到自己区域的商机。"
+        },
+        {
+          "en": "When I write permission requirements, I use a matrix of roles, actions, and data scope that testers can check line by line.",
+          "cn": "写权限需求时，我会用一张「角色 × 操作 × 数据范围」的矩阵，测试可以逐行核对。"
+        },
+        {
+          "en": "My rule of thumb: grant permissions to roles, never to individuals, or the system becomes hard to audit.",
+          "cn": "我的经验法则是：权限授予角色，绝不直接授予个人，否则系统会很难审计。"
+        }
+      ],
+      "a_en": "I separate two questions: authentication is proving who you are, and authorization is deciding what you're allowed to do. Single sign-on handles the first one for a whole company: you log in once with your corporate account, and every connected app trusts that login. It works because each app hands the login to a central identity provider, using standards like SAML or OpenID Connect, so IT can also block a departing employee's logins in one place. Role-based access control handles the second question: permissions attach to roles like 'sales rep' or 'finance approver', and people get roles. OAuth isn't a login standard by itself: it's for authorization, like letting an app read your calendar, and OpenID Connect adds login on top of it. Real B2B products usually add data scope on top, so a sales rep sees only their own region's deals. When I write permission requirements, I use a matrix of roles, actions, and data scope that testers can check line by line. My rule of thumb: grant permissions to roles, never to individuals, or the system becomes hard to audit.",
+      "a_cn": "我会区分两个问题：认证是证明你是谁，授权是决定你被允许做什么。单点登录在全公司范围解决第一个问题：你用公司账号登录一次，所有接入的应用都信任这次登录。它之所以可行，是因为每个应用都把登录交给统一的身份提供方，采用 SAML 或 OpenID Connect 等标准，所以 IT 也能在一个地方统一阻止离职员工登录。基于角色的访问控制解决第二个问题：权限挂在「销售代表」「财务审批人」这样的角色上，再把角色分配给人。OAuth 本身不是登录标准：它管的是授权，比如允许某个应用读取你的日历，OpenID Connect 则在它之上补上了登录。真实的 B 端产品通常还会叠加数据范围，让销售代表只看到自己区域的商机。写权限需求时，我会用一张「角色 × 操作 × 数据范围」的矩阵，测试可以逐行核对。我的经验法则是：权限授予角色，绝不直接授予个人，否则系统会很难审计。",
+      "key_phrases": [
+        {
+          "en": "hands the login to",
+          "cn": "把登录交给",
+          "type": "搭配",
+          "usage": "hand X to Y 指把某事交给他方处理"
+        },
+        {
+          "en": "in one place",
+          "cn": "在一处统一",
+          "type": "搭配",
+          "usage": "in one place 强调集中处理，反义 scattered"
+        },
+        {
+          "en": "grant permissions to roles",
+          "cn": "把权限授予角色",
+          "type": "句型",
+          "usage": "grant X to Y 表授予，常用于权限需求"
+        },
+        {
+          "en": "line by line",
+          "cn": "逐行地",
+          "type": "搭配",
+          "usage": "line by line 指逐行、逐条地核对"
+        },
+        {
+          "en": "hard to audit",
+          "cn": "难以审计",
+          "type": "搭配",
+          "usage": "audit 作动词指审计追溯，常接 access"
+        }
+      ],
+      "basics": [
+        {
+          "term": "身份提供方",
+          "term_en": "identity provider (IdP)",
+          "explain": "企业里统一负责验证员工身份的系统，各业务应用不再各自管理密码，而是把登录请求转给它，由它确认身份后告知应用。",
+          "analogy": "小区门禁中心，一张卡能开所有楼门。"
+        },
+        {
+          "term": "数据范围",
+          "term_en": "data scope",
+          "explain": "在功能权限之外，进一步限定用户能看到和操作哪些数据，比如只看本部门、本区域或自己负责的记录。",
+          "analogy": "同是店长，只能看自己门店的账。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "权限做到「能不能进这个页面」就够了。",
+          "why": "B 端客户关心的往往是能看哪些数据、能改哪些字段、能审批多少金额；只控制页面入口，会出现看到别部门数据、越权修改等问题。",
+          "right": "按「角色 × 操作 × 数据范围」写权限需求，并写明字段级、金额级等特殊限制，交由后端校验。"
+        }
+      ],
+      "approach": "采分点是先区分认证与授权，再分别讲清单点登录和角色权限，并补上数据范围。推荐结构：两个问题 → 单点登录与身份提供方 → 离职停用的价值 → 角色权限 → 数据范围 → 权限矩阵。用「权限授予角色而非个人」收尾。会失分的是把登录和权限混为一谈。",
+      "tips": "必备术语 authentication、authorization、SSO、RBAC。可延伸：组织与审批体系、非功能需求。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "SYS-F008",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "可用性",
+        "SLA",
+        "降级"
+      ],
+      "concepts": [
+        "sys.reliability"
+      ],
+      "prereq": [
+        "SYS-F001"
+      ],
+      "q_cn": "99.9% 可用性意味着什么？产品经理要关心哪些指标？",
+      "q_en": "What does 99.9% availability mean, and which reliability metrics should a PM care about?",
+      "gist": {
+        "cn": "99.9% 约等于每年停机八小时多；还要关心延迟、错误率、恢复时间和降级方案。",
+        "en": "99.9% allows roughly 8.8 hours of downtime a year; also track latency, errors, and recovery time."
+      },
+      "points": [
+        {
+          "en": "each extra nine cuts the allowed downtime",
+          "cn": "每多一个 9，允许停机时间缩为十分之一"
+        },
+        {
+          "en": "eight point eight hours of downtime a year",
+          "cn": "99.9% 约每年 8.8 小时停机"
+        },
+        {
+          "en": "a promise with penalties",
+          "cn": "写进合同就是带赔偿的 SLA"
+        },
+        {
+          "en": "latency at the ninety-fifth percentile",
+          "cn": "还要看延迟、错误率和恢复时间"
+        },
+        {
+          "en": "graceful degradation",
+          "cn": "规划依赖出错时的优雅降级"
+        }
+      ],
+      "concept": {
+        "cn": "可用性是系统在一段时间内能够正常提供服务的时间比例，常用几个 9 表示：99.9% 意味着每年允许约 8.8 小时停机，99.99% 约 53 分钟，每多一个 9 都需要更多冗余设计和成本。在 B 端合同中，可用性目标常以 SLA 形式出现，未达标需要赔偿。除可用性外，产品经理还应关注延迟（常看 P95，即 95% 的请求都比这个值快）、错误率和故障恢复时间，并在需求中规划依赖出错时的降级方案，让系统部分失效时仍然可用。",
+        "en": "Availability is the proportion of time a system provides normal service over a period, usually expressed as a number of nines: 99.9% allows about 8.8 hours of downtime a year and 99.99% about 53 minutes, and every extra nine requires more redundancy and cost. In B2B contracts, availability targets often appear as an SLA with penalties if missed. Beyond availability, product managers should watch latency (often P95, the value 95% of requests beat), error rate, and recovery time from incidents, and plan degradation behavior in the requirements for when a dependency fails, so the system stays usable when part of it breaks."
+      },
+      "a_pairs": [
+        {
+          "en": "Availability is the share of time a service works, and each extra nine cuts the allowed downtime by a factor of ten.",
+          "cn": "可用性是服务正常工作的时间占比，每多一个 9，允许的停机时间就缩小到原来的十分之一。"
+        },
+        {
+          "en": "Ninety-nine point nine percent allows about eight point eight hours of downtime a year, or roughly forty-three minutes a month, while ninety-nine point nine nine allows only about fifty-three minutes a year.",
+          "cn": "99.9% 允许每年大约 8.8 小时停机，约合每月 43 分钟；99.99% 每年只允许约 53 分钟。"
+        },
+        {
+          "en": "In B2B contracts this becomes an SLA, a promise with penalties, so I'd never let sales promise a number engineering hasn't agreed to.",
+          "cn": "在 B 端合同里，这会变成 SLA，即带赔偿条款的承诺，所以我绝不会让销售承诺研发没认可的数字。"
+        },
+        {
+          "en": "Internally, teams aim for a stricter target, called an SLO, so they get warned before the contract is at risk.",
+          "cn": "在内部，团队会定一个更严格的目标，叫 SLO，这样在合同面临风险之前就能收到预警。"
+        },
+        {
+          "en": "Availability alone isn't enough, though; a system that's up but takes ten seconds to load feels broken to users.",
+          "cn": "不过只看可用性还不够，一个系统虽然在线，但加载要十秒，用户也会觉得它坏了。"
+        },
+        {
+          "en": "So I'd also watch latency at the ninety-fifth percentile, the error rate, and how long it takes to recover from an incident.",
+          "cn": "所以我还会关注第九十五百分位的延迟、错误率，以及从故障中恢复需要多长时间。"
+        },
+        {
+          "en": "And I'd plan graceful degradation, like showing the last saved data or a clear message when a dependency fails, instead of a blank page.",
+          "cn": "我还会规划优雅降级，比如在某个依赖出故障时显示最近一次保存的数据或清楚的提示，而不是一片空白。"
+        },
+        {
+          "en": "Bottom line: every extra nine costs real money, so match the target to what the business can actually lose.",
+          "cn": "一句话总结：每多一个 9 都要真金白银，所以目标要和业务实际承受的损失相匹配。"
+        }
+      ],
+      "a_en": "Availability is the share of time a service works, and each extra nine cuts the allowed downtime by a factor of ten. Ninety-nine point nine percent allows about eight point eight hours of downtime a year, or roughly forty-three minutes a month, while ninety-nine point nine nine allows only about fifty-three minutes a year. In B2B contracts this becomes an SLA, a promise with penalties, so I'd never let sales promise a number engineering hasn't agreed to. Internally, teams aim for a stricter target, called an SLO, so they get warned before the contract is at risk. Availability alone isn't enough, though; a system that's up but takes ten seconds to load feels broken to users. So I'd also watch latency at the ninety-fifth percentile, the error rate, and how long it takes to recover from an incident. And I'd plan graceful degradation, like showing the last saved data or a clear message when a dependency fails, instead of a blank page. Bottom line: every extra nine costs real money, so match the target to what the business can actually lose.",
+      "a_cn": "可用性是服务正常工作的时间占比，每多一个 9，允许的停机时间就缩小到原来的十分之一。99.9% 允许每年大约 8.8 小时停机，约合每月 43 分钟；99.99% 每年只允许约 53 分钟。在 B 端合同里，这会变成 SLA，即带赔偿条款的承诺，所以我绝不会让销售承诺研发没认可的数字。在内部，团队会定一个更严格的目标，叫 SLO，这样在合同面临风险之前就能收到预警。不过只看可用性还不够，一个系统虽然在线，但加载要十秒，用户也会觉得它坏了。所以我还会关注第九十五百分位的延迟、错误率，以及从故障中恢复需要多长时间。我还会规划优雅降级，比如在某个依赖出故障时显示最近一次保存的数据或清楚的提示，而不是一片空白。一句话总结：每多一个 9 都要真金白银，所以目标要和业务实际承受的损失相匹配。",
+      "key_phrases": [
+        {
+          "en": "by a factor of ten",
+          "cn": "缩小或扩大十倍",
+          "type": "搭配",
+          "usage": "by a factor of 表倍数变化，常用于比较量级"
+        },
+        {
+          "en": "a promise with penalties",
+          "cn": "带赔偿的承诺",
+          "type": "搭配",
+          "usage": "用来通俗解释 SLA，penalty 指违约赔偿"
+        },
+        {
+          "en": "feels broken",
+          "cn": "感觉坏了",
+          "type": "搭配",
+          "usage": "feel broken 强调用户的主观体验"
+        },
+        {
+          "en": "graceful degradation",
+          "cn": "优雅降级",
+          "type": "词汇",
+          "usage": "graceful 指出错时体面地退化，而非崩溃"
+        },
+        {
+          "en": "costs real money",
+          "cn": "要花真金白银",
+          "type": "搭配",
+          "usage": "cost real money 强调代价实实在在"
+        }
+      ],
+      "basics": [
+        {
+          "term": "服务等级协议",
+          "term_en": "SLA (service level agreement)",
+          "explain": "写进合同的服务质量承诺，比如每月可用率不低于某个数值、故障多久内响应，未达到时厂商要按约定赔偿或退款。",
+          "analogy": "快递承诺次日达，超时就赔优惠券。"
+        },
+        {
+          "term": "优雅降级",
+          "term_en": "graceful degradation",
+          "explain": "系统某部分出问题时，不整体瘫痪，而是关闭或简化部分功能继续服务，比如推荐模块挂了就显示默认列表。",
+          "analogy": "停电时商场亮起应急灯照常引导顾客。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "可用性越高越好，合同里直接承诺四个 9 显得更专业。",
+          "why": "每多一个 9，冗余架构、监控和值班成本都会大幅上升；承诺研发做不到的数字会带来违约赔偿，还会挤占功能开发资源。",
+          "right": "按业务停机的实际损失定目标，与研发确认可行后再写进 SLA，并配套延迟、恢复时间和降级方案。"
+        }
+      ],
+      "approach": "采分点是算清几个 9 对应的停机时间，并扩展到延迟、错误率、恢复时间和降级。推荐结构：定义与换算 → SLA 与承诺风险 → 只看可用性不够 → 其他指标 → 优雅降级。用「每多一个 9 都要真金白银」收尾。会失分的是只背数字、不讲取舍。",
+      "tips": "必备术语 SLA、latency、graceful degradation。可延伸：非功能需求、部署形态。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "SYS-F009",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "架构图",
+        "C4模型",
+        "单点故障"
+      ],
+      "concepts": [
+        "sys.architecture_diagram"
+      ],
+      "prereq": [
+        "SYS-F001",
+        "SYS-F005"
+      ],
+      "q_cn": "如何读懂一张系统架构图？",
+      "q_en": "How do you read a system architecture diagram?",
+      "gist": {
+        "cn": "由外向内：先找边界和用户，再看系统和数据存储、彼此怎么通信，最后找风险点。",
+        "en": "Read outside in: boundary and users, internal systems, how they talk, then single points of failure."
+      },
+      "points": [
+        {
+          "en": "find the boundary and the people",
+          "cn": "由外向内，先找边界和使用者"
+        },
+        {
+          "en": "identify the main boxes inside",
+          "cn": "识别内部主要方框及其职责"
+        },
+        {
+          "en": "follow the arrows",
+          "cn": "顺着箭头看数据流与调用方式"
+        },
+        {
+          "en": "look for risk",
+          "cn": "找单点故障、无备用依赖和敏感数据"
+        },
+        {
+          "en": "the C4 model",
+          "cn": "分层阅读，产品经理看上下文和容器层"
+        }
+      ],
+      "concept": {
+        "cn": "系统架构图用方框和箭头表示系统由哪些部分组成、彼此如何交互。阅读时可以由外向内：先确定系统边界、使用者和外部依赖系统；再识别内部的主要应用、服务和数据存储及其职责；然后沿箭头理解数据流向和调用方式；最后找出单点故障、缺少备用方案的外部依赖和跨边界的敏感数据流。C4 模型把架构图分为系统上下文、容器、组件和代码四个层级，产品经理通常掌握前两层就足以评估需求的影响。",
+        "en": "A system architecture diagram uses boxes and arrows to show what a system is made of and how the parts interact. It can be read from the outside in: first identify the system boundary, its users, and the external systems it depends on; then the main internal applications, services, and data stores and their responsibilities; then follow the arrows to understand data flow and how calls are made; finally look for single points of failure, external dependencies without fallbacks, and sensitive data crossing boundaries. The C4 model organizes architecture diagrams into four levels, system context, containers, components, and code, and product managers usually need only the first two to assess the impact of a requirement."
+      },
+      "a_pairs": [
+        {
+          "en": "I read an architecture diagram from the outside in, the same way I'd read a map of an unfamiliar city.",
+          "cn": "我由外向内读架构图，就像读一张陌生城市的地图。"
+        },
+        {
+          "en": "First, I find the boundary and the people: who uses the system, and which outside systems, like a payment provider or the client's ERP, sit beyond it.",
+          "cn": "第一步，找边界和人：谁在用这个系统，哪些外部系统在边界之外，比如支付服务商或客户的 ERP。"
+        },
+        {
+          "en": "Next, I identify the main boxes inside, such as the web app, back-end services, and databases, and ask what each one is responsible for.",
+          "cn": "接着，识别里面的主要方框，比如网页应用、后端服务和数据库，并问清每个方框负责什么。"
+        },
+        {
+          "en": "Then I follow the arrows, because they show how data moves and whether calls are real-time or go through a queue.",
+          "cn": "然后顺着箭头看，因为箭头显示数据如何流动，以及调用是实时的还是经过队列。"
+        },
+        {
+          "en": "Finally, I look for risk: a single database everything depends on, a third-party service that doesn't have a fallback, or sensitive data crossing a boundary.",
+          "cn": "最后找风险点：所有东西都依赖的单个数据库、没有备用方案的第三方服务，或者跨越边界的敏感数据。"
+        },
+        {
+          "en": "Good diagrams come in levels, and the C4 model is a common way to structure them, from system context down to containers and components.",
+          "cn": "好的架构图是分层的，C4 模型是常用的组织方式，从系统上下文一路细化到容器和组件。"
+        },
+        {
+          "en": "As a PM, I mostly need the context and container levels, and that's enough to judge the impact of a feature and ask sharp questions.",
+          "cn": "作为产品经理，我主要需要上下文和容器这两层，这足以判断一个功能的影响范围，并提出切中要害的问题。"
+        },
+        {
+          "en": "My rule of thumb: if you can trace one user request across the diagram, you understand it well enough.",
+          "cn": "我的经验法则是：如果你能在图上追踪一个用户请求走完全程，你就已经理解得足够了。"
+        }
+      ],
+      "a_en": "I read an architecture diagram from the outside in, the same way I'd read a map of an unfamiliar city. First, I find the boundary and the people: who uses the system, and which outside systems, like a payment provider or the client's ERP, sit beyond it. Next, I identify the main boxes inside, such as the web app, back-end services, and databases, and ask what each one is responsible for. Then I follow the arrows, because they show how data moves and whether calls are real-time or go through a queue. Finally, I look for risk: a single database everything depends on, a third-party service that doesn't have a fallback, or sensitive data crossing a boundary. Good diagrams come in levels, and the C4 model is a common way to structure them, from system context down to containers and components. As a PM, I mostly need the context and container levels, and that's enough to judge the impact of a feature and ask sharp questions. My rule of thumb: if you can trace one user request across the diagram, you understand it well enough.",
+      "a_cn": "我由外向内读架构图，就像读一张陌生城市的地图。第一步，找边界和人：谁在用这个系统，哪些外部系统在边界之外，比如支付服务商或客户的 ERP。接着，识别里面的主要方框，比如网页应用、后端服务和数据库，并问清每个方框负责什么。然后顺着箭头看，因为箭头显示数据如何流动，以及调用是实时的还是经过队列。最后找风险点：所有东西都依赖的单个数据库、没有备用方案的第三方服务，或者跨越边界的敏感数据。好的架构图是分层的，C4 模型是常用的组织方式，从系统上下文一路细化到容器和组件。作为产品经理，我主要需要上下文和容器这两层，这足以判断一个功能的影响范围，并提出切中要害的问题。我的经验法则是：如果你能在图上追踪一个用户请求走完全程，你就已经理解得足够了。",
+      "key_phrases": [
+        {
+          "en": "if you can trace one user request",
+          "cn": "如果能追踪一个用户请求",
+          "type": "句型",
+          "usage": "if you can trace X 用来给出一个自测标准"
+        },
+        {
+          "en": "follow the arrows",
+          "cn": "顺着箭头看",
+          "type": "搭配",
+          "usage": "follow the arrows 指沿流向追踪"
+        },
+        {
+          "en": "have a fallback",
+          "cn": "有备用方案",
+          "type": "搭配",
+          "usage": "fallback 作名词指备用方案，常说 a fallback plan"
+        },
+        {
+          "en": "come in levels",
+          "cn": "分层呈现",
+          "type": "搭配",
+          "usage": "come in levels 用法类似 come in sizes"
+        },
+        {
+          "en": "ask sharp questions",
+          "cn": "提出切中要害的问题",
+          "type": "搭配",
+          "usage": "sharp questions 指切中要害、有洞察的问题"
+        }
+      ],
+      "basics": [
+        {
+          "term": "单点故障",
+          "term_en": "single point of failure",
+          "explain": "系统中某个一旦出问题就会让整体停摆的部件，比如唯一一台数据库服务器。架构设计会尽量通过备份或冗余来消除它。",
+          "analogy": "整栋楼只有一部电梯，坏了全楼走楼梯。"
+        },
+        {
+          "term": "C4 模型中的容器",
+          "term_en": "container (C4 model)",
+          "explain": "C4 模型里指一个可以独立运行的应用或数据存储，比如网页前端、订单服务、客户数据库，和常说的 Docker 容器不是一回事。",
+          "analogy": "园区里的一栋栋楼，各自独立运转。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "架构图是给研发看的，产品经理不需要看懂。",
+          "why": "需求会影响哪些系统、依赖哪些外部服务、数据流经哪里，都画在架构图上；看不懂就无法评估工作量和风险，也难以和研发讨论方案。",
+          "right": "至少读懂上下文和容器两层，评审需求时在图上追踪关键请求的路径，主动标出受影响的系统和风险点。"
+        }
+      ],
+      "approach": "采分点是给出由外向内的四步读图顺序，并说明产品经理读到哪一层就够。推荐结构：读图类比 → 边界与用户 → 内部方框 → 箭头与调用方式 → 风险点 → C4 分层。用「能追踪一个请求走完全程就够了」收尾。会失分的是逐个解释技术组件名称。",
+      "tips": "必备术语 boundary、single point of failure、C4 model。可延伸：系统集成方式、老系统集成。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "SYS-X001",
+      "level": "X",
+      "kind": "method",
+      "difficulty": "较难",
+      "tags": [
+        "老系统集成",
+        "适配层",
+        "对账"
+      ],
+      "concepts": [
+        "sys.integration"
+      ],
+      "prereq": [
+        "SYS-F005",
+        "SYS-F009"
+      ],
+      "q_cn": "客户老系统没法改造，新系统该如何与它集成？",
+      "q_en": "When a client's legacy system can't be changed, how should a new system integrate with it?",
+      "gist": {
+        "cn": "先盘点老系统的出口，用适配层隔离差异，从只读到写入逐步接入，并设对账与降级。",
+        "en": "Inventory the legacy system's exits, isolate it behind an adapter layer, start read-only, and add reconciliation."
+      },
+      "points": [
+        {
+          "en": "inventorying what the legacy system can already offer",
+          "cn": "先盘点老系统已有的出口"
+        },
+        {
+          "en": "range from best to worst",
+          "cn": "方案大致按接口与消息、文件、界面自动化排序"
+        },
+        {
+          "en": "an adapter layer",
+          "cn": "加一层适配层，隔离怪癖、翻译编码"
+        },
+        {
+          "en": "read-only first",
+          "cn": "先只读，再考虑写回"
+        },
+        {
+          "en": "daily reconciliation",
+          "cn": "每日对账，并约定宕机时的处理"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在系统集成方式和读懂系统架构图之上。很多企业的核心老系统无法修改，但通常仍有可利用的出口，大致按可靠性从高到低，依次是现成接口或系统已有的消息、数据库视图（在老库上开的只读查询窗口）或定期导出文件，以及模拟人工操作的界面自动化。稳妥的集成方案会在新旧系统之间加一层适配层，统一接口并转换编码；先只读后写回，降低不可逆的风险；再通过定期对账核对两边数据，并约定老系统不可用时的排队与重试机制。",
+        "en": "This question builds on system integration styles and reading system architecture diagrams. Many companies have core legacy systems that cannot be modified, but they usually still have usable exits, roughly from most to least reliable: an existing API or messages the system already emits, a database view or periodic export file, and screen automation, or RPA, that imitates manual work. A sound integration puts an adapter layer between new and old systems to unify the interface and translate codes; starts read-only before writing back, to reduce irreversible risk; then reconciles data on both sides regularly and agrees on queuing and retry behavior for when the old system is unavailable."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd start by inventorying what the legacy system can already offer, because 'can't be changed' rarely means 'has no way out'.",
+          "cn": "我会先盘点老系统现有的出口，因为「不能改」很少意味着「完全没有出口」。"
+        },
+        {
+          "en": "Options roughly range from best to worst: an existing API or messages it already sends, then a database view or nightly file, and finally screen automation.",
+          "cn": "可选方案大致从好到差排列：现成的 API 或系统本来就会发出的消息，其次是数据库视图或每晚导出的文件，最后才是模拟界面操作的自动化。"
+        },
+        {
+          "en": "Whatever we use, I'd put an adapter layer in between, so the new system talks to a clean interface and never depends on the old system's quirks.",
+          "cn": "无论用哪种，我都会在中间放一层适配层，让新系统对接一个干净的接口，而不依赖老系统的各种怪癖。"
+        },
+        {
+          "en": "That layer also translates codes, like legacy customer numbers into our IDs, which is where most integration bugs hide.",
+          "cn": "这一层还负责翻译编码，比如把老系统的客户编号转换成我们的编号，而大多数集成缺陷都藏在这里。"
+        },
+        {
+          "en": "I'd go read-only first, because a bad write into a system nobody can change is hard to undo.",
+          "cn": "我会先只读，因为往一个没人能改的系统里写错数据，很难撤销。"
+        },
+        {
+          "en": "Then I add daily reconciliation, comparing record counts and totals on both sides, so mismatches surface before users find them.",
+          "cn": "然后加上每日对账，比较两边的记录数和金额合计，让不一致在用户发现之前就暴露出来。"
+        },
+        {
+          "en": "I also agree with the client on what happens when the old system is down, such as queuing updates and retrying later, with each update tagged so a retry can't post it twice.",
+          "cn": "我还会和客户约定老系统宕机时怎么办，比如把更新先排队稍后重试，并给每条更新打上标记，保证重试不会重复入账。"
+        },
+        {
+          "en": "My rule of thumb: wrap the legacy system, don't wire into it directly, and trust nothing until reconciliation says so.",
+          "cn": "我的经验法则是：把老系统包起来，而不是直接接线进去；在对账确认之前，什么都别信。"
+        }
+      ],
+      "a_en": "I'd start by inventorying what the legacy system can already offer, because 'can't be changed' rarely means 'has no way out'. Options roughly range from best to worst: an existing API or messages it already sends, then a database view or nightly file, and finally screen automation. Whatever we use, I'd put an adapter layer in between, so the new system talks to a clean interface and never depends on the old system's quirks. That layer also translates codes, like legacy customer numbers into our IDs, which is where most integration bugs hide. I'd go read-only first, because a bad write into a system nobody can change is hard to undo. Then I add daily reconciliation, comparing record counts and totals on both sides, so mismatches surface before users find them. I also agree with the client on what happens when the old system is down, such as queuing updates and retrying later, with each update tagged so a retry can't post it twice. My rule of thumb: wrap the legacy system, don't wire into it directly, and trust nothing until reconciliation says so.",
+      "a_cn": "我会先盘点老系统现有的出口，因为「不能改」很少意味着「完全没有出口」。可选方案大致从好到差排列：现成的 API 或系统本来就会发出的消息，其次是数据库视图或每晚导出的文件，最后才是模拟界面操作的自动化。无论用哪种，我都会在中间放一层适配层，让新系统对接一个干净的接口，而不依赖老系统的各种怪癖。这一层还负责翻译编码，比如把老系统的客户编号转换成我们的编号，而大多数集成缺陷都藏在这里。我会先只读，因为往一个没人能改的系统里写错数据，很难撤销。然后加上每日对账，比较两边的记录数和金额合计，让不一致在用户发现之前就暴露出来。我还会和客户约定老系统宕机时怎么办，比如把更新先排队稍后重试，并给每条更新打上标记，保证重试不会重复入账。我的经验法则是：把老系统包起来，而不是直接接线进去；在对账确认之前，什么都别信。",
+      "key_phrases": [
+        {
+          "en": "has no way out",
+          "cn": "没有出口",
+          "type": "搭配",
+          "usage": "no way out 原指无路可走，这里指没有数据出口"
+        },
+        {
+          "en": "range from best to worst",
+          "cn": "从好到差排列",
+          "type": "句型",
+          "usage": "range from A to B 用于列举一系列选项"
+        },
+        {
+          "en": "a clean interface",
+          "cn": "干净的接口",
+          "type": "搭配",
+          "usage": "clean interface 指简洁稳定、屏蔽内部细节的接口"
+        },
+        {
+          "en": "where most integration bugs hide",
+          "cn": "缺陷多藏在这里",
+          "type": "句型",
+          "usage": "that's where X hide 用来指出问题高发处"
+        },
+        {
+          "en": "hard to undo",
+          "cn": "难以撤销",
+          "type": "搭配",
+          "usage": "hard to undo 强调操作不可逆"
+        }
+      ],
+      "basics": [
+        {
+          "term": "适配层",
+          "term_en": "adapter layer",
+          "explain": "夹在新旧系统之间的一层程序，把老系统各种不规范的数据格式和编码翻译成新系统需要的统一接口，让新系统不直接依赖老系统。",
+          "analogy": "出国旅行用的转换插头。"
+        },
+        {
+          "term": "对账",
+          "term_en": "reconciliation",
+          "explain": "定期比较两个系统中同一批数据的条数、金额等是否一致，发现差异及时排查，是集成项目发现数据丢失和错误的主要手段。",
+          "analogy": "每天打烊后核对收银机和账本。"
+        },
+        {
+          "term": "界面自动化",
+          "term_en": "RPA (robotic process automation)",
+          "explain": "用软件机器人模拟人在界面上的点击和输入来操作系统，适合没有接口的老系统，但页面一改就容易失效，通常作为最后手段。",
+          "analogy": "请人照着屏幕一项项代填表格。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "老系统改不了，那就只能用界面自动化去模拟人工操作。",
+          "why": "界面自动化最脆弱，页面变化或弹窗就会失败，还难以处理大批量数据；很多老系统其实有导出文件、数据库视图等更稳定的出口。",
+          "right": "先和客户 IT 一起盘点所有可用出口，按接口与消息、导出文件、界面自动化的顺序选择最稳定的一种。"
+        },
+        {
+          "wrong": "接口通了、测试数据跑通，就可以直接双向同步上线。",
+          "why": "真实数据里有大量编码不一致和异常记录，直接写回一个改不了的系统，错误很难撤销；没有对账，问题会在报表和客户投诉中才暴露。",
+          "right": "上线初期只读运行，建立每日对账并观察一段时间，确认数据稳定后再逐步开放写回。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：表面问技术方案，实际考在约束下降低风险的思路和与客户 IT 的沟通。",
+        "盘出口：「不能改」不等于没有出口，按可靠性从接口到界面自动化排序选择。",
+        "做隔离：用适配层统一接口、翻译编码，避免新系统被老系统的怪癖绑住。",
+        "控风险：先只读后写回，用对账发现差异，并约定宕机时的排队与重试。"
+      ],
+      "method": {
+        "name": "包裹而非侵入",
+        "steps": [
+          "盘点可用出口",
+          "加适配层隔离",
+          "只读起步加对账"
+        ],
+        "transfer": "可迁移到对接合作方系统、并购后的系统整合、接入第三方数据源，凡是对方系统不受你控制的集成都适用。"
+      },
+      "approach": "采分点是给出盘点出口、适配层隔离、只读起步、对账与宕机约定四个步骤。推荐结构：不能改不等于没出口 → 出口排序 → 适配层 → 先读后写 → 每日对账 → 宕机处理。用「把老系统包起来，对账之前什么都别信」收尾。会失分的是一上来就说用 RPA。",
+      "tips": "必备术语 adapter、reconciliation、read-only、RPA。可延伸：主数据治理、系统集成方式。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "SYS-X002",
+      "level": "X",
+      "kind": "idea",
+      "difficulty": "较难",
+      "tags": [
+        "标准化",
+        "定制化",
+        "可配置"
+      ],
+      "concepts": [
+        "sys.configurability",
+        "sys.workflow_lowcode",
+        "sys.deployment"
+      ],
+      "prereq": [
+        "SYS-F006",
+        "SYS-F002"
+      ],
+      "q_cn": "客户都要个性化功能，SaaS 产品如何守住标准化？",
+      "q_en": "When every customer wants something custom, how does a SaaS product stay standardized?",
+      "gist": {
+        "cn": "先配置和扩展点，再接口与低代码，共性需求才进标准产品，不为单个客户改核心。",
+        "en": "Absorb differences in layers: configuration, extensions, APIs, low-code; productize only shared needs, never fork."
+      },
+      "points": [
+        {
+          "en": "without forking the product",
+          "cn": "把定制当设计问题，不让产品分叉"
+        },
+        {
+          "en": "The first layer is configuration",
+          "cn": "第一层：管理员可自行调整的配置"
+        },
+        {
+          "en": "extension points",
+          "cn": "第二层：预留扩展点"
+        },
+        {
+          "en": "open APIs and low-code tools",
+          "cn": "第三层：开放接口与低代码"
+        },
+        {
+          "en": "customer-specific code in the main codebase",
+          "cn": "共性才进标准产品，杜绝客户专属代码"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在部署形态与多租户、接口与接口文档之上。SaaS 的多租户架构要求所有客户运行同一套代码，因此不能像项目制软件那样为单个客户修改核心代码。成熟做法是分层消化差异：管理员可调的配置（自定义字段、审批层级、表单布局），产品预留的扩展点（脚本、规则钩子），开放接口与低代码工具，最后才把多客户共性需求纳入标准产品。核心原则是不让产品分叉，否则升级成本会随客户数增长。",
+        "en": "This question builds on deployment models with multi-tenancy and APIs with their documentation. SaaS multi-tenancy requires all customers to run the same code, so a vendor cannot modify the core for a single customer the way project-based software does. The mature approach absorbs differences in layers: configuration that admins can change (custom fields, approval levels, form layouts), extension points the product leaves open (scripts and rule hooks), open APIs and low-code tools, and only then folding needs shared by many customers into the standard product. The core principle is not to fork the product; otherwise upgrade costs grow with the number of customers."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd treat customization requests as a design problem: how do we absorb differences without forking the product?",
+          "cn": "我会把定制请求当作一个设计问题：怎样在不让产品分叉的前提下消化差异？"
+        },
+        {
+          "en": "The first layer is configuration, like custom fields, approval levels, and form layouts that admins can change themselves.",
+          "cn": "第一层是配置，比如自定义字段、审批层级和表单布局，管理员可以自己调整。"
+        },
+        {
+          "en": "The second is extension points, where the product leaves defined hooks for scripts or rules, so customers add logic without touching the core.",
+          "cn": "第二层是扩展点，产品预留好定义清楚的钩子供脚本或规则接入，客户不碰核心就能加逻辑。"
+        },
+        {
+          "en": "The third is open APIs and low-code tools, which let partners or the customer's IT build what's truly unique outside the product.",
+          "cn": "第三层是开放接口和低代码工具，让合作伙伴或客户自己的 IT 在产品之外搭建真正独特的部分。"
+        },
+        {
+          "en": "Only when a need shows up across many customers do we build it into the standard product.",
+          "cn": "只有当一个需求在许多客户身上反复出现时，我们才把它做进标准产品。"
+        },
+        {
+          "en": "What I'd avoid is customer-specific code in the main codebase, because every such branch makes upgrades slower and riskier for everyone.",
+          "cn": "我要避免的是在主代码库里写某个客户专属的代码，因为每一个这样的分支都会让所有客户的升级更慢、风险更大。"
+        },
+        {
+          "en": "Large platforms show the payoff: customers who keep their changes in configuration and extensions, not the core, can tailor heavily and still take regular upgrades.",
+          "cn": "大型平台已经证明了回报：把改动放在配置和扩展里、而不碰核心的客户，可以大量定制，仍能定期升级。"
+        },
+        {
+          "en": "Bottom line: say yes to the outcome the customer needs, but make the core say no to one-off code.",
+          "cn": "一句话总结：对客户需要的结果说好，但让核心代码对一次性代码说不。"
+        }
+      ],
+      "a_en": "I'd treat customization requests as a design problem: how do we absorb differences without forking the product? The first layer is configuration, like custom fields, approval levels, and form layouts that admins can change themselves. The second is extension points, where the product leaves defined hooks for scripts or rules, so customers add logic without touching the core. The third is open APIs and low-code tools, which let partners or the customer's IT build what's truly unique outside the product. Only when a need shows up across many customers do we build it into the standard product. What I'd avoid is customer-specific code in the main codebase, because every such branch makes upgrades slower and riskier for everyone. Large platforms show the payoff: customers who keep their changes in configuration and extensions, not the core, can tailor heavily and still take regular upgrades. Bottom line: say yes to the outcome the customer needs, but make the core say no to one-off code.",
+      "a_cn": "我会把定制请求当作一个设计问题：怎样在不让产品分叉的前提下消化差异？第一层是配置，比如自定义字段、审批层级和表单布局，管理员可以自己调整。第二层是扩展点，产品预留好定义清楚的钩子供脚本或规则接入，客户不碰核心就能加逻辑。第三层是开放接口和低代码工具，让合作伙伴或客户自己的 IT 在产品之外搭建真正独特的部分。只有当一个需求在许多客户身上反复出现时，我们才把它做进标准产品。我要避免的是在主代码库里写某个客户专属的代码，因为每一个这样的分支都会让所有客户的升级更慢、风险更大。大型平台已经证明了回报：把改动放在配置和扩展里、而不碰核心的客户，可以大量定制，仍能定期升级。一句话总结：对客户需要的结果说好，但让核心代码对一次性代码说不。",
+      "key_phrases": [
+        {
+          "en": "without forking the product",
+          "cn": "不让产品分叉",
+          "type": "搭配",
+          "usage": "fork 原指代码分支，引申为版本分裂"
+        },
+        {
+          "en": "defined hooks",
+          "cn": "定义好的钩子",
+          "type": "搭配",
+          "usage": "hook 指预留接入点，常说 provide hooks"
+        },
+        {
+          "en": "what's truly unique",
+          "cn": "真正独特的部分",
+          "type": "句型",
+          "usage": "what's truly X 用于突出最核心的那部分"
+        },
+        {
+          "en": "shows up across many customers",
+          "cn": "在许多客户中出现",
+          "type": "搭配",
+          "usage": "show up across 指在多处反复出现"
+        },
+        {
+          "en": "show the payoff",
+          "cn": "证明回报",
+          "type": "搭配",
+          "usage": "payoff 指投入后的回报，常说 the payoff is"
+        }
+      ],
+      "basics": [
+        {
+          "term": "产品分叉",
+          "term_en": "fork",
+          "explain": "同一套产品因为不同客户的修改而分裂成多个各自演变的版本，之后每次升级都要分别处理，维护成本成倍增加。",
+          "analogy": "一本教材被各校改成不同版本，再版逐本修。"
+        },
+        {
+          "term": "扩展点",
+          "term_en": "extension point",
+          "explain": "产品在核心流程中预留的、允许外部添加逻辑的位置，比如提交审批前可插入自定义校验脚本，客户扩展不影响核心代码。",
+          "analogy": "墙上预留的插座，电器随便插，不改电路。"
+        },
+        {
+          "term": "低代码",
+          "term_en": "low-code",
+          "explain": "通过拖拽组件和少量配置就能搭建页面、表单和流程的开发方式，让业务或实施人员不写或少写代码就能做出定制功能。",
+          "analogy": "用乐高积木拼模型，而不是自己开模具。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "重要客户要的定制功能，在主代码里加个判断专门给他用就行。",
+          "why": "每个客户专属的判断都会让代码路径翻倍，测试和升级都要考虑它，客户一多，产品就变成难以维护的定制项目集合。",
+          "right": "先看能否用配置、扩展点或接口满足，确实是共性需求再做进标准产品，避免客户专属代码进入核心。"
+        },
+        {
+          "wrong": "把所有东西都做成可配置，就能满足所有客户。",
+          "why": "配置项过多会让产品难学难用、组合多到测不过来，实施成本也随之上升，客户反而需要更多服务才能用起来。",
+          "right": "只为高频、跨客户的差异提供配置，其余通过扩展点和接口满足，并定期清理很少使用的配置项。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：表面问守住标准化，实际考能否在满足差异与保护产品之间设计分层机制。",
+        "讲约束：多租户要求所有客户同一套代码，客户专属代码会拖慢所有人的升级。",
+        "给分层：配置、扩展点、接口与低代码依次消化差异，共性需求才进标准产品。",
+        "定底线：对结果说好、对一次性代码说不，同时防止配置项过度膨胀。"
+      ],
+      "method": {
+        "name": "分层消化差异",
+        "steps": [
+          "先配置",
+          "再扩展与接口",
+          "共性才进核心"
+        ],
+        "transfer": "可迁移到平台型产品设计、开放平台规划、企业内部中台建设，凡是一套产品服务众多不同客户的场景都适用。"
+      },
+      "approach": "采分点是讲清多租户对标准化的硬约束，并给出配置、扩展点、接口与低代码、纳入标准的分层方案。推荐结构：问题本质 → 三层消化差异 → 共性才进标准 → 避免专属代码 → 平台的回报。用「对结果说好，对一次性代码说不」收尾。会失分的是只说尽量拒绝定制。",
+      "tips": "必备术语 configuration、extension point、fork。可延伸：B 端为何不照做需求、工作流平台案例。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "SYS-X003",
+      "level": "X",
+      "kind": "case",
+      "difficulty": "较难",
+      "tags": [
+        "工作流平台",
+        "低代码",
+        "集成治理"
+      ],
+      "concepts": [
+        "sys.workflow_lowcode",
+        "sys.integration"
+      ],
+      "prereq": [
+        "SYS-F002",
+        "SYS-F005",
+        "SYS-X002"
+      ],
+      "q_cn": "以 n8n 为例：工作流平台如何把多个系统串起来？",
+      "q_en": "Using n8n as an example, how does a workflow platform connect multiple systems?",
+      "gist": {
+        "cn": "可视化节点串起各系统，复杂处补代码；搭建变便宜后，功夫要花在权限、审计和治理上。",
+        "en": "Visual nodes chain triggers, logic, and system actions, with code where needed, plus self-hosting, permissions, and audit trails."
+      },
+      "points": [
+        {
+          "en": "from custom code to visual building blocks",
+          "cn": "集成从定制代码走向可视化积木"
+        },
+        {
+          "en": "chaining nodes",
+          "cn": "在画布上串联节点搭建工作流"
+        },
+        {
+          "en": "hundreds of ready-made integrations",
+          "cn": "数百个现成集成，常常无需写代码"
+        },
+        {
+          "en": "drop into JavaScript or Python",
+          "cn": "不够用时可写代码，避开低代码天花板"
+        },
+        {
+          "en": "self-hosting, role-based access, and audit trails",
+          "cn": "企业看重自托管、权限与审计，且需治理"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在接口、系统集成方式与标准化分层之上。它还涉及工作流与低代码平台。n8n 是一个采用公平代码许可的工作流自动化平台：用户在可视化画布上把节点串成工作流，每个节点完成接收事件、处理数据或调用某个系统等步骤；它提供数百个现成集成，复杂逻辑可用 JavaScript 或 Python 补充；它还支持搭建带人工审批的 AI 工作流和多步智能体。面向企业，它提供自托管、基于角色的权限和审计记录（部分企业级功能另有授权条款）。",
+        "en": "This question builds on APIs, system integration styles, and layered standardization, and touches on workflow and low-code platforms. n8n is a workflow automation platform under a fair-code license: users chain nodes into workflows on a visual canvas, with each node handling a step such as receiving an event, processing data, or calling a system; it offers hundreds of ready-made integrations, and complex logic can be added in JavaScript or Python; it also supports building AI workflows and multi-step agents with human approvals. For enterprises, it offers self-hosting, role-based access, and audit trails, with some enterprise features under a separate license."
+      },
+      "a_pairs": [
+        {
+          "en": "n8n is a fair-code workflow automation platform that shows how integration moved from custom code to visual building blocks.",
+          "cn": "n8n 是一个采用「公平代码」许可的工作流自动化平台，它展示了集成如何从定制代码走向可视化积木。"
+        },
+        {
+          "en": "You build a workflow on a canvas by chaining nodes, where each node is a step like receiving an event, transforming data, or calling another system.",
+          "cn": "你在画布上把节点串起来搭建工作流，每个节点是一个步骤，比如接收事件、转换数据或调用另一个系统。"
+        },
+        {
+          "en": "It offers hundreds of ready-made integrations, so connecting a CRM to a chat tool and a spreadsheet often doesn't need any code.",
+          "cn": "它提供数百个现成集成，所以把 CRM、聊天工具和表格连起来，往往完全不需要写代码。"
+        },
+        {
+          "en": "When the visual blocks aren't enough, you can drop into JavaScript or Python, which avoids the classic low-code wall.",
+          "cn": "当可视化积木不够用时，你可以切换到 JavaScript 或 Python，这避开了低代码常见的「天花板」。"
+        },
+        {
+          "en": "It now supports AI workflows and multi-step agents too, with human approvals and observability, so AI can plug into the systems you already have.",
+          "cn": "它现在也支持 AI 工作流和多步智能体，带人工审批和可观测性，让 AI 能接入你已有的系统。"
+        },
+        {
+          "en": "For enterprises, the deciding features are less exciting: self-hosting, role-based access, and audit trails, because integration platforms touch sensitive data in many systems.",
+          "cn": "对企业来说，起决定作用的反而是不那么激动人心的功能：自托管、基于角色的权限和审计记录，因为集成平台会接触许多系统里的敏感数据。"
+        },
+        {
+          "en": "The trade-off is that dozens of flows from different teams can become a hidden system nobody owns, so you'd still need naming, review, and monitoring rules.",
+          "cn": "代价是不同团队搭的几十条流程可能变成一个没人负责的隐形系统，所以仍然需要命名、评审和监控规则。"
+        },
+        {
+          "en": "My rule of thumb: low-code makes integration cheap to build, so put your effort into governing what gets built.",
+          "cn": "我的经验法则是：低代码让集成搭起来很便宜，所以要把精力花在治理搭出来的东西上。"
+        }
+      ],
+      "a_en": "n8n is a fair-code workflow automation platform that shows how integration moved from custom code to visual building blocks. You build a workflow on a canvas by chaining nodes, where each node is a step like receiving an event, transforming data, or calling another system. It offers hundreds of ready-made integrations, so connecting a CRM to a chat tool and a spreadsheet often doesn't need any code. When the visual blocks aren't enough, you can drop into JavaScript or Python, which avoids the classic low-code wall. It now supports AI workflows and multi-step agents too, with human approvals and observability, so AI can plug into the systems you already have. For enterprises, the deciding features are less exciting: self-hosting, role-based access, and audit trails, because integration platforms touch sensitive data in many systems. The trade-off is that dozens of flows from different teams can become a hidden system nobody owns, so you'd still need naming, review, and monitoring rules. My rule of thumb: low-code makes integration cheap to build, so put your effort into governing what gets built.",
+      "a_cn": "n8n 是一个采用「公平代码」许可的工作流自动化平台，它展示了集成如何从定制代码走向可视化积木。你在画布上把节点串起来搭建工作流，每个节点是一个步骤，比如接收事件、转换数据或调用另一个系统。它提供数百个现成集成，所以把 CRM、聊天工具和表格连起来，往往完全不需要写代码。当可视化积木不够用时，你可以切换到 JavaScript 或 Python，这避开了低代码常见的「天花板」。它现在也支持 AI 工作流和多步智能体，带人工审批和可观测性，让 AI 能接入你已有的系统。对企业来说，起决定作用的反而是不那么激动人心的功能：自托管、基于角色的权限和审计记录，因为集成平台会接触许多系统里的敏感数据。代价是不同团队搭的几十条流程可能变成一个没人负责的隐形系统，所以仍然需要命名、评审和监控规则。我的经验法则是：低代码让集成搭起来很便宜，所以要把精力花在治理搭出来的东西上。",
+      "key_phrases": [
+        {
+          "en": "visual building blocks",
+          "cn": "可视化积木",
+          "type": "搭配",
+          "usage": "building blocks 指积木式组件，也喻基础要素"
+        },
+        {
+          "en": "drop into",
+          "cn": "切换进入",
+          "type": "搭配",
+          "usage": "drop into 指转入更底层的方式，如 drop into code"
+        },
+        {
+          "en": "low-code wall",
+          "cn": "低代码天花板",
+          "type": "词汇",
+          "usage": "wall 喻指能力上限，常说 hit a wall"
+        },
+        {
+          "en": "less exciting",
+          "cn": "不那么亮眼的",
+          "type": "搭配",
+          "usage": "less exciting 用于强调不起眼却关键的功能"
+        },
+        {
+          "en": "a hidden system nobody owns",
+          "cn": "没人负责的隐形系统",
+          "type": "句型",
+          "usage": "a X nobody owns 指无人负责的东西"
+        }
+      ],
+      "basics": [
+        {
+          "term": "工作流自动化",
+          "term_en": "workflow automation",
+          "explain": "把跨多个系统的一串重复操作，按照「当某事发生时依次做哪些事」的规则自动执行，比如新客户签约后自动建档、通知、发欢迎邮件。",
+          "analogy": "多米诺骨牌：推倒第一块，后面依次倒下。"
+        },
+        {
+          "term": "公平代码",
+          "term_en": "fair-code",
+          "explain": "源代码公开，可免费用于个人和企业内部业务，但不能拿它做成产品或托管服务卖给别人，具体以许可证为准。",
+          "analogy": "公开菜谱，自家和公司食堂随便做，拿去开店卖要另谈。"
+        },
+        {
+          "term": "自托管",
+          "term_en": "self-hosting",
+          "explain": "把软件部署在自己的服务器或云账户上运行，而不是使用厂商托管的服务，数据和访问完全由自己掌控。",
+          "analogy": "自己家装净水器，而不是订桶装水。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "有了可视化工作流平台，系统集成就不需要研发参与了。",
+          "why": "简单的数据搬运确实可以自助完成，但涉及权限、错误重试、数据一致性和敏感数据时，仍需要研发设计和把关，否则出错难以排查。",
+          "right": "简单、低风险的流程交给业务自助搭建，核心或涉及敏感数据的流程由研发评审，并统一监控和告警。"
+        },
+        {
+          "wrong": "低代码搭得越多越好，每个团队按需随手建流程。",
+          "why": "缺乏命名、负责人和评审规则时，几十条流程会形成没人能看懂的隐形系统，某条流程悄悄失败可能长期没人发现。",
+          "right": "为每条工作流指定负责人，建立命名规范、上线评审和运行监控，并定期清理无人维护的流程。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：这是案例题，要提炼的是集成方式的演变和低代码的治理，而不是操作教程。",
+        "看机制：节点串成工作流，大量现成集成覆盖常见系统，复杂处再补写代码。",
+        "看企业需求：自托管、角色权限、审计记录决定它能否接触敏感业务数据。",
+        "补代价：搭建变便宜后，风险转移到治理上，需要负责人、评审和监控规则。"
+      ],
+      "method": {
+        "name": "建得快，管得住",
+        "steps": [
+          "用积木降低门槛",
+          "补代码突破上限",
+          "用治理控制风险"
+        ],
+        "transfer": "可迁移到评估 RPA 平台、内部报表自助化、AI 智能体搭建平台，凡是降低搭建门槛的工具都适用。"
+      },
+      "approach": "采分点是从案例中提炼集成方式的变化，以及低代码带来的治理问题。推荐结构：项目定位 → 节点与工作流 → 现成集成与写代码兜底 → AI 工作流 → 企业级要求 → 治理代价。用「搭建变便宜，精力要花在治理上」收尾。会失分的是复述功能和集成数量。",
+      "tips": "必备术语 workflow automation、self-hosting、governance。可延伸：标准化与定制化、智能体工具设计。",
+      "source_repos": [
+        "n8n-io/n8n"
+      ],
+      "added": "2026-10-31"
+    }
+  ]
+}

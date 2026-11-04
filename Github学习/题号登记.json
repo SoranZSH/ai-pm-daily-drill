@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "max": {
+    "AGT-F": 9,
+    "AGT-X": 5,
+    "BIZ-F": 8,
+    "BIZ-X": 5,
+    "LLM-F": 8,
+    "LLM-X": 4,
+    "PRM-F": 6,
+    "PRM-X": 4,
+    "RAG-F": 7,
+    "RAG-X": 5,
+    "REQ-F": 8,
+    "REQ-X": 4,
+    "SYS-F": 9,
+    "SYS-X": 3
+  },
+  "updated": "2026-10-31T23:52:25"
+}

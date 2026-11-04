@@ -1,0 +1,5 @@
+# M3：只需要 requests（未安装时采集器会提示安装；单元测试不需要它）
+requests
+# M4：文档语言识别（拉丁与西里尔文本）。只使用随包附带的小模型（model="lite"），
+# 运行时不联网下载模型（协助决策 9.9）。加载失败时代码自动退回 langdetect。
+fast-langdetect

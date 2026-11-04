@@ -1,0 +1,1998 @@
+{
+  "category": "业务架构与流程",
+  "category_en": "Business Architecture & Process",
+  "domain": "BIZ",
+  "items": [
+    {
+      "id": "BIZ-F001",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "业务架构",
+        "企业架构"
+      ],
+      "concepts": [
+        "biz.business_architecture"
+      ],
+      "prereq": [],
+      "q_cn": "什么是业务架构？它和应用、数据、技术架构什么关系？",
+      "q_en": "What is business architecture, and how does it relate to application, data, and technology architecture?",
+      "gist": {
+        "cn": "业务架构描述企业靠哪些能力和流程创造价值，是应用、数据、技术架构的上游依据。",
+        "en": "Business architecture maps how a company creates value; application, data, and technology layers follow from it."
+      },
+      "points": [
+        {
+          "en": "a map of how a company creates value",
+          "cn": "业务架构描绘企业如何创造价值"
+        },
+        {
+          "en": "business, data, application, and technology",
+          "cn": "企业架构常见四层：业务、数据、应用、技术"
+        },
+        {
+          "en": "Each layer answers a different question",
+          "cn": "每一层回答一个不同的问题"
+        },
+        {
+          "en": "systems should follow the business",
+          "cn": "系统应当跟着业务走"
+        },
+        {
+          "en": "where a feature fits",
+          "cn": "产品经理用它定位功能、团队与系统"
+        }
+      ],
+      "concept": {
+        "cn": "业务架构是从业务视角对企业的结构化描述，回答企业靠哪些能力、经过哪些流程、处理哪些信息、由哪些组织角色来创造价值。在常见的企业架构框架中，它位于四层结构的最上层，其下是数据架构与应用架构（常合称信息系统架构），再往下是技术架构，分别回答需要哪些信息、由哪些系统支撑、运行在什么基础设施上。业务架构是下游各层的依据：系统应当跟随业务来设计，否则容易出现照搬旧组织、彼此割裂的系统。",
+        "en": "Business architecture is a structured description of an enterprise from the business point of view: which capabilities, processes, information, and organizational roles it relies on to create value. In common enterprise architecture frameworks it sits at the top of a four-layer structure; below it are data and application architecture, often grouped as information systems architecture, and then technology architecture, which answer what information is needed, which systems support it, and what infrastructure they run on. Business architecture is the basis for the layers below: systems should be designed to follow the business, otherwise companies end up with siloed systems that simply copy the old organization."
+      },
+      "a_pairs": [
+        {
+          "en": "Business architecture is a map of how a company creates value: its capabilities, processes, information, and organization.",
+          "cn": "业务架构是一张描绘企业如何创造价值的地图：它的能力、流程、信息和组织。"
+        },
+        {
+          "en": "It's the top of a four-layer stack that's common in enterprise architecture: business, data, application, and technology.",
+          "cn": "它位于企业架构里常见的四层结构的最上层：业务、数据、应用和技术。"
+        },
+        {
+          "en": "Each layer answers a different question: what the business does, what information it needs, which systems support it, and what infrastructure runs them.",
+          "cn": "每一层回答一个不同的问题：业务做什么、需要哪些信息、由哪些系统支撑、这些系统跑在什么基础设施上。"
+        },
+        {
+          "en": "The order matters, because systems should follow the business, not the other way around.",
+          "cn": "顺序很重要，因为系统应当跟着业务走，而不是反过来。"
+        },
+        {
+          "en": "For example, if a retailer's capability is 'handle returns', the business view defines the return process and roles before anyone picks a ticketing tool.",
+          "cn": "比如一家零售商有「处理退货」这项能力，业务视角要先定义退货流程和角色，再去挑工单工具。"
+        },
+        {
+          "en": "As a PM, I use it to see where a feature fits, which teams it touches, and which systems will need to change.",
+          "cn": "作为产品经理，我用它来看一个功能落在哪里、涉及哪些团队、哪些系统需要改。"
+        },
+        {
+          "en": "Without it, companies end up with systems that mirror old org charts and don't talk to each other.",
+          "cn": "没有它，企业最后得到的往往是照着旧组织架构搭起来、彼此不通的一堆系统。"
+        },
+        {
+          "en": "My rule of thumb: understand the business layer first, or you'll automate the wrong thing very efficiently.",
+          "cn": "我的经验法则是：先弄懂业务这一层，否则你只会非常高效地把错的事情自动化。"
+        }
+      ],
+      "a_en": "Business architecture is a map of how a company creates value: its capabilities, processes, information, and organization. It's the top of a four-layer stack that's common in enterprise architecture: business, data, application, and technology. Each layer answers a different question: what the business does, what information it needs, which systems support it, and what infrastructure runs them. The order matters, because systems should follow the business, not the other way around. For example, if a retailer's capability is 'handle returns', the business view defines the return process and roles before anyone picks a ticketing tool. As a PM, I use it to see where a feature fits, which teams it touches, and which systems will need to change. Without it, companies end up with systems that mirror old org charts and don't talk to each other. My rule of thumb: understand the business layer first, or you'll automate the wrong thing very efficiently.",
+      "a_cn": "业务架构是一张描绘企业如何创造价值的地图：它的能力、流程、信息和组织。它位于企业架构里常见的四层结构的最上层：业务、数据、应用和技术。每一层回答一个不同的问题：业务做什么、需要哪些信息、由哪些系统支撑、这些系统跑在什么基础设施上。顺序很重要，因为系统应当跟着业务走，而不是反过来。比如一家零售商有「处理退货」这项能力，业务视角要先定义退货流程和角色，再去挑工单工具。作为产品经理，我用它来看一个功能落在哪里、涉及哪些团队、哪些系统需要改。没有它，企业最后得到的往往是照着旧组织架构搭起来、彼此不通的一堆系统。我的经验法则是：先弄懂业务这一层，否则你只会非常高效地把错的事情自动化。",
+      "key_phrases": [
+        {
+          "en": "four-layer stack",
+          "cn": "四层结构",
+          "type": "搭配",
+          "usage": "stack 指层层叠放的结构，技术语境常用"
+        },
+        {
+          "en": "the other way around",
+          "cn": "反过来",
+          "type": "搭配",
+          "usage": "the other way around 常用于纠正因果顺序"
+        },
+        {
+          "en": "where a feature fits",
+          "cn": "功能落在哪里",
+          "type": "句型",
+          "usage": "where X fits 表某物在整体中的位置"
+        },
+        {
+          "en": "end up with",
+          "cn": "最终落得",
+          "type": "搭配",
+          "usage": "end up with 表最终得到某结果，多含贬义"
+        },
+        {
+          "en": "automate the wrong thing",
+          "cn": "把错事自动化",
+          "type": "搭配",
+          "usage": "提醒先理顺业务再上系统，可换 digitize"
+        }
+      ],
+      "basics": [
+        {
+          "term": "企业架构",
+          "term_en": "enterprise architecture",
+          "explain": "从整体上描述一家企业的业务、数据、应用和技术如何组织与衔接的方法体系，用来让 IT 建设和业务战略保持一致。",
+          "analogy": "城市规划图：功能分区、道路和管网一起规划。"
+        },
+        {
+          "term": "应用架构",
+          "term_en": "application architecture",
+          "explain": "描述企业有哪些软件系统、各自负责什么、彼此怎么交互的蓝图，比如 CRM 管客户、ERP 管财务，两者之间如何同步数据。",
+          "analogy": "一栋楼里各科室的分工和走廊连接图。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "业务架构就是组织架构图，画清楚部门和汇报关系就行。",
+          "why": "组织架构只反映谁向谁汇报，经常调整；业务架构描述能力、流程和信息，用来决定系统怎么建，两者混为一谈会让系统跟着组织变动反复返工。",
+          "right": "把组织当作业务架构中的一个视角，重点梳理能力、价值流、流程和业务对象，再映射到组织和系统。"
+        }
+      ],
+      "approach": "采分点是讲清业务架构的内容，以及它与数据、应用、技术三层的上下游关系。推荐结构：定义 → 四层结构 → 每层回答的问题 → 退货例子 → 对产品经理的用处。用「先懂业务层，否则高效地把错事自动化」收尾。会失分的是把业务架构等同于组织架构图。",
+      "tips": "必备术语 business architecture、capability。可延伸：业务能力地图、读懂系统架构图。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "BIZ-F002",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "业务能力",
+        "能力地图"
+      ],
+      "concepts": [
+        "biz.capability_map"
+      ],
+      "prereq": [
+        "BIZ-F001"
+      ],
+      "q_cn": "什么是业务能力地图？为什么比组织架构图更稳定？",
+      "q_en": "What is a business capability map, and why is it more stable than an org chart?",
+      "gist": {
+        "cn": "能力地图描述企业「能做什么」而不管谁做、怎么做，所以组织和系统变了它也不变。",
+        "en": "A capability map shows what a business does, not who or how, so it survives reorganizations."
+      },
+      "points": [
+        {
+          "en": "without saying who does it or how",
+          "cn": "只列企业必须具备的能力，不管谁做怎么做"
+        },
+        {
+          "en": "nested boxes",
+          "cn": "层层嵌套，从顶层能力拆到细项"
+        },
+        {
+          "en": "The key difference from an org chart is stability",
+          "cn": "比组织架构图稳定得多"
+        },
+        {
+          "en": "map teams, systems, and costs onto the same boxes",
+          "cn": "团队、系统、成本都能映射到同一组能力"
+        },
+        {
+          "en": "three systems serving one capability",
+          "cn": "映射后暴露重复建设与能力空白"
+        }
+      ],
+      "concept": {
+        "cn": "业务能力地图是用一组层级化的「能力」来描述企业必须做到的事情，例如「管理客户合同」「处理退货」「核算薪酬」。它只描述做什么，不描述由哪个部门做、用什么系统做、按什么步骤做，因此在组织调整和系统更换时基本保持不变。正因为稳定，能力地图常被用作规划的公共坐标：把团队、系统、成本和痛点映射到同一张图上，就能发现重复建设、能力空白和投资重点。",
+        "en": "A business capability map describes what an enterprise must be able to do as a set of hierarchical capabilities, such as 'manage customer contracts', 'handle returns', or 'calculate payroll'. It describes only what is done, not which department does it, which system supports it, or which steps are followed, so it stays largely unchanged through reorganizations and system replacements. Because it is stable, a capability map is often used as a shared coordinate system for planning: mapping teams, systems, costs, and pain points onto the same map reveals duplicated investment, capability gaps, and investment priorities."
+      },
+      "a_pairs": [
+        {
+          "en": "A capability map lists what a business must be able to do, like 'manage customer contracts' or 'forecast demand', without saying who does it or how.",
+          "cn": "能力地图列出一家企业必须具备的本事，比如「管理客户合同」或「预测需求」，但不说由谁做、怎么做。"
+        },
+        {
+          "en": "It's usually drawn as nested boxes, with a few top-level capabilities broken into more detailed ones.",
+          "cn": "它通常画成层层嵌套的方框，几项顶层能力再拆成更细的子能力。"
+        },
+        {
+          "en": "The key difference from an org chart is stability: departments get merged and renamed every year, but the company doesn't stop needing to manage contracts.",
+          "cn": "它和组织架构图最大的不同在于稳定：部门每年都在合并、改名，但公司始终离不开合同管理。"
+        },
+        {
+          "en": "That stability makes it a good anchor for planning, because you can map teams, systems, and costs onto the same boxes.",
+          "cn": "这种稳定让它成为规划的好锚点，因为你可以把团队、系统和成本都映射到同一组方框上。"
+        },
+        {
+          "en": "Once you do that, problems jump out, like three systems serving one capability or a critical capability with no system at all.",
+          "cn": "一旦这样做，问题就会跳出来，比如三个系统在服务同一项能力，或者某项关键能力根本没有系统支撑。"
+        },
+        {
+          "en": "Executives also find it easier to discuss investment in capabilities than in specific software.",
+          "cn": "管理层也更容易围绕能力来讨论投资，而不是围绕某个具体软件。"
+        },
+        {
+          "en": "I'd use it at the start of a B2B engagement to understand the client before diving into features.",
+          "cn": "在 B 端项目开局时，我会先用它理解客户，再深入到具体功能。"
+        },
+        {
+          "en": "My rule of thumb: org charts tell you who to talk to, capability maps tell you what actually needs to work.",
+          "cn": "我的经验法则是：组织架构图告诉你该找谁谈，能力地图告诉你什么必须运转起来。"
+        }
+      ],
+      "a_en": "A capability map lists what a business must be able to do, like 'manage customer contracts' or 'forecast demand', without saying who does it or how. It's usually drawn as nested boxes, with a few top-level capabilities broken into more detailed ones. The key difference from an org chart is stability: departments get merged and renamed every year, but the company doesn't stop needing to manage contracts. That stability makes it a good anchor for planning, because you can map teams, systems, and costs onto the same boxes. Once you do that, problems jump out, like three systems serving one capability or a critical capability with no system at all. Executives also find it easier to discuss investment in capabilities than in specific software. I'd use it at the start of a B2B engagement to understand the client before diving into features. My rule of thumb: org charts tell you who to talk to, capability maps tell you what actually needs to work.",
+      "a_cn": "能力地图列出一家企业必须具备的本事，比如「管理客户合同」或「预测需求」，但不说由谁做、怎么做。它通常画成层层嵌套的方框，几项顶层能力再拆成更细的子能力。它和组织架构图最大的不同在于稳定：部门每年都在合并、改名，但公司始终离不开合同管理。这种稳定让它成为规划的好锚点，因为你可以把团队、系统和成本都映射到同一组方框上。一旦这样做，问题就会跳出来，比如三个系统在服务同一项能力，或者某项关键能力根本没有系统支撑。管理层也更容易围绕能力来讨论投资，而不是围绕某个具体软件。在 B 端项目开局时，我会先用它理解客户，再深入到具体功能。我的经验法则是：组织架构图告诉你该找谁谈，能力地图告诉你什么必须运转起来。",
+      "key_phrases": [
+        {
+          "en": "nested boxes",
+          "cn": "嵌套方框",
+          "type": "词汇",
+          "usage": "nested 指层层嵌套的，常说 nested structure"
+        },
+        {
+          "en": "a good anchor for planning",
+          "cn": "规划的好锚点",
+          "type": "搭配",
+          "usage": "anchor for 指参照基准，后接用途"
+        },
+        {
+          "en": "jump out",
+          "cn": "跳出来、一目了然",
+          "type": "搭配",
+          "usage": "jump out 指问题一眼显现，可换 stand out"
+        },
+        {
+          "en": "diving into features",
+          "cn": "深入功能细节",
+          "type": "搭配",
+          "usage": "dive into 指深入某个细节，常接 details"
+        },
+        {
+          "en": "doesn't stop needing",
+          "cn": "始终离不开",
+          "type": "句型",
+          "usage": "X doesn't stop needing Y 强调需求不随组织调整而消失"
+        }
+      ],
+      "basics": [
+        {
+          "term": "业务能力",
+          "term_en": "business capability",
+          "explain": "企业为实现目标必须具备的某项本事，用名词或动宾短语描述，比如「客户开户」「库存管理」，不涉及具体做法和负责部门。",
+          "analogy": "人的技能清单：会开车，不管开哪辆车。"
+        },
+        {
+          "term": "映射",
+          "term_en": "mapping",
+          "explain": "把两类事物按对应关系连起来，比如标出每项能力由哪些系统支撑、哪个团队负责，从而看清哪里重叠、哪里空白。",
+          "analogy": "把门店标到地图上，一眼看出哪片没覆盖。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "能力地图就是把各部门的职责换个说法列出来。",
+          "why": "按部门罗列会把组织边界带进来，部门一调整图就作废，也看不出跨部门的重复建设；能力要脱离组织、按业务本身来划分。",
+          "right": "先按业务对象和价值环节划分能力，再单独把部门、系统映射上去，让能力这一层保持独立和稳定。"
+        }
+      ],
+      "approach": "采分点是讲清能力地图「只管做什么」的特点，以及稳定性带来的规划价值。推荐结构：定义与例子 → 嵌套结构 → 与组织架构图对比 → 映射后暴露的问题 → 用于项目开局。用「组织图告诉你找谁，能力图告诉你什么必须运转」收尾。会失分的是把它说成部门职责表。",
+      "tips": "必备术语 capability map、mapping、anchor。可延伸：价值流分析、业务架构总览。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "BIZ-F003",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "流程建模",
+        "BPMN",
+        "泳道图"
+      ],
+      "concepts": [
+        "biz.process_modeling"
+      ],
+      "prereq": [
+        "BIZ-F001"
+      ],
+      "q_cn": "泳道图和 BPMN 如何画清一个跨部门流程？",
+      "q_en": "How do swimlane diagrams and BPMN make a cross-department process clear?",
+      "gist": {
+        "cn": "泳道按角色分道，看清谁做什么、在哪交接；BPMN 用统一符号画事件、活动和判断。",
+        "en": "Swimlanes show who does what and where handoffs happen; BPMN adds standard symbols for events, activities, and decisions."
+      },
+      "points": [
+        {
+          "en": "where work changes hands",
+          "cn": "泳道按角色分道，看清交接点"
+        },
+        {
+          "en": "Handoffs are where a lot of delays and errors happen",
+          "cn": "交接处很容易延误和出错"
+        },
+        {
+          "en": "a standard set of symbols",
+          "cn": "BPMN 是画流程的标准符号"
+        },
+        {
+          "en": "diamonds are gateways",
+          "cn": "事件、活动、网关三类基础符号"
+        },
+        {
+          "en": "can read the same diagram",
+          "cn": "通用符号让业务、产品、开发读同一张图"
+        }
+      ],
+      "concept": {
+        "cn": "业务流程建模是把一项业务从触发到完成的步骤、角色和判断条件画成图，用来对齐理解、发现问题、指导系统设计。泳道图把不同角色放在各自的横道里，重点呈现分工和交接点。BPMN（业务流程模型和标记法）是国际通用的建模标准：圆圈表示事件、圆角矩形表示活动、菱形表示网关；池代表一个独立参与方，如本公司或供应商，池内再按角色分泳道，池与池之间用虚线的消息流连接。部分工作流引擎能直接执行 BPMN 模型。",
+        "en": "Business process modeling draws the steps, roles, and decision conditions of a piece of business from trigger to completion, to align understanding, find problems, and guide system design. A swimlane diagram puts each role in its own lane and highlights responsibilities and handoffs. BPMN (Business Process Model and Notation) is an international modeling standard: circles are events, rounded rectangles are activities, and diamonds are gateways; a pool represents an independent participant, such as your company or a supplier, lanes divide a pool by role, and pools are connected by dashed message flows. Some workflow engines can execute BPMN models directly."
+      },
+      "a_pairs": [
+        {
+          "en": "A swimlane diagram gives each role or department its own lane, so you can see who does what and, more importantly, where work changes hands.",
+          "cn": "泳道图给每个角色或部门一条独立的泳道，让你看清谁做什么，更重要的是看清工作在哪里交接。"
+        },
+        {
+          "en": "Handoffs are where a lot of delays and errors happen, so making them visible is half the value.",
+          "cn": "很多延误和差错都发生在交接处，所以把交接点画出来就已经实现了一半的价值。"
+        },
+        {
+          "en": "BPMN, short for Business Process Model and Notation, is a standard set of symbols for drawing these flows.",
+          "cn": "BPMN 是「业务流程模型和标记法」的缩写，是画这类流程的一套标准符号。"
+        },
+        {
+          "en": "The basics are simple: circles are events like 'order received', rounded boxes are activities, and diamonds are gateways where the flow splits on a decision.",
+          "cn": "基础很简单：圆圈表示事件，比如「收到订单」；圆角方框表示活动；菱形是网关，流程在这里按判断分叉。"
+        },
+        {
+          "en": "Take a purchase request: the employee submits it, the manager approves, and if it's over a limit, a gateway sends it to finance before procurement places the order.",
+          "cn": "以采购申请为例：员工提交，经理审批，如果金额超限，网关会把它先送到财务，再由采购下单。"
+        },
+        {
+          "en": "Because the notation is shared, business people, PMs, and developers can read the same diagram, and some workflow engines can even run it.",
+          "cn": "因为符号是通用的，业务人员、产品经理和开发能看懂同一张图，有些工作流引擎甚至能直接执行它。"
+        },
+        {
+          "en": "I'd keep the first version at the level of lanes and key decisions, and only add detail where the process actually breaks.",
+          "cn": "第一版我只画到泳道和关键判断这一层，只在流程真正出问题的地方补充细节。"
+        },
+        {
+          "en": "Bottom line: draw the handoffs first, because that's where processes leak time and responsibility.",
+          "cn": "一句话总结：先把交接画出来，因为流程正是在交接处白白耗掉时间、让责任变得模糊。"
+        }
+      ],
+      "a_en": "A swimlane diagram gives each role or department its own lane, so you can see who does what and, more importantly, where work changes hands. Handoffs are where a lot of delays and errors happen, so making them visible is half the value. BPMN, short for Business Process Model and Notation, is a standard set of symbols for drawing these flows. The basics are simple: circles are events like 'order received', rounded boxes are activities, and diamonds are gateways where the flow splits on a decision. Take a purchase request: the employee submits it, the manager approves, and if it's over a limit, a gateway sends it to finance before procurement places the order. Because the notation is shared, business people, PMs, and developers can read the same diagram, and some workflow engines can even run it. I'd keep the first version at the level of lanes and key decisions, and only add detail where the process actually breaks. Bottom line: draw the handoffs first, because that's where processes leak time and responsibility.",
+      "a_cn": "泳道图给每个角色或部门一条独立的泳道，让你看清谁做什么，更重要的是看清工作在哪里交接。很多延误和差错都发生在交接处，所以把交接点画出来就已经实现了一半的价值。BPMN 是「业务流程模型和标记法」的缩写，是画这类流程的一套标准符号。基础很简单：圆圈表示事件，比如「收到订单」；圆角方框表示活动；菱形是网关，流程在这里按判断分叉。以采购申请为例：员工提交，经理审批，如果金额超限，网关会把它先送到财务，再由采购下单。因为符号是通用的，业务人员、产品经理和开发能看懂同一张图，有些工作流引擎甚至能直接执行它。第一版我只画到泳道和关键判断这一层，只在流程真正出问题的地方补充细节。一句话总结：先把交接画出来，因为流程正是在交接处白白耗掉时间、让责任变得模糊。",
+      "key_phrases": [
+        {
+          "en": "changes hands",
+          "cn": "易手、转交",
+          "type": "搭配",
+          "usage": "change hands 原指易主，这里指工作转交"
+        },
+        {
+          "en": "half the value",
+          "cn": "一半的价值",
+          "type": "句型",
+          "usage": "is half the value 强调某一步已贡献大半价值"
+        },
+        {
+          "en": "splits on a decision",
+          "cn": "按判断分叉",
+          "type": "搭配",
+          "usage": "split on 表按某条件分成多路"
+        },
+        {
+          "en": "at the level of",
+          "cn": "在……的粒度上",
+          "type": "搭配",
+          "usage": "at the level of 指在某个粒度或层级上"
+        },
+        {
+          "en": "leak time and responsibility",
+          "cn": "流失时间与责任",
+          "type": "搭配",
+          "usage": "leak 比喻资源或责任在过程中悄悄流失"
+        }
+      ],
+      "basics": [
+        {
+          "term": "交接点",
+          "term_en": "handoff",
+          "explain": "一项工作从一个角色或部门转到另一个角色或部门的地方。信息在这里容易丢失、等待也最长，是流程优化最常下手的位置。",
+          "analogy": "接力赛的交棒区，最容易掉棒。"
+        },
+        {
+          "term": "网关",
+          "term_en": "gateway",
+          "explain": "BPMN 里用菱形表示的分支点，流程到这里根据条件选择走哪条路，比如金额是否超过审批限额，或几条并行路线在此汇合。",
+          "analogy": "高速路的分岔口，按目的地选车道。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "流程图画得越细越好，每个按钮操作都画进去。",
+          "why": "过细的流程图让人看不出整体结构和交接点，业务方不愿读，维护成本也高，真正的问题反而被细节淹没。",
+          "right": "先画到角色和关键判断的粒度，聚焦交接与异常，只在出问题的环节下钻补充细节。"
+        }
+      ],
+      "approach": "采分点是讲清泳道图聚焦交接、BPMN 提供通用符号，并用一个流程示范。推荐结构：泳道与交接 → 交接为何关键 → BPMN 三类符号 → 采购申请例子 → 通用符号的协作价值 → 粒度建议。用「先画交接」收尾。会失分的是只背符号，不讲画图的目的。",
+      "tips": "必备术语 swimlane、BPMN、handoff、gateway。可延伸：现状与目标流程分析、业务状态机。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "BIZ-F004",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "领域模型",
+        "业务对象"
+      ],
+      "concepts": [
+        "biz.domain_model"
+      ],
+      "prereq": [
+        "BIZ-F001"
+      ],
+      "q_cn": "什么是领域模型？业务对象和关系怎么梳理？",
+      "q_en": "What is a domain model, and how do you map business objects and their relationships?",
+      "gist": {
+        "cn": "领域模型用业务对象、属性和关系描述业务世界：先统一叫法，再定一对多等关系。",
+        "en": "A domain model describes business objects and relationships; agree on names first, then on relationships."
+      },
+      "points": [
+        {
+          "en": "drawn in business language",
+          "cn": "用业务语言描绘业务事物及其关系"
+        },
+        {
+          "en": "nailing down names",
+          "cn": "先统一各个对象的叫法"
+        },
+        {
+          "en": "one account has many contacts",
+          "cn": "再梳理一对多等数量关系"
+        },
+        {
+          "en": "they're business decisions",
+          "cn": "关系规则其实是业务决策"
+        },
+        {
+          "en": "they shape the database, the screens",
+          "cn": "它决定数据库、页面和报表"
+        }
+      ],
+      "concept": {
+        "cn": "领域模型这个说法来自领域驱动设计（DDD），「领域」指一块业务范围，如销售或售后。它用业务对象、关键属性及对象间的关系来描述业务，例如 CRM 中的客户公司、联系人、商机、报价和合同，帮助业务方与研发统一术语。梳理时先统一对象的定义和叫法，再明确一对一、一对多还是多对多。这些关系看似技术细节，实则是业务规则，直接决定数据库结构、页面和报表口径，后期修改代价很高。",
+        "en": "The term domain model comes from domain-driven design (DDD), where a domain is an area of business such as sales or after-sales service. It describes a business through its objects, their key attributes, and the relationships between them, such as accounts, contacts, opportunities, quotes, and contracts in a CRM, and gives business and engineering a shared vocabulary. Mapping starts by agreeing on each object's definition and name, then clarifying whether relationships are one-to-one, one-to-many, or many-to-many. These look like technical details but are really business rules that shape the database, screens, and report definitions, and they are costly to change later."
+      },
+      "a_pairs": [
+        {
+          "en": "A domain model is a picture of the things a business deals with and how they're related, drawn in business language rather than database terms.",
+          "cn": "领域模型描绘的是一项业务涉及的事物及其相互关系，用业务语言而不是数据库术语来画。"
+        },
+        {
+          "en": "In a CRM, the core objects might be account, contact, opportunity, quote, and contract.",
+          "cn": "在一个 CRM 里，核心对象可能是客户公司、联系人、商机、报价和合同。"
+        },
+        {
+          "en": "I start by nailing down names, because the same word often means different things, like 'customer' meaning the paying company to finance but the end user to support.",
+          "cn": "我会先把叫法定死，因为同一个词常常意味着不同的东西，比如「客户」在财务眼里是付钱的公司，在客服眼里却是最终用户。"
+        },
+        {
+          "en": "Then I map relationships: one account has many contacts, and one opportunity can produce several quotes but at most one signed contract.",
+          "cn": "然后梳理关系：一个客户公司有多个联系人，一个商机可以产生多份报价，但最多只对应一份已签合同。"
+        },
+        {
+          "en": "Those 'one-to-many' rules sound technical, but they're business decisions, like whether a contact can belong to two companies.",
+          "cn": "这些「一对多」规则听起来很技术，但它们其实是业务决策，比如一个联系人能不能同时属于两家公司。"
+        },
+        {
+          "en": "Getting them wrong is expensive, because they shape the database, the screens, and every report built on top.",
+          "cn": "搞错的代价很高，因为它们决定了数据库、页面，以及在其上构建的每一张报表。"
+        },
+        {
+          "en": "A shared model also gives business and engineering one vocabulary, so you don't spend months clarifying terms later.",
+          "cn": "一个共享的模型还能给业务和研发一套共同的词汇，免得后面花几个月去澄清术语。"
+        },
+        {
+          "en": "My rule of thumb: agree on the nouns before you design the screens.",
+          "cn": "我的经验法则是：先对齐名词，再设计页面。"
+        }
+      ],
+      "a_en": "A domain model is a picture of the things a business deals with and how they're related, drawn in business language rather than database terms. In a CRM, the core objects might be account, contact, opportunity, quote, and contract. I start by nailing down names, because the same word often means different things, like 'customer' meaning the paying company to finance but the end user to support. Then I map relationships: one account has many contacts, and one opportunity can produce several quotes but at most one signed contract. Those 'one-to-many' rules sound technical, but they're business decisions, like whether a contact can belong to two companies. Getting them wrong is expensive, because they shape the database, the screens, and every report built on top. A shared model also gives business and engineering one vocabulary, so you don't spend months clarifying terms later. My rule of thumb: agree on the nouns before you design the screens.",
+      "a_cn": "领域模型描绘的是一项业务涉及的事物及其相互关系，用业务语言而不是数据库术语来画。在一个 CRM 里，核心对象可能是客户公司、联系人、商机、报价和合同。我会先把叫法定死，因为同一个词常常意味着不同的东西，比如「客户」在财务眼里是付钱的公司，在客服眼里却是最终用户。然后梳理关系：一个客户公司有多个联系人，一个商机可以产生多份报价，但最多只对应一份已签合同。这些「一对多」规则听起来很技术，但它们其实是业务决策，比如一个联系人能不能同时属于两家公司。搞错的代价很高，因为它们决定了数据库、页面，以及在其上构建的每一张报表。一个共享的模型还能给业务和研发一套共同的词汇，免得后面花几个月去澄清术语。我的经验法则是：先对齐名词，再设计页面。",
+      "key_phrases": [
+        {
+          "en": "nailing down",
+          "cn": "敲定",
+          "type": "搭配",
+          "usage": "nail down 指把含糊的事定死，常接 details"
+        },
+        {
+          "en": "means different things",
+          "cn": "意思各不相同",
+          "type": "搭配",
+          "usage": "X means different things to A and B 指同词异义"
+        },
+        {
+          "en": "at most one",
+          "cn": "最多一个",
+          "type": "搭配",
+          "usage": "at most 表上限，与 at least 相对"
+        },
+        {
+          "en": "built on top",
+          "cn": "建立在其上",
+          "type": "搭配",
+          "usage": "built on top of 指以某物为基础搭建"
+        },
+        {
+          "en": "agree on the nouns",
+          "cn": "先对齐名词",
+          "type": "句型",
+          "usage": "agree on the nouns 指先统一概念叫法"
+        }
+      ],
+      "basics": [
+        {
+          "term": "业务对象",
+          "term_en": "business object",
+          "explain": "业务中被反复处理、需要记录下来的事物，比如订单、合同、工单。每个对象有自己的属性，比如合同有金额、签约日期和状态。",
+          "analogy": "档案柜里的一类档案，每份栏目固定。"
+        },
+        {
+          "term": "一对多关系",
+          "term_en": "one-to-many relationship",
+          "explain": "两类对象之间的数量对应规则，比如一个客户公司可以有多个联系人，而每个联系人只属于一家公司，这条规则会决定数据怎么存。",
+          "analogy": "一位班主任带多名学生，学生只有一位班主任。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "对象之间的关系是开发建表时的事，产品经理不用管。",
+          "why": "一个联系人能否属于多家公司、一个商机能否对应多份合同，都是业务规则；产品不定义，开发只能猜，上线后再改要动数据库和历史数据。",
+          "right": "在需求阶段就和业务方确认关键对象的定义和数量关系，写进需求文档并画成简单的关系图。"
+        }
+      ],
+      "approach": "采分点是讲清领域模型的三要素，以及「先统一叫法、再定关系」的顺序。推荐结构：定义 → CRM 对象例子 → 同词异义的坑 → 一对多关系 → 关系即业务决策 → 共享词汇。用「先对齐名词再设计页面」收尾。会失分的是直接讲数据库建表。",
+      "tips": "必备术语 domain model、business object、one-to-many。可延伸：业务状态机、数据库基础。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "BIZ-F005",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "状态机",
+        "状态流转",
+        "工单"
+      ],
+      "concepts": [
+        "biz.state_machine"
+      ],
+      "prereq": [
+        "BIZ-F003",
+        "BIZ-F004"
+      ],
+      "q_cn": "订单、工单为什么都需要状态机？状态流转怎么设计？",
+      "q_en": "Why do orders and tickets need a state machine, and how do you design the transitions?",
+      "gist": {
+        "cn": "状态机明确有哪些状态、什么事件触发、谁能推动流转，防止出现说不清的中间态。",
+        "en": "A state machine defines states, triggering events, and who can move an object, preventing ambiguous limbo."
+      },
+      "points": [
+        {
+          "en": "which states exist, what moves an object between them",
+          "cn": "说清有哪些状态、如何流转、谁能操作"
+        },
+        {
+          "en": "Each arrow needs a trigger and a rule",
+          "cn": "每个流转都要有触发条件和规则"
+        },
+        {
+          "en": "tickets stuck in limbo",
+          "cn": "缺少状态机会出现卡住的单子和对不上的报表"
+        },
+        {
+          "en": "the gaps between state changes",
+          "cn": "处理时长等指标就是状态变化的时间差"
+        },
+        {
+          "en": "list every allowed transition in a table",
+          "cn": "画图加流转表，供开发测试逐条核对"
+        }
+      ],
+      "concept": {
+        "cn": "业务状态机描述一个业务对象在生命周期中可能处于哪些状态、在什么事件或条件下从一个状态转到另一个状态、由谁有权触发。订单、工单、审批单、合同都适合用它描述。设计时要列出全部状态，为每个流转定义触发事件、前置条件和执行角色，并考虑跳过、撤回、超时等例外。清晰的状态机能防止对象卡在说不清的中间态，统一报表口径，也是计算处理时长等指标和做流程自动化的基础。",
+        "en": "A business state machine describes which states a business object can be in during its life cycle, which events or conditions move it from one state to another, and who is allowed to trigger each move. Orders, tickets, approval forms, and contracts all suit this model. Designing one means listing every state, defining the trigger, preconditions, and acting role for each transition, and considering exceptions such as skipping, reversal, and timeouts. A clear state machine keeps objects from getting stuck in ambiguous in-between states, aligns report definitions, and is the basis for metrics such as handling time and for process automation."
+      },
+      "a_pairs": [
+        {
+          "en": "Most business objects have a life cycle, and a state machine makes it explicit: which states exist, what moves an object between them, and who's allowed to do it.",
+          "cn": "大多数业务对象都有生命周期，状态机把它说清楚：有哪些状态、什么让对象在状态间移动、谁有权这么做。"
+        },
+        {
+          "en": "A support ticket might go from new to assigned, in progress, waiting on customer, resolved, and closed.",
+          "cn": "一张客服工单可能从新建，到已分派、处理中、等待客户、已解决，再到已关闭。"
+        },
+        {
+          "en": "Each arrow needs a trigger and a rule, like 'only the assignee can mark it resolved' or 'it auto-closes after seven days without a reply'.",
+          "cn": "每个箭头都需要一个触发条件和一条规则，比如「只有处理人能标记为已解决」或「七天无回复自动关闭」。"
+        },
+        {
+          "en": "Without a clear model, you get tickets stuck in limbo, reports that don't add up, and arguments about whether a reopened ticket counts as new.",
+          "cn": "没有清晰的模型，你会看到工单卡在不明不白的中间态、报表对不上数，还有关于重开的工单算不算新单的争论。"
+        },
+        {
+          "en": "It also tells you what to measure, since metrics like resolution time are just the gaps between state changes.",
+          "cn": "它还告诉你该度量什么，因为解决时长这类指标本质上就是状态变化之间的时间差。"
+        },
+        {
+          "en": "I usually draw it as a simple diagram, then list every allowed transition in a table so developers and testers can check each one.",
+          "cn": "我通常先画一张简单的图，再把每个允许的流转列成表，让开发和测试逐条核对。"
+        },
+        {
+          "en": "Two questions catch most gaps: what happens if this step is skipped, and can this state ever be reversed?",
+          "cn": "有两个问题能抓出大部分漏洞：如果跳过这一步会怎样？这个状态能不能被撤回？"
+        },
+        {
+          "en": "Bottom line: if you can't draw an object's states, you can't measure or automate its process.",
+          "cn": "一句话总结：画不出一个对象的状态，就既无法度量、也无法自动化它的流程。"
+        }
+      ],
+      "a_en": "Most business objects have a life cycle, and a state machine makes it explicit: which states exist, what moves an object between them, and who's allowed to do it. A support ticket might go from new to assigned, in progress, waiting on customer, resolved, and closed. Each arrow needs a trigger and a rule, like 'only the assignee can mark it resolved' or 'it auto-closes after seven days without a reply'. Without a clear model, you get tickets stuck in limbo, reports that don't add up, and arguments about whether a reopened ticket counts as new. It also tells you what to measure, since metrics like resolution time are just the gaps between state changes. I usually draw it as a simple diagram, then list every allowed transition in a table so developers and testers can check each one. Two questions catch most gaps: what happens if this step is skipped, and can this state ever be reversed? Bottom line: if you can't draw an object's states, you can't measure or automate its process.",
+      "a_cn": "大多数业务对象都有生命周期，状态机把它说清楚：有哪些状态、什么让对象在状态间移动、谁有权这么做。一张客服工单可能从新建，到已分派、处理中、等待客户、已解决，再到已关闭。每个箭头都需要一个触发条件和一条规则，比如「只有处理人能标记为已解决」或「七天无回复自动关闭」。没有清晰的模型，你会看到工单卡在不明不白的中间态、报表对不上数，还有关于重开的工单算不算新单的争论。它还告诉你该度量什么，因为解决时长这类指标本质上就是状态变化之间的时间差。我通常先画一张简单的图，再把每个允许的流转列成表，让开发和测试逐条核对。有两个问题能抓出大部分漏洞：如果跳过这一步会怎样？这个状态能不能被撤回？一句话总结：画不出一个对象的状态，就既无法度量、也无法自动化它的流程。",
+      "key_phrases": [
+        {
+          "en": "makes it explicit",
+          "cn": "把它说明白",
+          "type": "搭配",
+          "usage": "make sth explicit 指把隐含的东西说清楚"
+        },
+        {
+          "en": "stuck in limbo",
+          "cn": "悬而未决",
+          "type": "搭配",
+          "usage": "in limbo 指悬而未决，常与 stuck 连用"
+        },
+        {
+          "en": "don't add up",
+          "cn": "对不上",
+          "type": "搭配",
+          "usage": "add up 指数字对得上，也指说法讲得通"
+        },
+        {
+          "en": "catch most gaps",
+          "cn": "抓出大部分漏洞",
+          "type": "搭配",
+          "usage": "catch gaps 指发现遗漏，可换 spot gaps"
+        },
+        {
+          "en": "if you can't draw",
+          "cn": "如果画不出",
+          "type": "句型",
+          "usage": "if you can't X, you can't Y 用来强调前提"
+        }
+      ],
+      "basics": [
+        {
+          "term": "状态",
+          "term_en": "state",
+          "explain": "业务对象某一时刻所处的阶段，如工单的「处理中」。在同一个状态维度上对象只处于一个状态；订单这类复杂对象常拆成支付、履约、售后几条状态线。",
+          "analogy": "快递的已揽收、运输中、派送中、已签收。"
+        },
+        {
+          "term": "流转",
+          "term_en": "transition",
+          "explain": "对象从一个状态变到另一个状态的过程，通常由某个事件触发，并受条件和权限约束，比如经理批准后申请单从「待审批」变为「已通过」。",
+          "analogy": "棋子按规则走，马只能走日字。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "状态就是一个下拉框，让用户自己选当前是什么状态就好。",
+          "why": "用户手动改状态会跳过必要步骤，出现已关闭却没解决、没审批就执行的情况，报表和时长指标也会随之失真。",
+          "right": "由业务事件和角色权限驱动状态变化，只开放必要的手动操作，并记录每次流转的时间和操作人。"
+        }
+      ],
+      "approach": "采分点是讲清状态、触发、权限三要素，以及它对指标和自动化的支撑。推荐结构：定义 → 工单例子 → 流转规则 → 缺失后果 → 指标即状态间隔 → 流转表与两个检查问题。用「画不出状态就无法度量和自动化」收尾。会失分的是只列状态名称。",
+      "tips": "必备术语 state machine、transition、trigger。可延伸：业务规则、ITSM 工单流程。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "BIZ-F006",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "业务规则",
+        "规则引擎",
+        "配置化"
+      ],
+      "concepts": [
+        "biz.business_rules"
+      ],
+      "prereq": [
+        "BIZ-F003"
+      ],
+      "q_cn": "业务规则该写死在代码里，还是交给规则引擎？",
+      "q_en": "Should business rules be hard-coded or managed in a rules engine?",
+      "gist": {
+        "cn": "稳定、简单的规则写进代码；常变、由业务方维护的规则做成配置或交给规则引擎。",
+        "en": "Hard-code stable, simple rules; externalize rules that change often and belong to the business."
+      },
+      "points": [
+        {
+          "en": "a policy the system enforces",
+          "cn": "业务规则是系统要执行的政策"
+        },
+        {
+          "en": "Separating rules from the process",
+          "cn": "规则与流程分开，规则变得更快"
+        },
+        {
+          "en": "how often it changes and who should own it",
+          "cn": "按变化频率和归属决定放在哪"
+        },
+        {
+          "en": "without a release",
+          "cn": "常变的规则做成可配置，不用发版"
+        },
+        {
+          "en": "configurable doesn't mean ungoverned",
+          "cn": "规则引擎适合复杂规则，配置也要管控"
+        }
+      ],
+      "concept": {
+        "cn": "业务规则是系统必须遵守和执行的业务政策或约束，例如审批额度、会员权益、定价折扣和资格校验。良好的设计会把规则与流程分离：流程描述步骤顺序，相对稳定；规则描述判断条件，变化频繁。规则可以写在代码里、做成配置项，或交给专门的规则引擎管理，选择依据是变更频率、规则复杂度和应由谁维护。可配置的规则同样需要测试、审批和变更记录，否则业务方的一次误改就可能造成大范围错误。",
+        "en": "Business rules are the policies or constraints a system must follow and enforce, such as approval limits, membership benefits, pricing discounts, and eligibility checks. Good design separates rules from processes: processes describe the sequence of steps and are relatively stable, while rules describe decision conditions and change often. A rule can be written into code, turned into a configuration option, or managed in a dedicated rules engine, depending on how often it changes, how complex it is, and who should maintain it. Configurable rules still need testing, approval, and a change history; otherwise one mistaken edit by the business can cause widespread errors."
+      },
+      "a_pairs": [
+        {
+          "en": "A business rule is a policy the system enforces, like 'orders over fifty thousand need director approval' or 'gold members get free shipping'.",
+          "cn": "业务规则是系统要执行的一条政策，比如「五万元以上订单需总监审批」或「金卡会员免运费」。"
+        },
+        {
+          "en": "Separating rules from the process is a useful habit, because processes stay fairly stable while rules keep changing.",
+          "cn": "把规则和流程分开是个好习惯，因为流程相对稳定，而规则一直在变。"
+        },
+        {
+          "en": "The question is where each rule lives, and I decide based on how often it changes and who should own it.",
+          "cn": "问题在于每条规则放在哪里，我根据它变化的频率和应该由谁负责来决定。"
+        },
+        {
+          "en": "If a rule is stable and simple, hard-coding it is fine, and it's easier to test.",
+          "cn": "如果一条规则稳定又简单，写死在代码里没问题，也更容易测试。"
+        },
+        {
+          "en": "If it changes every quarter, like discount thresholds or approval limits, I'd make it configurable so the business can update it without a release.",
+          "cn": "如果它每个季度都变，比如折扣门槛或审批额度，我会把它做成可配置的，让业务方不用发版就能修改。"
+        },
+        {
+          "en": "A full rules engine makes sense only when there are many interacting rules, such as insurance pricing or credit checks, and someone is trained to maintain them.",
+          "cn": "只有当规则很多且相互影响，比如保险定价或信用审核，并且有人受过维护它们的训练时，完整的规则引擎才值得上。"
+        },
+        {
+          "en": "Even then, configurable doesn't mean ungoverned: rule changes still need testing, approval, and a history.",
+          "cn": "即便如此，可配置不等于没人管：规则变更仍然需要测试、审批和历史记录。"
+        },
+        {
+          "en": "My rule of thumb: put a rule where the person who changes it most can change it safely.",
+          "cn": "我的经验法则是：规则放在最常修改它的人能安全修改的地方。"
+        }
+      ],
+      "a_en": "A business rule is a policy the system enforces, like 'orders over fifty thousand need director approval' or 'gold members get free shipping'. Separating rules from the process is a useful habit, because processes stay fairly stable while rules keep changing. The question is where each rule lives, and I decide based on how often it changes and who should own it. If a rule is stable and simple, hard-coding it is fine, and it's easier to test. If it changes every quarter, like discount thresholds or approval limits, I'd make it configurable so the business can update it without a release. A full rules engine makes sense only when there are many interacting rules, such as insurance pricing or credit checks, and someone is trained to maintain them. Even then, configurable doesn't mean ungoverned: rule changes still need testing, approval, and a history. My rule of thumb: put a rule where the person who changes it most can change it safely.",
+      "a_cn": "业务规则是系统要执行的一条政策，比如「五万元以上订单需总监审批」或「金卡会员免运费」。把规则和流程分开是个好习惯，因为流程相对稳定，而规则一直在变。问题在于每条规则放在哪里，我根据它变化的频率和应该由谁负责来决定。如果一条规则稳定又简单，写死在代码里没问题，也更容易测试。如果它每个季度都变，比如折扣门槛或审批额度，我会把它做成可配置的，让业务方不用发版就能修改。只有当规则很多且相互影响，比如保险定价或信用审核，并且有人受过维护它们的训练时，完整的规则引擎才值得上。即便如此，可配置不等于没人管：规则变更仍然需要测试、审批和历史记录。我的经验法则是：规则放在最常修改它的人能安全修改的地方。",
+      "key_phrases": [
+        {
+          "en": "a policy the system enforces",
+          "cn": "系统要执行的政策",
+          "type": "搭配",
+          "usage": "enforce 指强制执行，常接 a policy / a limit"
+        },
+        {
+          "en": "keep changing",
+          "cn": "一直在变",
+          "type": "搭配",
+          "usage": "keep doing 表持续不断地做，强调反复"
+        },
+        {
+          "en": "without a release",
+          "cn": "无需发版",
+          "type": "搭配",
+          "usage": "without a release 常见于讨论配置化的好处"
+        },
+        {
+          "en": "makes sense only when",
+          "cn": "只有在……时才划算",
+          "type": "句型",
+          "usage": "X makes sense only when… 用来限定适用条件"
+        },
+        {
+          "en": "configurable doesn't mean ungoverned",
+          "cn": "可配置不等于没人管",
+          "type": "句型",
+          "usage": "X doesn't mean Y 用于澄清常见误解"
+        }
+      ],
+      "basics": [
+        {
+          "term": "规则引擎",
+          "term_en": "rules engine",
+          "explain": "专门存放和执行大量业务规则的软件组件，规则以接近业务语言的形式维护，修改时不必改动程序代码，适合规则多、相互影响的场景。",
+          "analogy": "保险公司的核保手册，单独成册、随时修订。"
+        },
+        {
+          "term": "发版",
+          "term_en": "release",
+          "explain": "把修改后的软件正式部署上线的过程，通常要经过开发、测试和审批，周期从几天到几周不等，所以频繁变化的内容不适合靠发版更新。",
+          "analogy": "报纸改一个字也得等下一期印刷。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "为了灵活，最好把所有业务规则都做成可配置的。",
+          "why": "过度配置会让系统复杂难测，参数组合多到测不过来，业务方误改一个参数就可能造成大面积错误，排查也更困难。",
+          "right": "只把高频变化、业务方需要自主调整的规则配置化，其余写进代码，并为配置变更设审批和记录。"
+        }
+      ],
+      "approach": "采分点是给出「变化频率 + 归属」的决策依据，并区分写死、配置化、规则引擎三种做法。推荐结构：规则定义 → 规则与流程分离 → 三种放法与适用条件 → 配置也要管控。用「放在最常修改它的人能安全修改的地方」收尾。会失分的是一概主张全部配置化。",
+      "tips": "必备术语 business rule、rules engine、decision table。可延伸：配置变更管控、SaaS 标准化与定制化。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "BIZ-F007",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "流程分析",
+        "As-Is",
+        "To-Be"
+      ],
+      "concepts": [
+        "biz.as_is_to_be"
+      ],
+      "prereq": [
+        "BIZ-F003"
+      ],
+      "q_cn": "As-Is 和 To-Be 流程分析分别要回答什么？",
+      "q_en": "What should As-Is and To-Be process analysis each answer?",
+      "gist": {
+        "cn": "As-Is 记录现在实际怎么做、卡在哪；To-Be 设计目标流程并讲清收益代价。",
+        "en": "As-Is records how work really happens today; To-Be designs the target process and its trade-offs."
+      },
+      "points": [
+        {
+          "en": "how does the work actually happen today",
+          "cn": "As-Is 如实记录现在怎么做，含变通办法"
+        },
+        {
+          "en": "mark where time is lost",
+          "cn": "依据观察和数据标出时间损失"
+        },
+        {
+          "en": "a policy problem, not a software problem",
+          "cn": "找根因，可能是制度而不是软件问题"
+        },
+        {
+          "en": "not just the old process on a new screen",
+          "cn": "To-Be 不是把旧流程搬到新页面"
+        },
+        {
+          "en": "becomes the project scope and the business case",
+          "cn": "两者差距即项目范围与立项依据"
+        }
+      ],
+      "concept": {
+        "cn": "As-Is 与 To-Be 是流程改进和系统建设中常用的一对分析。As-Is 现状分析如实描绘当前流程，包括非正式的变通办法，并量化等待、返工、重复录入等损耗，找出根本原因。To-Be 目标分析设计改进后的流程，可能删减步骤、合并角色、引入规则或自动化，并说明每个角色的变化。两者的差距构成项目范围和立项论证的基础。现状没有共识就设计目标，往往会把旧问题原样搬进新系统。",
+        "en": "As-Is and To-Be are a common pair of analyses in process improvement and system projects. As-Is analysis faithfully describes the current process, including informal workarounds, quantifies losses such as waiting, rework, and duplicate data entry, and finds root causes. To-Be analysis designs the improved process, which may remove steps, merge roles, or introduce rules or automation, and states what changes for each role. The gap between the two forms the basis for project scope and the business case. Designing the target without agreement on the current state often carries old problems straight into the new system."
+      },
+      "a_pairs": [
+        {
+          "en": "As-Is analysis answers one question honestly: how does the work actually happen today, including the workarounds?",
+          "cn": "现状流程分析要诚实地回答一个问题：现在工作到底是怎么做的，包括那些变通办法。"
+        },
+        {
+          "en": "I map it from observation and data, not from the official manual, and I mark where time is lost, like waiting for approvals or retyping data between systems.",
+          "cn": "我根据观察和数据来画，而不是照着官方手册，并标出时间损失在哪里，比如等审批、在系统之间重复录入数据。"
+        },
+        {
+          "en": "For each pain point, I try to find the root cause, because a slow approval might be a policy problem, not a software problem.",
+          "cn": "对每个痛点，我会尽量找到根因，因为审批慢可能是制度问题，而不是软件问题。"
+        },
+        {
+          "en": "To-Be analysis answers a different question: what should the process look like, and why is it better?",
+          "cn": "目标流程分析回答的是另一个问题：流程应该是什么样，为什么更好？"
+        },
+        {
+          "en": "It's not just the old process on a new screen; it might remove steps, merge roles, or let a rule decide what a person used to decide.",
+          "cn": "它不只是把旧流程搬到新页面上，而可能删掉步骤、合并角色，或者让规则替代过去由人做的判断。"
+        },
+        {
+          "en": "I also list what changes for each role, since a To-Be design that ignores training and incentives won't stick.",
+          "cn": "我还会列出每个角色要改变什么，因为忽视培训和激励的目标流程不会真正落地。"
+        },
+        {
+          "en": "The gap between the two becomes the project scope and the business case, with time saved or errors avoided as the measure.",
+          "cn": "两者之间的差距就成了项目范围和立项依据，用节省的时间或避免的差错来衡量。"
+        },
+        {
+          "en": "My rule of thumb: don't design the To-Be until people agree the As-Is is accurate.",
+          "cn": "我的经验法则是：在大家认可现状流程准确之前，不要开始设计目标流程。"
+        }
+      ],
+      "a_en": "As-Is analysis answers one question honestly: how does the work actually happen today, including the workarounds? I map it from observation and data, not from the official manual, and I mark where time is lost, like waiting for approvals or retyping data between systems. For each pain point, I try to find the root cause, because a slow approval might be a policy problem, not a software problem. To-Be analysis answers a different question: what should the process look like, and why is it better? It's not just the old process on a new screen; it might remove steps, merge roles, or let a rule decide what a person used to decide. I also list what changes for each role, since a To-Be design that ignores training and incentives won't stick. The gap between the two becomes the project scope and the business case, with time saved or errors avoided as the measure. My rule of thumb: don't design the To-Be until people agree the As-Is is accurate.",
+      "a_cn": "现状流程分析要诚实地回答一个问题：现在工作到底是怎么做的，包括那些变通办法。我根据观察和数据来画，而不是照着官方手册，并标出时间损失在哪里，比如等审批、在系统之间重复录入数据。对每个痛点，我会尽量找到根因，因为审批慢可能是制度问题，而不是软件问题。目标流程分析回答的是另一个问题：流程应该是什么样，为什么更好？它不只是把旧流程搬到新页面上，而可能删掉步骤、合并角色，或者让规则替代过去由人做的判断。我还会列出每个角色要改变什么，因为忽视培训和激励的目标流程不会真正落地。两者之间的差距就成了项目范围和立项依据，用节省的时间或避免的差错来衡量。我的经验法则是：在大家认可现状流程准确之前，不要开始设计目标流程。",
+      "key_phrases": [
+        {
+          "en": "where time is lost",
+          "cn": "时间损失在哪",
+          "type": "句型",
+          "usage": "where X is lost 用来定位损耗发生的环节"
+        },
+        {
+          "en": "a policy problem, not a software problem",
+          "cn": "制度问题而非软件问题",
+          "type": "句型",
+          "usage": "an X problem, not a Y problem 用于区分问题性质"
+        },
+        {
+          "en": "on a new screen",
+          "cn": "换到新页面上",
+          "type": "搭配",
+          "usage": "on a new screen 讽刺只换界面、流程不变"
+        },
+        {
+          "en": "won't stick",
+          "cn": "落不了地",
+          "type": "搭配",
+          "usage": "stick 指改变能持续，常说 make it stick"
+        },
+        {
+          "en": "the business case",
+          "cn": "立项论证",
+          "type": "词汇",
+          "usage": "常说 build a business case，指做立项论证"
+        }
+      ],
+      "basics": [
+        {
+          "term": "根因分析",
+          "term_en": "root cause analysis",
+          "explain": "顺着问题现象一层层追问原因，直到找到真正需要改变的源头，避免只处理表面症状。比如审批慢的根因可能是审批层级太多。",
+          "analogy": "医生不只开退烧药，还要查发烧原因。"
+        },
+        {
+          "term": "立项依据",
+          "term_en": "business case",
+          "explain": "说明一个项目为什么值得做的论证材料，通常包括要解决的问题、预期收益、所需投入和风险，用来争取管理层批准和资源。",
+          "analogy": "装修前算清预算和能多住几年的账。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "直接按业务方描述的理想流程设计系统，现状不重要。",
+          "why": "业务方描述的往往是制度上的流程，真实做法中的变通和例外被忽略；不搞清现状，新系统会遗漏关键环节，或把原有低效原样搬上线。",
+          "right": "先通过跟岗和数据画出真实的现状流程并让各方确认，再基于根因设计目标流程，标明每个角色的变化。"
+        }
+      ],
+      "approach": "采分点是讲清两种分析各自回答的问题，以及「先对现状达成共识」的顺序。推荐结构：As-Is 要真实 → 标损耗找根因 → To-Be 不是搬上线 → 角色变化 → 差距即范围与立项依据。用「现状没共识就不设计目标」收尾。会失分的是只说画两张流程图。",
+      "tips": "必备术语 As-Is、To-Be、root cause、business case。可延伸：价值流分析、数字化转型的误区。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "BIZ-F008",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "B端产品",
+        "C端产品",
+        "决策链"
+      ],
+      "concepts": [
+        "biz.b2b_vs_b2c"
+      ],
+      "prereq": [
+        "BIZ-F001"
+      ],
+      "q_cn": "B 端产品和 C 端产品在需求与设计上有何本质不同？",
+      "q_en": "How do B2B and B2C products fundamentally differ in requirements and design?",
+      "gist": {
+        "cn": "B 端买的人和用的人分离、决策链长、服务业务流程；C 端围绕个人体验与留存。",
+        "en": "In B2B, buyers and users differ and products serve workflows; in B2C, the individual's experience drives everything."
+      },
+      "points": [
+        {
+          "en": "the person who buys the product usually isn't the person who uses it",
+          "cn": "B 端购买者与使用者往往不是同一人"
+        },
+        {
+          "en": "several stakeholders at once",
+          "cn": "需求来自多个干系人，销售周期长"
+        },
+        {
+          "en": "permissions, approvals, audit logs, and integrations",
+          "cn": "服务业务流程：权限、审批、审计、集成"
+        },
+        {
+          "en": "one person usually decides, pays, and uses",
+          "cn": "C 端一人决策和使用，可快速试验"
+        },
+        {
+          "en": "renewals and expanding within each account",
+          "cn": "B 端增长靠续约和客户内扩展"
+        }
+      ],
+      "concept": {
+        "cn": "B 端产品面向企业或组织，C 端产品面向个人消费者，两者在需求来源、决策方式和设计重点上差异明显。B 端的购买者、决策者和使用者往往是不同的人，需求来自多个干系人，销售周期长；产品服务的是业务流程，权限、审批、审计、系统集成和可配置性与界面同样重要；收入主要依赖续约和客户内扩展。C 端通常由同一个人决定和使用，更依赖快速试验、行为数据和规模化的拉新与留存。",
+        "en": "B2B products serve companies or organizations, while B2C products serve individual consumers, and the two differ clearly in where requirements come from, how decisions are made, and what design focuses on. In B2B, the buyer, the decision makers, and the users are often different people, requirements come from multiple stakeholders, and sales cycles are long; the product serves a business process, so permissions, approvals, auditing, integrations, and configurability matter as much as the interface, and revenue depends mainly on renewals and expansion within accounts. In B2C, one person usually decides and uses, so the product relies more on fast experiments, behavioral data, and acquisition and retention at scale."
+      },
+      "a_pairs": [
+        {
+          "en": "The biggest difference is that in B2B, the person who buys the product usually isn't the person who uses it.",
+          "cn": "最大的不同在于，B 端产品的购买者通常不是使用者。"
+        },
+        {
+          "en": "A CIO signs the contract for security and cost, while frontline staff judge it on whether it makes their day easier.",
+          "cn": "首席信息官看安全和成本来签合同，而一线员工则看它能不能让日常工作更轻松。"
+        },
+        {
+          "en": "So B2B requirements come from several stakeholders at once, and it's normal for the sales cycle to run for months.",
+          "cn": "所以 B 端需求同时来自多个干系人，销售周期长达数月也很正常。"
+        },
+        {
+          "en": "B2B products also serve a business process, which means permissions, approvals, audit logs, and integrations count as much as the interface.",
+          "cn": "B 端产品还在服务一套业务流程，这意味着权限、审批、审计日志和系统集成与界面同样重要。"
+        },
+        {
+          "en": "In B2C, one person usually decides, pays, and uses, so you can test ideas fast and let behavior data guide you.",
+          "cn": "在 C 端，决定、付钱和使用的通常是同一个人，所以你可以快速试验想法，让行为数据来指导你。"
+        },
+        {
+          "en": "Growth also works differently: B2C lives on acquisition and retention at scale, while B2B lives on renewals and expanding within each account.",
+          "cn": "增长逻辑也不同：C 端靠大规模拉新和留存，B 端靠续约和在每个客户内部扩大使用。"
+        },
+        {
+          "en": "That doesn't mean B2B can ignore user experience; poor usability shows up later as low adoption and a lost renewal.",
+          "cn": "这并不意味着 B 端可以忽视用户体验；可用性差会在之后以使用率低和丢掉续约的形式出现。"
+        },
+        {
+          "en": "My rule of thumb: in B2B, design for the buyer's goals and the user's day at the same time.",
+          "cn": "我的经验法则是：做 B 端，要同时为购买者的目标和使用者的日常而设计。"
+        }
+      ],
+      "a_en": "The biggest difference is that in B2B, the person who buys the product usually isn't the person who uses it. A CIO signs the contract for security and cost, while frontline staff judge it on whether it makes their day easier. So B2B requirements come from several stakeholders at once, and it's normal for the sales cycle to run for months. B2B products also serve a business process, which means permissions, approvals, audit logs, and integrations count as much as the interface. In B2C, one person usually decides, pays, and uses, so you can test ideas fast and let behavior data guide you. Growth also works differently: B2C lives on acquisition and retention at scale, while B2B lives on renewals and expanding within each account. That doesn't mean B2B can ignore user experience; poor usability shows up later as low adoption and a lost renewal. My rule of thumb: in B2B, design for the buyer's goals and the user's day at the same time.",
+      "a_cn": "最大的不同在于，B 端产品的购买者通常不是使用者。首席信息官看安全和成本来签合同，而一线员工则看它能不能让日常工作更轻松。所以 B 端需求同时来自多个干系人，销售周期长达数月也很正常。B 端产品还在服务一套业务流程，这意味着权限、审批、审计日志和系统集成与界面同样重要。在 C 端，决定、付钱和使用的通常是同一个人，所以你可以快速试验想法，让行为数据来指导你。增长逻辑也不同：C 端靠大规模拉新和留存，B 端靠续约和在每个客户内部扩大使用。这并不意味着 B 端可以忽视用户体验；可用性差会在之后以使用率低和丢掉续约的形式出现。我的经验法则是：做 B 端，要同时为购买者的目标和使用者的日常而设计。",
+      "key_phrases": [
+        {
+          "en": "makes their day easier",
+          "cn": "让日常工作更轻松",
+          "type": "搭配",
+          "usage": "make sb's day easier 常用于描述工具价值"
+        },
+        {
+          "en": "at once",
+          "cn": "同时",
+          "type": "搭配",
+          "usage": "at once 可指同时，也可指立刻，看语境"
+        },
+        {
+          "en": "lives on",
+          "cn": "靠……维持",
+          "type": "搭配",
+          "usage": "live on 指靠某物生存，这里指收入来源"
+        },
+        {
+          "en": "shows up later as",
+          "cn": "日后表现为",
+          "type": "句型",
+          "usage": "X shows up later as Y 表问题以另一种形式显现"
+        },
+        {
+          "en": "low adoption",
+          "cn": "使用率低",
+          "type": "词汇",
+          "usage": "adoption 指被实际采用的程度，B 端核心指标"
+        }
+      ],
+      "basics": [
+        {
+          "term": "决策链",
+          "term_en": "decision chain",
+          "explain": "企业采购时参与决定的一串角色，比如提需求的业务部门、评估技术的 IT 部门、批预算的管理层和签约的采购部门，任何一环都可能否决。",
+          "analogy": "结婚买房，双方父母都有一票。"
+        },
+        {
+          "term": "审计日志",
+          "term_en": "audit log",
+          "explain": "系统自动记录的谁在什么时间做了什么操作的清单，用于追责、合规检查和问题排查，企业客户通常把它当作必备功能。",
+          "analogy": "银行保险柜的出入登记簿。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "B 端用户是被公司要求使用的，所以体验没那么重要。",
+          "why": "被迫使用的员工会想办法绕开系统，比如私下用表格，导致数据不全、使用率低，最终在续约时被认为没有价值。",
+          "right": "既满足购买者对安全、成本、合规的要求，也要优化一线用户的高频操作效率，并跟踪实际使用率。"
+        }
+      ],
+      "approach": "采分点是从「买的人和用的人分离」切入，展开需求来源、设计重点和增长逻辑的差异。推荐结构：核心差异 → 多干系人 → 流程类功能 → C 端快速试验 → 增长逻辑 → 体验仍重要。用「兼顾购买者目标和使用者日常」收尾。会失分的是只说 B 端功能多。",
+      "tips": "必备术语 buyer vs user、decision chain、adoption。可延伸：B 端为何不照做客户需求、客户成功。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "BIZ-X001",
+      "level": "X",
+      "kind": "method",
+      "difficulty": "较难",
+      "tags": [
+        "价值流",
+        "流程瓶颈",
+        "AI选点"
+      ],
+      "concepts": [
+        "biz.value_stream",
+        "biz.as_is_to_be"
+      ],
+      "prereq": [
+        "BIZ-F007",
+        "BIZ-F006",
+        "LLM-F008"
+      ],
+      "q_cn": "如何用价值流找到流程瓶颈，并判断哪里适合引入 AI？",
+      "q_en": "How do you use a value stream to find process bottlenecks and decide where AI fits?",
+      "gist": {
+        "cn": "先端到端画价值流、量出等待与返工，再用量大、需判断、可容错三问筛 AI 场景。",
+        "en": "Map end-to-end stages, measure waiting and rework, then pick AI spots that are frequent, judgment-heavy, and error-tolerant."
+      },
+      "points": [
+        {
+          "en": "map the value stream end to end",
+          "cn": "从客户视角端到端画出价值流"
+        },
+        {
+          "en": "how long it sits waiting",
+          "cn": "每个阶段测干活时间和等待时间"
+        },
+        {
+          "en": "the bottleneck is a handoff, a queue",
+          "cn": "瓶颈多在交接、排队和返工处"
+        },
+        {
+          "en": "can we tolerate an occasional mistake",
+          "cn": "三问筛 AI：量大、需判断、可容错"
+        },
+        {
+          "en": "no model will fix it",
+          "cn": "制度类瓶颈先改流程，模型解决不了"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在现状与目标流程分析、业务规则与规则引擎和大模型幻觉之上。价值流是从客户触发到客户获得价值的端到端阶段序列，它跨越部门边界，关注整体流动而不是单个部门的效率。分析时对每个阶段测量处理时间和等待时间，通常会发现等待远多于处理，瓶颈集中在交接、排队和返工处。判断哪里引入 AI，应在理顺流程之后，优先选择量大、需要模糊判断、且能容忍偶尔出错的环节；容错低的环节保留人工复核。",
+        "en": "This question builds on As-Is and To-Be process analysis, business rules and rules engines, and LLM hallucination. A value stream is the end-to-end sequence of stages from a customer trigger to the customer receiving value; it crosses department boundaries and focuses on overall flow rather than any single department's efficiency. Measuring processing time and waiting time for each stage usually shows that waiting far exceeds processing, with bottlenecks concentrated at handoffs, queues, and rework. Deciding where to introduce AI should come after the flow is fixed, favoring steps that are high volume, need fuzzy judgment, and can tolerate occasional errors; steps with low error tolerance keep human review."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd start from the customer's point of view and map the value stream end to end, for example from 'customer reports a problem' to 'problem solved'.",
+          "cn": "我会从客户视角出发，端到端地画出价值流，比如从「客户报告问题」到「问题解决」。"
+        },
+        {
+          "en": "For each stage, I measure two numbers: how long work actually takes and how long it sits waiting.",
+          "cn": "对每个阶段，我测两个数：实际干活用了多久，以及在那里等了多久。"
+        },
+        {
+          "en": "Usually the waiting time dwarfs the working time, and the bottleneck is a handoff, a queue, or a step that keeps sending work back.",
+          "cn": "通常等待时间远远超过干活时间，瓶颈往往是一次交接、一个排队环节，或者一个总把工作退回来的步骤。"
+        },
+        {
+          "en": "Only then do I ask where AI fits, and I filter candidates with three questions.",
+          "cn": "到这时我才会问 AI 适合放在哪里，并用三个问题筛选候选环节。"
+        },
+        {
+          "en": "Is the step high volume, does it need judgment that simple rules can't capture, like classifying messy customer emails, and can we tolerate an occasional mistake?",
+          "cn": "这个环节量大不大？它是否需要简单规则表达不了的判断，比如给杂乱的客户邮件分类？我们能否容忍偶尔出错？"
+        },
+        {
+          "en": "If a step fails the third test, I'd keep a human in the loop or use AI only to draft and suggest.",
+          "cn": "如果某个环节过不了第三关，我会保留人工复核，或者只让 AI 起草和提建议。"
+        },
+        {
+          "en": "And if the real bottleneck is a missing approval policy, no model will fix it, so that's a process change first.",
+          "cn": "如果真正的瓶颈是缺少审批制度，那么任何模型都解决不了，应该先改流程。"
+        },
+        {
+          "en": "My rule of thumb: fix the flow first, then put AI where judgment is frequent and mistakes are cheap.",
+          "cn": "我的经验法则是：先理顺流程，再把 AI 放在判断频繁、出错代价低的地方。"
+        }
+      ],
+      "a_en": "I'd start from the customer's point of view and map the value stream end to end, for example from 'customer reports a problem' to 'problem solved'. For each stage, I measure two numbers: how long work actually takes and how long it sits waiting. Usually the waiting time dwarfs the working time, and the bottleneck is a handoff, a queue, or a step that keeps sending work back. Only then do I ask where AI fits, and I filter candidates with three questions. Is the step high volume, does it need judgment that simple rules can't capture, like classifying messy customer emails, and can we tolerate an occasional mistake? If a step fails the third test, I'd keep a human in the loop or use AI only to draft and suggest. And if the real bottleneck is a missing approval policy, no model will fix it, so that's a process change first. My rule of thumb: fix the flow first, then put AI where judgment is frequent and mistakes are cheap.",
+      "a_cn": "我会从客户视角出发，端到端地画出价值流，比如从「客户报告问题」到「问题解决」。对每个阶段，我测两个数：实际干活用了多久，以及在那里等了多久。通常等待时间远远超过干活时间，瓶颈往往是一次交接、一个排队环节，或者一个总把工作退回来的步骤。到这时我才会问 AI 适合放在哪里，并用三个问题筛选候选环节。这个环节量大不大？它是否需要简单规则表达不了的判断，比如给杂乱的客户邮件分类？我们能否容忍偶尔出错？如果某个环节过不了第三关，我会保留人工复核，或者只让 AI 起草和提建议。如果真正的瓶颈是缺少审批制度，那么任何模型都解决不了，应该先改流程。我的经验法则是：先理顺流程，再把 AI 放在判断频繁、出错代价低的地方。",
+      "key_phrases": [
+        {
+          "en": "end to end",
+          "cn": "端到端",
+          "type": "搭配",
+          "usage": "作副词不加连字符，作定语写成 end-to-end"
+        },
+        {
+          "en": "sits waiting",
+          "cn": "停着等待",
+          "type": "搭配",
+          "usage": "sit waiting 形象描述工作停在队列里"
+        },
+        {
+          "en": "dwarfs the working time",
+          "cn": "远远超过干活时间",
+          "type": "搭配",
+          "usage": "dwarf 作动词指让对方相形见绌，比 is much bigger 生动"
+        },
+        {
+          "en": "keep a human in the loop",
+          "cn": "保留人工把关",
+          "type": "句型",
+          "usage": "keep a human in the loop 常用于 AI 流程设计"
+        },
+        {
+          "en": "mistakes are cheap",
+          "cn": "出错代价低",
+          "type": "搭配",
+          "usage": "mistakes are cheap 反义 mistakes are costly"
+        }
+      ],
+      "basics": [
+        {
+          "term": "价值流",
+          "term_en": "value stream",
+          "explain": "从客户发起请求到客户获得价值的一整串阶段，比如从报修到修好，跨越多个部门，用来看清整体流动中哪里慢、哪里堵。",
+          "analogy": "从下单到外卖送到手的完整链条。"
+        },
+        {
+          "term": "等待时间",
+          "term_en": "wait time",
+          "explain": "工作在某个环节停着没人处理的时间，比如申请单躺在审批人邮箱里的两天。它常常比真正处理的时间长得多。",
+          "analogy": "看病排队两小时，问诊五分钟。"
+        },
+        {
+          "term": "人工复核",
+          "term_en": "human in the loop",
+          "explain": "在自动化或 AI 处理的流程中保留人工检查和确认的环节，让人在关键决定前把关，降低错误带来的损失。",
+          "analogy": "机器分拣包裹，异常件由人工复查。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "哪个环节最费人力，就在哪里上 AI。",
+          "why": "若目标是缩短交付周期，费人力的环节未必是瓶颈：堵点常在审批排队或交接，加快单个环节对整体影响很小；若目标是降本，它倒是合理候选。",
+          "right": "先用价值流找到真正限制整体速度的瓶颈，再结合量大、需判断、可容错三个条件筛选 AI 场景。"
+        },
+        {
+          "wrong": "流程慢是因为系统太落后，引入 AI 就能解决。",
+          "why": "很多慢来自审批层级、职责不清或制度缺失，这些是流程和组织问题，任何模型都绕不过去，反而会把混乱自动化。",
+          "right": "先区分瓶颈的根因是制度、流程还是工具，制度和流程问题先改，再考虑用 AI 提效。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：表面问 AI 落地，实际考能否先看整体流程，而不是拿着锤子找钉子。",
+        "画流：从客户视角端到端画出各阶段，并为每段量出处理时间和等待时间。",
+        "找堵点：瓶颈多在交接、排队和返工处，再分清根因是制度、流程还是工具。",
+        "筛场景：用量大、需判断、可容错三问选 AI 环节，容错低的保留人工复核。"
+      ],
+      "method": {
+        "name": "先流后智",
+        "steps": [
+          "画端到端价值流",
+          "量等待找瓶颈",
+          "三问筛选 AI"
+        ],
+        "transfer": "可迁移到 RPA 选点、客服智能化改造、财务共享中心提效，凡是想用技术给流程提速的场景都适用。"
+      },
+      "approach": "采分点是先用价值流找整体瓶颈，再给出筛选 AI 场景的三条标准。推荐结构：端到端画流 → 测两个时间 → 找瓶颈 → 三问筛选 → 人工复核 → 制度问题先改流程。用「先理顺流程，再把 AI 放在判断频繁处」收尾。会失分的是罗列 AI 能做什么。",
+      "tips": "必备术语 value stream、bottleneck、human in the loop。可延伸：现状与目标流程、AI 需求验收。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "BIZ-X002",
+      "level": "X",
+      "kind": "idea",
+      "difficulty": "较难",
+      "tags": [
+        "数字化转型",
+        "流程再造",
+        "运营模式"
+      ],
+      "concepts": [
+        "biz.as_is_to_be",
+        "biz.capability_map"
+      ],
+      "prereq": [
+        "BIZ-F002",
+        "BIZ-F007"
+      ],
+      "q_cn": "为什么把线下流程搬到线上，不等于数字化转型？",
+      "q_en": "Why isn't moving an offline process online the same as digital transformation?",
+      "gist": {
+        "cn": "线上化只换了载体；转型要重新设计流程、打通数据、改变决策方式，组织也要跟着变。",
+        "en": "Moving online changes the medium; transformation redesigns processes, connects data, and changes how decisions get made."
+      },
+      "points": [
+        {
+          "en": "changes the medium",
+          "cn": "线上化只换载体，流程、决策、数据没变"
+        },
+        {
+          "en": "whether each step should exist at all",
+          "cn": "转型先问每一步是否应该存在"
+        },
+        {
+          "en": "connect across systems",
+          "cn": "数据跨系统打通，让决策基于事实"
+        },
+        {
+          "en": "the operating model",
+          "cn": "角色、激励和技能要随之改变"
+        },
+        {
+          "en": "measure success by business outcomes",
+          "cn": "用业务结果而不是系统数量衡量"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在业务能力地图和现状与目标流程分析之上。线上化指把纸质或线下环节搬到系统中执行，改变的是工作载体；数字化转型则要求重新审视业务本身：哪些步骤应该删除或合并，产生的数据如何跨系统打通并支撑及时决策，角色、激励和技能如何随之调整。能力地图可以帮助判断哪些能力值得重塑、哪些只需降本运行。转型成效应以处理周期、单件成本、客户体验等业务结果来衡量，而不是上线了多少系统。",
+        "en": "This question builds on the business capability map and As-Is and To-Be process analysis. Moving work online means shifting paper or offline steps into a system, which changes only the medium of work. Digital transformation requires re-examining the business itself: which steps should be removed or merged, how the data produced should connect across systems to support timely decisions, and how roles, incentives, and skills should change with it. A capability map helps decide which capabilities are worth reinventing and which only need to run at lower cost. Success should be measured by business outcomes such as cycle time, cost per case, and customer experience, not by the number of systems launched."
+      },
+      "a_pairs": [
+        {
+          "en": "Putting a paper form online changes the medium, but it doesn't touch the process, the decisions, or the data.",
+          "cn": "把纸质表单搬到线上换的是载体，却没有触及流程、决策方式和数据。"
+        },
+        {
+          "en": "It's common to see approval flows digitized with all seven signatures intact, so the only gain is that people wait in an inbox instead of a tray.",
+          "cn": "常见的情况是审批流程线上化后七个签字一个不少，唯一的收获是大家从在文件筐里等变成在邮箱里等。"
+        },
+        {
+          "en": "Transformation starts by asking whether each step should exist at all, which is To-Be thinking applied to the whole business.",
+          "cn": "转型的起点是问每一步是否应该存在，这其实是把目标流程的思路用到整个业务上。"
+        },
+        {
+          "en": "The second shift is data: once steps are digital, the data they produce should connect across systems, so managers can decide on facts today instead of waiting for the monthly report.",
+          "cn": "第二个转变在数据：步骤一旦数字化，产生的数据就应该跨系统打通，让管理者当天就能依据事实决策，而不必等月度报表。"
+        },
+        {
+          "en": "The third is the operating model, meaning roles, incentives, and skills change, which is usually the hardest part.",
+          "cn": "第三个转变是运营模式，也就是角色、激励和技能要随之改变，这通常是最难的部分。"
+        },
+        {
+          "en": "A capability map helps here, because it shows which capabilities are worth reinventing and which just need to run cheaply.",
+          "cn": "能力地图在这里很有用，因为它能看出哪些能力值得重新塑造，哪些只需要低成本地运转。"
+        },
+        {
+          "en": "That's why I'd measure success by business outcomes, like cycle time or cost per case, not by the number of systems launched.",
+          "cn": "所以我会用业务结果来衡量成败，比如处理周期或单件成本，而不是上线了多少个系统。"
+        },
+        {
+          "en": "Bottom line: digitization copies the old process, while transformation questions it.",
+          "cn": "一句话总结：线上化是复制旧流程，转型则是质疑旧流程。"
+        }
+      ],
+      "a_en": "Putting a paper form online changes the medium, but it doesn't touch the process, the decisions, or the data. It's common to see approval flows digitized with all seven signatures intact, so the only gain is that people wait in an inbox instead of a tray. Transformation starts by asking whether each step should exist at all, which is To-Be thinking applied to the whole business. The second shift is data: once steps are digital, the data they produce should connect across systems, so managers can decide on facts today instead of waiting for the monthly report. The third is the operating model, meaning roles, incentives, and skills change, which is usually the hardest part. A capability map helps here, because it shows which capabilities are worth reinventing and which just need to run cheaply. That's why I'd measure success by business outcomes, like cycle time or cost per case, not by the number of systems launched. Bottom line: digitization copies the old process, while transformation questions it.",
+      "a_cn": "把纸质表单搬到线上换的是载体，却没有触及流程、决策方式和数据。常见的情况是审批流程线上化后七个签字一个不少，唯一的收获是大家从在文件筐里等变成在邮箱里等。转型的起点是问每一步是否应该存在，这其实是把目标流程的思路用到整个业务上。第二个转变在数据：步骤一旦数字化，产生的数据就应该跨系统打通，让管理者当天就能依据事实决策，而不必等月度报表。第三个转变是运营模式，也就是角色、激励和技能要随之改变，这通常是最难的部分。能力地图在这里很有用，因为它能看出哪些能力值得重新塑造，哪些只需要低成本地运转。所以我会用业务结果来衡量成败，比如处理周期或单件成本，而不是上线了多少个系统。一句话总结：线上化是复制旧流程，转型则是质疑旧流程。",
+      "key_phrases": [
+        {
+          "en": "changes the medium",
+          "cn": "只换了载体",
+          "type": "搭配",
+          "usage": "change the medium 强调形式变了、实质没变"
+        },
+        {
+          "en": "with all seven signatures intact",
+          "cn": "七个签字一个不少",
+          "type": "句型",
+          "usage": "with X intact 指原样保留，这里带讽刺意味"
+        },
+        {
+          "en": "should exist at all",
+          "cn": "到底该不该存在",
+          "type": "句型",
+          "usage": "whether X should exist at all 用来质疑必要性"
+        },
+        {
+          "en": "decide on facts",
+          "cn": "基于事实决策",
+          "type": "搭配",
+          "usage": "decide on facts 可换 data-driven decisions"
+        },
+        {
+          "en": "questions it",
+          "cn": "质疑它",
+          "type": "搭配",
+          "usage": "question 作动词指质疑，常接 assumptions"
+        }
+      ],
+      "basics": [
+        {
+          "term": "运营模式",
+          "term_en": "operating model",
+          "explain": "一家企业实际怎么运转的整体安排，包括组织角色、流程分工、决策方式、激励机制和所需技能，决定战略能否真正落地。",
+          "analogy": "同样的菜谱，后厨分工不同出菜速度大不同。"
+        },
+        {
+          "term": "处理周期",
+          "term_en": "cycle time",
+          "explain": "一件事从开始到完成总共花费的时间，包含处理和等待，比如一张报销单从提交到打款的天数，是衡量流程效率的核心指标。",
+          "analogy": "从下单到收货一共几天。"
+        },
+        {
+          "term": "数据打通",
+          "term_en": "data integration",
+          "explain": "让不同系统中关于同一业务对象的数据能够互相对应、自动流转，而不是各存一份、靠人工导表对账。",
+          "analogy": "各科室共享同一份病历，而不是各写各的。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "系统都上了，纸质单据也没有了，数字化转型就完成了。",
+          "why": "如果审批层级、角色分工和决策方式都没变，系统只是把旧流程的低效固化下来，处理周期和成本可能并没有改善。",
+          "right": "用处理周期、单件成本、客户体验等业务指标衡量，追问每一步是否必要、数据是否真正支撑决策。"
+        },
+        {
+          "wrong": "数字化转型主要是技术部门的事。",
+          "why": "最难的改变在于角色、激励和工作习惯，业务部门不参与，新系统会被绕开，流程又回到线下表格。",
+          "right": "由业务负责人牵头、技术支撑，把角色调整、培训和激励纳入转型方案，并按业务结果考核。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：表面问两个概念的区别，实际考是否理解转型改变的是业务而不是工具。",
+        "举反例：用七个签字原样线上化的审批说明，只换载体不会带来效率提升。",
+        "立框架：从流程重设计、数据打通、运营模式三个层面说明转型要改什么。",
+        "定标准：用业务结果而非上线系统数量衡量，并借能力地图决定投入重点。"
+      ],
+      "method": {
+        "name": "三层追问",
+        "steps": [
+          "步骤该不该有",
+          "数据通不通",
+          "人和激励变没变"
+        ],
+        "transfer": "可迁移到评估 AI 项目、ERP 上线复盘、门店数字化改造，凡是判断技术项目是否真正带来改变的场景都适用。"
+      },
+      "approach": "采分点是区分「换载体」与「改业务」，并从流程、数据、运营模式三个层面展开。推荐结构：反例 → 流程重设计 → 数据打通 → 运营模式 → 能力地图定重点 → 用业务结果衡量。用「线上化复制旧流程，转型质疑旧流程」收尾。会失分的是把转型说成上更多系统。",
+      "tips": "必备术语 digitization、transformation、operating model。可延伸：价值流与 AI 选点、立项论证。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "BIZ-X003",
+      "level": "X",
+      "kind": "method",
+      "difficulty": "较难",
+      "tags": [
+        "业务调研",
+        "能力地图",
+        "客户入场"
+      ],
+      "concepts": [
+        "biz.business_architecture",
+        "biz.capability_map",
+        "biz.domain_model"
+      ],
+      "prereq": [
+        "BIZ-F002",
+        "BIZ-F004",
+        "BIZ-F005",
+        "BIZ-X001"
+      ],
+      "q_cn": "接手一个陌生企业客户，如何快速摸清它的业务架构？",
+      "q_en": "When you take on an unfamiliar enterprise client, how do you quickly map its business architecture?",
+      "gist": {
+        "cn": "先定商业模式，再搭能力地图、走查关键价值流、理清核心对象，最后映射到系统。",
+        "en": "Start from the business model, sketch capabilities, walk key value streams, list core objects, then map systems."
+      },
+      "points": [
+        {
+          "en": "how the company makes money",
+          "cn": "由外向内，先弄清靠什么赚钱"
+        },
+        {
+          "en": "a rough capability map on one page",
+          "cn": "一页纸能力地图，在启动会上验证"
+        },
+        {
+          "en": "walk them end to end with the people who do the work",
+          "cn": "选两三条关键价值流实地走查"
+        },
+        {
+          "en": "the core business objects and their states",
+          "cn": "走查中收集核心业务对象与状态"
+        },
+        {
+          "en": "map existing systems and teams onto the capabilities",
+          "cn": "最后映射系统与团队，找重复与空白"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在业务能力地图、领域模型、业务状态机与价值流之上。B 端产品经理和解决方案人员常需要在短时间内理解一家陌生企业。较稳妥的路径是由外向内、由粗到细：先通过年报、官网等公开信息弄清商业模式和关键能力，画出一页纸的能力地图；再挑选与项目相关的少数价值流，和一线人员一起端到端走查；走查中收集核心业务对象及其状态；最后把现有系统与团队映射到能力上，找出重复建设与空白。全程用客户自己的语言表达，便于对方纠正和认同。",
+        "en": "This question builds on the business capability map, the domain model, business state machines, and value streams. B2B product managers and solution consultants often need to understand an unfamiliar enterprise in a short time. A reliable path goes from the outside in and from coarse to fine: first use public information such as the annual report and website to understand the business model and key capabilities, and draw a one-page capability map; then pick a few value streams relevant to the project and walk them end to end with frontline staff; while walking them, collect the core business objects and their states; finally map existing systems and teams onto the capabilities to find duplication and gaps. Throughout, use the client's own language so they can correct and endorse it."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd go from the outside in, starting with how the company makes money, using its annual report, website, and job ads before the first meeting.",
+          "cn": "我会由外向内推进，第一次见面之前，先用年报、官网和招聘信息弄清这家公司靠什么赚钱。"
+        },
+        {
+          "en": "That tells me which capabilities matter most, so I can sketch a rough capability map on one page and test it in the kickoff workshop.",
+          "cn": "这能告诉我哪些能力最重要，于是我可以在一页纸上画出粗略的能力地图，并在启动会上验证它。"
+        },
+        {
+          "en": "Next, I pick two or three value streams that matter to the project, like 'order to cash', and walk them end to end with the people who do the work.",
+          "cn": "接下来，我挑两三条与项目相关的价值流，比如「从订单到回款」，和实际干活的人一起端到端地走一遍。"
+        },
+        {
+          "en": "While walking them, I collect the core business objects and their states, because that's where systems and reports usually don't agree.",
+          "cn": "走查过程中，我会收集核心业务对象及其状态，因为系统和报表往往在这些地方对不上。"
+        },
+        {
+          "en": "Only then do I map existing systems and teams onto the capabilities, which quickly shows duplicates and gaps.",
+          "cn": "到这时我才把现有系统和团队映射到能力上，重复建设和空白很快就会暴露出来。"
+        },
+        {
+          "en": "I keep it coarse for the first two weeks, since a perfect model nobody reads is worse than a rough one everybody corrects.",
+          "cn": "头两周我把一切都保持在粗粒度，因为没人看的完美模型，不如一个大家都愿意来纠正的粗糙模型。"
+        },
+        {
+          "en": "The output is a few pages the client recognizes as their business, which builds trust faster than any slide about our product.",
+          "cn": "产出是几页客户一看就认得出是自己业务的材料，这比任何介绍我们产品的幻灯片都更快建立信任。"
+        },
+        {
+          "en": "My rule of thumb: learn the client's business in their words before you describe it in yours.",
+          "cn": "我的经验法则是：先用客户的话学懂他们的业务，再用你的话去描述它。"
+        }
+      ],
+      "a_en": "I'd go from the outside in, starting with how the company makes money, using its annual report, website, and job ads before the first meeting. That tells me which capabilities matter most, so I can sketch a rough capability map on one page and test it in the kickoff workshop. Next, I pick two or three value streams that matter to the project, like 'order to cash', and walk them end to end with the people who do the work. While walking them, I collect the core business objects and their states, because that's where systems and reports usually don't agree. Only then do I map existing systems and teams onto the capabilities, which quickly shows duplicates and gaps. I keep it coarse for the first two weeks, since a perfect model nobody reads is worse than a rough one everybody corrects. The output is a few pages the client recognizes as their business, which builds trust faster than any slide about our product. My rule of thumb: learn the client's business in their words before you describe it in yours.",
+      "a_cn": "我会由外向内推进，第一次见面之前，先用年报、官网和招聘信息弄清这家公司靠什么赚钱。这能告诉我哪些能力最重要，于是我可以在一页纸上画出粗略的能力地图，并在启动会上验证它。接下来，我挑两三条与项目相关的价值流，比如「从订单到回款」，和实际干活的人一起端到端地走一遍。走查过程中，我会收集核心业务对象及其状态，因为系统和报表往往在这些地方对不上。到这时我才把现有系统和团队映射到能力上，重复建设和空白很快就会暴露出来。头两周我把一切都保持在粗粒度，因为没人看的完美模型，不如一个大家都愿意来纠正的粗糙模型。产出是几页客户一看就认得出是自己业务的材料，这比任何介绍我们产品的幻灯片都更快建立信任。我的经验法则是：先用客户的话学懂他们的业务，再用你的话去描述它。",
+      "key_phrases": [
+        {
+          "en": "from the outside in",
+          "cn": "由外向内",
+          "type": "搭配",
+          "usage": "outside in 指由外向内推进，反义 inside out"
+        },
+        {
+          "en": "test it in the kickoff workshop",
+          "cn": "在启动会上验证",
+          "type": "搭配",
+          "usage": "test X in a workshop 指把初稿拿到会上让对方纠正"
+        },
+        {
+          "en": "order to cash",
+          "cn": "从订单到回款",
+          "type": "词汇",
+          "usage": "作定语写作 order-to-cash，常缩写 O2C"
+        },
+        {
+          "en": "a perfect model nobody reads",
+          "cn": "没人看的完美模型",
+          "type": "句型",
+          "usage": "a perfect X nobody uses 讽刺无人用的完美方案"
+        },
+        {
+          "en": "in their words",
+          "cn": "用他们的话",
+          "type": "搭配",
+          "usage": "in their words 指用对方的说法，对应 in yours"
+        }
+      ],
+      "basics": [
+        {
+          "term": "启动会",
+          "term_en": "kickoff meeting",
+          "explain": "项目正式开始时召集各方参加的会议，用来对齐目标、范围、分工和节奏，也是验证初步理解、建立信任的第一次机会。",
+          "analogy": "开学第一课，讲清这学期学什么、怎么考。"
+        },
+        {
+          "term": "从订单到回款",
+          "term_en": "order to cash",
+          "explain": "一条常见的端到端价值流，覆盖从客户下单、发货或交付、开票到收回款项的全过程，涉及销售、仓储、财务等多个部门。",
+          "analogy": "从顾客点菜到结完账的整个过程。"
+        },
+        {
+          "term": "粗粒度",
+          "term_en": "coarse-grained",
+          "explain": "只描述到较大的单位而不深入细节，比如只画到能力和主要环节。适合在早期快速建立全局认识，再按需要逐步细化。",
+          "analogy": "先看省级地图，再按需放大到街道。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "进场第一件事就是逐个部门访谈，把所有流程细节都记下来。",
+          "why": "没有全局框架的细节访谈耗时长、信息零散，很快陷入局部，客户也会觉得被反复问基础问题，白白消耗信任。",
+          "right": "先用公开资料和一页纸能力地图建立全局假设，再挑关键价值流有重点地走查，细节按需补充。"
+        },
+        {
+          "wrong": "用我们产品的功能模块去套客户的业务，最快理解对方。",
+          "why": "用自家产品框架解读客户，会忽略客户特有的流程和叫法，客户也难以认同，后续方案容易脱离实际业务。",
+          "right": "先用客户自己的术语和流程描述业务，确认无误后再映射到产品能力上，并标出差异。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：问的是方法，考的是在信息不足、时间有限时建立全局认识的路径。",
+        "定顺序：由外向内、由粗到细，先商业模式和能力，后价值流、对象和系统。",
+        "抓重点：只走查与项目相关的两三条价值流，在对象和状态处找系统间的分歧。",
+        "建信任：用客户的语言输出几页可纠正的材料，比介绍自家产品更有说服力。"
+      ],
+      "method": {
+        "name": "由外向内",
+        "steps": [
+          "先看怎么赚钱",
+          "再画能力与流程",
+          "最后映射系统"
+        ],
+        "transfer": "可迁移到入职新公司、接手新产品线、准备行业面试，凡是需要快速理解一个陌生业务的场景都适用。"
+      },
+      "approach": "采分点是给出由外向内、由粗到细的顺序，并说明每一步产出什么。推荐结构：公开资料 → 一页纸能力地图 → 关键价值流走查 → 核心对象与状态 → 映射系统与团队 → 粗粒度与客户语言。用「先用客户的话学懂业务」收尾。会失分的是一上来就逐部门访谈细节。",
+      "tips": "必备术语 capability map、value stream、order to cash。可延伸：现状与目标流程、领域模型。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "BIZ-X004",
+      "level": "X",
+      "kind": "method",
+      "difficulty": "较难",
+      "tags": [
+        "组织与权限",
+        "审批流",
+        "B端设计"
+      ],
+      "concepts": [
+        "biz.org_permission",
+        "biz.process_modeling"
+      ],
+      "prereq": [
+        "BIZ-F003",
+        "BIZ-F004",
+        "BIZ-F006"
+      ],
+      "q_cn": "如何梳理一家企业的组织、角色与审批体系？",
+      "q_en": "How do you map out an enterprise's organization, roles, and approval system?",
+      "gist": {
+        "cn": "分组织树、岗位、审批规则三层梳理；规则挂岗位不挂人，补齐代理交接与留痕。",
+        "en": "Map the org tree, positions, and approval rules; tie rules to positions, handle delegation, and log everything."
+      },
+      "points": [
+        {
+          "en": "in three layers",
+          "cn": "按组织树、岗位、审批规则三层梳理"
+        },
+        {
+          "en": "separate positions from people",
+          "cn": "岗位与人分离，规则写岗位不写人名"
+        },
+        {
+          "en": "write the approval rules as conditions",
+          "cn": "按金额等条件沿汇报线逐级路由"
+        },
+        {
+          "en": "Each step also needs a mode",
+          "cn": "每个环节定好会签还是或签"
+        },
+        {
+          "en": "define delegation and handover rules upfront",
+          "cn": "提前定义休假代理与离职交接"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在业务流程建模、领域模型与业务规则之上。B 端系统里，组织、角色与审批体系通常分三层梳理：组织树描述公司、部门、团队及汇报关系；岗位把职责与具体的人分开，人员变动时只需换人而不改规则；审批规则按金额、类型等条件沿汇报线或指定岗位路由，每个环节定义会签或或签。此外要提前设计休假代理、离职交接、越级等例外，并完整记录每次审批的人、时间和依据，以满足审计要求。",
+        "en": "This question builds on business process modeling, the domain model, and business rules. In B2B systems, organization, roles, and approvals are usually mapped in three layers: the org tree describes companies, departments, teams, and reporting relationships; positions separate responsibilities from specific people, so staff changes only swap the person and leave the rules alone; approval rules route requests up the reporting line or to named positions based on conditions such as amount and type, with each step set to all-must-approve or any-one-approves. Exceptions such as leave delegation, handover after departures, and skipped levels must be designed upfront, and every approval's approver, time, and basis must be recorded for audits."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd map it in three layers: the org tree, the positions inside it, and the approval rules that run on top.",
+          "cn": "我会分三层来梳理：组织树、组织里的岗位，以及在其上运行的审批规则。"
+        },
+        {
+          "en": "First comes the org tree of companies, departments, and teams, because approvals usually route up the reporting line.",
+          "cn": "第一层是由公司、部门和团队构成的组织树，因为审批通常沿着汇报线往上走。"
+        },
+        {
+          "en": "Second, I separate positions from people: a rule should say 'department head' or 'finance reviewer', not 'Li Wei', so it still works when someone leaves or changes jobs.",
+          "cn": "第二层，我会把岗位和人分开：规则里应该写「部门负责人」或「财务审核岗」，而不是写「李伟」，这样有人离职或调岗时规则照样有效。"
+        },
+        {
+          "en": "Third, I write the approval rules as conditions: under ten thousand, the manager signs; above it, the request climbs to the director and then finance.",
+          "cn": "第三层，我把审批规则写成条件：一万元以下经理签字即可；超过的话，申请要继续上升到总监，再到财务。"
+        },
+        {
+          "en": "Each step also needs a mode, since 'all must approve' and 'any one can approve' produce very different waiting times.",
+          "cn": "每个环节还要定好签批方式，因为「全部人都要同意」和「任一人同意即可」带来的等待时间差别很大。"
+        },
+        {
+          "en": "Then there are the cases that break most systems: an approver on leave, a manager who's left, or a request that skips a level, so I'd define delegation and handover rules upfront.",
+          "cn": "还有最容易让系统出问题的情况：审批人休假、经理已离职，或者申请需要越级，所以我会提前定义代理和交接规则。"
+        },
+        {
+          "en": "Every decision is logged with who approved, when, and under which rule, because auditors will ask.",
+          "cn": "每一次审批都要记录谁批的、什么时候、依据哪条规则，因为审计一定会问。"
+        },
+        {
+          "en": "My rule of thumb: approvals should follow positions and rules, never people's names.",
+          "cn": "我的经验法则是：审批要跟着岗位和规则走，而不是跟着人名走。"
+        }
+      ],
+      "a_en": "I'd map it in three layers: the org tree, the positions inside it, and the approval rules that run on top. First comes the org tree of companies, departments, and teams, because approvals usually route up the reporting line. Second, I separate positions from people: a rule should say 'department head' or 'finance reviewer', not 'Li Wei', so it still works when someone leaves or changes jobs. Third, I write the approval rules as conditions: under ten thousand, the manager signs; above it, the request climbs to the director and then finance. Each step also needs a mode, since 'all must approve' and 'any one can approve' produce very different waiting times. Then there are the cases that break most systems: an approver on leave, a manager who's left, or a request that skips a level, so I'd define delegation and handover rules upfront. Every decision is logged with who approved, when, and under which rule, because auditors will ask. My rule of thumb: approvals should follow positions and rules, never people's names.",
+      "a_cn": "我会分三层来梳理：组织树、组织里的岗位，以及在其上运行的审批规则。第一层是由公司、部门和团队构成的组织树，因为审批通常沿着汇报线往上走。第二层，我会把岗位和人分开：规则里应该写「部门负责人」或「财务审核岗」，而不是写「李伟」，这样有人离职或调岗时规则照样有效。第三层，我把审批规则写成条件：一万元以下经理签字即可；超过的话，申请要继续上升到总监，再到财务。每个环节还要定好签批方式，因为「全部人都要同意」和「任一人同意即可」带来的等待时间差别很大。还有最容易让系统出问题的情况：审批人休假、经理已离职，或者申请需要越级，所以我会提前定义代理和交接规则。每一次审批都要记录谁批的、什么时候、依据哪条规则，因为审计一定会问。我的经验法则是：审批要跟着岗位和规则走，而不是跟着人名走。",
+      "key_phrases": [
+        {
+          "en": "route up the reporting line",
+          "cn": "沿汇报线往上流转",
+          "type": "搭配",
+          "usage": "route 作动词指按规则转送，常接 to / up"
+        },
+        {
+          "en": "separate positions from people",
+          "cn": "岗位与人分离",
+          "type": "句型",
+          "usage": "separate A from B 表把两者拆开分别管理"
+        },
+        {
+          "en": "climbs to the director",
+          "cn": "上升到总监",
+          "type": "搭配",
+          "usage": "climb to 形象描述审批逐级上升"
+        },
+        {
+          "en": "break most systems",
+          "cn": "让多数系统出问题",
+          "type": "搭配",
+          "usage": "break 作及物动词指让系统失灵，口语常用"
+        },
+        {
+          "en": "because auditors will ask",
+          "cn": "因为审计一定会问",
+          "type": "句型",
+          "usage": "because X will ask 用来强调留痕的必要性"
+        }
+      ],
+      "basics": [
+        {
+          "term": "岗位",
+          "term_en": "position",
+          "explain": "组织里一个固定的职责位置，比如「华东区销售经理」。人可以调动或离职，岗位以及挂在岗位上的权限和审批职责保持不变。",
+          "analogy": "球队的后卫位置，换了人位置还在。"
+        },
+        {
+          "term": "会签与或签",
+          "term_en": "all-approve vs any-approve",
+          "explain": "同一审批环节有多人时的两种方式：会签要求所有人都同意才通过，或签只要其中一人同意即可。会签更稳妥，或签更快。",
+          "analogy": "全体评委都要点头，和任一评委点头就行。"
+        },
+        {
+          "term": "审批代理",
+          "term_en": "approval delegation",
+          "explain": "审批人休假或出差时，把审批权限在一段时间内临时交给指定的人，到期自动收回，并在记录里标明是代批。",
+          "analogy": "经理休假时由副手临时代签。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "审批流里直接指定具体的人，配置最快。",
+          "why": "人一离职、调岗或休假，审批就卡住或被错误的人批掉，每次人员变动都要改流程，维护成本和合规风险都会上升。",
+          "right": "规则只引用岗位或角色，由组织数据解析出当前任职的人，并配置代理与离职交接。"
+        },
+        {
+          "wrong": "为了稳妥，每个审批环节都设成会签。",
+          "why": "会签要等所有人点头，任一人请假就整单卡住，审批周期被拉长，大家也开始不看就批。",
+          "right": "高风险环节用会签，常规环节用或签，并为超时设置提醒和自动升级规则。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：这是方法题，考的是能否把组织、岗位和审批规则拆开分层设计。",
+        "画组织树：理清公司、部门、团队和汇报关系，作为审批路由的底图。",
+        "分岗位与人：规则只认岗位，人员变动时换人不改规则，权限也挂在岗位上。",
+        "写规则：按金额、类型等条件路由审批，定好每个环节是会签还是或签。",
+        "补例外：休假代理、离职交接、越级审批和超时升级都要提前定义并留痕。"
+      ],
+      "method": {
+        "name": "三层拆解",
+        "steps": [
+          "画组织树",
+          "分岗位与人",
+          "写条件规则",
+          "补例外留痕"
+        ],
+        "transfer": "可迁移到权限体系设计、工单派单规则、费用报销流程，凡是规则要随人员变动长期运转的场景都适用。"
+      },
+      "approach": "采分点是给出组织树、岗位、审批规则三层结构，并讲清岗位与人分离、会签与或签、代理与交接这些例外。推荐结构：三层框架 → 岗位与人分离 → 条件路由 → 签批方式 → 例外与留痕。用「审批跟着岗位和规则走」收尾。会失分的是只画一条审批流程图。",
+      "tips": "必备术语 org tree、position、delegation。可延伸：基于角色的访问控制、业务规则配置化、审批超时升级。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "BIZ-X005",
+      "level": "X",
+      "kind": "case",
+      "difficulty": "较难",
+      "tags": [
+        "状态机",
+        "IT 服务管理",
+        "工单"
+      ],
+      "concepts": [
+        "biz.state_machine",
+        "biz.process_modeling"
+      ],
+      "prereq": [
+        "BIZ-F005",
+        "BIZ-F003"
+      ],
+      "q_cn": "以 ServiceNow 为例：一张 IT 故障工单如何流转？",
+      "q_en": "Using ServiceNow as an example, how does an IT incident ticket move through an enterprise?",
+      "gist": {
+        "cn": "工单按新建、处理中、挂起、已解决、已关闭流转；优先级由影响和紧急度算出。",
+        "en": "Tickets move New, In Progress, On Hold, Resolved, Closed; priority is calculated from impact and urgency."
+      },
+      "points": [
+        {
+          "en": "a small, fixed set of states",
+          "cn": "工单在一小组固定状态之间流转"
+        },
+        {
+          "en": "go On Hold with a reason",
+          "cn": "挂起必须注明原因，如等报障人或供应商"
+        },
+        {
+          "en": "calculated from impact and urgency",
+          "cn": "优先级由影响和紧急度计算，不手填"
+        },
+        {
+          "en": "linked to a problem record",
+          "cn": "反复故障转问题管理，改生产走变更"
+        },
+        {
+          "en": "Resolved and Closed are separate states",
+          "cn": "已解决与已关闭分开，留出确认窗口"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在业务状态机与业务流程建模之上。ServiceNow 是企业常用的 IT 服务管理平台，其事件工单默认有新建、处理中、挂起、已解决、已关闭和已取消等状态；挂起须注明原因，如等待报障人、变更、问题或供应商。优先级默认只读，由影响范围和紧急程度组合计算。反复发生的故障转入问题管理查根因，涉及生产环境的修复走变更管理。已解决的工单经过设定时间后才自动关闭。",
+        "en": "This question builds on business state machines and business process modeling. ServiceNow is an IT service management platform widely used by enterprises. Its incident tickets have default states such as New, In Progress, On Hold, Resolved, Closed, and Canceled, and On Hold requires a reason, such as awaiting the caller, a change, a problem, or a vendor. Priority is read-only by default and is calculated from the combination of impact and urgency. Recurring faults move into problem management for root-cause analysis, and fixes that touch production go through change management. A resolved ticket closes automatically only after a set period."
+      },
+      "a_pairs": [
+        {
+          "en": "ServiceNow's incident process is a good case of a state machine doing real work, because every ticket moves through a small, fixed set of states.",
+          "cn": "ServiceNow 的事件管理流程是状态机真正发挥作用的好例子，因为每张工单都在一小组固定状态之间流转。"
+        },
+        {
+          "en": "A ticket starts as New, moves to In Progress once someone picks it up, and can go On Hold with a reason, like awaiting the caller or a vendor.",
+          "cn": "工单从「新建」开始，有人接手后进入「处理中」，也可以带着原因进入「挂起」，比如等待报障人或供应商。"
+        },
+        {
+          "en": "Priority isn't typed in by hand; by default it's calculated from impact and urgency, so a high-impact, high-urgency outage becomes priority one.",
+          "cn": "优先级不是手工填的；默认由影响范围和紧急程度算出来，所以影响大又紧急的故障会被定为一级。"
+        },
+        {
+          "en": "That rule stops every caller from marking their issue as critical, and it lets the team set response targets per priority.",
+          "cn": "这条规则避免了每个报障人都把自己的问题标成最紧急，也让团队能按优先级设定响应时限。"
+        },
+        {
+          "en": "When the same fault keeps coming back, the incident is linked to a problem record for root-cause work, and a fix that changes production goes through change management.",
+          "cn": "同一故障反复出现时，事件会关联到一条问题记录去查根因；要改动生产环境的修复，则要走变更管理。"
+        },
+        {
+          "en": "Resolved and Closed are separate states, so there's a window to confirm the fix before the ticket closes automatically after a set period.",
+          "cn": "「已解决」和「已关闭」是两个状态，所以在工单经过一段设定时间自动关闭之前，还有一个确认修复的窗口。"
+        },
+        {
+          "en": "For a PM, the lesson is that clear states, a calculated priority, and explicit handoffs are what make support work measurable.",
+          "cn": "对产品经理来说，启示是：清晰的状态、计算出来的优先级和明确的交接，才让运维工作变得可度量。"
+        },
+        {
+          "en": "My rule of thumb: design the states and handoffs first, then the screens.",
+          "cn": "我的经验法则是：先设计状态和交接，再设计页面。"
+        }
+      ],
+      "a_en": "ServiceNow's incident process is a good case of a state machine doing real work, because every ticket moves through a small, fixed set of states. A ticket starts as New, moves to In Progress once someone picks it up, and can go On Hold with a reason, like awaiting the caller or a vendor. Priority isn't typed in by hand; by default it's calculated from impact and urgency, so a high-impact, high-urgency outage becomes priority one. That rule stops every caller from marking their issue as critical, and it lets the team set response targets per priority. When the same fault keeps coming back, the incident is linked to a problem record for root-cause work, and a fix that changes production goes through change management. Resolved and Closed are separate states, so there's a window to confirm the fix before the ticket closes automatically after a set period. For a PM, the lesson is that clear states, a calculated priority, and explicit handoffs are what make support work measurable. My rule of thumb: design the states and handoffs first, then the screens.",
+      "a_cn": "ServiceNow 的事件管理流程是状态机真正发挥作用的好例子，因为每张工单都在一小组固定状态之间流转。工单从「新建」开始，有人接手后进入「处理中」，也可以带着原因进入「挂起」，比如等待报障人或供应商。优先级不是手工填的；默认由影响范围和紧急程度算出来，所以影响大又紧急的故障会被定为一级。这条规则避免了每个报障人都把自己的问题标成最紧急，也让团队能按优先级设定响应时限。同一故障反复出现时，事件会关联到一条问题记录去查根因；要改动生产环境的修复，则要走变更管理。「已解决」和「已关闭」是两个状态，所以在工单经过一段设定时间自动关闭之前，还有一个确认修复的窗口。对产品经理来说，启示是：清晰的状态、计算出来的优先级和明确的交接，才让运维工作变得可度量。我的经验法则是：先设计状态和交接，再设计页面。",
+      "key_phrases": [
+        {
+          "en": "doing real work",
+          "cn": "真正发挥作用",
+          "type": "搭配",
+          "usage": "X doing real work 强调概念在实际中起作用"
+        },
+        {
+          "en": "picks it up",
+          "cn": "接手处理",
+          "type": "搭配",
+          "usage": "pick up a ticket 指认领工单，运维与客服常用"
+        },
+        {
+          "en": "typed in by hand",
+          "cn": "手工填写",
+          "type": "搭配",
+          "usage": "by hand 强调人工操作，反义 calculated automatically"
+        },
+        {
+          "en": "keeps coming back",
+          "cn": "反复出现",
+          "type": "搭配",
+          "usage": "keep coming back 描述问题屡次复发"
+        },
+        {
+          "en": "design the states and handoffs first",
+          "cn": "先设计状态和交接",
+          "type": "句型",
+          "usage": "design X first, then Y 用于强调设计顺序"
+        }
+      ],
+      "basics": [
+        {
+          "term": "事件",
+          "term_en": "incident",
+          "explain": "IT 服务管理里的「事件」指一次意外的服务中断或质量下降，比如邮箱打不开。处理目标是尽快恢复服务，而不是先查清根因。",
+          "analogy": "水管爆了先关阀门止水，再查原因。"
+        },
+        {
+          "term": "问题管理",
+          "term_en": "problem management",
+          "explain": "针对反复出现或影响重大的事件，专门追查根本原因并推动彻底修复的流程，一条问题记录可以关联多张事件工单。",
+          "analogy": "同一路口总出事故，交警去查红绿灯设计。"
+        },
+        {
+          "term": "影响与紧急度",
+          "term_en": "impact and urgency",
+          "explain": "影响指故障波及多大范围，紧急度指多快会造成损失，两者组合查表得出优先级，避免人人都把自己的工单标成最急。",
+          "analogy": "急诊分诊看伤情轻重，也看拖不拖得起。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "优先级让报障人自己选，最尊重用户的判断。",
+          "why": "每个人都觉得自己的问题最急，优先级很快失去区分度，真正影响全公司的故障反而和个人小问题排在一起。",
+          "right": "由影响范围和紧急程度按矩阵计算优先级，人工调整需要权限并留下记录。"
+        },
+        {
+          "wrong": "工单解决后直接关闭，流程越短越好。",
+          "why": "修复是否真的有效要由报障人确认，直接关闭会让没修好的问题以新工单重来，解决率和时长指标也会失真。",
+          "right": "已解决与已关闭分开，留出确认窗口，到期无人提出异议再自动关闭工单。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：这是案例题，要提炼的是状态、优先级和交接怎样让工单流程可控可量。",
+        "画状态：新建、处理中、挂起、已解决、已关闭，挂起必须带上原因。",
+        "看优先级：由影响和紧急度计算而不手填，并据此设定响应时限。",
+        "看交接：反复故障转问题管理，改生产走变更，责任在交接处不丢。",
+        "提炼：先定状态与交接再画页面，解决时长、重开率等指标才算得出来。"
+      ],
+      "method": {
+        "name": "状态先行",
+        "steps": [
+          "列状态与原因",
+          "定优先级矩阵",
+          "理清交接",
+          "留确认窗口"
+        ],
+        "transfer": "可迁移到客服工单、售后退换货、合同审批，凡是对象要经过多个角色和阶段的流程设计都适用。"
+      },
+      "approach": "采分点是从案例中提炼状态机、优先级矩阵和跨流程交接三件事，并说明它们如何让运维可度量。推荐结构：状态流转 → 挂起原因 → 优先级计算 → 问题与变更交接 → 已解决与已关闭分离 → 启示。会失分的是复述产品功能或只讲页面。",
+      "tips": "必备术语 incident、impact and urgency、problem management。可延伸：ITIL、服务等级协议、变更审批。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    }
+  ]
+}

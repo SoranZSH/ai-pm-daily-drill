@@ -1,0 +1,416 @@
+{
+  "format": "github-learning-pack/v1",
+  "run": {
+    "run_id": "20261025T000002Z",
+    "window_start": "2026-10-24T00:00:00Z",
+    "window_end": "2026-10-25T00:00:00Z",
+    "star_days": [
+      "2026-10-24"
+    ],
+    "gap_note": "上次成功采集为 2026-10-24；本包覆盖之后 1 天",
+    "skipped": [],
+    "collector_version": "1.2.0",
+    "lang_summary": {
+      "zh": 3,
+      "en": 6
+    }
+  },
+  "learner_context": {
+    "note": "以下为「已出题」信息，仅表示题库已覆盖，不代表学习结果",
+    "covered_concepts": [],
+    "domain_counts": {
+      "未标注": {
+        "F": 306,
+        "X": 0
+      }
+    },
+    "catalog_file": "题库目录.md"
+  },
+  "projects": [
+    {
+      "repo_id": 1339970099,
+      "full_name": "peach-mitao/peach",
+      "html_url": "https://github.com/peach-mitao/peach",
+      "description": "Peach 蜜桃：单用户、本地优先的个人媒体系统 · Single-user, local-first personal media system",
+      "topics": [
+        "jav",
+        "local-first",
+        "media-library",
+        "media-manager",
+        "python",
+        "react",
+        "self-hosted",
+        "video-player"
+      ],
+      "language": "Python",
+      "license": "AGPL-3.0",
+      "created_at": "2026-08-19T19:48:30Z",
+      "pushed_at": "2026-10-24T06:06:40Z",
+      "stars": 10914,
+      "stars_gained_window": 1556,
+      "stars_daily": [
+        1556
+      ],
+      "heat_score": 4.561884832286067,
+      "doc_lang": "zh",
+      "doc_lang_confidence": "high",
+      "doc_langs_available": [
+        "zh",
+        "en"
+      ],
+      "lang_group": "zh",
+      "discovery_channels": [
+        "kw:zh:上下文工程",
+        "kw:zh:合成数据集",
+        "kw:zh:视频生成"
+      ],
+      "direction": "unclassified",
+      "direction_confidence": "low",
+      "secondary_directions": [],
+      "domain": null,
+      "learning_mode": "foundation",
+      "mode_reason": "未识别到方向，按基础模式处理",
+      "prerequisites_missing": [],
+      "related_questions": [],
+      "diff_evidence": null,
+      "readme_sections": [
+        {
+          "heading": "简介",
+          "text": "Peach\n\n给自己用的私人影片馆藏：本地硬盘、网盘和关注的创作者，放在一个地方看。\n\n  官网 ·\n  下载安装包 ·\n  在线演示 ·\n  介绍视频 ·\n  问题反馈 ·\n  需求看板 ·\n  路线图 ·\n  文档 ·\n  English\n\n  \n  \n  \n  \n  \n  \n\nhttps://github.com/user-attachments/assets/a5610874-e611-41bb-be22-7d99f0d64b62\n\n> **18+** 仅供成年人管理 …（示例中已截断）"
+        },
+        {
+          "heading": "能做什么",
+          "text": "- **本地、网盘一起看**：硬盘与已挂载的 115、PikPak、OneDrive 等网盘汇成一个馆藏。\n- **播放墙挑片**：拖动全屏封面墙，点开原位播放；同一番号的不同版本与分卷集中切换。\n- **播放器字幕**：加载本地字幕，按番号搜索 SubtitleCat 简繁中文字幕并选择加载，调整字体、字号、颜色与背景。在线搜索无需 API Key，来源可能包含机翻。\n- **接手已有收藏**：直接读取 NFO 和海报，缺少的标题、女优、厂牌与封面可从多个来源补齐，保留手动 …（示例中已截断）"
+        }
+      ],
+      "readme_en_sections": [
+        {
+          "heading": "简介",
+          "text": "Peach\n\nA private video library: local drives, cloud drives and the creators you follow, all in one place.\n\n  Website ·\n  Download installers ·\n  Live demo ·\n  Intro video ·\n  Report a problem ·\n  Requests board ·\n  Roadmap ·\n  Documentation …（示例中已截断）"
+        },
+        {
+          "heading": "Features",
+          "text": "- **Local and cloud together**: browse hard drives and mounted cloud drives, including 115, PikPak and OneDrive, in one library.\n- **Pick from the video wall**: drag through a full-screen cover wall and play in place, with versions and part …（示例中已截断）"
+        }
+      ],
+      "arch_docs": [
+        {
+          "path": "docs/ARCHITECTURE.md",
+          "text": "# 总体架构\n\n这份文档讲 Peach 由哪几块组成、各块管什么、数据怎么流动，以及哪些方向明确不做。每项取舍的理由在 `docs/adr/`。\n\n## 产品形态\n\nPeach 是一个 FastAPI 模块化单体：逻辑上前后端分离，部署时仍是一个进程。默认单用户、本地自托管；在线追更、外部元数据和可插拔 AI 都是正式能力。\n\n应用端口不直接暴露到公网。远程访问与认证边界见 [安全说明](../SECURITY.md)，VPN 和 Cloudflare Tunnel 的配置见 …（示例中已截断）"
+        }
+      ],
+      "papers": [],
+      "latest_release": {
+        "tag": "v0.46.1",
+        "name": "Peach 0.46.1 · Windows 测试版",
+        "text": "### 新增\n\n- **配置**：提供「发送版本统计与错误诊断（推荐）」选项，安装时默认勾选，可在安装器和配置页关闭；错误诊断包含版本、系统、故障类型、代码位置和汇总次数。\n- **馆藏**：提供独立默认关闭的馆藏与口味上传选项，查看本机数据预览并明确同意后按周发送。按作品编号汇总收藏、评分和用户反馈，按人物、厂牌、系列等维度汇总偏好；标签仅使用手动标记和明确收藏的标签。\n- **馆藏**：长时任务保存持久检查点，服务重启后继续未完成部分；口味分析支持本机浏览器书签和书签文件 …（示例中已截断）",
+        "published_at": "2026-10-18T21:11:53Z"
+      },
+      "tree_top2": [
+        ".claude/",
+        ".claude/settings.json",
+        ".claude/skills/",
+        ".codex/",
+        ".codex/hooks.json",
+        ".dockerignore",
+        ".gitattributes",
+        ".github/",
+        ".github/ISSUE_TEMPLATE/",
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/actions/",
+        ".github/dependabot.yml",
+        ".github/labels.json",
+        ".github/project-board.json",
+        ".github/workflows/"
+      ],
+      "dependencies": [
+        "itsdangerous",
+        "filelock",
+        "tldextract",
+        "APScheduler",
+        "beautifulsoup4",
+        "bencode2",
+        "browserexport",
+        "pyahocorasick",
+        "curl_cffi",
+        "fastapi",
+        "grpcio",
+        "httpx",
+        "m3u8",
+        "pillow",
+        "protobuf"
+      ],
+      "languages": {
+        "Python": 0.64,
+        "TypeScript": 0.3,
+        "CSS": 0.04,
+        "JavaScript": 0.02,
+        "HTML": 0.0,
+        "Inno Setup": 0.0,
+        "PowerShell": 0.0,
+        "Shell": 0.0,
+        "Dockerfile": 0.0,
+        "Batchfile": 0.0
+      },
+      "untrusted_content": true
+    },
+    {
+      "repo_id": 1284653133,
+      "full_name": "xerj-org/xerj",
+      "html_url": "https://github.com/xerj-org/xerj",
+      "description": "Local-first search engine and MCP server for AI agents. One Rust binary indexes code, docs, logs, JSONL/CSV and PDFs for BM25 full-text, vector and hybrid search, code search without grep, agent memory and RAG. Elasticsearch-compatible API; Corpus Hub serves hundreds of reference memory corpora.",
+      "topics": [
+        "agent-memory",
+        "ai-agents",
+        "bm25",
+        "claude-code",
+        "cli",
+        "code-search",
+        "cursor",
+        "elasticsearch",
+        "elasticsearch-alternative",
+        "full-text-search",
+        "hybrid-search",
+        "jsonl",
+        "local-first",
+        "mcp",
+        "mcp-server",
+        "model-context-protocol",
+        "rag",
+        "rust",
+        "search-engine",
+        "vector-search"
+      ],
+      "language": "Rust",
+      "license": "Apache-2.0",
+      "created_at": "2026-06-30T04:32:45Z",
+      "pushed_at": "2026-10-25T00:03:58Z",
+      "stars": 15297,
+      "stars_gained_window": 1126,
+      "stars_daily": [
+        1126
+      ],
+      "heat_score": 3.393065704852365,
+      "doc_lang": "en",
+      "doc_lang_confidence": "medium",
+      "doc_langs_available": [
+        "en",
+        "ar",
+        "es",
+        "ja",
+        "ko",
+        "zh"
+      ],
+      "lang_group": "en",
+      "discovery_channels": [
+        "revival:topic:ai-agents",
+        "revival:topic:agent-memory",
+        "revival:topic:mcp",
+        "revival:topic:model-context-protocol",
+        "revival:topic:mcp-server",
+        "revival:topic:rag",
+        "revival:topic:vector-search"
+      ],
+      "direction": "mcp-tools",
+      "direction_confidence": "high",
+      "secondary_directions": [
+        "rag",
+        "agent-framework"
+      ],
+      "domain": "AGT",
+      "learning_mode": "foundation",
+      "mode_reason": "mcp-tools 方向有 2 个前置概念尚未出题",
+      "prerequisites_missing": [
+        {
+          "key": "agt.tool_calling",
+          "name": "工具调用"
+        },
+        {
+          "key": "agt.mcp",
+          "name": "模型上下文协议 MCP"
+        }
+      ],
+      "related_questions": [],
+      "diff_evidence": null,
+      "readme_sections": [
+        {
+          "heading": "Why it exists",
+          "text": "Agents burn their context window reading files. The PHP in WordPress core is about 5.2\nmillion tokens, or 26 full context windows, so an agent cannot simply read it. Grep does not\nsolve this either, because a grep hit is a line, and judging …（示例中已截断）"
+        },
+        {
+          "heading": "XERJ",
+          "text": "**XERJ: the search engine for AI agents.** A new way for AI to search for data: one local Rust binary that indexes your code, docs, specs and logs, plus Corpus Hub packs, and returns cited answers.\n\n**Local-first search engine and MCP serve …（示例中已截断）"
+        }
+      ],
+      "readme_en_sections": [],
+      "arch_docs": [
+        {
+          "path": "docs/ARCHITECTURE.md",
+          "text": "# XERJ Architecture\n\nThis document orients contributors to how XERJ is put together: the crate layout,\nthe path a search request takes, and the path an indexed document takes. It is a\nmap, not a specification — the source is authoritative, …（示例中已截断）"
+        }
+      ],
+      "papers": [],
+      "latest_release": {
+        "tag": "v1.0.0-rc.99",
+        "name": "xerj v1.0.0-rc.99",
+        "text": "## What's Changed\n* fix(engine): bound flush admission so refresh cannot hang (#1635) by @xerj-org in https://github.com/xerj-org/xerj/pull/2129\n* fix(engine): answer text exists without hydrating the corpus by @xerj-org in https://github.c …（示例中已截断）",
+        "published_at": "2026-10-24T23:11:54Z"
+      },
+      "tree_top2": [
+        ".clabot",
+        ".claude-plugin/",
+        ".claude-plugin/marketplace.json",
+        ".contributors",
+        ".github/",
+        ".github/AI_CONTRIBUTIONS.md",
+        ".github/FUNDING.yml",
+        ".github/ISSUE_TEMPLATE/",
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/scripts/",
+        ".github/workflows/",
+        ".gitignore",
+        "AGENTS.md",
+        "CHANGELOG.md",
+        "CLA.md"
+      ],
+      "dependencies": [],
+      "languages": {
+        "Rust": 0.67,
+        "HTML": 0.23,
+        "JavaScript": 0.05,
+        "Python": 0.04,
+        "Shell": 0.01,
+        "CSS": 0.01,
+        "PowerShell": 0.0,
+        "Dockerfile": 0.0,
+        "Jinja": 0.0,
+        "Go Template": 0.0
+      },
+      "untrusted_content": true
+    },
+    {
+      "repo_id": 968197216,
+      "full_name": "google-gemini/gemini-cli",
+      "html_url": "https://github.com/google-gemini/gemini-cli",
+      "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
+      "topics": [
+        "ai",
+        "ai-agents",
+        "cli",
+        "gemini",
+        "gemini-api",
+        "mcp-client",
+        "mcp-server"
+      ],
+      "language": "TypeScript",
+      "license": "Apache-2.0",
+      "created_at": "2025-04-17T17:04:31Z",
+      "pushed_at": "2026-10-24T01:15:52Z",
+      "stars": 108043,
+      "stars_gained_window": 492,
+      "stars_daily": [
+        492
+      ],
+      "heat_score": 2.672219255417158,
+      "doc_lang": "en",
+      "doc_lang_confidence": "high",
+      "doc_langs_available": [
+        "en"
+      ],
+      "lang_group": "en",
+      "discovery_channels": [
+        "revival:topic:ai-agents",
+        "revival:topic:mcp-server"
+      ],
+      "direction": "agent-framework",
+      "direction_confidence": "medium",
+      "secondary_directions": [
+        "mcp-tools"
+      ],
+      "domain": "AGT",
+      "learning_mode": "foundation",
+      "mode_reason": "agent-framework 方向有 3 个前置概念尚未出题",
+      "prerequisites_missing": [
+        {
+          "key": "agt.tool_calling",
+          "name": "工具调用"
+        },
+        {
+          "key": "agt.agent_loop",
+          "name": "智能体循环（感知-决策-行动）"
+        },
+        {
+          "key": "agt.planning",
+          "name": "任务规划与分解"
+        }
+      ],
+      "related_questions": [],
+      "diff_evidence": null,
+      "readme_sections": [
+        {
+          "heading": "简介",
+          "text": "> [!NOTE]\n>\n> **Unpaid tier and Google One users:** Gemini CLI was replaced by Antigravity\n> CLI on June 18th, 2026. To learn more, see our\n> blog post.\n>\n> **Gemini CLI has not been optimized for Gemini 4 Argon.** To use Gemini 4\n> Argon, …（示例中已截断）"
+        },
+        {
+          "heading": "Core Features",
+          "text": "- **Commands Reference** -\n  All slash commands (`/help`, `/chat`, etc).\n- **Custom Commands** -\n  Create your own reusable commands.\n- **Context Files (GEMINI.md)** -\n  Provide persistent context to Gemini CLI.\n- **Checkpointing** - Save …（示例中已截断）"
+        }
+      ],
+      "readme_en_sections": [],
+      "arch_docs": [],
+      "papers": [],
+      "latest_release": {
+        "tag": "v0.67.0-nightly.20261024.gcd1b45c2d",
+        "name": "Release v0.67.0-nightly.20261024.gcd1b45c2d",
+        "text": "## What's Changed\n* fix(cli): stop continuation stream processing and auto-nudge after request cancellation by @jesussamuel-byte in https://github.com/google-gemini/gemini-cli/pull/29868\n* fix(cli): correct Thai and Lao SARA AM display widt …（示例中已截断）",
+        "published_at": "2026-10-24T01:15:53Z"
+      },
+      "tree_top2": [
+        ".allstar/",
+        ".allstar/branch_protection.yaml",
+        ".dockerignore",
+        ".editorconfig",
+        ".gcp/",
+        ".gcp/Dockerfile.development",
+        ".gcp/Dockerfile.development.dockerignore",
+        ".gcp/Dockerfile.gemini-code-builder",
+        ".gcp/development-worker.yml",
+        ".gcp/release-docker.yml",
+        ".gemini/",
+        ".gemini/commands/",
+        ".gemini/config.yaml",
+        ".gemini/settings.json",
+        ".gemini/skills/"
+      ],
+      "dependencies": [
+        "ink",
+        "latest-version",
+        "node-fetch-native",
+        "proper-lockfile",
+        "punycode",
+        "simple-git",
+        "@agentclientprotocol/sdk",
+        "@modelcontextprotocol/sdk",
+        "read-package-up",
+        "@octokit/rest",
+        "@types/express",
+        "@types/marked",
+        "@types/mime-types",
+        "@types/minimatch",
+        "@types/mock-fs"
+      ],
+      "languages": {
+        "TypeScript": 0.97,
+        "JavaScript": 0.02,
+        "Python": 0.01,
+        "Shell": 0.0,
+        "C#": 0.0,
+        "Dockerfile": 0.0,
+        "HTML": 0.0,
+        "Makefile": 0.0
+      },
+      "untrusted_content": true
+    }
+  ],
+  "_示例说明": "真实采集包（2026-10-25）的节选：只保留 3 个项目，第三方文本截断到约 240 字。完整采集包由 collector 每天生成，不随仓库分发。"
+}

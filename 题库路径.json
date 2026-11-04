@@ -1,0 +1,5 @@
+{
+  "说明": "每日一题从这里读题库。相对路径以本文件夹为准。Github学习 改名或搬家时只改 bank_dir。fresh_days：新导入的题在多少天内优先推送。",
+  "bank_dir": "Github学习/当前题库",
+  "fresh_days": 21
+}

@@ -1,0 +1,35 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  python:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install collector dependencies
+        run: python -m pip install -r Github学习/collector/requirements.txt
+      - name: Daily app tests
+        run: python -m unittest discover -s tests -v
+      - name: Collector tests
+        working-directory: Github学习/collector
+        run: python -m unittest discover -s tests -v
+
+  go:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: Github学习/工具源码/题库更新/go.mod
+      - name: Bank updater tests
+        working-directory: Github学习/工具源码/题库更新
+        run: go test ./...

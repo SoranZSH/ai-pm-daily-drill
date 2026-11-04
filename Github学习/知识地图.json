@@ -1,0 +1,1300 @@
+{
+  "_说明": "概念键：小写领域.小写下划线名。题目用 concepts 字段引用；采集程序用 aliases 识别 README 中的概念。新增概念时照格式追加。 产品通用轨的概念（req./biz./sys. 等）另带 npdp 字段，标注对应的 NPDP 知识体系章节，供覆盖检查用。",
+  "version": 1,
+  "concepts": {
+    "llm.token": {
+      "name": "Token 与分词",
+      "domain": "LLM",
+      "aliases": [
+        "token",
+        "tokenizer",
+        "分词",
+        "トークン"
+      ]
+    },
+    "llm.transformer": {
+      "name": "Transformer 与注意力机制",
+      "domain": "LLM",
+      "aliases": [
+        "transformer",
+        "attention",
+        "注意力"
+      ]
+    },
+    "llm.context_window": {
+      "name": "上下文窗口",
+      "domain": "LLM",
+      "aliases": [
+        "context window",
+        "context length",
+        "上下文长度"
+      ]
+    },
+    "llm.sampling": {
+      "name": "采样与温度",
+      "domain": "LLM",
+      "aliases": [
+        "temperature",
+        "top-p",
+        "sampling",
+        "温度"
+      ]
+    },
+    "llm.training_stages": {
+      "name": "预训练、指令微调与对齐",
+      "domain": "LLM",
+      "aliases": [
+        "pretraining",
+        "SFT",
+        "instruction tuning",
+        "预训练"
+      ]
+    },
+    "llm.hallucination": {
+      "name": "幻觉",
+      "domain": "LLM",
+      "aliases": [
+        "hallucination",
+        "幻觉",
+        "ハルシネーション"
+      ]
+    },
+    "llm.scaling": {
+      "name": "规模定律",
+      "domain": "LLM",
+      "aliases": [
+        "scaling law",
+        "规模定律"
+      ]
+    },
+    "llm.reasoning_model": {
+      "name": "推理模型与思维链",
+      "domain": "LLM",
+      "aliases": [
+        "reasoning model",
+        "chain of thought",
+        "推理模型",
+        "思维链"
+      ]
+    },
+    "llm.moe": {
+      "name": "混合专家架构（MoE）",
+      "domain": "LLM",
+      "aliases": [
+        "MoE",
+        "mixture of experts",
+        "混合专家",
+        "激活参数"
+      ]
+    },
+    "prm.prompt_structure": {
+      "name": "提示词结构",
+      "domain": "PRM",
+      "aliases": [
+        "system prompt",
+        "prompt template",
+        "提示词"
+      ]
+    },
+    "prm.few_shot": {
+      "name": "少样本示例",
+      "domain": "PRM",
+      "aliases": [
+        "few-shot",
+        "in-context learning",
+        "少样本"
+      ]
+    },
+    "prm.structured_output": {
+      "name": "结构化输出",
+      "domain": "PRM",
+      "aliases": [
+        "JSON mode",
+        "structured output",
+        "结构化输出"
+      ]
+    },
+    "prm.context_engineering": {
+      "name": "上下文工程",
+      "domain": "PRM",
+      "aliases": [
+        "context engineering",
+        "上下文工程"
+      ]
+    },
+    "prm.prompt_caching": {
+      "name": "提示缓存",
+      "domain": "PRM",
+      "aliases": [
+        "prompt caching",
+        "提示缓存"
+      ]
+    },
+    "rag.embedding": {
+      "name": "Embedding 向量表示",
+      "domain": "RAG",
+      "aliases": [
+        "embedding",
+        "向量表示",
+        "嵌入",
+        "埋め込み"
+      ]
+    },
+    "rag.vector_db": {
+      "name": "向量数据库与近似最近邻",
+      "domain": "RAG",
+      "aliases": [
+        "vector database",
+        "ANN",
+        "HNSW",
+        "向量数据库"
+      ]
+    },
+    "rag.rag_pipeline": {
+      "name": "检索增强生成基本流程",
+      "domain": "RAG",
+      "aliases": [
+        "retrieval-augmented generation",
+        "检索增强生成"
+      ]
+    },
+    "rag.chunking": {
+      "name": "文本切块",
+      "domain": "RAG",
+      "aliases": [
+        "chunking",
+        "切块",
+        "分块"
+      ]
+    },
+    "rag.hybrid_rerank": {
+      "name": "混合检索与重排",
+      "domain": "RAG",
+      "aliases": [
+        "BM25",
+        "hybrid search",
+        "rerank",
+        "重排"
+      ]
+    },
+    "rag.retrieval_eval": {
+      "name": "检索评测指标",
+      "domain": "RAG",
+      "aliases": [
+        "recall@k",
+        "MRR",
+        "NDCG",
+        "召回率"
+      ]
+    },
+    "rag.graph_rag": {
+      "name": "图谱增强检索",
+      "domain": "RAG",
+      "aliases": [
+        "GraphRAG",
+        "knowledge graph",
+        "知识图谱"
+      ]
+    },
+    "agt.tool_calling": {
+      "name": "工具调用",
+      "domain": "AGT",
+      "aliases": [
+        "function calling",
+        "tool use",
+        "工具调用",
+        "函数调用"
+      ]
+    },
+    "agt.agent_loop": {
+      "name": "智能体循环（感知-决策-行动）",
+      "domain": "AGT",
+      "aliases": [
+        "ReAct",
+        "agent loop",
+        "智能体循环"
+      ]
+    },
+    "agt.planning": {
+      "name": "任务规划与分解",
+      "domain": "AGT",
+      "aliases": [
+        "planning",
+        "task decomposition",
+        "任务分解"
+      ]
+    },
+    "agt.multi_agent": {
+      "name": "多智能体协作",
+      "domain": "AGT",
+      "aliases": [
+        "multi-agent",
+        "多智能体",
+        "マルチエージェント"
+      ]
+    },
+    "agt.memory": {
+      "name": "智能体记忆",
+      "domain": "AGT",
+      "aliases": [
+        "agent memory",
+        "long-term memory",
+        "长期记忆",
+        "记忆"
+      ]
+    },
+    "agt.mcp": {
+      "name": "模型上下文协议 MCP",
+      "domain": "AGT",
+      "aliases": [
+        "MCP",
+        "model context protocol"
+      ]
+    },
+    "agt.computer_use": {
+      "name": "电脑与浏览器操作",
+      "domain": "AGT",
+      "aliases": [
+        "computer use",
+        "browser agent",
+        "GUI agent"
+      ]
+    },
+    "agt.coding_agent": {
+      "name": "编码智能体",
+      "domain": "AGT",
+      "aliases": [
+        "coding agent",
+        "code agent",
+        "编程智能体"
+      ]
+    },
+    "evl.eval_set": {
+      "name": "离线评测集",
+      "domain": "EVL",
+      "aliases": [
+        "eval set",
+        "test set",
+        "评测集"
+      ]
+    },
+    "evl.llm_judge": {
+      "name": "模型评审",
+      "domain": "EVL",
+      "aliases": [
+        "LLM-as-a-judge",
+        "模型评审"
+      ]
+    },
+    "evl.benchmark": {
+      "name": "基准测试及其局限",
+      "domain": "EVL",
+      "aliases": [
+        "benchmark",
+        "基准测试",
+        "ベンチマーク"
+      ]
+    },
+    "evl.online_ab": {
+      "name": "线上实验",
+      "domain": "EVL",
+      "aliases": [
+        "A/B test",
+        "online evaluation",
+        "线上实验"
+      ]
+    },
+    "evl.regression": {
+      "name": "回归测试与质量门禁",
+      "domain": "EVL",
+      "aliases": [
+        "regression test",
+        "回归测试"
+      ]
+    },
+    "inf.latency_throughput": {
+      "name": "延迟与吞吐",
+      "domain": "INF",
+      "aliases": [
+        "latency",
+        "throughput",
+        "TTFT",
+        "延迟",
+        "吞吐"
+      ]
+    },
+    "inf.kv_cache": {
+      "name": "KV 缓存",
+      "domain": "INF",
+      "aliases": [
+        "KV cache",
+        "KV缓存"
+      ]
+    },
+    "inf.quantization": {
+      "name": "量化",
+      "domain": "INF",
+      "aliases": [
+        "quantization",
+        "GGUF",
+        "int4",
+        "量化"
+      ]
+    },
+    "inf.serving": {
+      "name": "批处理与推理服务",
+      "domain": "INF",
+      "aliases": [
+        "batching",
+        "vLLM",
+        "serving",
+        "推理服务"
+      ]
+    },
+    "inf.cost": {
+      "name": "推理成本模型",
+      "domain": "INF",
+      "aliases": [
+        "token cost",
+        "inference cost",
+        "推理成本"
+      ]
+    },
+    "inf.local_llm": {
+      "name": "本地与端侧部署",
+      "domain": "INF",
+      "aliases": [
+        "local LLM",
+        "on-device",
+        "本地部署",
+        "端侧"
+      ]
+    },
+    "inf.speculative": {
+      "name": "投机解码",
+      "domain": "INF",
+      "aliases": [
+        "speculative decoding",
+        "投机解码"
+      ]
+    },
+    "trn.fine_tuning": {
+      "name": "微调与 LoRA",
+      "domain": "TRN",
+      "aliases": [
+        "fine-tuning",
+        "LoRA",
+        "微调"
+      ]
+    },
+    "trn.preference": {
+      "name": "偏好对齐（RLHF/DPO）",
+      "domain": "TRN",
+      "aliases": [
+        "RLHF",
+        "DPO",
+        "偏好对齐"
+      ]
+    },
+    "trn.rl_verifiable": {
+      "name": "可验证奖励强化学习",
+      "domain": "TRN",
+      "aliases": [
+        "GRPO",
+        "RLVR",
+        "verifiable reward",
+        "强化学习"
+      ]
+    },
+    "trn.synthetic_data": {
+      "name": "合成数据",
+      "domain": "TRN",
+      "aliases": [
+        "synthetic data",
+        "合成数据",
+        "数据合成"
+      ]
+    },
+    "trn.distillation": {
+      "name": "蒸馏",
+      "domain": "TRN",
+      "aliases": [
+        "distillation",
+        "蒸馏",
+        "知识蒸馏"
+      ]
+    },
+    "mmd.vlm": {
+      "name": "视觉语言模型",
+      "domain": "MMD",
+      "aliases": [
+        "VLM",
+        "vision language",
+        "多模态大模型"
+      ]
+    },
+    "mmd.diffusion": {
+      "name": "扩散生成模型",
+      "domain": "MMD",
+      "aliases": [
+        "diffusion",
+        "扩散模型",
+        "文生图"
+      ]
+    },
+    "mmd.speech": {
+      "name": "语音识别与合成",
+      "domain": "MMD",
+      "aliases": [
+        "ASR",
+        "TTS",
+        "speech",
+        "语音识别",
+        "语音合成"
+      ]
+    },
+    "mmd.realtime_voice": {
+      "name": "实时语音交互",
+      "domain": "MMD",
+      "aliases": [
+        "realtime voice",
+        "voice agent",
+        "实时语音"
+      ]
+    },
+    "saf.prompt_injection": {
+      "name": "提示注入",
+      "domain": "SAF",
+      "aliases": [
+        "prompt injection",
+        "jailbreak",
+        "提示注入",
+        "越狱"
+      ]
+    },
+    "saf.guardrails": {
+      "name": "护栏与内容过滤",
+      "domain": "SAF",
+      "aliases": [
+        "guardrails",
+        "content filter",
+        "护栏"
+      ]
+    },
+    "saf.privacy": {
+      "name": "隐私与数据治理",
+      "domain": "SAF",
+      "aliases": [
+        "privacy",
+        "PII",
+        "data governance",
+        "隐私"
+      ]
+    },
+    "saf.compliance": {
+      "name": "合规与监管",
+      "domain": "SAF",
+      "aliases": [
+        "EU AI Act",
+        "compliance",
+        "合规",
+        "监管"
+      ]
+    },
+    "prd.ux_uncertainty": {
+      "name": "面向不确定性的交互设计",
+      "domain": "PRD",
+      "aliases": [
+        "uncertainty UX",
+        "不确定性"
+      ]
+    },
+    "prd.human_in_loop": {
+      "name": "人机协同",
+      "domain": "PRD",
+      "aliases": [
+        "human-in-the-loop",
+        "人机协同"
+      ]
+    },
+    "prd.ai_metrics": {
+      "name": "AI 产品指标体系",
+      "domain": "PRD",
+      "aliases": [
+        "AI metrics",
+        "采纳率",
+        "指标体系"
+      ]
+    },
+    "prd.unit_economics": {
+      "name": "AI 定价与单位经济",
+      "domain": "PRD",
+      "aliases": [
+        "pricing",
+        "unit economics",
+        "定价"
+      ]
+    },
+    "prd.build_vs_buy": {
+      "name": "自研与采购取舍",
+      "domain": "PRD",
+      "aliases": [
+        "build vs buy",
+        "自研"
+      ]
+    },
+    "prd.data_flywheel": {
+      "name": "数据飞轮",
+      "domain": "PRD",
+      "aliases": [
+        "data flywheel",
+        "数据飞轮"
+      ]
+    },
+    "prd.moat": {
+      "name": "AI 产品护城河",
+      "domain": "PRD",
+      "aliases": [
+        "moat",
+        "护城河"
+      ]
+    },
+    "req.requirement_levels": {
+      "name": "需求层次（业务/用户/功能/非功能）",
+      "domain": "REQ",
+      "npdp": null,
+      "aliases": [
+        "business requirements",
+        "需求层次"
+      ]
+    },
+    "req.real_need": {
+      "name": "真实需求挖掘",
+      "domain": "REQ",
+      "npdp": "第6章 市场调研",
+      "aliases": [
+        "jobs to be done",
+        "伪需求"
+      ]
+    },
+    "req.elicitation": {
+      "name": "需求获取方法",
+      "domain": "REQ",
+      "npdp": "第6章 市场调研",
+      "aliases": [
+        "requirements elicitation",
+        "需求调研"
+      ]
+    },
+    "req.user_story": {
+      "name": "用户故事与验收标准",
+      "domain": "REQ",
+      "npdp": null,
+      "aliases": [
+        "user story",
+        "user stories",
+        "acceptance criteria",
+        "用户故事"
+      ]
+    },
+    "req.use_case": {
+      "name": "用例与场景建模",
+      "domain": "REQ",
+      "npdp": null,
+      "aliases": [
+        "use case diagram",
+        "用例图"
+      ]
+    },
+    "req.nfr": {
+      "name": "非功能需求",
+      "domain": "REQ",
+      "npdp": null,
+      "aliases": [
+        "non-functional requirements",
+        "非功能需求"
+      ]
+    },
+    "req.prioritization": {
+      "name": "需求优先级排序",
+      "domain": "REQ",
+      "npdp": "第5章 设计与开发工具",
+      "aliases": [
+        "RICE scoring",
+        "MoSCoW method",
+        "Kano model",
+        "需求优先级"
+      ]
+    },
+    "req.prd": {
+      "name": "需求文档（PRD）",
+      "domain": "REQ",
+      "npdp": null,
+      "aliases": [
+        "product requirements document",
+        "需求文档"
+      ]
+    },
+    "req.change_control": {
+      "name": "需求变更与范围控制",
+      "domain": "REQ",
+      "npdp": null,
+      "aliases": [
+        "scope creep",
+        "requirements traceability",
+        "需求变更"
+      ]
+    },
+    "biz.business_architecture": {
+      "name": "业务架构总览",
+      "domain": "BIZ",
+      "npdp": null,
+      "aliases": [
+        "business architecture",
+        "业务架构"
+      ]
+    },
+    "biz.capability_map": {
+      "name": "业务能力地图",
+      "domain": "BIZ",
+      "npdp": null,
+      "aliases": [
+        "capability map",
+        "business capability",
+        "业务能力"
+      ]
+    },
+    "biz.value_stream": {
+      "name": "价值流",
+      "domain": "BIZ",
+      "npdp": null,
+      "aliases": [
+        "value stream",
+        "价值流"
+      ]
+    },
+    "biz.process_modeling": {
+      "name": "业务流程建模（泳道图/BPMN）",
+      "domain": "BIZ",
+      "npdp": null,
+      "aliases": [
+        "BPMN",
+        "swimlane diagram",
+        "业务流程建模",
+        "泳道图"
+      ]
+    },
+    "biz.domain_model": {
+      "name": "领域模型与业务对象",
+      "domain": "BIZ",
+      "npdp": null,
+      "aliases": [
+        "domain-driven design",
+        "domain model",
+        "领域模型"
+      ]
+    },
+    "biz.state_machine": {
+      "name": "业务状态机",
+      "domain": "BIZ",
+      "npdp": null,
+      "aliases": [
+        "业务状态机"
+      ]
+    },
+    "biz.business_rules": {
+      "name": "业务规则与规则引擎",
+      "domain": "BIZ",
+      "npdp": null,
+      "aliases": [
+        "rules engine",
+        "business rules",
+        "规则引擎"
+      ]
+    },
+    "biz.org_permission": {
+      "name": "组织、角色与审批体系",
+      "domain": "BIZ",
+      "npdp": null,
+      "aliases": [
+        "approval workflow",
+        "审批流程"
+      ]
+    },
+    "biz.as_is_to_be": {
+      "name": "现状与目标流程分析",
+      "domain": "BIZ",
+      "npdp": null,
+      "aliases": [
+        "as-is process",
+        "to-be process",
+        "流程再造"
+      ]
+    },
+    "biz.b2b_vs_b2c": {
+      "name": "B 端与 C 端产品差异",
+      "domain": "BIZ",
+      "npdp": null,
+      "aliases": [
+        "B端产品",
+        "企业级产品"
+      ]
+    },
+    "sys.client_server": {
+      "name": "前后端与客户端-服务器",
+      "domain": "SYS",
+      "npdp": null,
+      "aliases": [
+        "client-server",
+        "前后端分离"
+      ]
+    },
+    "sys.api": {
+      "name": "接口（API）与接口文档",
+      "domain": "SYS",
+      "npdp": null,
+      "aliases": [
+        "OpenAPI",
+        "接口文档"
+      ]
+    },
+    "sys.database": {
+      "name": "数据库基础",
+      "domain": "SYS",
+      "npdp": null,
+      "aliases": [
+        "relational database",
+        "关系型数据库"
+      ]
+    },
+    "sys.enterprise_apps": {
+      "name": "企业信息系统版图（ERP/CRM/ITSM）",
+      "domain": "SYS",
+      "npdp": null,
+      "aliases": [
+        "enterprise resource planning",
+        "customer relationship management",
+        "IT service management",
+        "企业资源计划"
+      ]
+    },
+    "sys.integration": {
+      "name": "系统集成方式",
+      "domain": "SYS",
+      "npdp": null,
+      "aliases": [
+        "message queue",
+        "system integration",
+        "系统集成",
+        "消息队列"
+      ]
+    },
+    "sys.deployment": {
+      "name": "部署形态（SaaS/私有化/多租户）",
+      "domain": "SYS",
+      "npdp": null,
+      "aliases": [
+        "multi-tenant",
+        "multi-tenancy",
+        "私有化部署",
+        "多租户"
+      ]
+    },
+    "sys.configurability": {
+      "name": "标准化与定制化（配置、扩展、二开）",
+      "domain": "SYS",
+      "npdp": null,
+      "aliases": [
+        "configurable",
+        "二次开发",
+        "配置化"
+      ]
+    },
+    "sys.auth": {
+      "name": "认证与权限（SSO/OAuth/RBAC）",
+      "domain": "SYS",
+      "npdp": null,
+      "aliases": [
+        "single sign-on",
+        "role-based access control",
+        "OAuth 2.0",
+        "单点登录"
+      ]
+    },
+    "sys.architecture_diagram": {
+      "name": "读懂系统架构图",
+      "domain": "SYS",
+      "npdp": null,
+      "aliases": [
+        "C4 model",
+        "architecture diagram",
+        "系统架构图"
+      ]
+    },
+    "sys.reliability": {
+      "name": "可用性与性能基础",
+      "domain": "SYS",
+      "npdp": null,
+      "aliases": [
+        "service level agreement",
+        "high availability",
+        "高可用"
+      ]
+    },
+    "sys.workflow_lowcode": {
+      "name": "工作流与低代码平台",
+      "domain": "SYS",
+      "npdp": null,
+      "aliases": [
+        "low-code",
+        "workflow automation",
+        "低代码"
+      ]
+    },
+    "dat.metric_system": {
+      "name": "指标体系",
+      "domain": "DAT",
+      "npdp": "第1章 产品创新管理",
+      "aliases": [
+        "north star metric",
+        "北极星指标",
+        "指标体系"
+      ]
+    },
+    "dat.tracking": {
+      "name": "埋点与数据采集",
+      "domain": "DAT",
+      "npdp": null,
+      "aliases": [
+        "event tracking",
+        "埋点方案"
+      ]
+    },
+    "dat.funnel_cohort": {
+      "name": "漏斗与同期群分析",
+      "domain": "DAT",
+      "npdp": null,
+      "aliases": [
+        "funnel analysis",
+        "cohort analysis",
+        "同期群"
+      ]
+    },
+    "dat.ab_testing": {
+      "name": "A/B 实验基础",
+      "domain": "DAT",
+      "npdp": "第6章 市场调研",
+      "aliases": [
+        "A/B testing",
+        "controlled experiment",
+        "对照实验"
+      ]
+    },
+    "dat.data_warehouse": {
+      "name": "数据仓库与分层",
+      "domain": "DAT",
+      "npdp": null,
+      "aliases": [
+        "data warehouse",
+        "数据仓库"
+      ]
+    },
+    "dat.master_data": {
+      "name": "主数据与数据治理",
+      "domain": "DAT",
+      "npdp": null,
+      "aliases": [
+        "master data",
+        "data governance",
+        "主数据",
+        "数据治理"
+      ]
+    },
+    "dat.data_quality": {
+      "name": "数据质量",
+      "domain": "DAT",
+      "npdp": null,
+      "aliases": [
+        "data quality",
+        "数据质量"
+      ]
+    },
+    "dat.self_service_bi": {
+      "name": "报表与自助分析",
+      "domain": "DAT",
+      "npdp": null,
+      "aliases": [
+        "self-service analytics",
+        "business intelligence",
+        "自助分析"
+      ]
+    },
+    "gro.growth_model": {
+      "name": "增长模型（AARRR / 增长回路）",
+      "domain": "GRO",
+      "npdp": null,
+      "aliases": [
+        "AARRR",
+        "growth loop",
+        "product-led growth",
+        "增长模型"
+      ]
+    },
+    "gro.acquisition": {
+      "name": "获客渠道与归因",
+      "domain": "GRO",
+      "npdp": "第6章 市场调研",
+      "aliases": [
+        "customer acquisition cost",
+        "multi-touch attribution",
+        "获客成本",
+        "归因分析"
+      ]
+    },
+    "gro.activation": {
+      "name": "激活与上手",
+      "domain": "GRO",
+      "npdp": null,
+      "aliases": [
+        "user onboarding",
+        "aha moment",
+        "新手引导"
+      ]
+    },
+    "gro.retention_churn": {
+      "name": "留存与流失",
+      "domain": "GRO",
+      "npdp": null,
+      "aliases": [
+        "churn rate",
+        "retention curve",
+        "用户流失",
+        "留存率"
+      ]
+    },
+    "gro.saas_metrics": {
+      "name": "SaaS 核心指标（ARR/NRR/CAC/LTV）",
+      "domain": "GRO",
+      "npdp": "第1章 产品创新管理",
+      "aliases": [
+        "annual recurring revenue",
+        "net revenue retention",
+        "customer lifetime value"
+      ]
+    },
+    "gro.customer_success": {
+      "name": "客户成功与健康度",
+      "domain": "GRO",
+      "npdp": null,
+      "aliases": [
+        "customer success",
+        "health score",
+        "客户成功"
+      ]
+    },
+    "gro.implementation": {
+      "name": "客户实施与上线",
+      "domain": "GRO",
+      "npdp": null,
+      "aliases": [
+        "customer onboarding",
+        "data migration",
+        "实施交付"
+      ]
+    },
+    "gro.feedback_loop": {
+      "name": "客户反馈闭环（NPS/满意度）",
+      "domain": "GRO",
+      "npdp": "第6章 市场调研",
+      "aliases": [
+        "net promoter score",
+        "voice of the customer",
+        "净推荐值"
+      ]
+    },
+    "str.strategy_alignment": {
+      "name": "战略分解与目标对齐（含 OKR）",
+      "domain": "STR",
+      "npdp": "第2章 战略",
+      "aliases": [
+        "objectives and key results",
+        "product strategy",
+        "产品战略"
+      ]
+    },
+    "str.market_sizing": {
+      "name": "市场规模测算",
+      "domain": "STR",
+      "npdp": "第2章 战略",
+      "aliases": [
+        "total addressable market",
+        "市场规模测算"
+      ]
+    },
+    "str.competitor": {
+      "name": "竞品分析",
+      "domain": "STR",
+      "npdp": "第2章 战略",
+      "aliases": [
+        "competitive analysis",
+        "竞品分析"
+      ]
+    },
+    "str.positioning": {
+      "name": "定位与价值主张",
+      "domain": "STR",
+      "npdp": "第2章 战略",
+      "aliases": [
+        "value proposition",
+        "价值主张"
+      ]
+    },
+    "str.business_model": {
+      "name": "商业模式",
+      "domain": "STR",
+      "npdp": "第2章 战略",
+      "aliases": [
+        "business model canvas",
+        "商业模式"
+      ]
+    },
+    "str.pricing": {
+      "name": "定价策略",
+      "domain": "STR",
+      "npdp": "第2章 战略",
+      "aliases": [
+        "pricing strategy",
+        "usage-based pricing",
+        "定价策略"
+      ]
+    },
+    "str.innovation_types": {
+      "name": "创新类型与颠覆式创新",
+      "domain": "STR",
+      "npdp": "第2章 战略",
+      "aliases": [
+        "disruptive innovation",
+        "颠覆式创新"
+      ]
+    },
+    "str.platform_ecosystem": {
+      "name": "平台化与开放生态",
+      "domain": "STR",
+      "npdp": "第2章 战略",
+      "aliases": [
+        "platform ecosystem",
+        "app marketplace",
+        "开放平台"
+      ]
+    },
+    "str.pmf": {
+      "name": "产品市场匹配（PMF）",
+      "domain": "STR",
+      "npdp": "第4章 产品创新流程",
+      "aliases": [
+        "product-market fit",
+        "产品市场匹配"
+      ]
+    },
+    "str.lean_startup": {
+      "name": "精益创业与最小可行产品",
+      "domain": "STR",
+      "npdp": "第4章 产品创新流程",
+      "aliases": [
+        "lean startup",
+        "minimum viable product",
+        "精益创业"
+      ]
+    },
+    "uxd.user_research": {
+      "name": "用户研究方法",
+      "domain": "UXD",
+      "npdp": "第6章 市场调研",
+      "aliases": [
+        "user research",
+        "用户研究"
+      ]
+    },
+    "uxd.persona_journey": {
+      "name": "用户画像与旅程（含服务蓝图）",
+      "domain": "UXD",
+      "npdp": "第5章 设计与开发工具",
+      "aliases": [
+        "user persona",
+        "customer journey map",
+        "service blueprint",
+        "用户旅程"
+      ]
+    },
+    "uxd.info_architecture": {
+      "name": "信息架构",
+      "domain": "UXD",
+      "npdp": "第5章 设计与开发工具",
+      "aliases": [
+        "information architecture",
+        "信息架构"
+      ]
+    },
+    "uxd.prototype": {
+      "name": "交互与原型",
+      "domain": "UXD",
+      "npdp": "第5章 设计与开发工具",
+      "aliases": [
+        "wireframe",
+        "prototyping",
+        "原型设计"
+      ]
+    },
+    "uxd.usability": {
+      "name": "可用性测试",
+      "domain": "UXD",
+      "npdp": "第5章 设计与开发工具",
+      "aliases": [
+        "usability testing",
+        "heuristic evaluation",
+        "可用性测试"
+      ]
+    },
+    "uxd.design_system": {
+      "name": "设计系统",
+      "domain": "UXD",
+      "npdp": "第5章 设计与开发工具",
+      "aliases": [
+        "design system",
+        "设计系统"
+      ]
+    },
+    "dlv.agile_scrum": {
+      "name": "敏捷与 Scrum",
+      "domain": "DLV",
+      "npdp": "第4章 产品创新流程",
+      "aliases": [
+        "scrum",
+        "sprint planning",
+        "敏捷开发"
+      ]
+    },
+    "dlv.delivery_models": {
+      "name": "瀑布、敏捷与混合交付",
+      "domain": "DLV",
+      "npdp": "第4章 产品创新流程",
+      "aliases": [
+        "waterfall model",
+        "瀑布模型"
+      ]
+    },
+    "dlv.phase_gate": {
+      "name": "立项与阶段评审（门径管理/IPD）",
+      "domain": "DLV",
+      "npdp": "第4章 产品创新流程",
+      "aliases": [
+        "stage-gate",
+        "integrated product development",
+        "集成产品开发"
+      ]
+    },
+    "dlv.estimation": {
+      "name": "估算与排期",
+      "domain": "DLV",
+      "npdp": "第1章 产品创新管理",
+      "aliases": [
+        "story points",
+        "critical path",
+        "工作量估算"
+      ]
+    },
+    "dlv.release": {
+      "name": "发布与灰度",
+      "domain": "DLV",
+      "npdp": "第4章 产品创新流程",
+      "aliases": [
+        "canary release",
+        "feature flag",
+        "灰度发布"
+      ]
+    },
+    "dlv.roadmap": {
+      "name": "产品路线图",
+      "domain": "DLV",
+      "npdp": "第2章 战略",
+      "aliases": [
+        "product roadmap",
+        "产品路线图"
+      ]
+    },
+    "dlv.pm_role": {
+      "name": "产品经理的角色与影响力",
+      "domain": "DLV",
+      "npdp": "第7章 文化、团队与领导力",
+      "aliases": [
+        "influence without authority",
+        "product manager role"
+      ]
+    },
+    "dlv.stakeholder": {
+      "name": "干系人管理",
+      "domain": "DLV",
+      "npdp": "第7章 文化、团队与领导力",
+      "aliases": [
+        "stakeholder management",
+        "干系人管理"
+      ]
+    },
+    "dlv.risk": {
+      "name": "风险与问题管理",
+      "domain": "DLV",
+      "npdp": "第1章 产品创新管理",
+      "aliases": [
+        "risk register",
+        "风险管理"
+      ]
+    },
+    "lcm.business_case": {
+      "name": "立项论证与投资回报",
+      "domain": "LCM",
+      "npdp": "第1章 产品创新管理",
+      "aliases": [
+        "business case",
+        "return on investment",
+        "投资回报"
+      ]
+    },
+    "lcm.portfolio": {
+      "name": "产品组合与资源分配",
+      "domain": "LCM",
+      "npdp": "第3章 组合管理",
+      "aliases": [
+        "portfolio management",
+        "产品组合"
+      ]
+    },
+    "lcm.gtm": {
+      "name": "上市策略（PLG/SLG/POC）",
+      "domain": "LCM",
+      "npdp": "第1章 产品创新管理",
+      "aliases": [
+        "go-to-market",
+        "proof of concept",
+        "上市策略"
+      ]
+    },
+    "lcm.lifecycle": {
+      "name": "产品生命周期与功能下线",
+      "domain": "LCM",
+      "npdp": "第1章 产品创新管理",
+      "aliases": [
+        "product lifecycle",
+        "产品生命周期"
+      ]
+    },
+    "lcm.post_launch_review": {
+      "name": "上线后复盘",
+      "domain": "LCM",
+      "npdp": "第1章 产品创新管理",
+      "aliases": [
+        "post-launch review",
+        "上线复盘"
+      ]
+    }
+  }
+}

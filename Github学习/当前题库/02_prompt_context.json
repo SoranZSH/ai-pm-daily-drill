@@ -1,0 +1,1443 @@
+{
+  "category": "提示与上下文工程",
+  "category_en": "Prompt & Context Engineering",
+  "domain": "PRM",
+  "items": [
+    {
+      "id": "PRM-F001",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "无状态接口",
+        "系统提示词",
+        "边界隔离"
+      ],
+      "concepts": [
+        "prm.prompt_structure"
+      ],
+      "prereq": [
+        "LLM-F001"
+      ],
+      "q_cn": "为什么大模型接口是无状态的？工业级系统提示词包含哪些模块？",
+      "q_en": "Why are LLM APIs stateless, and what modules belong in a production system prompt?",
+      "gist": {
+        "cn": "接口不记历史，每轮须重发全量消息计费；系统提示词拆四模块并用标签隔离数据。",
+        "en": "APIs retain no memory, so replay history every turn and structure system prompts like clear contracts."
+      },
+      "points": [
+        {
+          "cn": "接口无状态，每轮须重发完整消息列表并重复计费",
+          "en": "repackage the full list"
+        },
+        {
+          "cn": "System 角色指令权重最高，不做零散叮嘱",
+          "en": "highest instruction priority"
+        },
+        {
+          "cn": "拆为角色目标、输入边界、输出规范、拒答兜底四模块",
+          "en": "split into four modules"
+        },
+        {
+          "cn": "用 XML 标签等分隔符隔离外部数据防误执行",
+          "en": "explicit delimiters like XML tags"
+        }
+      ],
+      "concept": {
+        "cn": "大模型接口采用「无状态（Stateless）」设计，即服务端在两次请求之间不保存任何对话记忆，以此换取跨机器横向扩容的能力。你在聊天界面看到的连续对话，其实是应用在每一轮把系统指令、用户提问与历史回复全量打包重发的结果，历史词元每次都会重新计费。为了稳住输出，最高权重的系统提示词不能写成零散叮嘱，而要像接口契约一样拆清模块，并用分隔标签把外部不可信数据与指令严格隔开。",
+        "en": "LLM APIs are stateless by design: the server retains no memory between calls so providers can scale horizontally across machines. What feels like continuous chat is actually your application resending the full history of system instructions, user messages, and assistant replies on every turn, paying input token costs each time. To keep behavior predictable, the top-priority system prompt should be written like a modular contract, using clear delimiters to separate untrusted external data from instructions."
+      },
+      "a_pairs": [
+        {
+          "en": "LLM APIs are stateless because the server doesn't remember past turns between requests, which lets providers scale horizontally across machines.",
+          "cn": "大模型接口之所以是无状态的，是因为服务端在两次请求之间不保留历史记忆，这样服务商才能跨机器横向扩容。"
+        },
+        {
+          "en": "In a multi-turn chat, your app has to repackage the full list of System, User, and Assistant messages on every turn, and you're billed again for all those historical input tokens.",
+          "cn": "因此在多轮对话里，应用每一轮都得把 System、User 和 Assistant 的完整历史消息重新打包发送，而且这些历史输入 Token 每次都会重新计费。"
+        },
+        {
+          "en": "Within that message list, the System role carries the highest instruction priority, so we don't write it as a loose wish list.",
+          "cn": "在这组消息里，System 角色拥有最高的指令权重，所以我们绝不能把它写成零散的愿望清单。"
+        },
+        {
+          "en": "Instead, a production system prompt reads like an interface contract split into four modules: role and goal, input boundaries, output format rules, and refusal or fallback policies.",
+          "cn": "相反，工业级系统提示词要像接口契约一样拆成四个模块：角色与目标、输入边界、输出格式规范，以及拒答与兜底策略。"
+        },
+        {
+          "en": "Finally, whenever you inject external documents or raw user text, wrap them in explicit delimiters like XML tags such as '<context>'.",
+          "cn": "最后，只要拼入外部资料或原始用户输入，就要用明确的分隔符（比如「<context>」这类 XML 标签）把它们框起来。"
+        },
+        {
+          "en": "That boundary tells the model to treat the enclosed text strictly as data to process, so it won't mistake untrusted input for new instructions.",
+          "cn": "这道边界能明确告诉模型把框内文本当成待处理的数据，避免把不可信的外部内容误当成新指令去执行。"
+        },
+        {
+          "en": "So my rule of thumb is: replay only the history you need, write prompts like contracts, and fence off untrusted data.",
+          "cn": "所以我的经验法则是：只重发必要的历史，像写契约一样写提示词，并把不可信数据围栏隔离。"
+        }
+      ],
+      "a_en": "LLM APIs are stateless because the server doesn't remember past turns between requests, which lets providers scale horizontally across machines. In a multi-turn chat, your app has to repackage the full list of System, User, and Assistant messages on every turn, and you're billed again for all those historical input tokens. Within that message list, the System role carries the highest instruction priority, so we don't write it as a loose wish list. Instead, a production system prompt reads like an interface contract split into four modules: role and goal, input boundaries, output format rules, and refusal or fallback policies. Finally, whenever you inject external documents or raw user text, wrap them in explicit delimiters like XML tags such as '<context>'. That boundary tells the model to treat the enclosed text strictly as data to process, so it won't mistake untrusted input for new instructions. So my rule of thumb is: replay only the history you need, write prompts like contracts, and fence off untrusted data.",
+      "a_cn": "大模型接口之所以是无状态的，是因为服务端在两次请求之间不保留历史记忆，这样服务商才能跨机器横向扩容。因此在多轮对话里，应用每一轮都得把 System、User 和 Assistant 的完整历史消息重新打包发送，而且这些历史输入 Token 每次都会重新计费。在这组消息里，System 角色拥有最高的指令权重，所以我们绝不能把它写成零散的愿望清单。相反，工业级系统提示词要像接口契约一样拆成四个模块：角色与目标、输入边界、输出格式规范，以及拒答与兜底策略。最后，只要拼入外部资料或原始用户输入，就要用明确的分隔符（比如「<context>」这类 XML 标签）把它们框起来。这道边界能明确告诉模型把框内文本当成待处理的数据，避免把不可信的外部内容误当成新指令去执行。所以我的经验法则是：只重发必要的历史，像写契约一样写提示词，并把不可信数据围栏隔离。",
+      "key_phrases": [
+        {
+          "en": "scale horizontally",
+          "cn": "横向扩容",
+          "type": "搭配",
+          "usage": "指靠增加机器数量而非升级单机硬件来扛高并发，架构讨论高频表达"
+        },
+        {
+          "en": "instruction priority",
+          "cn": "指令优先级",
+          "type": "词汇",
+          "usage": "指不同消息角色冲突时模型优先听谁的，常与 System role 搭配"
+        },
+        {
+          "en": "interface contract",
+          "cn": "接口契约",
+          "type": "词汇",
+          "usage": "比喻把输入输出和异常边界约定死，比 prompt template 更显严谨"
+        },
+        {
+          "en": "wrap them in explicit delimiters",
+          "cn": "用明确的分隔符包裹它们",
+          "type": "搭配",
+          "usage": "在 A 外套一层标记或容器，可换用 enclose A in B"
+        },
+        {
+          "en": "mistake untrusted input for",
+          "cn": "把不可信输入误当成",
+          "type": "句型",
+          "usage": "mistake A for B 固定结构，适合解释模型为什么会把数据当指令"
+        }
+      ],
+      "basics": [
+        {
+          "term": "无状态接口",
+          "term_en": "stateless API",
+          "explain": "服务端每次收到请求都把它当成全新对话处理，不保存上一轮聊了什么；需要上下文时必须由客户端每次带齐整套历史消息。",
+          "analogy": "每次去柜台办事都要带齐整袋材料，窗口不替你存档案。"
+        },
+        {
+          "term": "XML 分隔标签",
+          "term_en": "XML delimiters",
+          "explain": "像「<context>...</context>」这样成对出现的标记，用来在提示词里圈出外部文档或用户输入的起止边界，防止指令与数据混在一起。",
+          "analogy": "公文袋上的「附件」封条，标清里面装的是待审材料而非领导批示。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "多轮聊天每轮只传最新一句话，前文服务端会自动记住所以不花钱。",
+          "why": "服务端根本不存对话状态，客户端每轮都在后台把整段历史重发一遍，聊到第二十轮时第一轮的话已被重复计费二十次。",
+          "right": "把单轮成本按累计历史长度估算，并在产品侧设计历史轮次裁剪或摘要归档机制。"
+        }
+      ],
+      "approach": "采分点是答全「无状态重发计费」「系统提示四模块契约」和「分隔标签隔离数据」。推荐结构：无状态原因与多轮账单 → 系统权重与四模块 → 标签隔离防越权。用「重发必要历史、按契约写指令、围栏隔离数据」收尾最有力。会失分的是只背角色扮演口诀。",
+      "tips": "必备术语 stateless、instruction priority、delimiters。可延伸：提示注入防御与多轮上下文裁剪。",
+      "source_repos": [],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "PRM-F002",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "少样本提示",
+        "上下文学习",
+        "示例工程"
+      ],
+      "concepts": [
+        "prm.few_shot"
+      ],
+      "prereq": [
+        "LLM-F003",
+        "PRM-F001"
+      ],
+      "q_cn": "少样本提示（Few-Shot）为什么比零样本更稳？选示例有什么讲究？",
+      "q_en": "Why is few-shot prompting more reliable than zero-shot, and what matters when choosing examples?",
+      "gist": {
+        "cn": "靠两到五组示范直接锁死格式与边界；选例要抓难例、打乱顺序并算清固定成本。",
+        "en": "A few concrete input-output pairs anchor format and edge cases better than abstract rules, if curated carefully."
+      },
+      "points": [
+        {
+          "cn": "靠上下文学习在不改权重下锁定格式、语气与边界",
+          "en": "in-context learning without updating its weights"
+        },
+        {
+          "cn": "具体示范胜过「精炼、专业」等含糊抽象形容词",
+          "en": "beats piling on abstract adjectives"
+        },
+        {
+          "cn": "选例聚焦易错边界，并打乱标签顺序防近因跟风",
+          "en": "shuffle the label order"
+        },
+        {
+          "cn": "权衡每次请求固定附带的额外输入 Token 成本",
+          "en": "weigh the fixed token tax"
+        }
+      ],
+      "concept": {
+        "cn": "零样本提示（Zero-Shot）只给模型文字规则，而少样本提示（Few-Shot）会在提示词里附上两到五组「输入—理想输出」示范。模型借助自注意力机制在当前窗口内捕捉示范规律（即上下文学习），无需修改任何模型权重就能对齐输出颗粒度、语气和分类标准。相比反复堆砌「请专业、精炼」这类主观形容词，真实样本能消除理解歧义；但选错样本不仅白交每次调用的固定词元费，还会诱发跟风偏见。",
+        "en": "Zero-shot prompting gives only written instructions, whereas few-shot prompting includes two to five input-output demonstrations inside the prompt. Through self-attention—a process called in-context learning—the model picks up the target granularity, tone, and labeling criteria on the fly without updating its weights. Concrete pairs remove the ambiguity of vague adjectives like 'concise' or 'professional', though poorly chosen examples waste tokens on every call and can introduce label bias."
+      },
+      "a_pairs": [
+        {
+          "en": "Zero-shot prompting only gives rules, whereas few-shot adds two to five input-output pairs so the model learns the target pattern through in-context learning without updating its weights.",
+          "cn": "零样本提示只给文字规则，而少样本会附上两到五组「输入—理想输出」示范，让模型靠上下文学习在不改权重的前提下摸清目标模式。"
+        },
+        {
+          "en": "Showing concrete examples beats piling on abstract adjectives because words like 'concise' or 'professional' mean very different things, while a real pair anchors tone, format, and edge-case judgment at once.",
+          "cn": "给具体例子之所以远胜堆砌抽象形容词，是因为「精炼」「专业」这类词太主观，而一组真实示范能同时锁死语气、格式和边界判断。"
+        },
+        {
+          "en": "When picking those examples, three rules matter in production.",
+          "cn": "在生产环境挑选示例时，有三条讲究最关键。"
+        },
+        {
+          "en": "First, cover tricky boundary cases where the model usually slips up, rather than wasting space on easy duplicates.",
+          "cn": "第一，优先覆盖模型平时最容易翻车的棘手边界案例，别把宝贵空间浪费在简单重复的常规样本上。"
+        },
+        {
+          "en": "Second, shuffle the label order across your examples so you don't trigger recency bias, where the model blindly copies the last example's label.",
+          "cn": "第二，打乱不同示例的标签排列顺序，防止触发近因跟风偏差——也就是模型盲目照抄最后一个示例的标签。"
+        },
+        {
+          "en": "Third, weigh the fixed token tax, since it's billed on every single API call unless prefix caching absorbs the cost.",
+          "cn": "第三，算清每次调用多付的固定输入 Token 成本，因为除非命中前缀缓存，这些示例每次请求都要跟着买单。"
+        },
+        {
+          "en": "I'd always follow one rule of thumb: don't write another paragraph of rules when three sharp boundary examples can show what you mean.",
+          "cn": "我一直遵循一条经验法则：能用三组精准的边界示例演示明白的事，就别再多写一大段抽象规则。"
+        }
+      ],
+      "a_en": "Zero-shot prompting only gives rules, whereas few-shot adds two to five input-output pairs so the model learns the target pattern through in-context learning without updating its weights. Showing concrete examples beats piling on abstract adjectives because words like 'concise' or 'professional' mean very different things, while a real pair anchors tone, format, and edge-case judgment at once. When picking those examples, three rules matter in production. First, cover tricky boundary cases where the model usually slips up, rather than wasting space on easy duplicates. Second, shuffle the label order across your examples so you don't trigger recency bias, where the model blindly copies the last example's label. Third, weigh the fixed token tax, since it's billed on every single API call unless prefix caching absorbs the cost. I'd always follow one rule of thumb: don't write another paragraph of rules when three sharp boundary examples can show what you mean.",
+      "a_cn": "零样本提示只给文字规则，而少样本会附上两到五组「输入—理想输出」示范，让模型靠上下文学习在不改权重的前提下摸清目标模式。给具体例子之所以远胜堆砌抽象形容词，是因为「精炼」「专业」这类词太主观，而一组真实示范能同时锁死语气、格式和边界判断。在生产环境挑选示例时，有三条讲究最关键。第一，优先覆盖模型平时最容易翻车的棘手边界案例，别把宝贵空间浪费在简单重复的常规样本上。第二，打乱不同示例的标签排列顺序，防止触发近因跟风偏差——也就是模型盲目照抄最后一个示例的标签。第三，算清每次调用多付的固定输入 Token 成本，因为除非命中前缀缓存，这些示例每次请求都要跟着买单。我一直遵循一条经验法则：能用三组精准的边界示例演示明白的事，就别再多写一大段抽象规则。",
+      "key_phrases": [
+        {
+          "en": "in-context learning",
+          "cn": "上下文学习",
+          "type": "词汇",
+          "usage": "指模型仅靠提示词里的示范就在当前推理中学会规律，不改模型权重"
+        },
+        {
+          "en": "piling on",
+          "cn": "一味堆砌",
+          "type": "搭配",
+          "usage": "pile on + 名词，批评盲目叠加形容词、规则或功能却没解决真问题"
+        },
+        {
+          "en": "boundary cases",
+          "cn": "边界案例",
+          "type": "词汇",
+          "usage": "也可说 edge cases，指介于两类标准之间、最容易判错的临界样本"
+        },
+        {
+          "en": "recency bias",
+          "cn": "近因偏差",
+          "type": "词汇",
+          "usage": "指模型过度受排在最末尾的示例或信息影响，设计分类提示词常提"
+        },
+        {
+          "en": "weigh the fixed token tax",
+          "cn": "权衡固定的 Token 开销",
+          "type": "句型",
+          "usage": "把常驻开销比作 tax，核算单次调用固定成本时常用"
+        }
+      ],
+      "basics": [
+        {
+          "term": "上下文学习",
+          "term_en": "in-context learning (ICL)",
+          "explain": "不重新训练模型、不改动任何参数，只靠在输入里摆几道做好的例题，让模型在本次回答中顺着示范规律照猫画虎。",
+          "analogy": "考场上看卷头两道标准例题解法，当场套用到新题上。"
+        },
+        {
+          "term": "近因跟风偏差",
+          "term_en": "recency bias",
+          "explain": "模型做判断时容易被排在最后、离当前问题最近的那条示范带偏；如果最后连放三个正例，模型就会倾向把新输入也判成正例。",
+          "analogy": "评委连看三份满分答卷后，对第四份也惯性手松打高分。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "少样本示例塞得越多越稳，随便从线上挑二十条常规好评放进去就行。",
+          "why": "同质化的简单样本不仅每轮白烧输入费用，还会挤占注意力并造成类别偏置，遇到真正模棱两可的投诉照样判错。",
+          "right": "精选三到五条覆盖不同类别且紧贴易混边界的代表性样本，并把它们固定在静态前缀里吃缓存。"
+        }
+      ],
+      "approach": "采分点是讲透「示例比抽象形容词更能消歧」及选样三条讲究。推荐结构：零样本与少样本对比 → 为何举例子胜过写规则 → 选难例、乱序防偏置、核算固定成本。用「三组边界示例胜过一段抽象规则」收尾最有力。会失分的是把少样本说成微调。",
+      "tips": "必备术语 zero-shot、few-shot、in-context learning、recency bias。可延伸：提示缓存与微调样本沉淀。",
+      "source_repos": [],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "PRM-F003",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "结构化输出",
+        "受限解码",
+        "字段顺序"
+      ],
+      "concepts": [
+        "prm.structured_output"
+      ],
+      "prereq": [
+        "LLM-F002",
+        "PRM-F001"
+      ],
+      "q_cn": "什么是结构化输出？为什么它比只在提示词里要求返回 JSON 更可靠？",
+      "q_en": "What is structured output, and why is it more reliable than simply asking for JSON in a prompt?",
+      "gist": {
+        "cn": "受限解码在逐词生成时屏蔽违规词保语法合规；把理由字段排在结论前还能提准。",
+        "en": "Structured output enforces schemas during token decoding, and placing reasoning fields before conclusions boosts accuracy."
+      },
+      "points": [
+        {
+          "cn": "纯提示词求 JSON 易多加寒暄、漏括号或编造字段致解析崩溃",
+          "en": "crash your downstream parser"
+        },
+        {
+          "cn": "受限解码逐步屏蔽违规词，保证语法与字段完全合规",
+          "en": "constrained decoding"
+        },
+        {
+          "cn": "语法合规不等于内容属实，合法字段内仍可能产生幻觉",
+          "en": "valid syntax doesn't guarantee factual truth"
+        },
+        {
+          "cn": "自回归技巧：把 reason 字段排在结论字段前面提升准确率",
+          "en": "put a 'reason' field right before"
+        }
+      ],
+      "concept": {
+        "cn": "当大模型结果需要交给下游程序自动处理时，仅在提示词里叮嘱「只返回 JSON」非常脆弱：模型常会礼貌地加上开场白、漏掉闭合括号或拼错字段名，直接导致代码解析报错。结构化输出（Structured Output）采用受限解码机制，根据预设的 JSON Schema 在每一步逐词采样时直接屏蔽任何违反语法或字段定义的候选词，确保格式百分之百合法。此外，顺应自回归从左到右生成的特性，合理编排字段先后顺序还能显著提升判断质量。",
+        "en": "When model outputs feed directly into code, merely asking for 'JSON only' in a prompt is brittle: the model may add polite preambles, miss a closing brace, or invent key names that break parsers. Structured output uses constrained decoding to enforce a predefined JSON Schema at every token step, masking out any token that would violate syntax or required keys. Moreover, because generation is autoregressive from left to right, ordering schema fields thoughtfully also improves decision quality."
+      },
+      "a_pairs": [
+        {
+          "en": "Asking for JSON in plain text is fragile, whereas structured output enforces your exact JSON Schema right inside the decoding loop.",
+          "cn": "只在提示词里求 JSON 很脆弱，而结构化输出会在底层解码循环中强制执行你预设的 JSON Schema。"
+        },
+        {
+          "en": "When you only ask in a prompt, the model isn't hard-constrained, so it often adds a chatty preamble, drops a closing bracket, or invents field names that crash your downstream parser.",
+          "cn": "如果只在提示词里口头要求，模型并没有受到硬约束，经常多嘴加一句寒暄前缀、漏掉右括号，或者编造字段名把下游解析程序搞崩。"
+        },
+        {
+          "en": "Structured output solves this with constrained decoding: at every token step, the engine masks out any token that doesn't fit the schema, guaranteeing valid syntax and required keys.",
+          "cn": "结构化输出靠受限解码解决这个问题：每生成一个 Token 时，引擎都会直接屏蔽不符合 Schema 规范的候选词，保证语法和必填字段完全合规。"
+        },
+        {
+          "en": "Keep in mind, though, that valid syntax doesn't guarantee factual truth—the model can still hallucinate wrong values inside a valid field.",
+          "cn": "不过要记住，语法合规不等于内容属实——模型依然可能在合法的字段里填进编造的错误数值。"
+        },
+        {
+          "en": "There's also a practical autoregressive trick when designing your schema: always put a 'reason' field right before your final 'score' or 'label' field.",
+          "cn": "设计 Schema 时还有一个顺应自回归特性的实用技巧：永远把「reason」（推导依据）字段排在最终的「score」或「label」（结论）字段前面。"
+        },
+        {
+          "en": "Because tokens are generated left to right, forcing the model to write its rationale first stops it from blurting out a snap judgment and rationalizing it afterward.",
+          "cn": "因为 Token 是从左往右逐词生成的，逼着模型先写推导理由，就能防止它先脱口而出一个草率结论再去强行圆谎。"
+        },
+        {
+          "en": "So I'd remember two rules: constrain the decoder to protect your parser, and order schema fields so reasoning comes before conclusions.",
+          "cn": "所以我会记住两条准则：用受限解码保护下游解析器，用字段顺序让推理走在结论前面。"
+        }
+      ],
+      "a_en": "Asking for JSON in plain text is fragile, whereas structured output enforces your exact JSON Schema right inside the decoding loop. When you only ask in a prompt, the model isn't hard-constrained, so it often adds a chatty preamble, drops a closing bracket, or invents field names that crash your downstream parser. Structured output solves this with constrained decoding: at every token step, the engine masks out any token that doesn't fit the schema, guaranteeing valid syntax and required keys. Keep in mind, though, that valid syntax doesn't guarantee factual truth—the model can still hallucinate wrong values inside a valid field. There's also a practical autoregressive trick when designing your schema: always put a 'reason' field right before your final 'score' or 'label' field. Because tokens are generated left to right, forcing the model to write its rationale first stops it from blurting out a snap judgment and rationalizing it afterward. So I'd remember two rules: constrain the decoder to protect your parser, and order schema fields so reasoning comes before conclusions.",
+      "a_cn": "只在提示词里求 JSON 很脆弱，而结构化输出会在底层解码循环中强制执行你预设的 JSON Schema。如果只在提示词里口头要求，模型并没有受到硬约束，经常多嘴加一句寒暄前缀、漏掉右括号，或者编造字段名把下游解析程序搞崩。结构化输出靠受限解码解决这个问题：每生成一个 Token 时，引擎都会直接屏蔽不符合 Schema 规范的候选词，保证语法和必填字段完全合规。不过要记住，语法合规不等于内容属实——模型依然可能在合法的字段里填进编造的错误数值。设计 Schema 时还有一个顺应自回归特性的实用技巧：永远把「reason」（推导依据）字段排在最终的「score」或「label」（结论）字段前面。因为 Token 是从左往右逐词生成的，逼着模型先写推导理由，就能防止它先脱口而出一个草率结论再去强行圆谎。所以我会记住两条准则：用受限解码保护下游解析器，用字段顺序让推理走在结论前面。",
+      "key_phrases": [
+        {
+          "en": "chatty preamble",
+          "cn": "多嘴的寒暄开场白",
+          "type": "搭配",
+          "usage": "指模型返回结果前常带的 Sure, here is... 等多余客套前缀"
+        },
+        {
+          "en": "downstream parser",
+          "cn": "下游解析程序",
+          "type": "词汇",
+          "usage": "指接收模型文本并转成业务对象的后端代码，泛指后续处理环节"
+        },
+        {
+          "en": "constrained decoding",
+          "cn": "受限解码",
+          "type": "词汇",
+          "usage": "结构化输出底层机制，在采样阶段把违反语法的候选词概率直接置零"
+        },
+        {
+          "en": "masks out",
+          "cn": "屏蔽掉、遮盖掉",
+          "type": "搭配",
+          "usage": "mask out + 非法候选项，常用于描述解码过滤或注意力掩码机制"
+        },
+        {
+          "en": "snap judgment",
+          "cn": "草率结论、拍脑袋判断",
+          "type": "搭配",
+          "usage": "与 blurt out 或 make 搭配，解释无推理铺垫直接给标签的弊端"
+        }
+      ],
+      "basics": [
+        {
+          "term": "JSON Schema",
+          "term_en": "JSON Schema",
+          "explain": "一份用来规定 JSON 数据长什么样的「说明书」，提前写死必须有哪些字段、每个字段是文字还是数字、允许填哪几个枚举值。",
+          "analogy": "政务系统的电子申报表，必填项和下拉框都锁死了，填错交不上去。"
+        },
+        {
+          "term": "受限解码",
+          "term_en": "constrained decoding",
+          "explain": "模型每预测下一个词之前，先按语法规则把所有会导致括号不配对或字段名写错的词从候选池里划掉，只允许在合法词里挑。",
+          "analogy": "走安装了护栏的独木桥，每一步想往外迈都会被栏杆挡回来。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "只要开启了结构化输出，模型返回的数据就绝对准确，不用再做业务校验了。",
+          "why": "受限解码只管「外壳格式合不合法」，不管「里面填的数字真不真实」；比如价格字段要求填数字，模型照样可能编造一个假价格。",
+          "right": "用结构化输出兜住语法与字段类型，同时在业务代码里叠加数值范围校验与原文溯源核对。"
+        }
+      ],
+      "approach": "采分点是区分「口头约束」与「解码层硬屏蔽」，并补充「格式合规不防幻觉」和「理由字段前置」。推荐结构：纯提示痛点 → 受限解码原理 → 幻觉边界 → 自回归字段顺序。用「受限解码护解析器，字段顺序保准确率」收尾最有力。会失分的是混淆语法合法与事实正确。",
+      "tips": "必备术语 JSON Schema、constrained decoding、downstream parser。可延伸：工具调用参数生成与模型评审打分表设计。",
+      "source_repos": [],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "PRM-F004",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "提示缓存",
+        "KV缓存",
+        "排版铁律"
+      ],
+      "concepts": [
+        "prm.prompt_caching",
+        "prm.prompt_structure"
+      ],
+      "prereq": [
+        "LLM-F003",
+        "PRM-F001"
+      ],
+      "q_cn": "提示缓存如何降本提速？为什么提示词必须静态前置、动态后置？",
+      "q_en": "How does prompt caching cut cost and latency, and why must static content come before dynamic data?",
+      "gist": {
+        "cn": "复用完全相同的开头 KV 缓存可省首字延迟与输入费；开头一变整段缓存即失效。",
+        "en": "Prompt caching reuses identical prefix computations, so freeze static rules first and push dynamic data last."
+      },
+      "points": [
+        {
+          "cn": "多次请求共享相同开头时，直接复用预计算好的 KV 缓存",
+          "en": "reusing precomputed attention states"
+        },
+        {
+          "cn": "省去重复重读长指令，大幅压低首字延迟并获缓存输入折扣",
+          "en": "lowers time to first token"
+        },
+        {
+          "cn": "注意力状态依赖前文，必须从首个 Token 起逐字精确匹配",
+          "en": "exact character-for-character match"
+        },
+        {
+          "cn": "系统规则工具示例冻结在前，时间戳与检索动态数据放末尾",
+          "en": "append per-turn data at the very end"
+        }
+      ],
+      "concept": {
+        "cn": "在企业应用里，每次请求往往都带着几千字一成不变的系统规则、工具定义和少样本示例。提示缓存（Prompt Caching）允许服务端把这段固定开头的注意力中间状态（即 KV 缓存）暂存起来；后续请求只要开头一模一样，就能跳过漫长的重复预填充计算，显著缩短首字延迟并享受大幅输入计费折扣。由于每个词的注意力状态都受前文全部词影响，缓存命中要求从第一个词起逐字严丝合缝匹配——这直接决定了「静态前置、动态后置」的排版铁律。",
+        "en": "In production apps, every request often carries thousands of unchanged tokens of system rules, tool definitions, and few-shot examples. Prompt caching lets the server save the precomputed attention states—the KV cache—for that shared opening prefix; subsequent calls with the exact same prefix skip redundant prefill compute, cutting time to first token and unlocking steep input discounts. Because each token's state depends on every prior token, hits require an exact match from token one, dictating a 'static first, dynamic last' layout."
+      },
+      "a_pairs": [
+        {
+          "en": "Prompt caching cuts both latency and token bills by reusing precomputed attention states whenever multiple requests share the exact same opening tokens.",
+          "cn": "只要多次请求开头拥有一模一样的 Token 前缀，提示缓存就能直接复用提前算好的注意力中间状态，同时把延迟和账单打下来。"
+        },
+        {
+          "en": "Under the hood, the server saves the prefix's KV cache from an earlier call, so it doesn't have to re-read thousands of repeated instruction tokens from scratch.",
+          "cn": "在底层，服务端把前一次请求算出的前缀 KV 缓存存了下来，不用每次都从头重读几千个重复的指令 Token。"
+        },
+        {
+          "en": "That dramatically lowers time to first token and unlocks steep discounts on cached input tokens.",
+          "cn": "这能大幅压低首字延迟，还能拿到可观的缓存输入计费折扣。"
+        },
+        {
+          "en": "However, there's a strict catch: because each token's attention state depends on every token before it, cache hits require an exact character-for-character match from the very first token.",
+          "cn": "但它有个严格前提：因为每个 Token 的注意力状态都依赖它前面的所有内容，命中缓存必须从第一个 Token 起逐字精确匹配。"
+        },
+        {
+          "en": "If you drop a live timestamp, a changing user status, or retrieved snippets at the top of your prompt, you'll invalidate the entire cache downstream.",
+          "cn": "一旦你把实时时间戳、变化的用户状态或本轮检索片段塞在提示词开头，后面整段缓存就会全部作废。"
+        },
+        {
+          "en": "That's why production prompts follow a strict layout rule: freeze system instructions, tool schemas, and fixed few-shot examples at the front, and append per-turn data at the very end.",
+          "cn": "所以生产级提示词必须死守一条排版铁律：把系统指令、工具定义和固定示例冻结在最前面，把每轮变化的数据追加在最末尾。"
+        },
+        {
+          "en": "My rule of thumb is simple: keep the prefix frozen, or you're paying full price to read the same manual every turn.",
+          "cn": "我的经验法则很简单：锁死开头前缀，否则每一轮你都在按全价重读同一本说明书。"
+        }
+      ],
+      "a_en": "Prompt caching cuts both latency and token bills by reusing precomputed attention states whenever multiple requests share the exact same opening tokens. Under the hood, the server saves the prefix's KV cache from an earlier call, so it doesn't have to re-read thousands of repeated instruction tokens from scratch. That dramatically lowers time to first token and unlocks steep discounts on cached input tokens. However, there's a strict catch: because each token's attention state depends on every token before it, cache hits require an exact character-for-character match from the very first token. If you drop a live timestamp, a changing user status, or retrieved snippets at the top of your prompt, you'll invalidate the entire cache downstream. That's why production prompts follow a strict layout rule: freeze system instructions, tool schemas, and fixed few-shot examples at the front, and append per-turn data at the very end. My rule of thumb is simple: keep the prefix frozen, or you're paying full price to read the same manual every turn.",
+      "a_cn": "只要多次请求开头拥有一模一样的 Token 前缀，提示缓存就能直接复用提前算好的注意力中间状态，同时把延迟和账单打下来。在底层，服务端把前一次请求算出的前缀 KV 缓存存了下来，不用每次都从头重读几千个重复的指令 Token。这能大幅压低首字延迟，还能拿到可观的缓存输入计费折扣。但它有个严格前提：因为每个 Token 的注意力状态都依赖它前面的所有内容，命中缓存必须从第一个 Token 起逐字精确匹配。一旦你把实时时间戳、变化的用户状态或本轮检索片段塞在提示词开头，后面整段缓存就会全部作废。所以生产级提示词必须死守一条排版铁律：把系统指令、工具定义和固定示例冻结在最前面，把每轮变化的数据追加在最末尾。我的经验法则很简单：锁死开头前缀，否则每一轮你都在按全价重读同一本说明书。",
+      "key_phrases": [
+        {
+          "en": "Under the hood",
+          "cn": "在底层实现上",
+          "type": "搭配",
+          "usage": "从产品表现切入底层机制时的自然过渡短语，可替换 behind the scenes"
+        },
+        {
+          "en": "time to first token",
+          "cn": "首字延迟",
+          "type": "词汇",
+          "usage": "常缩写为 TTFT，衡量用户感知响应快慢最核心的在线指标"
+        },
+        {
+          "en": "steep discounts",
+          "cn": "大幅折扣",
+          "type": "搭配",
+          "usage": "steep 修饰价格涨跌幅度大，比 big discounts 更地道自然"
+        },
+        {
+          "en": "character-for-character match",
+          "cn": "逐字精确匹配",
+          "type": "搭配",
+          "usage": "强调一字不差，解释前缀缓存改一个空格即失效，也可说 byte-for-byte match"
+        },
+        {
+          "en": "invalidate the entire cache",
+          "cn": "使整段缓存失效",
+          "type": "句型",
+          "usage": "invalidate + 缓存或状态，也可换成口语化的 bust the cache"
+        }
+      ],
+      "basics": [
+        {
+          "term": "KV 缓存",
+          "term_en": "KV cache (Key-Value cache)",
+          "explain": "模型阅读前文时算出的注意力中间特征矩阵；把它暂存在显存里，后续生成或相同开头的请求就能直接拿来用，免去重头再算一遍。",
+          "analogy": "读书时做好页边批注索引，下次接着看不用从第一页重读。"
+        },
+        {
+          "term": "首字延迟",
+          "term_en": "TTFT (time to first token)",
+          "explain": "从用户发出提问到屏幕上跳出第一个回答字所花的等待时间，主要花在模型通读整段输入提示词的预填充计算阶段。",
+          "analogy": "点完单到服务员端上第一道菜之间的等待时长。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "在系统提示词第一行写上「当前时间：精确到秒」，方便模型随时知道现在几点。",
+          "why": "每秒都在变的时间戳放在第一行，会让每次请求从开头第几个词起就失配，后面几千字的系统指令与工具定义永远吃不到缓存。",
+          "right": "若只需日期可按天取整，若需精确时间或用户实时状态，一律移到消息列表末尾的动态区。"
+        }
+      ],
+      "approach": "采分点是把「注意力依赖前文」与「前缀精确匹配铁律」串成因果链。推荐结构：复用缓存如何提速降本 → 为何须从头精确匹配 → 开头放时间戳的反例 → 静态前置动态后置铁律。用「锁死前缀，别全价重读说明书」收尾最有力。会失分的是误以为能按语义模糊命中。",
+      "tips": "必备术语 prompt caching、KV cache、time to first token、prefix。可延伸：多轮历史压缩与缓存冲突权衡。",
+      "source_repos": [],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "PRM-F005",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "上下文工程",
+        "注意力预算",
+        "工作内存"
+      ],
+      "concepts": [
+        "prm.context_engineering"
+      ],
+      "prereq": [
+        "LLM-F006",
+        "PRM-F001",
+        "PRM-F004"
+      ],
+      "q_cn": "什么是上下文工程？为什么复杂应用不能只靠打磨单条提示词？",
+      "q_en": "What is context engineering, and why can't complex AI products rely on polishing a single prompt?",
+      "gist": {
+        "cn": "上下文工程把有限窗口当稀缺工作内存，围绕多轮全流程动态供给状态并淘汰噪声。",
+        "en": "Context engineering treats the window as scarce working memory, dynamically supplying state and evicting noise across turns."
+      },
+      "points": [
+        {
+          "cn": "提示词工程雕琢单次措辞，上下文工程动态编排多源全流程信息",
+          "en": "dynamically orchestrates everything inside the model's window"
+        },
+        {
+          "cn": "系统规则、画像、检索、工具返回与历史共抢有限注意力预算",
+          "en": "finite token and attention budget"
+        },
+        {
+          "cn": "真实翻车多因缺关键状态，或日志淹没触发迷失在中间",
+          "en": "trigger the lost-in-the-middle effect"
+        },
+        {
+          "cn": "把上下文当稀缺工作内存，按需供给、合理排布并及时淘汰旧轮次",
+          "en": "scarce working memory"
+        }
+      ],
+      "concept": {
+        "cn": "提示词工程聚焦于单次对话里「这句话怎么写更好听」，而上下文工程（Context Engineering）关注的是在多轮任务全生命周期中，「每一刻该往有限窗口里装什么、放哪里、删什么」。在真实智能体或复杂业务系统里，系统规则、用户画像、检索文档、工具返回与历史对话同时挤在一个窗口内争抢注意力。线上答错往往不是指令措辞不够优美，而是缺了关键业务状态，或被几十 KB 原始日志淹没——必须把窗口当稀缺工作内存做动态调度。",
+        "en": "Prompt engineering focuses on phrasing a single static instruction well, whereas context engineering governs what enters, stays in, or leaves the model's window across an entire multi-turn workflow. In real products, system rules, user profiles, retrieved passages, tool outputs, and chat history all compete for a finite attention budget. Production failures rarely come from clumsy wording; they happen when vital business state is missing or raw logs flood the window, requiring active working-memory management."
+      },
+      "a_pairs": [
+        {
+          "en": "While prompt engineering polishes the wording of a single static instruction, context engineering dynamically orchestrates everything inside the model's window across a multi-turn task.",
+          "cn": "提示词工程打磨的是单次静态指令的措辞，而上下文工程是在多轮任务全生命周期里，动态编排模型窗口内的全部信息。"
+        },
+        {
+          "en": "That includes system rules, user profiles, retrieved snippets, tool outputs, and conversation history, all competing for a finite token and attention budget.",
+          "cn": "这涵盖了系统规则、用户画像、检索片段、工具返回和对话历史，它们都在争抢有限的窗口容量与注意力预算。"
+        },
+        {
+          "en": "In real products, complex workflows rarely fail because a sentence isn't phrased nicely enough.",
+          "cn": "在真实产品里，复杂流程翻车往往不是因为某句话写得不够优美。"
+        },
+        {
+          "en": "They fail either because the model lacks a crucial piece of business state, or because raw fifty-kilobyte tool logs flood the window and trigger the lost-in-the-middle effect.",
+          "cn": "它们翻车，要么是因为漏掉了关键业务状态，要么是被几十 KB 的原始工具日志淹没了窗口，触发了「迷失在中间」效应。"
+        },
+        {
+          "en": "You can't fix missing state or noisy payloads by tweaking adjectives in a system prompt.",
+          "cn": "缺状态或塞满噪声数据，靠在系统提示词里改几个形容词是救不回来的。"
+        },
+        {
+          "en": "Instead, we're forced to treat the context window like scarce working memory—deciding what to fetch just in time, where to place it, and when to evict stale turns.",
+          "cn": "相反，我们必须把上下文窗口当成稀缺的工作内存来管——决定什么时候按需取数、摆在哪个位置、何时淘汰过期轮次。"
+        },
+        {
+          "en": "So I'd sum it up this way: prompt engineering writes good instructions, while context engineering puts the right information in front of the model at the right moment.",
+          "cn": "所以我会这样总结：提示词工程负责把指令写清楚，而上下文工程负责在对的时刻把对的信息摆到模型面前。"
+        }
+      ],
+      "a_en": "While prompt engineering polishes the wording of a single static instruction, context engineering dynamically orchestrates everything inside the model's window across a multi-turn task. That includes system rules, user profiles, retrieved snippets, tool outputs, and conversation history, all competing for a finite token and attention budget. In real products, complex workflows rarely fail because a sentence isn't phrased nicely enough. They fail either because the model lacks a crucial piece of business state, or because raw fifty-kilobyte tool logs flood the window and trigger the lost-in-the-middle effect. You can't fix missing state or noisy payloads by tweaking adjectives in a system prompt. Instead, we're forced to treat the context window like scarce working memory—deciding what to fetch just in time, where to place it, and when to evict stale turns. So I'd sum it up this way: prompt engineering writes good instructions, while context engineering puts the right information in front of the model at the right moment.",
+      "a_cn": "提示词工程打磨的是单次静态指令的措辞，而上下文工程是在多轮任务全生命周期里，动态编排模型窗口内的全部信息。这涵盖了系统规则、用户画像、检索片段、工具返回和对话历史，它们都在争抢有限的窗口容量与注意力预算。在真实产品里，复杂流程翻车往往不是因为某句话写得不够优美。它们翻车，要么是因为漏掉了关键业务状态，要么是被几十 KB 的原始工具日志淹没了窗口，触发了「迷失在中间」效应。缺状态或塞满噪声数据，靠在系统提示词里改几个形容词是救不回来的。相反，我们必须把上下文窗口当成稀缺的工作内存来管——决定什么时候按需取数、摆在哪个位置、何时淘汰过期轮次。所以我会这样总结：提示词工程负责把指令写清楚，而上下文工程负责在对的时刻把对的信息摆到模型面前。",
+      "key_phrases": [
+        {
+          "en": "dynamically orchestrates",
+          "cn": "动态编排、统筹调度",
+          "type": "搭配",
+          "usage": "orchestrate 比 manage 更强调多路数据源协同配合，产品架构高频词"
+        },
+        {
+          "en": "attention budget",
+          "cn": "注意力预算",
+          "type": "词汇",
+          "usage": "提醒窗口虽大但有效注意力有限，解释为何不能把资料全量塞进去"
+        },
+        {
+          "en": "tweaking adjectives",
+          "cn": "抠字眼改形容词",
+          "type": "搭配",
+          "usage": "tweak 指小修小补，形象批评只顾打磨提示词表面措辞的低效做法"
+        },
+        {
+          "en": "scarce working memory",
+          "cn": "稀缺的工作内存",
+          "type": "搭配",
+          "usage": "把上下文窗口类比为计算机内存，自然引出按需加载与淘汰策略"
+        },
+        {
+          "en": "evict stale turns",
+          "cn": "淘汰过期的对话轮次",
+          "type": "搭配",
+          "usage": "evict 原指缓存驱逐，迁移用于清理失效历史消息，比 delete 更强调腾出容量"
+        }
+      ],
+      "basics": [
+        {
+          "term": "工作内存",
+          "term_en": "working memory",
+          "explain": "借用计算机与认知科学概念，指模型当前推理这一刻真正能一眼看到并拿来加工的临时信息台面，容量贵且塞太多会分心。",
+          "analogy": "厨师面前的备菜案板，只摆当前这道菜要下锅的净菜，不堆整筐原菜。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "现在模型支持百万级超长窗口了，把所有文档和工具日志全塞进去就行，不需要上下文工程。",
+          "why": "能塞进去不等于能用好：海量无关日志不仅让每轮账单和延迟飙升，还会严重稀释注意力，导致模型对中间关键约束视而不见。",
+          "right": "无论窗口多大都坚持最小够用原则，按当前步骤精准供给高信噪比状态，把原始重数据留在窗口外。"
+        }
+      ],
+      "approach": "采分点是从「改静态措辞」升级到「管动态信息供给」。推荐结构：对比提示词与上下文工程 → 窗口内竞争要素 → 缺状态与日志淹没两类故障 → 稀缺工作内存观。用「提示词把话写清，上下文在对的时刻送对信息」收尾最有力。会失分的是等同于把提示词写长。",
+      "tips": "必备术语 context engineering、attention budget、working memory。可延伸：长程多轮状态管理。",
+      "source_repos": [],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "PRM-F006",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "分步提示链",
+        "任务拆解",
+        "推理引导"
+      ],
+      "concepts": [
+        "prm.prompt_structure",
+        "prm.context_engineering"
+      ],
+      "prereq": [
+        "LLM-F002",
+        "LLM-F006",
+        "PRM-F001"
+      ],
+      "q_cn": "为什么单条超长提示词容易顾此失彼？分步提示链如何解决它？",
+      "q_en": "Why does a single mega-prompt often fail, and how does prompt chaining solve the problem?",
+      "gist": {
+        "cn": "万能长提示易致注意力稀释与规则打架；跨阶段任务拆成提示链可分治提稳并降本。",
+        "en": "Mega-prompts dilute attention and cause rule conflicts, whereas prompt chaining isolates stages for better reliability and cost."
+      },
+      "points": [
+        {
+          "cn": "超长万能提示词导致注意力稀释、规则打架与改东坏西",
+          "en": "dilutes attention and makes rules clash"
+        },
+        {
+          "cn": "单步复杂逻辑对常规模型加推理引导，原生推理模型无需繁琐模板",
+          "en": "native reasoning models don't need verbose chain-of-thought templates"
+        },
+        {
+          "cn": "跨阶段异构任务拆成提示链：先分类抽取、再按需生成、最后校验",
+          "en": "split it into a prompt chain"
+        },
+        {
+          "cn": "支持轻量步骤换便宜小模型并逐段排障，代价是增加串行延迟",
+          "en": "extra serial network latency"
+        }
+      ],
+      "concept": {
+        "cn": "许多团队习惯把意图识别、多分支业务规则、合规审查和排版要求全塞进一条几千字的「万能提示词（Mega-Prompt）」。随着补丁越打越多，不同分支的指令互相冲突、模型注意力被严重稀释，往往修好一个边缘案例又弄坏三个正常场景。解法分两层：单步内的复杂判断可引导常规模型先分步推导；而跨阶段的异构流程则应拆成「分步提示链（Prompt Chaining）」，让每一步只做一件事，用轻微串行延迟换取高可控性与低成本。",
+        "en": "Teams often cram intent routing, branching business rules, compliance checks, and formatting into a single multi-thousand-word mega-prompt. As patches pile up, instructions clash and attention thins out, so fixing one edge case breaks three normal flows. The remedy works on two levels: guide step-by-step reasoning within a complex single call for standard chat models, and split multi-stage workflows into a prompt chain where each step has one clear job, trading slight serial latency for debuggability and lower model costs."
+      },
+      "a_pairs": [
+        {
+          "en": "Cramming intent routing, business analysis, compliance checks, and formatting into one multi-thousand-word mega-prompt dilutes attention and makes rules clash.",
+          "cn": "把意图分流、业务分析、合规校验和排版全塞进一条几千字的「万能提示词」，会严重稀释注意力并让规则互相打架。"
+        },
+        {
+          "en": "You end up playing whack-a-mole, where patching one edge case quietly breaks three normal scenarios.",
+          "cn": "结果就是陷入「打地鼠」困局：刚打补丁修好一个边缘案例，却悄悄弄坏了三个正常场景。"
+        },
+        {
+          "en": "I'd tackle this in two progressive layers depending on whether the complexity sits inside one step or spans distinct stages.",
+          "cn": "我会看复杂度集中在单步内部还是横跨不同阶段，分两层递进解决。"
+        },
+        {
+          "en": "If a single step requires multi-hop logic on a standard chat model, add brief step-by-step reasoning guidance—though native reasoning models don't need verbose chain-of-thought templates anymore.",
+          "cn": "如果只是常规对话模型在单步内做多跳判断，可以加简短的分步推理引导；但原生推理模型已经不需要繁琐的思维链模板了。"
+        },
+        {
+          "en": "When a workflow spans heterogeneous tasks, split it into a prompt chain: first classify intent, next load only the relevant rules to generate a draft, and finally run a validation pass.",
+          "cn": "一旦流程横跨不同性质的任务，就拆成分步提示链：先分类识别意图，再按需加载对应分支规则生成初稿，最后单独跑一轮校验。"
+        },
+        {
+          "en": "Chaining lets you route simple steps to smaller, cheaper models and pinpoint exactly which stage broke, though the trade-off is extra serial network latency.",
+          "cn": "提示链能让你把简单步骤分流给轻量便宜的小模型，并精准定位哪一环出错，代价则是增加了串行调用的网络延迟。"
+        },
+        {
+          "en": "That's why my rule of thumb is: if fixing rule A keeps breaking rule B, stop lengthening the prompt and split the pipeline.",
+          "cn": "所以我的经验法则是：只要改好规则 A 总会弄坏规则 B，就别再往提示词里续写补丁，果断把链路拆开。"
+        }
+      ],
+      "a_en": "Cramming intent routing, business analysis, compliance checks, and formatting into one multi-thousand-word mega-prompt dilutes attention and makes rules clash. You end up playing whack-a-mole, where patching one edge case quietly breaks three normal scenarios. I'd tackle this in two progressive layers depending on whether the complexity sits inside one step or spans distinct stages. If a single step requires multi-hop logic on a standard chat model, add brief step-by-step reasoning guidance—though native reasoning models don't need verbose chain-of-thought templates anymore. When a workflow spans heterogeneous tasks, split it into a prompt chain: first classify intent, next load only the relevant rules to generate a draft, and finally run a validation pass. Chaining lets you route simple steps to smaller, cheaper models and pinpoint exactly which stage broke, though the trade-off is extra serial network latency. That's why my rule of thumb is: if fixing rule A keeps breaking rule B, stop lengthening the prompt and split the pipeline.",
+      "a_cn": "把意图分流、业务分析、合规校验和排版全塞进一条几千字的「万能提示词」，会严重稀释注意力并让规则互相打架。结果就是陷入「打地鼠」困局：刚打补丁修好一个边缘案例，却悄悄弄坏了三个正常场景。我会看复杂度集中在单步内部还是横跨不同阶段，分两层递进解决。如果只是常规对话模型在单步内做多跳判断，可以加简短的分步推理引导；但原生推理模型已经不需要繁琐的思维链模板了。一旦流程横跨不同性质的任务，就拆成分步提示链：先分类识别意图，再按需加载对应分支规则生成初稿，最后单独跑一轮校验。提示链能让你把简单步骤分流给轻量便宜的小模型，并精准定位哪一环出错，代价则是增加了串行调用的网络延迟。所以我的经验法则是：只要改好规则 A 总会弄坏规则 B，就别再往提示词里续写补丁，果断把链路拆开。",
+      "key_phrases": [
+        {
+          "en": "playing whack-a-mole",
+          "cn": "陷入打地鼠式的救火",
+          "type": "搭配",
+          "usage": "形容修好一处又冒出新问题，常用于描述修补巨型提示词时的连锁故障"
+        },
+        {
+          "en": "multi-hop logic",
+          "cn": "多跳逻辑推导",
+          "type": "词汇",
+          "usage": "指需要串联两三个中间推论才能得出答案的推理过程"
+        },
+        {
+          "en": "heterogeneous tasks",
+          "cn": "异构任务、不同性质的任务",
+          "type": "搭配",
+          "usage": "指分类、创作、合规审核等目标截然不同的环节，适合解释为何要拆分"
+        },
+        {
+          "en": "prompt chain",
+          "cn": "分步提示链",
+          "type": "词汇",
+          "usage": "将大任务拆成串联的多步调用，前一步输出作为后一步干净的输入"
+        },
+        {
+          "en": "serial network latency",
+          "cn": "串行网络延迟",
+          "type": "词汇",
+          "usage": "多步依序调用叠加的等待时间，回答提示链缺点时必提的关键代价"
+        }
+      ],
+      "basics": [
+        {
+          "term": "思维链提示",
+          "term_en": "CoT (chain-of-thought prompting)",
+          "explain": "要求常规对话模型在给出最终结论前先把中间推理步骤写出来，借助逐词生成为复杂判断铺垫计算过程；原生推理模型已在内部自带该步骤。",
+          "analogy": "数学应用题先在草稿纸列分步算式，比直接心算报答案更不容易错。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "不管什么任务都拆成七八步提示链，并且每一步都加上长篇思维链模板。",
+          "why": "过度拆分会让串行等待时间翻倍、中间误差层层放大，而且给原生推理模型硬套死板推理模板反而画蛇添足浪费输出费用。",
+          "right": "只在职责冲突或需按分支按需加载规则时拆链，并根据每步难度分别匹配快模型或推理模型。"
+        }
+      ],
+      "approach": "采分点是剖析巨型提示词「规则打架」病根，给出「单步推理引导 + 跨步提示链」两层解法与延迟代价。推荐结构：万能提示痛点 → 单步引导与推理模型差异 → 三步提示链 → 降本排障与串行延迟取舍。用「改 A 坏 B 就拆链路」收尾。会失分的是只答一步步思考。",
+      "tips": "必备术语 mega-prompt、whack-a-mole、prompt chain。可延伸：大小模型路由与智能体工作流编排。",
+      "source_repos": [],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "PRM-X001",
+      "level": "X",
+      "kind": "idea",
+      "difficulty": "较难",
+      "tags": [
+        "上下文压缩",
+        "缓存悖论",
+        "工程权衡"
+      ],
+      "concepts": [
+        "prm.context_engineering",
+        "prm.prompt_caching"
+      ],
+      "prereq": [
+        "LLM-F006",
+        "PRM-F004",
+        "PRM-F005"
+      ],
+      "q_cn": "为什么暴力压缩上下文反而可能更贵且丢精度？该如何做工程权衡？",
+      "q_en": "Why can aggressive context compression actually cost more and hurt accuracy, and how should you balance the trade-offs?",
+      "gist": {
+        "cn": "重总结会击穿缓存反更贵，有损摘要与强压字数伤精度；应锁死前缀做可逆瘦身。",
+        "en": "Naive compression busts prefix caches and drops critical details, so freeze prefixes and reversibly trim noisy payloads."
+      },
+      "points": [
+        {
+          "cn": "每轮重总结改写历史会击穿前缀缓存，省了字数却赔了折扣反更贵",
+          "en": "destroy your prefix cache"
+        },
+        {
+          "cn": "不可逆有损摘要会抹平后续排障必需的精确报错码、行号或 ID",
+          "en": "lossy summaries are irreversible"
+        },
+        {
+          "cn": "输出单价虽高，但粗暴强压回答字数会拉低代码与推理准确率",
+          "en": "harsh word-limit rules"
+        },
+        {
+          "cn": "保持缓存前缀只追加不篡改，仅对高噪实时数据做可逆瘦身",
+          "en": "reversible slimming only to noisy live payloads"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在「上下文窗口」「提示缓存」与「上下文工程」三个基础概念之上。面对多轮工具调用高企的账单，团队常拍脑袋上马暴力压缩：每轮让模型把历史对话重写成简短摘要，再在提示词里严令「回答不准超过五十词」。殊不知这会踩中三大反直觉工程陷阱——改写前文会直接击穿前缀缓存导致账单倒挂，笼统摘要会永久抹掉关键排障细节，而粗暴限字则会压缩模型的推理空间。真正成熟的压缩必须兼顾缓存命中率与信息可逆性。",
+        "en": "This question builds on three foundations: context windows, prompt caching, and context engineering. Facing steep multi-turn bills, teams often reach for naive compression—rewriting chat history into summaries every turn and enforcing strict word caps on replies. Yet this triggers three counterintuitive traps: rewriting history busts prefix caches and inflates actual spend, lossy summaries permanently erase exact debugging details, and harsh brevity rules cramp reasoning accuracy. Sound optimization must balance cache economics with reversibility."
+      },
+      "a_pairs": [
+        {
+          "en": "Aggressive context compression often backfires because cutting raw token count doesn't automatically lower your bill or preserve task quality.",
+          "cn": "暴力压缩上下文之所以经常适得其反，是因为单纯削减表面 Token 数量，并不等于能省钱或保住任务质量。"
+        },
+        {
+          "en": "First, there's the cache-busting paradox: if you summarize and rewrite conversation history every turn, you mutate the opening tokens and destroy your prefix cache.",
+          "cn": "第一是破坏前缀缓存悖论：如果你每轮都重新总结并改写历史对话，就会篡改开头的 Token 序列，直接击穿前缀缓存。"
+        },
+        {
+          "en": "Losing that steep cache discount means shrinking tokens by 30% can actually leave you paying more and waiting longer.",
+          "cn": "一旦丢掉高额的缓存折扣，表面上少发了 30% 的 Token，实际账单反而更贵、响应等待也更久。"
+        },
+        {
+          "en": "Second, lossy summaries are irreversible—they flatten out exact error codes, line numbers, or record IDs that the model won't realize it needs until five turns later.",
+          "cn": "第二是不可逆有损摘要灾难：笼统摘要会抹平精确的报错码、行号或记录 ID，而模型往往五轮之后才发现必须用到这些细节。"
+        },
+        {
+          "en": "Third, while output tokens cost multiples of input tokens, slapping harsh word-limit rules onto complex coding or reasoning prompts has been shown to degrade accuracy.",
+          "cn": "第三，虽然输出单价远高于输入，但如果在复杂代码或推理提示词里粗暴强压字数，实证表明反而会拉低任务准确率。"
+        },
+        {
+          "en": "To balance this, I'd keep the cached prefix strictly append-only and never rewrite already-cached turns.",
+          "cn": "做工程权衡时，我会让已缓存的前缀严格保持只追加模式，绝不回头改写已经进了缓存的历史轮次。"
+        },
+        {
+          "en": "My rule of thumb is: freeze your static prefix for cache hits, and apply reversible slimming only to noisy live payloads.",
+          "cn": "我的经验法则是：锁死静态前缀吃满缓存，只对高噪实时负载做可逆瘦身。"
+        }
+      ],
+      "a_en": "Aggressive context compression often backfires because cutting raw token count doesn't automatically lower your bill or preserve task quality. First, there's the cache-busting paradox: if you summarize and rewrite conversation history every turn, you mutate the opening tokens and destroy your prefix cache. Losing that steep cache discount means shrinking tokens by 30% can actually leave you paying more and waiting longer. Second, lossy summaries are irreversible—they flatten out exact error codes, line numbers, or record IDs that the model won't realize it needs until five turns later. Third, while output tokens cost multiples of input tokens, slapping harsh word-limit rules onto complex coding or reasoning prompts has been shown to degrade accuracy. To balance this, I'd keep the cached prefix strictly append-only and never rewrite already-cached turns. My rule of thumb is: freeze your static prefix for cache hits, and apply reversible slimming only to noisy live payloads.",
+      "a_cn": "暴力压缩上下文之所以经常适得其反，是因为单纯削减表面 Token 数量，并不等于能省钱或保住任务质量。第一是破坏前缀缓存悖论：如果你每轮都重新总结并改写历史对话，就会篡改开头的 Token 序列，直接击穿前缀缓存。一旦丢掉高额的缓存折扣，表面上少发了 30% 的 Token，实际账单反而更贵、响应等待也更久。第二是不可逆有损摘要灾难：笼统摘要会抹平精确的报错码、行号或记录 ID，而模型往往五轮之后才发现必须用到这些细节。第三，虽然输出单价远高于输入，但如果在复杂代码或推理提示词里粗暴强压字数，实证表明反而会拉低任务准确率。做工程权衡时，我会让已缓存的前缀严格保持只追加模式，绝不回头改写已经进了缓存的历史轮次。我的经验法则是：锁死静态前缀吃满缓存，只对高噪实时负载做可逆瘦身。",
+      "key_phrases": [
+        {
+          "en": "often backfires",
+          "cn": "往往适得其反",
+          "type": "搭配",
+          "usage": "指方案产生反效果、适得其反，剖析反直觉陷阱时常用"
+        },
+        {
+          "en": "cache-busting paradox",
+          "cn": "击穿缓存悖论",
+          "type": "词汇",
+          "usage": "bust the cache 指破坏缓存命中，paradox 点出省字数反更贵的矛盾"
+        },
+        {
+          "en": "lossy summaries",
+          "cn": "有损摘要",
+          "type": "搭配",
+          "usage": "借用图像音频压缩术语 lossy vs. lossless，精准区分可逆与不可逆裁剪"
+        },
+        {
+          "en": "flatten out",
+          "cn": "抹平、把细节磨掉",
+          "type": "搭配",
+          "usage": "形象说明概括性摘要把报错号和关键参数一并概括没了"
+        },
+        {
+          "en": "strictly append-only",
+          "cn": "严格只追加不修改",
+          "type": "搭配",
+          "usage": "数据库与日志核心术语，迁移到多轮上下文设计中表达不改写历史"
+        }
+      ],
+      "basics": [
+        {
+          "term": "有损压缩与可逆压缩",
+          "term_en": "lossy vs. reversible compression",
+          "explain": "有损压缩像把长会议缩成三句话纪要，原话细节永远找不回来；可逆压缩则是窗口里只放精简版，同时把原件存本地供模型随时反查。",
+          "analogy": "把旧账本烧掉只留总数是有损，把旧账本归档入库留索引是可逆。"
+        },
+        {
+          "term": "只追加历史",
+          "term_en": "append-only history",
+          "explain": "多轮对话只往消息列表末尾新增最新一轮内容，绝不回头删改前面已经发过的消息，从而保证前文与上一轮缓存完全对齐。",
+          "analogy": "会计记账只往下一页接着记，绝不用涂改液涂改前面已核对的账页。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "每聊完一轮就调一次小模型把整段对话重新浓缩一遍，这样窗口永远最干净最省钱。",
+          "why": "每轮重浓缩不仅多花一次模型调用费，还把前文改得面目全非，导致主模型每轮都按全价重算，总账单往往比不压缩还高。",
+          "right": "平常轮次保持只追加吃满前缀缓存，只有接近窗口水位阈值时才做一次阶段性检查点归档。"
+        },
+        {
+          "wrong": "既然输出单价贵五倍，就在系统提示词里强令所有回答限三十字内。",
+          "why": "复杂排障和写代码需要必要的铺垫与完整片段，一刀切死卡字数会逼模型跳步省略关键逻辑，导致返工重试反而烧掉更多预算。",
+          "right": "只砍「好的我来看看」这类寒暄废话和原样复读，不要硬卡业务推理本身的篇幅。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：表面问上下文压缩的弊端，实际考「算总账不能只数词元，还要算缓存折扣、细节损耗与返工成本」。",
+        "算经济账：揭示每轮重写历史会击穿前缀缓存，解释为什么少发三成词反而付更多钱。",
+        "查精度账：从输入端（有损摘要抹掉报错码）和输出端（强压字数拉低代码推理准确率）双向排雷。",
+        "给折中解：确立「前文只追加保缓存、尾部高噪负载做可逆瘦身」的落地准则。"
+      ],
+      "method": {
+        "name": "全链路算账权衡",
+        "steps": [
+          "核算缓存后真实单价",
+          "排查不可逆精度损耗",
+          "分层锁定与可逆裁剪"
+        ],
+        "transfer": "适用于所有降本增效选型，如长窗口与检索取舍、大小模型分级路由、模型量化压缩上线评估。"
+      },
+      "approach": "采分点是点破「省字数不等于省钱保质」三大陷阱。推荐结构：直接亮结论 → 击穿前缀缓存的价格倒挂账 → 有损摘要丢精确字段 → 强压字数伤代码推理精度 → 只追加前缀加可逆瘦身。用「锁死静态前缀，可逆裁剪实时噪声」收尾。会失分的是只泛谈摘要不准。",
+      "tips": "必备术语 cache-busting、lossy summaries、append-only、reversible。可延伸：代理层双向省流与长程会话断点续接。",
+      "source_repos": [
+        "headroomlabs-ai/headroom",
+        "mksglu/context-mode"
+      ],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "PRM-X002",
+      "level": "X",
+      "kind": "method",
+      "difficulty": "较难",
+      "tags": [
+        "沙盒隔离",
+        "分层记忆",
+        "断点续接"
+      ],
+      "concepts": [
+        "prm.context_engineering"
+      ],
+      "prereq": [
+        "LLM-F006",
+        "PRM-F005"
+      ],
+      "q_cn": "如何为长程多轮任务设计上下文隔离与修剪策略，防止中途失忆？",
+      "q_en": "How do you design context isolation and pruning for long-horizon multi-turn tasks without causing mid-task amnesia?",
+      "gist": {
+        "cn": "大体积原始数据留外部沙盒按需检索，置顶锚定目标状态，压缩前持久化关键进展。",
+        "en": "Sandbox raw data outside the window, pin active task state, and persist structured checkpoints before pruning."
+      },
+      "points": [
+        {
+          "cn": "源头沙盒隔离：原始长日志与网页留外部沙盒或本地全文检索库",
+          "en": "isolate heavy payloads at the source"
+        },
+        {
+          "cn": "用脚本提炼结果或按需检索命中片段，不把原始大文件倒进窗口",
+          "en": "pulls back only matching snippets on demand"
+        },
+        {
+          "cn": "分层记忆锚定：置顶系统规则与任务清单，保留最近几轮原文",
+          "en": "tiered memory pinning"
+        },
+        {
+          "cn": "结构化断点续接：裁剪前把关键决策、已改文件与待办持久化",
+          "en": "structured external store"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在「上下文窗口」与「上下文工程」两个基础概念之上。在编码或运维排障等持续数十分钟的多轮任务里，网页抓取快照、接口响应和长日志动辄几十 KB，很快就会把窗口塞满；可一旦粗暴截断早期对话，模型又会瞬间失忆，忘掉正在改哪个文件、修过什么报错以及用户的最新约束。治本之策是把「原始重数据」拦在窗口外的沙盒与本地检索库里，同时把「高频任务状态」结构化落盘，实现修剪不丢魂。",
+        "en": "This question builds on two foundations: context windows and context engineering. During multi-turn coding or debugging sessions lasting half an hour or more, raw web snapshots, API payloads, and logs spanning tens of kilobytes quickly fill the window; yet blindly truncating old messages causes instant amnesia over edited files, resolved errors, and user constraints. The systematic cure keeps bulky raw data outside the window in sandboxes and local search indexes while persisting structured task state across compactions."
+      },
+      "a_pairs": [
+        {
+          "en": "In long multi-turn sessions, raw web snapshots and logs quickly bloat the window, yet blindly dropping old turns causes amnesia about active goals and edited files.",
+          "cn": "在长程多轮任务里，原始网页快照和日志很快就会撑爆窗口，可一旦盲目砍掉旧轮次，模型又会忘记当前目标和刚改过的文件。"
+        },
+        {
+          "en": "I'd prevent that with a three-layer isolation and pruning strategy.",
+          "cn": "我会用一套三层隔离与修剪策略来防住这种中途失忆。"
+        },
+        {
+          "en": "First, isolate heavy payloads at the source: keep bulky logs, pages, and multi-file scans inside an external code sandbox or a local BM25 full-text index so raw dumps don't enter the window.",
+          "cn": "第一是源头沙盒隔离：把大体积日志、网页和多文件扫描留在外部代码沙盒或本地 BM25 全文检索库里处理，不让原始数据直接进窗口。"
+        },
+        {
+          "en": "The model either runs a short script and reads compact output, or pulls back only matching snippets on demand.",
+          "cn": "模型要么跑一段小脚本只读精简的执行结果，要么按查询词按需取回命中的关键片段。"
+        },
+        {
+          "en": "Second, use tiered memory pinning: keep system rules and the live task checklist anchored, while preserving the last few turns verbatim for local coherence.",
+          "cn": "第二是分层记忆锚定：置顶保护系统规则与当前任务状态清单，同时原样保留最近几轮对话以维持局部连贯。"
+        },
+        {
+          "en": "Third, before pruning older turns, persist key user decisions, modified files, and open tasks into a structured external store so they aren't lost.",
+          "cn": "第三是结构化断点续接：在裁剪旧轮次前，先把关键用户决策、已改文件和待办事项持久化到外部存储，确保状态不丢失。"
+        },
+        {
+          "en": "That's the core principle: keep raw data in the sandbox, and keep only working state and distilled signals in the window.",
+          "cn": "核心准则就是这一句：把原始重数据留在沙盒里，只让工作状态和提炼后的有效信号进窗口。"
+        }
+      ],
+      "a_en": "In long multi-turn sessions, raw web snapshots and logs quickly bloat the window, yet blindly dropping old turns causes amnesia about active goals and edited files. I'd prevent that with a three-layer isolation and pruning strategy. First, isolate heavy payloads at the source: keep bulky logs, pages, and multi-file scans inside an external code sandbox or a local BM25 full-text index so raw dumps don't enter the window. The model either runs a short script and reads compact output, or pulls back only matching snippets on demand. Second, use tiered memory pinning: keep system rules and the live task checklist anchored, while preserving the last few turns verbatim for local coherence. Third, before pruning older turns, persist key user decisions, modified files, and open tasks into a structured external store so they aren't lost. That's the core principle: keep raw data in the sandbox, and keep only working state and distilled signals in the window.",
+      "a_cn": "在长程多轮任务里，原始网页快照和日志很快就会撑爆窗口，可一旦盲目砍掉旧轮次，模型又会忘记当前目标和刚改过的文件。我会用一套三层隔离与修剪策略来防住这种中途失忆。第一是源头沙盒隔离：把大体积日志、网页和多文件扫描留在外部代码沙盒或本地 BM25 全文检索库里处理，不让原始数据直接进窗口。模型要么跑一段小脚本只读精简的执行结果，要么按查询词按需取回命中的关键片段。第二是分层记忆锚定：置顶保护系统规则与当前任务状态清单，同时原样保留最近几轮对话以维持局部连贯。第三是结构化断点续接：在裁剪旧轮次前，先把关键用户决策、已改文件和待办事项持久化到外部存储，确保状态不丢失。核心准则就是这一句：把原始重数据留在沙盒里，只让工作状态和提炼后的有效信号进窗口。",
+      "key_phrases": [
+        {
+          "en": "bloat the window",
+          "cn": "撑爆上下文窗口",
+          "type": "搭配",
+          "usage": "bloat 比 fill up 更强调塞入了臃肿低效的冗余数据"
+        },
+        {
+          "en": "isolate heavy payloads",
+          "cn": "隔离大体积负载数据",
+          "type": "搭配",
+          "usage": "payload 指工具返回或接口传输的实际数据包，技术沟通高频词"
+        },
+        {
+          "en": "matching snippets on demand",
+          "cn": "按需获取匹配片段",
+          "type": "搭配",
+          "usage": "on demand 强调需要时才拉取，与全量预塞入形成鲜明对比"
+        },
+        {
+          "en": "tiered memory pinning",
+          "cn": "分层记忆置顶锚定",
+          "type": "词汇",
+          "usage": "tiered 表示分冷热层级，pinning 表示置顶固定不被滑动窗口挤掉"
+        },
+        {
+          "en": "distilled signals",
+          "cn": "提炼后的有效信号",
+          "type": "搭配",
+          "usage": "与 raw dumps 相对，指去除了冗余噪声后的高价值结论或关键行"
+        }
+      ],
+      "basics": [
+        {
+          "term": "沙盒隔离执行",
+          "term_en": "sandboxed execution",
+          "explain": "启动一个独立受控的子进程来跑脚本、读大文件或筛日志，原始几十 KB 的内容关在沙盒里，只把最后打印出来的几行统计结果送进模型窗口。",
+          "analogy": "派助理去档案室查五十卷宗，只带回一页核查结论汇报给你。"
+        },
+        {
+          "term": "BM25 全文检索",
+          "term_en": "BM25 full-text search",
+          "explain": "一种经典的关键词相关性排序算法，按词频与稀有度给文档切片打分；本地建库极快，特别适合精确查找函数名、报错码和配置项。",
+          "analogy": "厚专业书末尾的术语索引表，按精确词条一秒翻到对应页码。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "要统计五十个代码文件的行数，就让模型调五十次读文件工具把源码全读进窗口自己数。",
+          "why": "几十次工具返回瞬间吃掉几百 KB 窗口，而且大模型本来就不擅长肉眼数数，既烧钱又容易漏数并挤掉前面的任务目标。",
+          "right": "把模型当代码生成器而非人肉计算器，让它在沙盒里写几行统计脚本跑出精确结果，窗口里只进最终汇总。"
+        },
+        {
+          "wrong": "窗口快满时直接按先进先出删掉最早的百分之五十消息，简单省事。",
+          "why": "用户最初交代的核心边界、已排查排除的死胡同和修改过的文件列表往往都在早期轮次，一刀切删除会让智能体原地打转重犯旧错。",
+          "right": "裁剪前先把文件改动、错误结论与待办状态写入本地结构化库，压缩后按需检索恢复现场。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：抓住「工具重数据撑爆窗口」与「砍旧历史导致失忆」的两难，明确事前防膨胀比事后硬删更关键。",
+        "治入口：引入外部沙盒脚本与本地全文索引，把几十 KB 网页日志拦在窗口外，只进精简结果。",
+        "分冷热：把窗口内信息拆成置顶不删层（规则与当前清单）、近期原文层与远期可裁剪层。",
+        "建续接：设计裁剪前的结构化落库钩子，存下已改文件与关键决策，重连或压缩后精准召回。"
+      ],
+      "method": {
+        "name": "源头隔离分层法",
+        "steps": [
+          "重数据留沙盒按需查",
+          "热状态置顶锚定",
+          "旧轮次落库断点续接"
+        ],
+        "transfer": "适用于编码智能体、自动化运维排障、长合同多轮审阅以及跨天续聊的企业级工作台。"
+      },
+      "approach": "采分点是给出「事前源头隔离 + 事中冷热分层 + 事后断点续接」闭环。推荐结构：撑爆与失忆两难 → 源头沙盒与本地检索隔离 → 窗口内分层锚定 → 压缩前结构化落盘续接。用「重数据留沙盒，工作状态与有效信号进窗口」收尾。会失分的是只答保留近五轮。",
+      "tips": "必备术语 sandbox、BM25、tiered memory pinning、distilled signals。可延伸：智能体长期记忆架构与工具返回设计。",
+      "source_repos": [
+        "mksglu/context-mode"
+      ],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "PRM-X003",
+      "level": "X",
+      "kind": "case",
+      "difficulty": "中等",
+      "tags": [
+        "透明代理",
+        "双向省流",
+        "可逆反查"
+      ],
+      "concepts": [
+        "prm.context_engineering",
+        "prm.prompt_caching"
+      ],
+      "prereq": [
+        "PRM-F004",
+        "PRM-F005",
+        "PRM-X001"
+      ],
+      "q_cn": "以 Headroom 为例：代理层如何在不改业务代码下做双向省流？",
+      "q_en": "Using Headroom as an example, how can a proxy layer cut both input and output tokens without changing application code?",
+      "gist": {
+        "cn": "本地代理按内容类型护缓存压缩并支持原件反查，同时在末尾控长并调低常规推理。",
+        "en": "Headroom's local proxy routes payloads to cache-safe reversible compressors while shaping output verbosity and reasoning effort."
+      },
+      "points": [
+        {
+          "cn": "零侵入本地代理拦截请求，业务侧无需改动一行应用代码",
+          "en": "zero application code changes"
+        },
+        {
+          "cn": "按内容类型分流压缩，并对齐保护缓存前缀",
+          "en": "ContentRouter detects each payload type"
+        },
+        {
+          "cn": "CCR 本地保留未压缩原件，模型缺细节时可调工具按需反查",
+          "en": "caches uncompressed originals locally via CCR"
+        },
+        {
+          "cn": "输出端在系统提示末尾控长保缓存，并在常规工具轮次调低推理强度",
+          "en": "dials reasoning effort down"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在「提示缓存」「上下文工程」以及「上下文压缩工程权衡」之上。许多团队想给智能体降本，却不愿侵入改造各个应用代码，更担心压缩破坏缓存前缀或丢掉关键报错。开源项目 Headroom 展示了典型的网关层解法：在本地架设透明代理拦截流量，输入端按 JSON、代码与散文分流做亚毫秒级压缩、避开缓存前缀并保留本地原件供反查；输出端把精简指令追加在系统提示词末尾并按轮次动态调低推理强度，双向削减账单。",
+        "en": "This question builds on prompt caching, context engineering, and context-compression trade-offs. Teams often want lower agent token bills without rewriting app code, busting prefix caches, or losing critical error lines. The open-source project Headroom illustrates a clean gateway pattern: a local transparent proxy intercepts traffic, routes JSON, code, and prose to sub-millisecond cache-safe compressors with local original retrieval on the input side, and trims verbosity and routine reasoning effort on the output side."
+      },
+      "a_pairs": [
+        {
+          "en": "Headroom sits as a local proxy between your agent and the model API, so it optimizes both input and output tokens with zero application code changes.",
+          "cn": "Headroom 作为一层本地代理架在智能体与模型接口之间，不需要改动一行应用代码，就能同时优化输入和输出两端的 Token 消耗。"
+        },
+        {
+          "en": "On the input side, its ContentRouter detects each payload type—crushing repetitive JSON and logs in under a millisecond for the biggest savings, while routing code and prose to specialized compressors.",
+          "cn": "在输入端，它的 ContentRouter 会识别负载类型——对高度重复的 JSON 与日志做亚毫秒级压缩以拿到最大省流幅度，并把代码和散文分流给专属压缩器。"
+        },
+        {
+          "en": "Crucially, its CacheAligner flags volatile content without rewriting prompts, so you don't bust your provider's KV-cache prefix.",
+          "cn": "关键在于，它的 CacheAligner 只标记易变内容而不改写提示词前文，因此不会击穿服务商的 KV 缓存前缀。"
+        },
+        {
+          "en": "To avoid lossy blind spots, it caches uncompressed originals locally via CCR, giving the model a retrieval tool whenever it needs the full text.",
+          "cn": "为了避免有损压缩漏掉细节，它通过 CCR 在本地暂存未压缩原件，一旦模型需要核对全文就能随时调用检索工具取回。"
+        },
+        {
+          "en": "On the output side, where tokens often cost multiples of input, it appends a brief terseness note to the very end of the system prompt so the cache still hits.",
+          "cn": "在单价往往贵上好几倍的输出端，它会把简短的精简回复提示追加在系统提示词最末尾，确保前缀缓存依然命中。"
+        },
+        {
+          "en": "It also dials reasoning effort down when a turn is just resuming after a routine file read or passing test, saving full effort for errors and new questions.",
+          "cn": "当某一轮只是读取文件或测试通过后的常规续接时，它还会自动调低推理强度，把满额推理留给新问题和报错排障。"
+        },
+        {
+          "en": "That's the takeaway: a smart gateway can trim both sides of the bill as long as it's cache-aware and reversible.",
+          "cn": "这就是核心启示：只要做到缓存对齐与可逆反查，智能网关就能在不伤质量的前提下双向砍掉账单。"
+        }
+      ],
+      "a_en": "Headroom sits as a local proxy between your agent and the model API, so it optimizes both input and output tokens with zero application code changes. On the input side, its ContentRouter detects each payload type—crushing repetitive JSON and logs in under a millisecond for the biggest savings, while routing code and prose to specialized compressors. Crucially, its CacheAligner flags volatile content without rewriting prompts, so you don't bust your provider's KV-cache prefix. To avoid lossy blind spots, it caches uncompressed originals locally via CCR, giving the model a retrieval tool whenever it needs the full text. On the output side, where tokens often cost multiples of input, it appends a brief terseness note to the very end of the system prompt so the cache still hits. It also dials reasoning effort down when a turn is just resuming after a routine file read or passing test, saving full effort for errors and new questions. That's the takeaway: a smart gateway can trim both sides of the bill as long as it's cache-aware and reversible.",
+      "a_cn": "Headroom 作为一层本地代理架在智能体与模型接口之间，不需要改动一行应用代码，就能同时优化输入和输出两端的 Token 消耗。在输入端，它的 ContentRouter 会识别负载类型——对高度重复的 JSON 与日志做亚毫秒级压缩以拿到最大省流幅度，并把代码和散文分流给专属压缩器。关键在于，它的 CacheAligner 只标记易变内容而不改写提示词前文，因此不会击穿服务商的 KV 缓存前缀。为了避免有损压缩漏掉细节，它通过 CCR 在本地暂存未压缩原件，一旦模型需要核对全文就能随时调用检索工具取回。在单价往往贵上好几倍的输出端，它会把简短的精简回复提示追加在系统提示词最末尾，确保前缀缓存依然命中。当某一轮只是读取文件或测试通过后的常规续接时，它还会自动调低推理强度，把满额推理留给新问题和报错排障。这就是核心启示：只要做到缓存对齐与可逆反查，智能网关就能在不伤质量的前提下双向砍掉账单。",
+      "key_phrases": [
+        {
+          "en": "zero application code changes",
+          "cn": "零应用代码改动",
+          "type": "搭配",
+          "usage": "阐述网关、代理或中间件方案最大落地优势时的标准表达"
+        },
+        {
+          "en": "in under a millisecond",
+          "cn": "在不到一毫秒内",
+          "type": "搭配",
+          "usage": "in under + 时间单位，强调中间件自身处理开销极低、不拖慢主链路"
+        },
+        {
+          "en": "lossy blind spots",
+          "cn": "有损压缩带来的盲区",
+          "type": "搭配",
+          "usage": "指压缩后关键细节被删掉而模型浑然不知的风险点"
+        },
+        {
+          "en": "cost multiples of",
+          "cn": "成本是……的好几倍",
+          "type": "搭配",
+          "usage": "A costs multiples of B 简洁对比输入与输出单价悬殊，无需死背具体倍数"
+        },
+        {
+          "en": "dials reasoning effort down",
+          "cn": "把推理强度调低",
+          "type": "句型",
+          "usage": "dial A up/down 像拧旋钮一样动态调节预算或强度，比 reduce 更形象"
+        }
+      ],
+      "basics": [
+        {
+          "term": "本地透明代理",
+          "term_en": "local transparent proxy",
+          "explain": "运行在本机客户端和大模型云端接口之间的转发站；客户端只改一下接口地址，代理就能在转发前后自动完成压缩与参数调优。",
+          "analogy": "装在水管总阀处的节水稳压器，不用拆改屋里每个水龙头。"
+        },
+        {
+          "term": "推理强度路由",
+          "term_en": "effort routing",
+          "explain": "根据当前对话轮次的难度动态调整推理模型的思考预算：遇到报错和新需求开足马力深思，常规读文件返回则调低思考开销。",
+          "analogy": "汽车自动启停与换挡，爬陡坡给大油门，平路巡航省油滑行。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "用同一套压缩算法去压所有输入，JSON 与散文省流比例都一样。",
+          "why": "不同结构冗余度差异巨大：重复结构的 JSON 数组和日志往往能压掉六到九成，而本就紧凑的散文可压空间很小，硬压只会丢语义。",
+          "right": "先识别内容类型再分流处理，重点挤压高重复的结构化工具输出与日志，对紧凑正文保持克制。"
+        },
+        {
+          "wrong": "想让模型少说废话，每轮动态改写系统提示词开头插入不同档位的字数指令。",
+          "why": "在系统提示词开头或中间动态改字会直接破坏缓存前缀，而且会话中途频繁切换精简档位同样会导致每轮缓存重算。",
+          "right": "把简短精简提示固定追加在系统提示词最末尾，并在单次会话内锁定档位不乱变。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：抓住案例题核心——不是背仓库命令，而是拆解「零侵入代理如何同时省输入和输出且不破缓存不丢精度」。",
+        "析输入端：串联按内容类型路由压缩、对齐保护前缀缓存、以及本地暂存原件供模型按需反查三块拼图。",
+        "析输出端：针对输出高单价，说明末尾追加精简提示保缓存，以及常规工具续接轮次下调推理强度。",
+        "提通用法：将具体项目升华为企业网关层统一治理账单的可复用架构范式。"
+      ],
+      "method": {
+        "name": "网关双向治理法",
+        "steps": [
+          "代理层零侵入拦截",
+          "输入分型压缩留原件",
+          "输出保缓存控冗余"
+        ],
+        "transfer": "适用于企业统一大模型网关设计、多智能体账单治理、敏感数据本地脱敏代理及线上流量审计。"
+      },
+      "approach": "采分点是讲清本地代理如何同时满足「不改代码、不破缓存、不丢细节、双向省流」。推荐结构：定位透明代理 → 输入分型压缩护缓存与本地反查 → 输出末尾控长与常规轮次降推理 → 网关启示。用「兼顾缓存对齐与可逆反查双向砍账单」收尾。会失分的是背安装命令。",
+      "tips": "必备术语 local proxy、KV-cache prefix、reasoning effort。可延伸：企业级网关设计与成本模型。",
+      "source_repos": [
+        "headroomlabs-ai/headroom"
+      ],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "PRM-X004",
+      "level": "X",
+      "kind": "method",
+      "difficulty": "中等",
+      "tags": [
+        "消除机器味",
+        "反模式清单",
+        "原声样本"
+      ],
+      "concepts": [
+        "prm.few_shot",
+        "prm.prompt_structure"
+      ],
+      "prereq": [
+        "LLM-F002",
+        "PRM-F001",
+        "PRM-F002"
+      ],
+      "q_cn": "如何通过提示词与示例工程消除 AI 生成文本的「机器味」？",
+      "q_en": "How can you use prompt and example engineering to strip the artificial 'AI tone' out of generated writing?",
+      "gist": {
+        "cn": "用禁用句式黑名单替代空泛叮嘱，配两三段原声样本对齐节奏，再走初稿挑刺重写流程。",
+        "en": "Ban specific formulaic tells, anchor rhythm with real voice samples, and run a critique-and-rewrite pass."
+      },
+      "points": [
+        {
+          "cn": "机器味源于逐词预测默认选适配面最广的统计平均安全词",
+          "en": "defaults to statistically safe choices"
+        },
+        {
+          "cn": "配置反模式黑名单，禁掉套路对比、空洞铺垫与浮夸宣传动词",
+          "en": "explicit anti-pattern blacklist"
+        },
+        {
+          "cn": "提供两三段目标作者真实段落做少样本锚点，对齐长短句节奏",
+          "en": "voice-matching few-shot anchors"
+        },
+        {
+          "cn": "执行初稿—挑刺—重写闭环，严格忠于源事实且缺细节主动追问",
+          "en": "draft-critique-rewrite loop"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在「自回归逐词生成」「系统提示词结构」与「少样本提示」三个基础概念之上。大模型每次预测下一个最高概率词时，默认会滑向适合所有读者与话题的「统计平均安全表达」，而真人写作永远只针对特定读者与具体事实。这种机制差异催生了鲜明的机器破绽：诸如「不仅是 X 更是 Y」的套路对比、故作深沉的铺垫、强凑三点排比与硬拔高度。去机器味必须靠具体反模式禁令、真实原声样本与审校重写闭环协同纠偏。",
+        "en": "This question builds on three foundations: autoregressive next-token generation, system prompt structure, and few-shot prompting. Because an LLM picks the most statistically likely next token, it defaults to generic phrasing that fits the widest audience, whereas a human writes for one reader and concrete facts. That statistical pull produces recognizable tells: 'not just X, it's Y' contrasts, staged run-ups, forced triads, and inflated importance. Stripping out AI tone requires explicit anti-pattern bans, real voice samples, and a critique-rewrite pass."
+      },
+      "a_pairs": [
+        {
+          "en": "AI writing sounds robotic because next-token prediction defaults to statistically safe choices that fit everyone, whereas a real person writes for one specific reader.",
+          "cn": "AI 文本之所以有「机器味」，是因为逐词概率预测默认挑适配所有人的统计安全词，而真人永远只针对特定读者下笔。"
+        },
+        {
+          "en": "That default produces classic tells like staged contrasts such as 'not just X, it's Y', throat-clearing run-ups, forced three-item lists, and inflated significance.",
+          "cn": "这种默认倾向会造出典型破绽，比如「not just X, it's Y」式的套路对比、清嗓子式的空洞铺垫、强凑三点排比以及强行拔高意义。"
+        },
+        {
+          "en": "Telling the model to 'sound natural' doesn't work, so I'd tackle it in three concrete steps.",
+          "cn": "光在提示词里空喊「写得自然点」根本没用，我会分三步实打实地治理。"
+        },
+        {
+          "en": "First, enforce an explicit anti-pattern blacklist that bans formulaic transitions, chatbot pleasantries, and puffery verbs, pushing the model toward plain 'is' and 'has' statements.",
+          "cn": "第一，配置明确的反模式黑名单，禁掉套路转折、聊天寒暄残留和浮夸宣传动词，逼模型回归朴素的「is」和「has」陈述。"
+        },
+        {
+          "en": "Second, attach two or three paragraphs of the target author's real writing as voice-matching few-shot anchors to lock in sentence rhythm and word choice.",
+          "cn": "第二，附上两三段目标作者的真实文字作为原声对齐的少样本锚点，直接锁死长短句节奏与用词习惯。"
+        },
+        {
+          "en": "Third, run a draft-critique-rewrite loop: ground the draft strictly in source facts—asking instead of inventing missing details—then flag remaining artificial tells and rewrite clean prose.",
+          "cn": "第三，跑一遍「初稿—挑刺—重写」闭环：先严格基于源事实成稿（缺细节就追问而非编造），再挑出残留破绽重写成干净文本。"
+        },
+        {
+          "en": "My rule of thumb is: you can't prompt your way to good style with vague adjectives—ban the tells, show a real voice, and edit twice.",
+          "cn": "我的经验法则是：靠含糊形容词催不出好文风——禁掉套路、给足真样本、再改第二遍。"
+        }
+      ],
+      "a_en": "AI writing sounds robotic because next-token prediction defaults to statistically safe choices that fit everyone, whereas a real person writes for one specific reader. That default produces classic tells like staged contrasts such as 'not just X, it's Y', throat-clearing run-ups, forced three-item lists, and inflated significance. Telling the model to 'sound natural' doesn't work, so I'd tackle it in three concrete steps. First, enforce an explicit anti-pattern blacklist that bans formulaic transitions, chatbot pleasantries, and puffery verbs, pushing the model toward plain 'is' and 'has' statements. Second, attach two or three paragraphs of the target author's real writing as voice-matching few-shot anchors to lock in sentence rhythm and word choice. Third, run a draft-critique-rewrite loop: ground the draft strictly in source facts—asking instead of inventing missing details—then flag remaining artificial tells and rewrite clean prose. My rule of thumb is: you can't prompt your way to good style with vague adjectives—ban the tells, show a real voice, and edit twice.",
+      "a_cn": "AI 文本之所以有「机器味」，是因为逐词概率预测默认挑适配所有人的统计安全词，而真人永远只针对特定读者下笔。这种默认倾向会造出典型破绽，比如「not just X, it's Y」式的套路对比、清嗓子式的空洞铺垫、强凑三点排比以及强行拔高意义。光在提示词里空喊「写得自然点」根本没用，我会分三步实打实地治理。第一，配置明确的反模式黑名单，禁掉套路转折、聊天寒暄残留和浮夸宣传动词，逼模型回归朴素的「is」和「has」陈述。第二，附上两三段目标作者的真实文字作为原声对齐的少样本锚点，直接锁死长短句节奏与用词习惯。第三，跑一遍「初稿—挑刺—重写」闭环：先严格基于源事实成稿（缺细节就追问而非编造），再挑出残留破绽重写成干净文本。我的经验法则是：靠含糊形容词催不出好文风——禁掉套路、给足真样本、再改第二遍。",
+      "key_phrases": [
+        {
+          "en": "statistically safe choices",
+          "cn": "统计上最稳妥的平均选择",
+          "type": "搭配",
+          "usage": "用于解释大模型默认文风趋于平庸与套路化的概率成因"
+        },
+        {
+          "en": "throat-clearing run-ups",
+          "cn": "清嗓子式的空洞铺垫",
+          "type": "搭配",
+          "usage": "比喻进入正题前像 Here is the thing 这类不提供事实的废话前奏"
+        },
+        {
+          "en": "anti-pattern blacklist",
+          "cn": "反模式黑名单",
+          "type": "词汇",
+          "usage": "把明确禁止出现的烂句式和套话列成清单，比正向喊口号更可控"
+        },
+        {
+          "en": "puffery verbs",
+          "cn": "浮夸吹捧式动词",
+          "type": "词汇",
+          "usage": "puffery 指广告式夸大吹嘘，批评不用平实动词而硬塞公关辞令"
+        },
+        {
+          "en": "ground the draft strictly in",
+          "cn": "让初稿严格立足于",
+          "type": "句型",
+          "usage": "ground A in B 表示以真实证据或源材料为依据，不凭空捏造"
+        }
+      ],
+      "basics": [
+        {
+          "term": "写作破绽标记",
+          "term_en": "AI writing tells",
+          "explain": "借自扑克牌术语「微表情破绽」，指一眼就能看出是机器代笔的高频习惯，比如套路化排比、过度拔高意义和遗留的聊天客套话。",
+          "analogy": "牌桌上每次拿到好牌就不自觉摸鼻子的招牌小动作。"
+        },
+        {
+          "term": "原声对齐",
+          "term_en": "voice matching",
+          "explain": "给模型提供几段真实作者写过的文字当参照，让它在改写时模仿原作者的句长变化、标点习惯和平实用词，而不是套用公关腔。",
+          "analogy": "配音演员先反复听原片录音找准呼吸节奏，再开口录台词。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "去机器味就是在提示词里写一句「请用像真人一样自然、有温度的语气写作」。",
+          "why": "「自然、有温度」恰恰会触发模型调出更多煽情套话、感叹号和修辞排比，改完之后反而比初稿更像营销号软文。",
+          "right": "把抽象要求拆成可检查的具体禁令（如禁排比三连、禁拔高结语）并配真实段落示范。"
+        },
+        {
+          "wrong": "为了让文章读起来更像人写的真实经历，允许模型自己顺手编几个具体细节和数字。",
+          "why": "去机器味的目标是让真实信息好读易懂，一旦纵容编造日期、引用或案例细节，就会把文风润色变成严重的事实幻觉事故。",
+          "right": "严守「只改表达不编事实」红线，原稿缺少关键细节时让模型主动向作者追问补齐。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：先从自回归概率机制解释「机器味」为什么产生，避免一上来只堆零散的写作小窍门。",
+        "立禁令：把空泛的「自然一点」转化成可逐条核对的禁用句式、禁用浮夸词与去寒暄清单。",
+        "给锚点：引入两三段目标作者的真实段落做少样本示范，用具体节奏压制模型的统计平均腔。",
+        "加审校：设计「基于真实事实成稿 → 扫描残留破绽 → 二次重写」的两步流水线收口。"
+      ],
+      "method": {
+        "name": "禁令样本审校法",
+        "steps": [
+          "列具体反模式禁令",
+          "喂真实原声少样本",
+          "忠于事实挑刺重写"
+        ],
+        "transfer": "适用于营销文案润色、智能客服话术去客服腔、高管发言稿定制及多语言本地化翻译打磨。"
+      },
+      "approach": "采分点是串联「统计安全词根因」与「黑名单 + 原声少样本 + 挑刺重写」三步解法。推荐结构：诊断概率平均根因与典型破绽 → 反模式黑名单 → 原声样本锚定 → 严守事实的挑刺重写。用「禁掉套路、给足真样本、再改第二遍」收尾。会失分的是只答调高温度。",
+      "tips": "必备术语 anti-pattern、few-shot anchors、clean prose。可延伸：少样本设计与品牌语调评测。",
+      "source_repos": [
+        "blader/humanizer"
+      ],
+      "added": "2026-10-25"
+    }
+  ]
+}

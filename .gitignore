@@ -1,0 +1,32 @@
+# ── 个人数据：学习记录与运行日志只留在本机 ─────────────────
+data/
+out/
+
+# ── 采集器运行产物 ─────────────────────────────────────────
+Github学习/state.db*
+Github学习/采集包/
+Github学习/采集日志/
+Github学习/采集备份*/
+Github学习/collector/collect.lock
+# 资料库只公开索引；项目原料是第三方 README 全文，不随仓库分发
+Github学习/资料库/项目/
+
+# ── 题库更新工具的运行产物 ──────────────────────────────────
+Github学习/题库备份/
+Github学习/已导入/
+Github学习/题库更新_*.json
+*.exe
+
+# ── 通用 ────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+.venv/
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# 本机发布脚本与 Release 附件
+发布到GitHub.bat
+release/
+发布日志.txt

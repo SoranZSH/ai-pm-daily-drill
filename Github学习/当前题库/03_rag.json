@@ -1,0 +1,1776 @@
+{
+  "category": "检索增强与知识库",
+  "category_en": "RAG & Knowledge Systems",
+  "domain": "RAG",
+  "items": [
+    {
+      "id": "RAG-F001",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "RAG架构",
+        "检索流程",
+        "查询改写"
+      ],
+      "concepts": [
+        "rag.rag_pipeline"
+      ],
+      "prereq": [
+        "LLM-F006",
+        "LLM-F008",
+        "PRM-F005"
+      ],
+      "q_cn": "什么是检索增强生成（RAG）？离线建库与在线生成各做什么？",
+      "q_en": "What is retrieval-augmented generation (RAG), and what happens in its offline and online pipelines?",
+      "gist": {
+        "cn": "不改模型权重，先查外部证据再作答；分离线异步切块建库与在线改写检索生成两步。",
+        "en": "RAG fetches external evidence before answering without changing weights, splitting offline indexing from online query-rewrite retrieval."
+      },
+      "points": [
+        {
+          "cn": "本质是开卷考试，不动权重即可接入新事实与企业私有数据",
+          "en": "turning a closed-book exam into an open-book lookup"
+        },
+        {
+          "cn": "离线链路负责解析、切块、向量化并附带来源与时间元数据建库",
+          "en": "parses raw documents, splits them into chunks"
+        },
+        {
+          "cn": "在线链路先将含指代的多轮追问改写为独立完整的检索词",
+          "en": "rewrites conversational follow-ups"
+        },
+        {
+          "cn": "强约束模型紧扣检索证据作答并附可核验出处，缺证据则拒答",
+          "en": "answer strictly from that evidence with source citations"
+        }
+      ],
+      "concept": {
+        "cn": "检索增强生成（RAG）的核心思想是「不动模型大脑，先翻外部参考书再答题」。大模型训练完成后，既不知道训练截止日之后的新动态，也读不到企业内部的规章、合同与工单。RAG 把系统拆成两条解耦流水线：离线建库在后台异步把原始文档解析、切块、转成向量（把文字换算成一串代表语义的数字，便于按意思而非字面查找）并连同来源与时间戳存入索引；在线链路则在用户提问时先消解上下文指代、检索高相关片段塞进提示词，要求模型严格基于检索证据作答并标明出处。",
+        "en": "Retrieval-augmented generation (RAG) keeps model weights untouched and looks up external reference material before answering. Once trained, an LLM knows nothing after its knowledge cutoff and cannot see private company policies, contracts, or tickets. RAG decouples work into two pipelines: an asynchronous offline indexing pipeline that parses and chunks documents, embeds them as meaning-bearing vectors, and stores them with source and timestamp metadata, and a real-time online pipeline that resolves conversational pronouns, retrieves relevant passages, and prompts the model to answer strictly from cited evidence."
+      },
+      "a_pairs": [
+        {
+          "en": "RAG lets a frozen model answer with fresh or private knowledge—it's essentially turning a closed-book exam into an open-book lookup.",
+          "cn": "RAG 能让参数冻结的大模型用上最新或企业私有知识，本质上是把闭卷背诵变成了开卷查资料。"
+        },
+        {
+          "en": "It doesn't touch the model weights; instead, it tackles outdated knowledge, private data access, and source traceability through two decoupled pipelines.",
+          "cn": "它完全不改动模型权重，而是靠两条解耦的流水线解决知识过期、私有数据接入以及答案出处可追溯三大问题。"
+        },
+        {
+          "en": "First, the offline indexing pipeline asynchronously parses raw documents, splits them into chunks, converts them into vectors, and stores them alongside metadata like source URLs and timestamps.",
+          "cn": "第一条是离线建库链路，在后台异步解析原始文档、切分成文本块、转换成向量，并连同来源链接和时间戳等元数据一起存入索引。"
+        },
+        {
+          "en": "Second, when a user asks a question, the online pipeline first rewrites conversational follow-ups like 'How do I return it?' into a standalone search query.",
+          "cn": "第二条是在线生成链路：用户提问时，系统先把诸如「那怎么退？」这类带上下文指代的追问，改写成语义独立完整的检索词。"
+        },
+        {
+          "en": "Next, it fetches the most relevant passages and injects them into the prompt, instructing the model to answer strictly from that evidence with source citations.",
+          "cn": "接着系统召回最相关的文档片段塞进提示词，严格要求模型紧扣检索证据作答并附上原文出处。"
+        },
+        {
+          "en": "If the retrieved passages don't contain the answer, we instruct the model to say it doesn't know rather than guess.",
+          "cn": "如果召回的片段里根本没有答案，我们就明确规定模型坦诚说明暂无依据，而不是硬猜。"
+        },
+        {
+          "en": "My rule of thumb is: index cleanly offline, rewrite queries before searching online, and make sure the model won't invent uncited facts.",
+          "cn": "我的经验法则是：离线把资料洗净建好库，在线先改写问题再检索，绝不放任模型编造无出处的事实。"
+        }
+      ],
+      "a_en": "RAG lets a frozen model answer with fresh or private knowledge—it's essentially turning a closed-book exam into an open-book lookup. It doesn't touch the model weights; instead, it tackles outdated knowledge, private data access, and source traceability through two decoupled pipelines. First, the offline indexing pipeline asynchronously parses raw documents, splits them into chunks, converts them into vectors, and stores them alongside metadata like source URLs and timestamps. Second, when a user asks a question, the online pipeline first rewrites conversational follow-ups like 'How do I return it?' into a standalone search query. Next, it fetches the most relevant passages and injects them into the prompt, instructing the model to answer strictly from that evidence with source citations. If the retrieved passages don't contain the answer, we instruct the model to say it doesn't know rather than guess. My rule of thumb is: index cleanly offline, rewrite queries before searching online, and make sure the model won't invent uncited facts.",
+      "a_cn": "RAG 能让参数冻结的大模型用上最新或企业私有知识，本质上是把闭卷背诵变成了开卷查资料。它完全不改动模型权重，而是靠两条解耦的流水线解决知识过期、私有数据接入以及答案出处可追溯三大问题。第一条是离线建库链路，在后台异步解析原始文档、切分成文本块、转换成向量，并连同来源链接和时间戳等元数据一起存入索引。第二条是在线生成链路：用户提问时，系统先把诸如「那怎么退？」这类带上下文指代的追问，改写成语义独立完整的检索词。接着系统召回最相关的文档片段塞进提示词，严格要求模型紧扣检索证据作答并附上原文出处。如果召回的片段里根本没有答案，我们就明确规定模型坦诚说明暂无依据，而不是硬猜。我的经验法则是：离线把资料洗净建好库，在线先改写问题再检索，绝不放任模型编造无出处的事实。",
+      "key_phrases": [
+        {
+          "en": "open-book lookup",
+          "cn": "开卷查阅",
+          "type": "搭配",
+          "usage": "向外行解释 RAG 的自然比喻，同义可换 an open-book exam"
+        },
+        {
+          "en": "source traceability",
+          "cn": "来源可追溯性",
+          "type": "词汇",
+          "usage": "企业合规高频词，同义可换 source attribution"
+        },
+        {
+          "en": "decoupled pipelines",
+          "cn": "解耦的流水线",
+          "type": "搭配",
+          "usage": "强调离线异步建库与在线毫秒级检索互不阻塞的架构设计"
+        },
+        {
+          "en": "standalone search query",
+          "cn": "独立完整的检索词",
+          "type": "搭配",
+          "usage": "指把多轮对话里的代词补全后、脱离上文也能看懂的搜索词"
+        },
+        {
+          "en": "answer strictly from that evidence",
+          "cn": "严格依据该证据作答",
+          "type": "句型",
+          "usage": "answer strictly from X 用于约束模型紧扣给定参考资料不乱编"
+        }
+      ],
+      "basics": [
+        {
+          "term": "查询改写",
+          "term_en": "query rewriting",
+          "explain": "在真正去知识库搜索之前，先用小模型结合前几轮聊天记录，把用户含糊的追问（如「它保修多久？」）补全成指代清晰的单句搜索词。",
+          "analogy": "帮领导查卷宗前，先把「刚才那份合同」问清楚全称。"
+        },
+        {
+          "term": "向量化（Embedding）",
+          "term_en": "embedding",
+          "explain": "把一段文字交给嵌入模型，换算成一串固定长度的数字；意思相近的话算出的数字也相近，检索时就能按语义而非字面去找。",
+          "analogy": "按内容给每本书编坐标，题材相近的书摆在相邻书架。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "以为接了 RAG 模型就会自动记住新文档，或多轮直接拿原话搜库。",
+          "why": "RAG 根本不改模型参数，撤掉索引知识立刻消失；而且多轮原话常含「这个、那款」等代词，直接拿去搜只会召回一堆毫不相干的废片。",
+          "right": "把知识更新做成离线增量建库；在多轮对话场景下，检索前加一步查询改写。"
+        }
+      ],
+      "approach": "采分点是先给「不动权重的开卷查阅」定性，再把离线与在线两条链路拆清，尤其点出常被漏掉的「多轮查询改写」与「无证据拒答」。推荐结构：三大价值定性 → 离线解析切块建库 → 在线改写检索与溯源生成。会失分的是把 RAG 说成微调。",
+      "tips": "必备术语 open-book lookup、source traceability。可延伸：增量建库与无证据拒答设计。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "RAG-F002",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "文本切块",
+        "重叠窗口",
+        "文档预处理"
+      ],
+      "concepts": [
+        "rag.chunking"
+      ],
+      "prereq": [
+        "LLM-F001",
+        "RAG-F001",
+        "RAG-F003"
+      ],
+      "q_cn": "什么是文本切块（Chunking）？切块大小与重叠度怎么权衡？",
+      "q_en": "What is text chunking in RAG, and how do you balance chunk size and overlap?",
+      "gist": {
+        "cn": "把长文档切成聚焦单元；兼顾上下文完整与向量纯度，配重叠窗口按结构切分。",
+        "en": "Chunking splits long docs into focused units, balancing context completeness against vector purity using structural splits and overlap."
+      },
+      "points": [
+        {
+          "cn": "切太碎会切断主语与例外条款，导致断章取义",
+          "en": "sever subjects from their exceptions"
+        },
+        {
+          "cn": "切太大会混杂多个主题稀释向量表达，还白烧上下文额度",
+          "en": "blends unrelated topics into one blurry vector"
+        },
+        {
+          "cn": "设置 10% 到 20% 滑动重叠窗口，防止跨边界规则被腰斩",
+          "en": "ten to twenty percent sliding overlap"
+        },
+        {
+          "cn": "优先顺着标题、段落与句号做递归结构切分，拒绝死按字数硬切",
+          "en": "use recursive structural splitting"
+        }
+      ],
+      "concept": {
+        "cn": "文本切块（Chunking）是在离线建库阶段把几百页的长手册拆分成一个个大小适中、语义完整的检索单元。如果整本塞入，既放不进向量模型也抓不准细节；如果切得太碎，又会把前一句的承诺与后一句的免责条件硬生生拆散。工程上需要在「上下文完整度」与「向量主题纯度」之间找平衡：优先顺着章节标题、自然段与句号做递归结构化切分，并在相邻块之间留出小幅重叠窗口，守住跨边界语义。",
+        "en": "Text chunking splits hundred-page manuals during offline indexing into bite-sized, semantically complete retrieval units. Feeding whole books overflows embedding limits and misses fine details, while slicing too thinly tears promises apart from their qualifying exceptions. Production RAG balances context completeness against vector topic purity: split recursively along natural document boundaries—headings, paragraphs, and sentences—and add a modest sliding overlap between adjacent chunks so boundary rules stay intact."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd frame chunking around a core trade-off: each piece of text must be small enough to stay focused on one topic, yet large enough to make sense on its own.",
+          "cn": "我会围绕一个核心权衡来理解文本切块：每个片段既要小到聚焦单一主题，又要大到脱离上下文也能独立把话讲清楚。"
+        },
+        {
+          "en": "We can't embed a two-hundred-page manual as one unit, so chunking breaks long documents into retrievable passages before indexing.",
+          "cn": "我们没法把两百页的手册当成一个整体去算向量，所以建库前必须先把它拆成可精准召回的段落单元。"
+        },
+        {
+          "en": "If chunks are too small, you sever subjects from their exceptions—like retrieving 'seven-day free returns' while cutting off 'except custom items' in the next sentence.",
+          "cn": "如果切得太碎，就会把主语和例外条件硬生生切断——比如只召回了「七天无理由退货」，却漏掉了下一句「定制商品除外」。"
+        },
+        {
+          "en": "On the flip side, if chunks are too large, each passage blends unrelated topics into one blurry vector and wastes context tokens.",
+          "cn": "反过来，如果切得太大，每个片段里混杂了好几个无关主题，算出来的向量就会模糊失焦，还会白白浪费提示词额度。"
+        },
+        {
+          "en": "To protect boundary meaning, we add a ten to twenty percent sliding overlap so key qualifiers aren't sliced in half.",
+          "cn": "为了保护边界处的语义不断裂，我们会设置百分之十到二十的滑动重叠窗口，防止关键限定条件刚好在切分处被腰斩。"
+        },
+        {
+          "en": "Even better, we don't chop blindly by character count; we use recursive structural splitting along headings, paragraphs, and sentences.",
+          "cn": "更稳妥的做法是绝不按固定字数盲目硬切，而是顺着章节标题、自然段和句号做递归结构化切分。"
+        },
+        {
+          "en": "My rule of thumb: split along natural document structure first, size chunks to one complete rule, and cushion the seams with light overlap.",
+          "cn": "我的经验法则：优先顺着文档天然结构下刀，一块刚好装下一条完整规则，再用适度重叠垫住接缝。"
+        }
+      ],
+      "a_en": "I'd frame chunking around a core trade-off: each piece of text must be small enough to stay focused on one topic, yet large enough to make sense on its own. We can't embed a two-hundred-page manual as one unit, so chunking breaks long documents into retrievable passages before indexing. If chunks are too small, you sever subjects from their exceptions—like retrieving 'seven-day free returns' while cutting off 'except custom items' in the next sentence. On the flip side, if chunks are too large, each passage blends unrelated topics into one blurry vector and wastes context tokens. To protect boundary meaning, we add a ten to twenty percent sliding overlap so key qualifiers aren't sliced in half. Even better, we don't chop blindly by character count; we use recursive structural splitting along headings, paragraphs, and sentences. My rule of thumb: split along natural document structure first, size chunks to one complete rule, and cushion the seams with light overlap.",
+      "a_cn": "我会围绕一个核心权衡来理解文本切块：每个片段既要小到聚焦单一主题，又要大到脱离上下文也能独立把话讲清楚。我们没法把两百页的手册当成一个整体去算向量，所以建库前必须先把它拆成可精准召回的段落单元。如果切得太碎，就会把主语和例外条件硬生生切断——比如只召回了「七天无理由退货」，却漏掉了下一句「定制商品除外」。反过来，如果切得太大，每个片段里混杂了好几个无关主题，算出来的向量就会模糊失焦，还会白白浪费提示词额度。为了保护边界处的语义不断裂，我们会设置百分之十到二十的滑动重叠窗口，防止关键限定条件刚好在切分处被腰斩。更稳妥的做法是绝不按固定字数盲目硬切，而是顺着章节标题、自然段和句号做递归结构化切分。我的经验法则：优先顺着文档天然结构下刀，一块刚好装下一条完整规则，再用适度重叠垫住接缝。",
+      "key_phrases": [
+        {
+          "en": "make sense on its own",
+          "cn": "独立成义、单独读得懂",
+          "type": "搭配",
+          "usage": "make sense on one's own 指脱离上下文也能独立读懂"
+        },
+        {
+          "en": "sever subjects from their exceptions",
+          "cn": "把主语与例外条款切断",
+          "type": "句型",
+          "usage": "sever A from B 比 cut 更具画面感，表硬生生割裂关联"
+        },
+        {
+          "en": "blurry vector",
+          "cn": "模糊失焦的向量",
+          "type": "搭配",
+          "usage": "形容切块过大塞入多主题后，语义坐标被平均化而失焦"
+        },
+        {
+          "en": "sliding overlap",
+          "cn": "滑动重叠窗口",
+          "type": "词汇",
+          "usage": "前可加比例作定语，如 a ten percent sliding overlap"
+        },
+        {
+          "en": "recursive structural splitting",
+          "cn": "递归结构化切分",
+          "type": "词汇",
+          "usage": "按标题、段落、句号层级依次尝试切分，超长时才往下一级拆"
+        }
+      ],
+      "basics": [
+        {
+          "term": "重叠窗口",
+          "term_en": "chunk overlap",
+          "explain": "切分相邻两块文本时，让后一块的开头重复包含前一块末尾的一两句话，确保刚好卡在分界线上的转折或但书至少完整出现在其中一块里。",
+          "analogy": "拍全景拼图照时，每张都和上一张留一点重合边才拼得齐。"
+        },
+        {
+          "term": "递归结构化切分",
+          "term_en": "recursive structural splitting",
+          "explain": "不按死板的字数一刀切，而是先按小节拆；如果某小节还是超长，再顺着段落拆，最后才按句号拆，最大限度保全作者原本的逻辑单元。",
+          "analogy": "切整只烤鸭先顺关节拆大件，放不下盘子再顺纹理改刀。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "所有业务文档一律按固定五百字硬切，省事又整齐。",
+          "why": "按固定字数硬切极易把「最高赔付十万元，但酒驾情形除外」从中间劈开，导致模型只看到前半句就向客户做出错误理赔承诺。",
+          "right": "优先按文档标题与段落边界做递归切分，并根据问答粒度与评测召回率调优块大小和重叠比。"
+        }
+      ],
+      "approach": "采分点是讲透「切太碎断章取义」与「切太大向量失焦」的双向权衡，并给出「滑动重叠 + 递归结构切分」两个工程解法。推荐结构：为什么切块 → 大小双向弊端（举退货例外例子） → 重叠窗口与结构切分。会失分的是背固定字数标准答案。",
+      "tips": "必备术语 sliding overlap、blurry vector、structural splitting。可延伸：父子切块。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "RAG-F003",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "向量嵌入",
+        "语义检索",
+        "余弦相似度"
+      ],
+      "concepts": [
+        "rag.embedding"
+      ],
+      "prereq": [
+        "LLM-F001",
+        "RAG-F001"
+      ],
+      "q_cn": "什么是向量嵌入（Embedding）？它靠什么实现语义检索？",
+      "q_en": "What is an embedding, and how does it make semantic search possible?",
+      "gist": {
+        "cn": "把文本映射成语义空间数字坐标，靠方向夹角算距离；提问与建库须用同一模型。",
+        "en": "Embeddings map text to numeric coordinates in meaning space for cosine matching, requiring one identical model across queries and docs."
+      },
+      "points": [
+        {
+          "cn": "传统关键词搜索遇上同义异词（如申请售后与退换货流程）会漏召回",
+          "en": "exact words don't overlap"
+        },
+        {
+          "cn": "嵌入模型把文本映射成定长稠密数字数组，即多维语义空间坐标",
+          "en": "fixed-length array of numbers"
+        },
+        {
+          "cn": "意思相近的文本坐标靠拢，在线靠余弦相似度衡量方向远近",
+          "en": "measures cosine similarity"
+        },
+        {
+          "cn": "不同模型的坐标空间互不兼容，升级嵌入模型必须全量离线重建索引",
+          "en": "requires re-indexing your entire corpus"
+        }
+      ],
+      "concept": {
+        "cn": "传统关键词检索像死板的「Ctrl+F」，用户搜「怎么申请售后」，哪怕手册里明明白白写着「退换货流程」，只要字面不重合就搜不到。向量嵌入（Embedding）模型把一段文字翻译成一串固定长度的连续数字，相当于给每段话在多维「语义地图」上发了一组经纬度坐标。意思相近的话会被放在相邻街区，检索时只需计算提问坐标与文档坐标的夹角余弦相似度即可。但不同嵌入模型的地图坐标系完全不通，严禁混用。",
+        "en": "Traditional keyword search works like rigid Ctrl+F: if a user asks 'how to request after-sales help' while the manual says 'return and exchange process', zero shared words means zero hits. An embedding model translates text into a fixed-length array of continuous numbers—like assigning GPS coordinates on a multi-dimensional map of meaning. Passages with similar intent land in the same neighborhood, matched via cosine similarity. However, coordinate systems across different embedding models are mutually incompatible and can't be mixed."
+      },
+      "a_pairs": [
+        {
+          "en": "An embedding turns text into numerical coordinates on a map of meaning, letting search match user intent even when exact words don't overlap.",
+          "cn": "向量嵌入把文字转换成「语义地图」上的数字坐标，哪怕用户提问和文档原文字面完全不重合，也能按真实意图精准匹配。"
+        },
+        {
+          "en": "Traditional keyword search breaks whenever a customer asks 'how do I get after-sales help?' and your policy doc calls it 'return and exchange workflow'—there's zero literal match.",
+          "cn": "传统关键词搜索一遇到顾客问「怎么找售后」、而制度文档写的是「退换货流程」，就会因为零字面重合直接搜空。"
+        },
+        {
+          "en": "An embedding model fixes this by compressing each passage into a fixed-length array of numbers that together capture its meaning.",
+          "cn": "嵌入模型的解法是把每段话压缩成一串固定长度的数字，这串数字合起来刻画这段话的意思。"
+        },
+        {
+          "en": "Because phrases with similar meanings land near each other in that space, online search simply embeds the user's query and measures cosine similarity against stored vectors.",
+          "cn": "由于意思相近的表达在这片空间里坐标紧挨着，在线检索只需把用户提问也算成向量，再去和库里向量算余弦相似度即可。"
+        },
+        {
+          "en": "One non-negotiable production rule is that every embedding model defines its own private coordinate system, so vectors aren't interchangeable across models.",
+          "cn": "但工程上有一条铁律：每个嵌入模型定义的都是独有的私有坐标系，跨模型的向量根本不能混用。"
+        },
+        {
+          "en": "You can't query chunks embedded by Model A using a vector from Model B, so upgrading your embedding model always requires re-indexing your entire corpus offline.",
+          "cn": "你绝不能拿模型 B 算出的提问向量去搜模型 A 建好的文档库，所以一旦升级嵌入模型，就必须把全量文档在离线重新算一遍索引。"
+        },
+        {
+          "en": "Bottom line: use embeddings to bridge phrasing gaps, and lock query and index onto the exact same model version.",
+          "cn": "归根结底：用向量嵌入跨越措辞鸿沟，但提问端和索引端必须锁定在同一个模型版本上。"
+        }
+      ],
+      "a_en": "An embedding turns text into numerical coordinates on a map of meaning, letting search match user intent even when exact words don't overlap. Traditional keyword search breaks whenever a customer asks 'how do I get after-sales help?' and your policy doc calls it 'return and exchange workflow'—there's zero literal match. An embedding model fixes this by compressing each passage into a fixed-length array of numbers that together capture its meaning. Because phrases with similar meanings land near each other in that space, online search simply embeds the user's query and measures cosine similarity against stored vectors. One non-negotiable production rule is that every embedding model defines its own private coordinate system, so vectors aren't interchangeable across models. You can't query chunks embedded by Model A using a vector from Model B, so upgrading your embedding model always requires re-indexing your entire corpus offline. Bottom line: use embeddings to bridge phrasing gaps, and lock query and index onto the exact same model version.",
+      "a_cn": "向量嵌入把文字转换成「语义地图」上的数字坐标，哪怕用户提问和文档原文字面完全不重合，也能按真实意图精准匹配。传统关键词搜索一遇到顾客问「怎么找售后」、而制度文档写的是「退换货流程」，就会因为零字面重合直接搜空。嵌入模型的解法是把每段话压缩成一串固定长度的数字，这串数字合起来刻画这段话的意思。由于意思相近的表达在这片空间里坐标紧挨着，在线检索只需把用户提问也算成向量，再去和库里向量算余弦相似度即可。但工程上有一条铁律：每个嵌入模型定义的都是独有的私有坐标系，跨模型的向量根本不能混用。你绝不能拿模型 B 算出的提问向量去搜模型 A 建好的文档库，所以一旦升级嵌入模型，就必须把全量文档在离线重新算一遍索引。归根结底：用向量嵌入跨越措辞鸿沟，但提问端和索引端必须锁定在同一个模型版本上。",
+      "key_phrases": [
+        {
+          "en": "map of meaning",
+          "cn": "语义地图",
+          "type": "搭配",
+          "usage": "把抽象高维向量空间转化成业务方一听就懂的地理位置比喻"
+        },
+        {
+          "en": "fixed-length array of numbers",
+          "cn": "固定长度的数字数组",
+          "type": "搭配",
+          "usage": "解释向量的物理形态：每段话不论长短，都换成同样长度的一串数"
+        },
+        {
+          "en": "cosine similarity",
+          "cn": "余弦相似度",
+          "type": "词汇",
+          "usage": "常搭配 measure 或 compute，后接 against 引出比对对象"
+        },
+        {
+          "en": "private coordinate system",
+          "cn": "私有坐标系",
+          "type": "词汇",
+          "usage": "比喻模型专属向量空间，也可说 incompatible vector spaces"
+        },
+        {
+          "en": "bridge phrasing gaps",
+          "cn": "弥合措辞差异",
+          "type": "搭配",
+          "usage": "概括大白话口语提问与官方书面术语之间同义异词的匹配能力"
+        }
+      ],
+      "basics": [
+        {
+          "term": "余弦相似度",
+          "term_en": "cosine similarity",
+          "explain": "衡量两个向量箭头所指方向有多一致的指标：方向完全重合得一分，毫无关联接近零；它只看方向、不看长短，所以不易受句子长短干扰。",
+          "analogy": "看两艘船是否驶向同一港口，只比罗盘航向角不比开出多远。"
+        },
+        {
+          "term": "全量重建索引",
+          "term_en": "full re-indexing",
+          "explain": "更换或升级嵌入模型后，必须把知识库里所有历史切块重新跑一遍新模型生成新向量并替换旧库，否则新旧坐标彻底错乱。",
+          "analogy": "城市重编门牌体系后，快递中心必须把旧地址签全部重贴。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "只要两个嵌入模型都是 1024 维，就能直接拿新模型在线去搜老向量库。",
+          "why": "维度相同只代表数组长度一样，不同模型训练出的每一维含义天差地别，混搜算出来的相似度等同于乱码掷骰子。",
+          "right": "把嵌入模型版本号写入索引元数据；升级时新旧两套索引并行，新库全量建好再切换。"
+        }
+      ],
+      "approach": "采分点是先用「口语提问 vs 官方话术」点破关键词检索盲区，再讲清「语义坐标 + 余弦相似度」原理，最后压上「跨模型坐标不兼容、升级须全量重建」的生产红线。会失分的是大谈矩阵数学却漏掉模型锁定铁律。",
+      "tips": "必备术语 dense array、cosine similarity、re-indexing。可延伸：嵌入模型选型与蓝绿索引切换。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "RAG-F004",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "向量数据库",
+        "近似最近邻",
+        "元数据过滤"
+      ],
+      "concepts": [
+        "rag.vector_db"
+      ],
+      "prereq": [
+        "RAG-F003"
+      ],
+      "q_cn": "向量数据库解决什么问题？近似最近邻（ANN）如何提速？",
+      "q_en": "What problem does a vector database solve, and how does approximate nearest neighbor (ANN) search speed things up?",
+      "gist": {
+        "cn": "免去百万向量暴力比对，靠多层导航图微损召回换毫秒响应，并管增删与元数据过滤。",
+        "en": "Vector DBs avoid slow brute-force scans via ANN navigation graphs while adding updates, deletions, persistence, and metadata filtering."
+      },
+      "points": [
+        {
+          "cn": "百万级向量若做精确暴力逐一比对，线上延迟根本扛不住",
+          "en": "brute-force comparison against millions of vectors"
+        },
+        {
+          "cn": "近似最近邻靠分层图跳过无关区，微损召回换毫秒响应",
+          "en": "trades a tiny sliver of recall for millisecond latency"
+        },
+        {
+          "cn": "相比裸索引文件，提供生产级持久化与文档增量增删改能力",
+          "en": "incremental document updates and deletions"
+        },
+        {
+          "cn": "支持按租户、产品线或生效日期做元数据联合过滤，守住业务边界",
+          "en": "combines vector search with metadata filtering"
+        }
+      ],
+      "concept": {
+        "cn": "当知识库涨到上百万个向量片段时，每次提问都拿去和全库逐条算余弦相似度（精确最近邻 KNN），线上响应会随数据量和并发迅速变慢、变贵。近似最近邻（ANN）算法提前把邻近向量织成多层导航图（如 HNSW）：检索时先在顶层高速路大跨步锁定大致街区，再下沉到底层小巷精找邻居，用微不足道的召回损耗换回毫秒级延迟。而向量数据库在此之上补齐了持久化、单篇文档增删改和元数据条件过滤等企业刚需。",
+        "en": "Once a knowledge base reaches millions of vector chunks, comparing every query against every stored vector one by one (exact KNN) makes latency and cost climb quickly as data and traffic grow. Approximate nearest neighbor (ANN) algorithms pre-organize vectors into multi-layer navigation graphs like HNSW—leaping across top-layer expressways before zooming into local streets—trading a tiny fraction of recall for millisecond speed. A vector database wraps ANN indexes with production persistence, incremental document updates and deletions, and metadata filtering."
+      },
+      "a_pairs": [
+        {
+          "en": "A vector database turns embedding search into a service that stays fast and updatable under live traffic, which a static script can't do.",
+          "cn": "向量数据库把向量检索变成了在线上真实流量下依然又快又能随时更新的服务，这是静态脚本做不到的。"
+        },
+        {
+          "en": "If you're running exact brute-force comparison against millions of vectors one by one, latency and compute cost climb fast as traffic grows.",
+          "cn": "如果你在线上面对几百万条向量逐条做精确暴力比对，随着流量上涨，延迟和算力成本都会迅速攀升。"
+        },
+        {
+          "en": "Approximate nearest neighbor search, or ANN, fixes this by pre-building structures like HNSW multi-layer navigation graphs.",
+          "cn": "近似最近邻（简称 ANN）靠预先构建诸如 HNSW 多层导航图这样的索引结构来解决速度瓶颈。"
+        },
+        {
+          "en": "Think of HNSW like taking highway express exits down to local streets: it doesn't check every house, so it trades a tiny sliver of recall for millisecond latency.",
+          "cn": "可以把 HNSW 想象成先走高速下匝道再进社区小巷：它不必挨家敲门，用微乎其微的召回损耗换回毫秒级响应。"
+        },
+        {
+          "en": "Beyond raw speed, a real vector database gives you persistence plus incremental document updates and deletions when policies change, which a static index file isn't built for.",
+          "cn": "除了快，真正的向量数据库还提供持久化，以及制度变更时的单文档增量更新与删除，这是静态索引文件应付不了的。"
+        },
+        {
+          "en": "On top of that, it combines vector search with metadata filtering, letting you scope results by tenant, product line, or effective date.",
+          "cn": "此外，它能把向量检索与元数据过滤结合起来，按租户、产品线或生效日期精准圈定搜索范围。"
+        },
+        {
+          "en": "Bottom line: ANN buys you millisecond speed, while the database layer buys you live updates and clean business boundaries.",
+          "cn": "归根结底：ANN 算法换来毫秒级速度，数据库底座换来实时增删与干净的业务边界。"
+        }
+      ],
+      "a_en": "A vector database turns embedding search into a service that stays fast and updatable under live traffic, which a static script can't do. If you're running exact brute-force comparison against millions of vectors one by one, latency and compute cost climb fast as traffic grows. Approximate nearest neighbor search, or ANN, fixes this by pre-building structures like HNSW multi-layer navigation graphs. Think of HNSW like taking highway express exits down to local streets: it doesn't check every house, so it trades a tiny sliver of recall for millisecond latency. Beyond raw speed, a real vector database gives you persistence plus incremental document updates and deletions when policies change, which a static index file isn't built for. On top of that, it combines vector search with metadata filtering, letting you scope results by tenant, product line, or effective date. Bottom line: ANN buys you millisecond speed, while the database layer buys you live updates and clean business boundaries.",
+      "a_cn": "向量数据库把向量检索变成了在线上真实流量下依然又快又能随时更新的服务，这是静态脚本做不到的。如果你在线上面对几百万条向量逐条做精确暴力比对，随着流量上涨，延迟和算力成本都会迅速攀升。近似最近邻（简称 ANN）靠预先构建诸如 HNSW 多层导航图这样的索引结构来解决速度瓶颈。可以把 HNSW 想象成先走高速下匝道再进社区小巷：它不必挨家敲门，用微乎其微的召回损耗换回毫秒级响应。除了快，真正的向量数据库还提供持久化，以及制度变更时的单文档增量更新与删除，这是静态索引文件应付不了的。此外，它能把向量检索与元数据过滤结合起来，按租户、产品线或生效日期精准圈定搜索范围。归根结底：ANN 算法换来毫秒级速度，数据库底座换来实时增删与干净的业务边界。",
+      "key_phrases": [
+        {
+          "en": "brute-force comparison",
+          "cn": "暴力逐一比对",
+          "type": "搭配",
+          "usage": "描述不建索引、把查询向量和全库每条记录挨个算一遍的笨办法"
+        },
+        {
+          "en": "multi-layer navigation graphs",
+          "cn": "多层导航图",
+          "type": "搭配",
+          "usage": "解释 HNSW 等主流 ANN 算法上疏下密、逐层缩圈找邻居的结构"
+        },
+        {
+          "en": "trades a tiny sliver of recall for",
+          "cn": "用极微小的召回损耗换取",
+          "type": "句型",
+          "usage": "trade A for B 经典工程权衡句式，sliver 强调牺牲比例极小"
+        },
+        {
+          "en": "incremental document updates",
+          "cn": "文档增量更新",
+          "type": "搭配",
+          "usage": "指只重算并替换变动的那几篇文档，不必推倒重建整座索引库"
+        },
+        {
+          "en": "metadata filtering",
+          "cn": "元数据过滤",
+          "type": "词汇",
+          "usage": "常搭 combine vector search with，表联合结构化筛选"
+        }
+      ],
+      "basics": [
+        {
+          "term": "HNSW 分层导航图",
+          "term_en": "HNSW graph index",
+          "explain": "一种主流近似最近邻索引：顶层只放少量地标节点用来大跨步跳远，越往下节点越密，让搜索不用遍历全库就能在几次跳转内逼近目标。",
+          "analogy": "先坐高铁跨省到市中心站，再换地铁和步行找到具体写字楼。"
+        },
+        {
+          "term": "元数据过滤",
+          "term_en": "metadata filtering",
+          "explain": "在存向量时顺带绑定「所属部门、发布年份、是否有效」等结构化字段，查询时先按条件筛掉过期或无关文档，只在合规子集里比相似度。",
+          "analogy": "在电商搜同款外套前，先勾选「只看有货」和「尺码 L」。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "只有几千条内部问答也要跟风独立部署一套重型分布式向量数据库集群。",
+          "why": "数据量极小时直接用现有关系型数据库的向量插件（如 pgvector）毫秒级就够用，盲目引入独立新组件只会白白增加运维与数据同步负担。",
+          "right": "按数据规模演进选型：万级至十万级优先复用现有数据库向量扩展，上千万级高并发再拆专用向量库。"
+        }
+      ],
+      "approach": "采分点是拆清两层价值：算法层用「暴力比对太慢 → HNSW 高速下匝道微损召回换毫秒响应」答透 ANN；系统层用「持久化、单篇增量增删、元数据过滤」答透为什么不能只用裸索引文件。会失分的是只背 HNSW 缩写全称。",
+      "tips": "必备术语 brute-force、ANN、metadata filtering。可延伸：pgvector 与专用向量库选型。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "RAG-F005",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "混合检索",
+        "BM25",
+        "语义漂移"
+      ],
+      "concepts": [
+        "rag.hybrid_rerank",
+        "rag.embedding"
+      ],
+      "prereq": [
+        "RAG-F003",
+        "RAG-F004"
+      ],
+      "q_cn": "什么是混合检索？为什么单靠向量检索搞不定型号与专有名词？",
+      "q_en": "What is hybrid search, and why does pure vector search fail on exact model numbers and proper nouns?",
+      "gist": {
+        "cn": "并行跑稠密向量与 BM25 检索再按名次融合，补齐纯向量对型号报错码的盲区。",
+        "en": "Hybrid search runs dense vector and sparse BM25 keyword search in parallel, merging ranks via RRF to catch exact identifiers."
+      },
+      "points": [
+        {
+          "cn": "稠密向量把文本平滑成宽泛主题，遇型号报错码易语义漂移",
+          "en": "causes semantic drift on exact identifiers"
+        },
+        {
+          "cn": "BM25 稀疏检索给罕见精确词赋高权重，压低常见虚词干扰",
+          "en": "rewards rare exact tokens"
+        },
+        {
+          "cn": "混合检索双路并行召回，兼顾同义泛化与字面精准命中",
+          "en": "runs dense vector search and sparse BM25 in parallel"
+        },
+        {
+          "cn": "用倒数排序融合（RRF）按名次合并，免去异构分数归一化",
+          "en": "Reciprocal Rank Fusion"
+        }
+      ],
+      "concept": {
+        "cn": "稠密向量擅长抓大意，却天生会把细节「揉糊」：在语义空间里，iPhone 15 Pro 与 iPhone 16 Pro、报错码 ERR_504 与 ERR_502、或者两条相邻合同条款号，周围语境几乎一模一样，极易发生「语义漂移」而张冠李戴。传统稀疏关键词检索（BM25）正好相反，越罕见的专属编号命中权重越高。混合检索让两路引擎同时出击，再通过倒数排序融合（RRF）只看各自排名位置来合并榜单，既懂言外之意又卡死一字不差。",
+        "en": "Dense embeddings excel at broad meaning but smooth away sharp characters: in vector space, iPhone 15 Pro versus iPhone 16 Pro, error code ERR_504 versus ERR_502, or adjacent contract clause numbers share nearly identical context and suffer semantic drift. Sparse keyword search (BM25) does the exact opposite, heavily weighting rare literal tokens. Hybrid search fires both engines in parallel and merges results via Reciprocal Rank Fusion (RRF) using rank positions alone, capturing both intent and exact strings."
+      },
+      "a_pairs": [
+        {
+          "en": "Pure vector search can't reliably match exact strings because embeddings compress text into broad themes, which causes semantic drift on exact identifiers.",
+          "cn": "纯向量检索之所以搞不定精确字符串，是因为嵌入模型会把文本压缩成宽泛主题，一遇到精确编号就会发生语义漂移。"
+        },
+        {
+          "en": "To an embedding model, 'iPhone 15 Pro' and 'iPhone 16 Pro', or error code 'ERR_504' and 'ERR_502', sit almost on top of each other because they're surrounded by identical smartphone or server words.",
+          "cn": "在向量模型眼里，「iPhone 15 Pro」和「iPhone 16 Pro」、或者报错码「ERR_504」和「ERR_502」周围全是雷同的手机或服务器词汇，坐标几乎叠在一起。"
+        },
+        {
+          "en": "Sparse keyword search like BM25 solves the exact opposite problem: it rewards rare exact tokens such as SKUs, clause numbers, and proper nouns while discounting common filler words.",
+          "cn": "而像 BM25 这样的稀疏关键词检索刚好相反：它会给商品编码、条款号、专有名词这类罕见精确词极高权重，同时压低常见虚词。"
+        },
+        {
+          "en": "Hybrid search runs dense vector search and sparse BM25 in parallel so you don't have to choose between intent matching and literal precision.",
+          "cn": "混合检索让稠密向量检索和稀疏 BM25 并行出击，让你不必在「懂意图」和「卡字面」之间二选一。"
+        },
+        {
+          "en": "Because cosine similarity and unbounded BM25 scores live on completely different scales, you shouldn't add them directly—instead, merge the two lists using Reciprocal Rank Fusion, or RRF.",
+          "cn": "由于余弦相似度和无上限的 BM25 打分完全不在一个量纲上，绝不能直接硬加——我们用倒数排序融合（简称 RRF）来合并榜单。"
+        },
+        {
+          "en": "RRF ignores raw scores and just adds up one over each passage's rank, so passages that both engines rank highly rise to the top.",
+          "cn": "RRF 直接跳过原始分数，只把每个片段在各路榜单里名次的倒数加起来，所以两路都排得靠前的片段会升到最前面。"
+        },
+        {
+          "en": "My rule of thumb: I'd rarely ship enterprise RAG on vectors alone; it's much safer to pair embeddings with BM25 and fuse by rank.",
+          "cn": "我的经验法则：企业级 RAG 我很少只跑单路向量，拿向量配 BM25 再按名次融合要稳妥得多。"
+        }
+      ],
+      "a_en": "Pure vector search can't reliably match exact strings because embeddings compress text into broad themes, which causes semantic drift on exact identifiers. To an embedding model, 'iPhone 15 Pro' and 'iPhone 16 Pro', or error code 'ERR_504' and 'ERR_502', sit almost on top of each other because they're surrounded by identical smartphone or server words. Sparse keyword search like BM25 solves the exact opposite problem: it rewards rare exact tokens such as SKUs, clause numbers, and proper nouns while discounting common filler words. Hybrid search runs dense vector search and sparse BM25 in parallel so you don't have to choose between intent matching and literal precision. Because cosine similarity and unbounded BM25 scores live on completely different scales, you shouldn't add them directly—instead, merge the two lists using Reciprocal Rank Fusion, or RRF. RRF ignores raw scores and just adds up one over each passage's rank, so passages that both engines rank highly rise to the top. My rule of thumb: I'd rarely ship enterprise RAG on vectors alone; it's much safer to pair embeddings with BM25 and fuse by rank.",
+      "a_cn": "纯向量检索之所以搞不定精确字符串，是因为嵌入模型会把文本压缩成宽泛主题，一遇到精确编号就会发生语义漂移。在向量模型眼里，「iPhone 15 Pro」和「iPhone 16 Pro」、或者报错码「ERR_504」和「ERR_502」周围全是雷同的手机或服务器词汇，坐标几乎叠在一起。而像 BM25 这样的稀疏关键词检索刚好相反：它会给商品编码、条款号、专有名词这类罕见精确词极高权重，同时压低常见虚词。混合检索让稠密向量检索和稀疏 BM25 并行出击，让你不必在「懂意图」和「卡字面」之间二选一。由于余弦相似度和无上限的 BM25 打分完全不在一个量纲上，绝不能直接硬加——我们用倒数排序融合（简称 RRF）来合并榜单。RRF 直接跳过原始分数，只把每个片段在各路榜单里名次的倒数加起来，所以两路都排得靠前的片段会升到最前面。我的经验法则：企业级 RAG 我很少只跑单路向量，拿向量配 BM25 再按名次融合要稳妥得多。",
+      "key_phrases": [
+        {
+          "en": "semantic drift",
+          "cn": "语义漂移",
+          "type": "词汇",
+          "usage": "常搭 suffer from 或 cause，描述大类相近但字面跑偏"
+        },
+        {
+          "en": "rewards rare exact tokens",
+          "cn": "给罕见精确词赋高分",
+          "type": "搭配",
+          "usage": "概括 BM25 逆文档频率机制：越少见的型号词一旦命中得分越高"
+        },
+        {
+          "en": "literal precision",
+          "cn": "字面精准度",
+          "type": "搭配",
+          "usage": "与语义泛化相对，强调一字不差命中编码、姓名或法条号的能力"
+        },
+        {
+          "en": "live on completely different scales",
+          "cn": "处于截然不同的分数量纲",
+          "type": "句型",
+          "usage": "live on different scales 地道解释两套指标区间不同、不能硬加"
+        },
+        {
+          "en": "Reciprocal Rank Fusion",
+          "cn": "倒数排序融合",
+          "type": "词汇",
+          "usage": "首提说全称并补一句 or RRF，后续即可直接用缩写"
+        }
+      ],
+      "basics": [
+        {
+          "term": "BM25 稀疏检索",
+          "term_en": "BM25 sparse retrieval",
+          "explain": "最成熟的关键词打分算法：查询词出现越多得分越高但边际递减，长文档会被适当折算；「的、流程」这类全库常见词被大幅降权，专抓罕见实词。",
+          "analogy": "人海认人不看「穿黑衣」普遍特征，专盯「左眉骨有痣」。"
+        },
+        {
+          "term": "倒数排序融合",
+          "term_en": "Reciprocal Rank Fusion (RRF)",
+          "explain": "合并多张排行榜时不管各自打分高低，只按「一除以名次加常数」折算积分再相加；既避免了分数归一化失真，又能奖励双路同时靠前的优质结果。",
+          "analogy": "综合语数排座次，不硬加不同难度卷面分，而看两科名次。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "把余弦相似度乘零点七、直接加上 BM25 原始分乘零点三来做混合检索。",
+          "why": "余弦相似度封顶是一，而 BM25 分数没有固定上限且随查询词长短剧烈波动，硬做线性加权会导致某一路长期吞没另一路。",
+          "right": "默认优先采用与量纲无关的倒数排序融合（RRF），上线跑通基准后再视评测结果微调。"
+        }
+      ],
+      "approach": "采分点是用「iPhone 15/16 或报错码」直观击穿纯向量语义漂移痛点，讲清 BM25 罕见词高权重互补逻辑，最后点出异构量纲不能硬加、需靠 RRF 按名次融合。会失分的是只说把两个分数加起来。",
+      "tips": "必备术语 semantic drift、sparse BM25、Reciprocal Rank Fusion。可延伸：中文分词影响。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "RAG-F006",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "重排模型",
+        "交叉编码器",
+        "两阶段检索"
+      ],
+      "concepts": [
+        "rag.hybrid_rerank"
+      ],
+      "prereq": [
+        "LLM-F003",
+        "LLM-F006",
+        "RAG-F005"
+      ],
+      "q_cn": "什么是重排（Rerank）？为什么检索要分召回与重排两步？",
+      "q_en": "What is reranking, and why do RAG systems split retrieval into broad recall and fine reranking?",
+      "gist": {
+        "cn": "先用双编码器从海量库快速捞出几十条保覆盖，再用交叉编码器逐条细看选前五。",
+        "en": "Stage-1 bi-encoders quickly recall top candidates across millions of chunks, while Stage-2 cross-encoders jointly score pairs for precision."
+      },
+      "points": [
+        {
+          "cn": "一阶段双塔将文档与提问分开编码，快但缺词间细粒度交互",
+          "en": "encodes documents offline and queries online separately"
+        },
+        {
+          "cn": "二阶段交叉编码器拼接提问与候选块，靠自注意力深度打分",
+          "en": "feeds the query and each candidate chunk together"
+        },
+        {
+          "cn": "交叉编码器无法预存向量，扫全库太慢，只精排前几十条",
+          "en": "far too slow to scan millions of passages"
+        },
+        {
+          "cn": "从宽网前五十掐尖到前五喂给大模型，省费用并防中间迷失噪音",
+          "en": "trims the pool to the sharpest Top 5"
+        }
+      ],
+      "concept": {
+        "cn": "为什么混合检索捞出候选后还要加一步重排（Rerank）？因为第一阶段向量检索用的是「双编码器（Bi-Encoder）」：文档离线算好向量、提问在线单独算向量，两者不见面就比方向，虽能毫秒级扫遍百万库，却抓不住否定词、条件但书等细微词间关系。第二阶段重排改用「交叉编码器（Cross-Encoder）」，把提问与候选块拼成一段话送进自注意力层逐词互看打分。两者组合正好兼顾全库速度与头部精度。",
+        "en": "Why add a reranking stage after hybrid retrieval? Stage-1 vector search relies on a Bi-Encoder that encodes documents offline and queries online in isolation. That separation enables millisecond scans across millions of chunks, but misses subtle cross-word cues like negations or conditional exceptions. Stage-2 reranking uses a Cross-Encoder that concatenates the query and candidate chunk into one sequence so self-attention can compare every word directly—combining full-corpus speed with sharp top-rank precision."
+      },
+      "a_pairs": [
+        {
+          "en": "RAG splits retrieval into two stages because no single model can be both fast enough for millions of chunks and sharp enough for subtle nuances.",
+          "cn": "RAG 之所以把检索拆成粗排召回与精排重排两步，是因为没有任何单一模型能同时做到扫百万库极快、辨细微语义又极准。"
+        },
+        {
+          "en": "Stage one usually uses a Bi-Encoder, often alongside BM25, that encodes documents offline and queries online separately, which makes searching millions of vectors very fast.",
+          "cn": "第一阶段通常用双编码器（Bi-Encoder），常配合 BM25：文档离线编码、提问在线编码，两边完全分开，因此能在百万级向量里很快捞出候选。"
+        },
+        {
+          "en": "However, compressing a whole passage into one vector beforehand means the retriever doesn't see fine cross-word interactions like negations or conditional exceptions.",
+          "cn": "但提前把整段话压死成一个向量，意味着检索器看不见提问与原文之间的细粒度交互，比如否定词或限定但书。"
+        },
+        {
+          "en": "Stage two fixes that with a Cross-Encoder reranker, which feeds the query and each candidate chunk together into self-attention for deep relevance scoring.",
+          "cn": "第二阶段靠交叉编码器（Cross-Encoder）重排模型补齐短板：它把用户提问和每个候选块拼在一起送进自注意力层，逐字交互算出深度相关分。"
+        },
+        {
+          "en": "Because a Cross-Encoder can't pre-compute document vectors, it's far too slow to scan millions of passages directly.",
+          "cn": "由于交叉编码器没法提前预存文档向量，直接拿它去扫几百万条全库文档会慢到完全不可用。"
+        },
+        {
+          "en": "So stage one casts a wide net, say Top 50, for high recall, and stage two trims the pool to the sharpest Top 5, shielding the LLM from noisy context and wasted tokens.",
+          "cn": "所以工程上先由一阶段撒大网捞出前五十条保召回，再由二阶段掐尖精选出最准的前五条，既省输入费用又帮大模型挡住噪音上下文。"
+        },
+        {
+          "en": "My rule of thumb: cast wide and cheap for recall, then rerank narrow and deep so you don't feed noisy chunks to the LLM.",
+          "cn": "我的经验法则：一阶段低成本广撒网保覆盖，二阶段小范围深精排，绝不把噪音片段喂给大模型。"
+        }
+      ],
+      "a_en": "RAG splits retrieval into two stages because no single model can be both fast enough for millions of chunks and sharp enough for subtle nuances. Stage one usually uses a Bi-Encoder, often alongside BM25, that encodes documents offline and queries online separately, which makes searching millions of vectors very fast. However, compressing a whole passage into one vector beforehand means the retriever doesn't see fine cross-word interactions like negations or conditional exceptions. Stage two fixes that with a Cross-Encoder reranker, which feeds the query and each candidate chunk together into self-attention for deep relevance scoring. Because a Cross-Encoder can't pre-compute document vectors, it's far too slow to scan millions of passages directly. So stage one casts a wide net, say Top 50, for high recall, and stage two trims the pool to the sharpest Top 5, shielding the LLM from noisy context and wasted tokens. My rule of thumb: cast wide and cheap for recall, then rerank narrow and deep so you don't feed noisy chunks to the LLM.",
+      "a_cn": "RAG 之所以把检索拆成粗排召回与精排重排两步，是因为没有任何单一模型能同时做到扫百万库极快、辨细微语义又极准。第一阶段通常用双编码器（Bi-Encoder），常配合 BM25：文档离线编码、提问在线编码，两边完全分开，因此能在百万级向量里很快捞出候选。但提前把整段话压死成一个向量，意味着检索器看不见提问与原文之间的细粒度交互，比如否定词或限定但书。第二阶段靠交叉编码器（Cross-Encoder）重排模型补齐短板：它把用户提问和每个候选块拼在一起送进自注意力层，逐字交互算出深度相关分。由于交叉编码器没法提前预存文档向量，直接拿它去扫几百万条全库文档会慢到完全不可用。所以工程上先由一阶段撒大网捞出前五十条保召回，再由二阶段掐尖精选出最准的前五条，既省输入费用又帮大模型挡住噪音上下文。我的经验法则：一阶段低成本广撒网保覆盖，二阶段小范围深精排，绝不把噪音片段喂给大模型。",
+      "key_phrases": [
+        {
+          "en": "fine cross-word interactions",
+          "cn": "细粒度的跨词交互",
+          "type": "搭配",
+          "usage": "同义可换 token-level interactions，强调逐词互看比对"
+        },
+        {
+          "en": "deep relevance scoring",
+          "cn": "深度相关性打分",
+          "type": "搭配",
+          "usage": "描述精排阶段对「提问与段落到底配不配」做高精度重估的过程"
+        },
+        {
+          "en": "casts a wide net",
+          "cn": "广撒网",
+          "type": "搭配",
+          "usage": "cast a wide net 地道比喻粗排阶段宁可多捞也不漏掉正确片段"
+        },
+        {
+          "en": "trims the pool to",
+          "cn": "把候选池精简裁剪到",
+          "type": "句型",
+          "usage": "trim A to B 用于描述精排把几十条粗筛结果浓缩为前几条精品"
+        },
+        {
+          "en": "shielding the LLM from",
+          "cn": "保护大模型免受……干扰",
+          "type": "句型",
+          "usage": "shield A from B 形象说明精排替下游生成模型挡住无关噪音段落"
+        }
+      ],
+      "basics": [
+        {
+          "term": "双编码器（双塔）",
+          "term_en": "Bi-Encoder",
+          "explain": "提问和文档各走各的通道独立算成单个向量，平时文档向量提前存好，上线只算提问向量并比夹角；速度极快但两边文字在打分前零交流。",
+          "analogy": "相亲前双方各填一张固定条件打分卡，快速海选初筛配对。"
+        },
+        {
+          "term": "交叉编码器",
+          "term_en": "Cross-Encoder",
+          "explain": "把「用户问题 + 单段候选原文」直接拼成一句话塞进模型，让问题里的每个词和原文里的每个词面对面做自注意力比对，打分极准但每对都要现场现算。",
+          "analogy": "海选过关的十位候选人，逐一坐下来和面试官面对面深聊。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "觉得重排模型效果好，干脆把前五百条粗排结果全塞给重排模型慢慢算。",
+          "why": "交叉编码器的计算耗时与候选条数成正比，塞五百条会把线上检索延迟拖到秒级（取决于模型和硬件），精度增益却很有限。",
+          "right": "把粗排送入重排的窗口控制在二十到五十条之间，在毫秒级延迟预算内榨取最大精度增益。"
+        }
+      ],
+      "approach": "采分点是从架构机理讲透「为什么不能一步到位」：对比双编码器（分开编码可预存、快但盲）与交叉编码器（拼接互看、准但无法预存），最后落到「Top 50 粗召回 + Top 5 精截断护住上下文」的黄金配比。会失分的是只说重排就是再排一次序。",
+      "tips": "必备术语 Bi-Encoder、Cross-Encoder、casts a wide net。可延伸：重排延迟预算与截断阈值。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "RAG-F007",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "检索评测",
+        "召回率",
+        "排序质量"
+      ],
+      "concepts": [
+        "rag.retrieval_eval"
+      ],
+      "prereq": [
+        "RAG-F001",
+        "RAG-F005",
+        "RAG-F006"
+      ],
+      "q_cn": "检索评测里，Recall@K 与 MRR 各自衡量什么能力？",
+      "q_en": "In RAG retrieval evaluation, what do Recall@K and MRR each measure, and how do they guide tuning?",
+      "gist": {
+        "cn": "Recall@K 看前 K 条有无命中查覆盖，MRR 算首中名次倒数查精排。",
+        "en": "Recall@K checks if the right chunk appears anywhere in Top-K, while MRR scores how high the first hit ranks."
+      },
+      "points": [
+        {
+          "cn": "Recall@K 只看前 K 条有无命中证据，不管排第几",
+          "en": "appears anywhere inside the Top-K results"
+        },
+        {
+          "cn": "MRR 取首个正确结果名次的倒数均值，重奖排第一名",
+          "en": "averages one over the rank of the first relevant hit"
+        },
+        {
+          "cn": "粗排召回率低说明未进候选池，须修切块、改写或混合检索",
+          "en": "never entered the candidate pool"
+        },
+        {
+          "cn": "粗排召回高但 MRR 低，说明排不上去，上重排立刻见效",
+          "en": "adding or tuning a reranker"
+        }
+      ],
+      "concept": {
+        "cn": "调优两阶段检索时，绝不能凭感觉挑两条问题肉眼看，必须拆开量化「捞没捞到」和「排没排准」。Recall@K（前 K 召回率）衡量覆盖面：只要标准证据块出现在前 K 条名单里就算成功，排第一和排第 K 得分一样，专门体检第一阶段切块与混合召回。MRR（平均倒数排名）衡量头部锐度：取首个正确结果名次的倒数求平均，排第一得一分、排第二直接掉到零点五分，专门体检第二阶段重排能力。",
+        "en": "Tuning two-stage retrieval requires separating 'did we fetch it?' from 'did we rank it on top?' rather than eyeballing a few examples. Recall@K measures coverage: as long as the ground-truth passage appears anywhere in the Top-K list, it counts as a hit regardless of rank—diagnosing Stage-1 chunking and hybrid search. Mean Reciprocal Rank (MRR) measures top-rank sharpness by averaging 1 over the first relevant hit's rank (1.0 at rank 1, 0.5 at rank 2)—diagnosing Stage-2 reranking."
+      },
+      "a_pairs": [
+        {
+          "en": "Recall@K and MRR split retrieval diagnosis cleanly into two questions: did we catch the right passage at all, and did we push it to the very top?",
+          "cn": "Recall@K 和 MRR 把检索体检干净利落地拆成了两问：正确片段到底捞没捞进池子？捞进来后有没有推到最前排？"
+        },
+        {
+          "en": "Recall@K measures coverage—whether the ground-truth chunk appears anywhere inside the Top-K results, so it doesn't care whether a hit lands at rank one or rank K.",
+          "cn": "Recall@K 衡量的是覆盖率——只看标准证据块有没有出现在前 K 条结果里，根本不在乎它排第一名还是卡在第 K 名。"
+        },
+        {
+          "en": "MRR, or Mean Reciprocal Rank, measures top-rank sharpness: it averages one over the rank of the first relevant hit, so rank one scores 1.0, rank two drops to 0.5, and rank ten falls to 0.1.",
+          "cn": "而 MRR（平均倒数排名）衡量的是头部锐度：它计算首个相关片段名次的倒数均值，排第一得 1.0 分，排第二直接腰斩到 0.5，排第十只剩 0.1。"
+        },
+        {
+          "en": "Together, these two numbers show a product manager which stage is broken, so you're not guessing blindly.",
+          "cn": "这两个数字放在一起，就能让产品经理一眼锁定哪一环出了毛病，完全不用瞎猜。"
+        },
+        {
+          "en": "If Recall@50 is low, tuning your reranker won't help at all because the right chunk never entered the candidate pool—you need better chunking, query rewriting, or hybrid search.",
+          "cn": "如果 Recall@50 就很低，死磕重排模型毫无意义，因为正确片段压根没进候选池——你必须回头修切块、查询改写或混合检索。"
+        },
+        {
+          "en": "Conversely, if Recall@50 is high while MRR and Recall@5 lag behind, the evidence is in the pool but buried, so adding or tuning a reranker delivers immediate gains.",
+          "cn": "反过来，如果 Recall@50 很高、但 MRR 和 Recall@5 掉队，说明证据捞到了却被埋在底下，此时加装或微调重排模型立刻见效。"
+        },
+        {
+          "en": "My rule of thumb: use Recall@50 to audit your wide net, and MRR to audit your top-rank filter.",
+          "cn": "我的经验法则：用 Recall@50 审计大网漏不漏鱼，用 MRR 审计头部筛子准不准。"
+        }
+      ],
+      "a_en": "Recall@K and MRR split retrieval diagnosis cleanly into two questions: did we catch the right passage at all, and did we push it to the very top? Recall@K measures coverage—whether the ground-truth chunk appears anywhere inside the Top-K results, so it doesn't care whether a hit lands at rank one or rank K. MRR, or Mean Reciprocal Rank, measures top-rank sharpness: it averages one over the rank of the first relevant hit, so rank one scores 1.0, rank two drops to 0.5, and rank ten falls to 0.1. Together, these two numbers show a product manager which stage is broken, so you're not guessing blindly. If Recall@50 is low, tuning your reranker won't help at all because the right chunk never entered the candidate pool—you need better chunking, query rewriting, or hybrid search. Conversely, if Recall@50 is high while MRR and Recall@5 lag behind, the evidence is in the pool but buried, so adding or tuning a reranker delivers immediate gains. My rule of thumb: use Recall@50 to audit your wide net, and MRR to audit your top-rank filter.",
+      "a_cn": "Recall@K 和 MRR 把检索体检干净利落地拆成了两问：正确片段到底捞没捞进池子？捞进来后有没有推到最前排？Recall@K 衡量的是覆盖率——只看标准证据块有没有出现在前 K 条结果里，根本不在乎它排第一名还是卡在第 K 名。而 MRR（平均倒数排名）衡量的是头部锐度：它计算首个相关片段名次的倒数均值，排第一得 1.0 分，排第二直接腰斩到 0.5，排第十只剩 0.1。这两个数字放在一起，就能让产品经理一眼锁定哪一环出了毛病，完全不用瞎猜。如果 Recall@50 就很低，死磕重排模型毫无意义，因为正确片段压根没进候选池——你必须回头修切块、查询改写或混合检索。反过来，如果 Recall@50 很高、但 MRR 和 Recall@5 掉队，说明证据捞到了却被埋在底下，此时加装或微调重排模型立刻见效。我的经验法则：用 Recall@50 审计大网漏不漏鱼，用 MRR 审计头部筛子准不准。",
+      "key_phrases": [
+        {
+          "en": "ground-truth chunk",
+          "cn": "标准答案原文块",
+          "type": "词汇",
+          "usage": "专指人工标定的标准原文块，同义可换 golden passage"
+        },
+        {
+          "en": "top-rank sharpness",
+          "cn": "头部排序锐度",
+          "type": "搭配",
+          "usage": "形容把最关键证据精准顶到第一、第二名的排序区分能力"
+        },
+        {
+          "en": "candidate pool",
+          "cn": "候选池",
+          "type": "词汇",
+          "usage": "漏斗分析高频词，常搭 enter 或 trim the candidate pool"
+        },
+        {
+          "en": "lag behind",
+          "cn": "明显掉队、落后",
+          "type": "搭配",
+          "usage": "用于指标对比分析，如高召回下头部排序指标明显掉队"
+        },
+        {
+          "en": "delivers immediate gains",
+          "cn": "带来立竿见影的收益",
+          "type": "搭配",
+          "usage": "产品经理汇报技术优化投入产出比（ROI）的自然口语表达"
+        }
+      ],
+      "basics": [
+        {
+          "term": "前 K 召回率",
+          "term_en": "Recall@K",
+          "explain": "看测试集里有多少比例的问题，标准原文块能出现在前 K 条结果里（单证据时也叫命中率 Hit Rate）；K 取五十看粗排底线，取五看最终覆盖。",
+          "analogy": "看猎犬出去一趟有没有把猎物叼回院子，先不管放哪儿。"
+        },
+        {
+          "term": "平均倒数排名",
+          "term_en": "Mean Reciprocal Rank (MRR)",
+          "explain": "专门惩罚「找得到但排靠后」的指标：每题只看第一个正确结果排第几，取名次倒数再求平均；前 K 条都没命中就记零分。",
+          "analogy": "搜官网排第一条秒点满分，翻到第二页几乎等于没搜到。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "只盯着最终喂给大模型的 Recall@5 低，就让算法团队一味重调重排模型。",
+          "why": "如果不先测 Recall@50 区分源头，很可能正确文档在切块或粗排阶段就丢了，重排模型巧妇难为无米之炊，白白空转几周。",
+          "right": "在离线看板同时监控 Recall@50、Recall@5 与 MRR，先保大池子召回率达标再去抠头部排序。"
+        }
+      ],
+      "approach": "采分点是讲清 Recall@K 与 MRR 的定义及倒数分差（1.0/0.5/0.1），并给出调优决策树：Recall@50 低修一阶段粗排，Recall@50 高但 MRR 低修二阶段重排。失分点是只背公式不讲排障。",
+      "tips": "必备术语 ground-truth chunk、Mean Reciprocal Rank、candidate pool。可延伸：NDCG。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "RAG-X001",
+      "level": "X",
+      "kind": "idea",
+      "difficulty": "较难",
+      "tags": [
+        "技术选型",
+        "长上下文",
+        "架构权衡"
+      ],
+      "concepts": [
+        "rag.rag_pipeline",
+        "llm.context_window",
+        "prm.prompt_caching"
+      ],
+      "prereq": [
+        "LLM-F006",
+        "PRM-F004",
+        "RAG-F001"
+      ],
+      "q_cn": "有了百万级长上下文与提示缓存，为什么企业仍需要 RAG？",
+      "q_en": "With million-token context windows and prompt caching, why do enterprises still need RAG, and how do you choose?",
+      "gist": {
+        "cn": "小静态共享文档直塞长窗配缓存；超大规模、高频更新与权限隔离必上 RAG。",
+        "en": "Long context plus caching suits small static shared docs, while scale, update churn, attention dilution, and permissions require RAG."
+      },
+      "points": [
+        {
+          "cn": "几十页静态共享手册直塞长窗口配缓存，免切块损耗且零运维",
+          "en": "small, relatively static document bundles"
+        },
+        {
+          "cn": "企业全库动辄百万篇文档，体量远超任何单次上下文窗口上限",
+          "en": "exceeds any context window"
+        },
+        {
+          "cn": "工单与库存高频变动会让前缀缓存反复失效，拉爆首字延迟与账单",
+          "en": "invalidates cached prefixes"
+        },
+        {
+          "cn": "硬塞数百页无关内容会稀释注意力，触发「迷失在中间」漏读细节",
+          "en": "triggers lost-in-the-middle errors"
+        },
+        {
+          "cn": "不同员工可见文档子集不同，无法共用同一份静态缓存提示词",
+          "en": "can't share one static cached prompt"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在上下文窗口、提示缓存与检索增强生成之上。百万 Token 长窗口配提示缓存确实改写了选型边界：面对一份五十页的静态合同或产品白皮书，整篇塞进前缀并复用缓存，既省掉切块断裂风险又零检索运维。但一进入真实企业级知识库，纯靠硬塞长窗口会立刻撞上四堵高墙：全库海量文档装不下、文档高频增改导致前缀缓存反复作废、无关页面稀释自注意力引发中间迷失，以及员工按角色隔离的文档权限根本无法共享同一份静态前缀。",
+        "en": "This question builds on context windows, prompt caching, and retrieval-augmented generation. Million-token windows paired with prompt caching genuinely shift the boundary: for a static fifty-page contract or product spec shared across many queries, stuffing the whole bundle into a cached prefix avoids chunking loss with zero index maintenance. Yet enterprise knowledge bases hit four hard walls: corpus scale beyond any window, frequent edits invalidating cached prefixes, attention dilution across irrelevant pages, and per-user access controls that prevent sharing one static cached prompt."
+      },
+      "a_pairs": [
+        {
+          "en": "Long context plus prompt caching hasn't killed RAG; it's simply replaced unnecessary RAG on small, static workloads while clarifying where indexed retrieval is indispensable.",
+          "cn": "长上下文加提示缓存并没有消灭 RAG，它只是替代了小体量静态场景下原本过度设计的 RAG，反而让检索建库的真正刚需边界更清晰了。"
+        },
+        {
+          "en": "When you're querying small, relatively static document bundles, like a fifty-page contract shared across dozens of questions, stuffing the full text with prompt caching wins hands down: you keep cross-page context and run zero indexing infrastructure.",
+          "cn": "当你面对体量较小、内容相对静态的共享文档包（比如一份被反复追问几十次的五十页合同）时，全文直塞配合提示缓存完胜：既完整保留跨页上下文，又不用维护任何检索基建。"
+        },
+        {
+          "en": "Cached tokens are discounted, not free, though, so every question still pays to re-read the whole bundle.",
+          "cn": "不过缓存命中的 Token 只是打折、并非免费，每次提问仍要为重读整个文档包付费。"
+        },
+        {
+          "en": "Enterprise knowledge bases, however, quickly hit four walls where RAG remains non-negotiable.",
+          "cn": "然而一进入企业级知识库，纯长窗口方案很快就会撞上四堵必须靠 RAG 解决的硬墙。"
+        },
+        {
+          "en": "First, corpus scale in a real company, often millions of docs, far exceeds any context window, and second, frequent update churn constantly invalidates cached prefixes, spiking latency and cost.",
+          "cn": "第一，真实企业动辄上百万篇文档，远超任何上下文窗口；第二，高频更新会让缓存前缀不断失效，直接推高延迟和成本。"
+        },
+        {
+          "en": "Third, stuffing hundreds of irrelevant pages dilutes attention and triggers lost-in-the-middle errors.",
+          "cn": "第三，硬塞几百页无关资料会稀释注意力，引发「迷失在中间」的漏读。"
+        },
+        {
+          "en": "Fourth, with per-user access control, employees see different documents, so they can't share one static cached prompt.",
+          "cn": "第四，按员工权限千人千面，每个人可见的文档不同，根本没法共用一份静态缓存前缀。"
+        },
+        {
+          "en": "My rule of thumb is: cache full text for small, static, shared docs, and build RAG whenever scale, churn, or permissions enter the picture.",
+          "cn": "我的经验法则是：小体量静态共享文档直接全文进缓存，一旦涉及海量规模、高频更新或权限隔离就果断上 RAG。"
+        }
+      ],
+      "a_en": "Long context plus prompt caching hasn't killed RAG; it's simply replaced unnecessary RAG on small, static workloads while clarifying where indexed retrieval is indispensable. When you're querying small, relatively static document bundles, like a fifty-page contract shared across dozens of questions, stuffing the full text with prompt caching wins hands down: you keep cross-page context and run zero indexing infrastructure. Cached tokens are discounted, not free, though, so every question still pays to re-read the whole bundle. Enterprise knowledge bases, however, quickly hit four walls where RAG remains non-negotiable. First, corpus scale in a real company, often millions of docs, far exceeds any context window, and second, frequent update churn constantly invalidates cached prefixes, spiking latency and cost. Third, stuffing hundreds of irrelevant pages dilutes attention and triggers lost-in-the-middle errors. Fourth, with per-user access control, employees see different documents, so they can't share one static cached prompt. My rule of thumb is: cache full text for small, static, shared docs, and build RAG whenever scale, churn, or permissions enter the picture.",
+      "a_cn": "长上下文加提示缓存并没有消灭 RAG，它只是替代了小体量静态场景下原本过度设计的 RAG，反而让检索建库的真正刚需边界更清晰了。当你面对体量较小、内容相对静态的共享文档包（比如一份被反复追问几十次的五十页合同）时，全文直塞配合提示缓存完胜：既完整保留跨页上下文，又不用维护任何检索基建。不过缓存命中的 Token 只是打折、并非免费，每次提问仍要为重读整个文档包付费。然而一进入企业级知识库，纯长窗口方案很快就会撞上四堵必须靠 RAG 解决的硬墙。第一，真实企业动辄上百万篇文档，远超任何上下文窗口；第二，高频更新会让缓存前缀不断失效，直接推高延迟和成本。第三，硬塞几百页无关资料会稀释注意力，引发「迷失在中间」的漏读。第四，按员工权限千人千面，每个人可见的文档不同，根本没法共用一份静态缓存前缀。我的经验法则是：小体量静态共享文档直接全文进缓存，一旦涉及海量规模、高频更新或权限隔离就果断上 RAG。",
+      "key_phrases": [
+        {
+          "en": "wins hands down",
+          "cn": "毫无悬念地完胜",
+          "type": "搭配",
+          "usage": "口语化强调在特定约束下某种轻量化方案优势极其明显"
+        },
+        {
+          "en": "update churn",
+          "cn": "高频更新变动",
+          "type": "词汇",
+          "usage": "churn 指高频变动损耗；易混：user churn 是用户流失率"
+        },
+        {
+          "en": "invalidates cached prefixes",
+          "cn": "使已缓存的前缀作废失效",
+          "type": "搭配",
+          "usage": "准确描述前缀内容一改、KV 缓存就必须重新预填充计费的机制"
+        },
+        {
+          "en": "dilutes attention",
+          "cn": "稀释注意力权重",
+          "type": "搭配",
+          "usage": "解释塞入过多无关背景页为什么反而降低模型抓取关键数字的准度"
+        },
+        {
+          "en": "enter the picture",
+          "cn": "纳入考量、出现在场景中",
+          "type": "搭配",
+          "usage": "总结选型边界时自然引出新增复杂约束条件的高频口语短语"
+        }
+      ],
+      "basics": [
+        {
+          "term": "前缀缓存失效",
+          "term_en": "prefix cache invalidation",
+          "explain": "提示缓存要求每次请求的前半截文字一字不差才能打折提速；一旦知识库里某篇靠前的文档改了一句话，后面整串缓存全部作废重算。",
+          "analogy": "雕版印刷哪怕只改开头一个字，后半块木板也得跟着重刻。"
+        },
+        {
+          "term": "千人千面文档权限",
+          "term_en": "per-user document ACL",
+          "explain": "企业里销售、财务与研发各自只能看授权范围内的制度与项目文档；每个人拼出来的可见文档包都不一样，天然无法共享同一份长上下文缓存。",
+          "analogy": "员工刷工卡进大楼，不同级别能打开的档案柜抽屉完全不同。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "以为模型支持两百万 Token 窗口，就把全库硬塞进提示词。",
+          "why": "两百万 Token 折合下来也就几本厚书，装不下企业多年沉淀的海量工单与附件，且每次缓存失效时的首字等待和单次账单会直接击穿线上预算。",
+          "right": "先做四维诊断（总字数、日均更新频次、精度敏感度、权限颗粒度），达不到缓存甜点区就老老实实建检索索引。"
+        },
+        {
+          "wrong": "用户临时上传三十页招标书连问十题，也非要先切块建一套向量库。",
+          "why": "三十页文档完全装得进单次窗口且会话内固定不变，强行切块反而容易切断跨页表格与前后文引用，徒增检索漏召回风险。",
+          "right": "单会话临时上传的中小文档直接走「全文注入 + 提示缓存」，跨项目沉淀的公共大库才走 RAG。"
+        }
+      ],
+      "walkthrough": [
+        "破二元对立：开篇拒绝「RAG 已死」或「万物皆切块」的极端论调，明确两者按场景分工互补。",
+        "给长窗口甜点区：指出几十页静态且多人共享的文档包直塞长窗口配缓存，免切块损耗且零运维。",
+        "立四堵企业硬墙：依次拆解全库超窗规模、高频更新破缓存、无关页稀释注意力、千人千面权限冲突。",
+        "收选型决策尺：提炼出按规模、变更率与权限复杂度一键拍板的实用法则。"
+      ],
+      "method": {
+        "name": "四维选型诊断法",
+        "steps": [
+          "估文档总规模上限",
+          "测内容更新破缓率",
+          "查噪声与中间迷失",
+          "审员工级权限隔离"
+        ],
+        "transfer": "适用于单文档阅读助手设计、企业内部搜索选型、智能客服知识底座重构及法务审阅工具架构评审。"
+      },
+      "approach": "采分点是打出不偏不倚的架构师视角：先大方肯定长上下文加缓存在「小规模、静态、共享文档」上的零运维优势，再用「规模上限、更新破缓存、注意力稀释、千人千面权限」四堵墙钉死企业 RAG 刚需。会失分的是单边站队喊口号。",
+      "tips": "必备术语 prompt caching、update churn、per-user access control。可延伸：检索配长窗口精读。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "RAG-X002",
+      "level": "X",
+      "kind": "method",
+      "difficulty": "较难",
+      "tags": [
+        "版面解析",
+        "表格处理",
+        "父子切块"
+      ],
+      "concepts": [
+        "rag.chunking"
+      ],
+      "prereq": [
+        "RAG-F002",
+        "RAG-F003"
+      ],
+      "q_cn": "当知识库含大量复杂表格与多级标题时，如何设计解析与切块？",
+      "q_en": "How should you design document parsing and chunking when a knowledge base contains complex tables and deep hierarchies?",
+      "gist": {
+        "cn": "分层解析保阅读顺序与坐标，拼入父标题并锁死表头，再用父子索引小块查大块喂。",
+        "en": "Use tiered layout parsing, inject ancestor heading breadcrumbs with intact table headers, and apply parent-child indexing."
+      },
+      "points": [
+        {
+          "cn": "纯文本提取会打乱多栏顺序、劈裂无框表格并丢掉父级标题",
+          "en": "scrambles multi-column reading order"
+        },
+        {
+          "cn": "分层解析：简单电子页走本地快通道，复杂表格扫描件归视觉模型",
+          "en": "tiered layout-aware parsing"
+        },
+        {
+          "cn": "给每个切块前置拼接完整父级标题面包屑，长表续页重复携带表头",
+          "en": "prepend ancestor heading breadcrumbs"
+        },
+        {
+          "cn": "用父子或摘要索引：小块算向量保命中，回传完整父节或整表",
+          "en": "return the intact parent section or full Markdown table"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在文本切块与向量嵌入之上。面对企业财报、规章与技术手册里的多栏排版、无边框跨页表格及多层嵌套标题，粗暴抽纯文本会把表格行列搅成乱码、把子条款与前置适用范围拆成孤岛。工业级方案分三层治理：解析层采用「本地确定性快解析 + 复杂页路由 AI 解析后端」的混合通道输出带坐标框的结构化 Markdown；切块层把完整上级标题路径拼进正文并锁死表头；索引层用小粒度摘要或子块精准匹配，再把完整父表喂给大模型。",
+        "en": "This question builds on text chunking and vector embeddings. In enterprise financial reports, policies, and manuals filled with multi-column layouts, borderless tables, and deep heading trees, naive plain-text extraction scrambles table cells and orphans sub-clauses from their parent scope. A production pipeline tackles this in three layers: hybrid parsing that routes simple digital pages to fast deterministic parsers and complex scans or tables to AI backends with bounding-box coordinates; heading-breadcrumb injection with intact table headers; and parent-child indexing."
+      },
+      "a_pairs": [
+        {
+          "en": "Naive plain-text extraction wrecks enterprise PDFs because it scrambles multi-column reading order, rips table rows away from column headers, and orphans sub-clauses from parent headings.",
+          "cn": "粗暴的纯文本提取会毁掉企业 PDF，因为它会打乱多栏阅读顺序、把表格数据行和表头硬拆开，还会让子条款丢掉上级标题语境。"
+        },
+        {
+          "en": "I'd solve this with a three-layer pipeline across parsing, structural enrichment, and indexing.",
+          "cn": "我会从版面解析、结构富化与父子索引三个层级搭一套组合流水线来根治。"
+        },
+        {
+          "en": "First, use tiered layout-aware parsing to convert files into structured Markdown and JSON with bounding-box coordinates for visual source highlighting.",
+          "cn": "第一层做分层版面感知解析，把文档转成结构化 Markdown 以及带坐标框的 JSON，方便前端一键高亮原文出处。"
+        },
+        {
+          "en": "To balance cost and accuracy, you don't need AI models on every page: route clean digital pages through fast deterministic local parsers, and send only complex borderless tables, scans, or charts to AI backends such as layout, table, or OCR models.",
+          "cn": "为了兼顾成本与准度，没必要每页都上 AI 模型：普通电子页走本地确定性快速解析，只把复杂无框表格、扫描件和图表路由给版面、表格或 OCR 等 AI 解析后端。"
+        },
+        {
+          "en": "Second, prepend ancestor heading breadcrumbs like '[Policy > Travel > Hotel Cap]' to every chunk, and make sure you won't split a long table without repeating its header row.",
+          "cn": "第二层做上下文补全：在每个切块开头拼上诸如「[制度 > 差旅 > 住宿上限]」的父级标题路径，且拆分长表时绝不漏掉重复表头行。"
+        },
+        {
+          "en": "Third, apply parent-child indexing: embed concise table summaries or small child clauses so vectors aren't diluted, then return the intact parent section or full Markdown table to the LLM.",
+          "cn": "第三层用父子索引：拿精炼的表格摘要或细粒度子条款算向量以防表达被稀释，一旦命中就把完整的父章节或整张 Markdown 表格回传给大模型。"
+        },
+        {
+          "en": "Bottom line: parse layout before text, attach hierarchy to every chunk, and retrieve small while feeding whole.",
+          "cn": "归根结底：先认版面再抽字，块块带上父标题，检索用小块、生成喂全貌。"
+        }
+      ],
+      "a_en": "Naive plain-text extraction wrecks enterprise PDFs because it scrambles multi-column reading order, rips table rows away from column headers, and orphans sub-clauses from parent headings. I'd solve this with a three-layer pipeline across parsing, structural enrichment, and indexing. First, use tiered layout-aware parsing to convert files into structured Markdown and JSON with bounding-box coordinates for visual source highlighting. To balance cost and accuracy, you don't need AI models on every page: route clean digital pages through fast deterministic local parsers, and send only complex borderless tables, scans, or charts to AI backends such as layout, table, or OCR models. Second, prepend ancestor heading breadcrumbs like '[Policy > Travel > Hotel Cap]' to every chunk, and make sure you won't split a long table without repeating its header row. Third, apply parent-child indexing: embed concise table summaries or small child clauses so vectors aren't diluted, then return the intact parent section or full Markdown table to the LLM. Bottom line: parse layout before text, attach hierarchy to every chunk, and retrieve small while feeding whole.",
+      "a_cn": "粗暴的纯文本提取会毁掉企业 PDF，因为它会打乱多栏阅读顺序、把表格数据行和表头硬拆开，还会让子条款丢掉上级标题语境。我会从版面解析、结构富化与父子索引三个层级搭一套组合流水线来根治。第一层做分层版面感知解析，把文档转成结构化 Markdown 以及带坐标框的 JSON，方便前端一键高亮原文出处。为了兼顾成本与准度，没必要每页都上 AI 模型：普通电子页走本地确定性快速解析，只把复杂无框表格、扫描件和图表路由给版面、表格或 OCR 等 AI 解析后端。第二层做上下文补全：在每个切块开头拼上诸如「[制度 > 差旅 > 住宿上限]」的父级标题路径，且拆分长表时绝不漏掉重复表头行。第三层用父子索引：拿精炼的表格摘要或细粒度子条款算向量以防表达被稀释，一旦命中就把完整的父章节或整张 Markdown 表格回传给大模型。归根结底：先认版面再抽字，块块带上父标题，检索用小块、生成喂全貌。",
+      "key_phrases": [
+        {
+          "en": "scrambles multi-column reading order",
+          "cn": "打乱多栏排版的阅读顺序",
+          "type": "搭配",
+          "usage": "精准描述普通解析器把左右双栏横着串读成乱句的常见事故"
+        },
+        {
+          "en": "bounding-box coordinates",
+          "cn": "边界框位置坐标",
+          "type": "词汇",
+          "usage": "常接在 with 后表附带页面坐标，视觉定位与文档解析通用词"
+        },
+        {
+          "en": "ancestor heading breadcrumbs",
+          "cn": "上级标题面包屑路径",
+          "type": "搭配",
+          "usage": "借网页导航概念描述把章、节、小节标题串成前缀注入切块"
+        },
+        {
+          "en": "parent-child indexing",
+          "cn": "父子层级索引",
+          "type": "词汇",
+          "usage": "进阶切块术语，口语中也常说 parent-child chunking"
+        },
+        {
+          "en": "retrieve small while feeding whole",
+          "cn": "小粒度检索、完整性喂入",
+          "type": "句型",
+          "usage": "对称动宾结构，一句话浓缩父子切块与表格摘要索引的精髓"
+        }
+      ],
+      "basics": [
+        {
+          "term": "分层混合版面解析",
+          "term_en": "tiered hybrid PDF parsing",
+          "explain": "不拿昂贵的 AI 模型硬啃每一页，而是先用毫秒级本地规则解析常规文字页，只挑出含复杂合并单元格、公式或低清扫描的难页交给 AI 精读。",
+          "analogy": "医院分诊让普通感冒走常规门诊快看，疑难杂症再转专家。"
+        },
+        {
+          "term": "父子切块索引",
+          "term_en": "parent-child chunking",
+          "explain": "建库时把文档存成两套关联粒度：检索库里存单句或表格文字摘要以防向量模糊，命中后顺藤摸瓜把整节原文或整张大表取出来交给生成模型。",
+          "analogy": "图书馆先查薄索引卡找准位置，再提整卷档案袋出来细看。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "把几百行的财务大表直接转成纯文本按五百字硬切进向量库。",
+          "why": "切到第三块时只剩一排排光秃秃的数字，早把第一块里的列名表头和计量单位丢光了，大模型读到后只能张冠李戴乱算一气。",
+          "right": "把表格转成结构化 Markdown，为整表生成自然语言摘要用于检索，超长表拆分时每块强制复制表头。"
+        },
+        {
+          "wrong": "为求最高解析精度，把几万页普通电子版制度全丢给多模态大模型逐页识图转写。",
+          "why": "纯文字电子页用确定性规则就能高精度抽完，全走视觉模型不仅慢一个数量级以上、成本明显上升，还会偶发改写原文数字的幻觉。",
+          "right": "采用本地确定性解析兜底日常页、仅将复杂图表与扫描页分流至 AI 解析后端的混合路由架构。"
+        }
+      ],
+      "walkthrough": [
+        "点破痛点：指出纯文本提取在企业文档中会造成双栏串行、表头脱落与子条款失孤三大硬伤。",
+        "治解析层：提出「本地确定性快解析 + 复杂页路由 AI 解析后端」分层架构，并保留坐标框供前端溯源。",
+        "治结构层：为每个切块前置注入完整上级标题面包屑，并规定表格拆分必须重复携带表头。",
+        "治索引层：用父子索引或表格摘要实现「小块算向量保命中、大块进提示保完整」。"
+      ],
+      "method": {
+        "name": "解析富化父子法",
+        "steps": [
+          "简单复杂页分流解析",
+          "留坐标框供前端溯源",
+          "注入父标题锁死表头",
+          "小块检索回传完整父块"
+        ],
+        "transfer": "适用于上市财报投研问答、医疗检验单与临床指南库、工程招投标书审阅及保险条款核保助手。"
+      },
+      "approach": "采分点是跳出单纯调块大小的初级思维，按「分层版面解析 → 标题面包屑与表头锁定 → 父子摘要索引」三层递进作答，顺带点出「本地快解析配 AI 难页路由」的成本意识。会失分的是只答换个更好的嵌入模型。",
+      "tips": "必备术语 layout-aware parsing、heading breadcrumbs、parent-child indexing。",
+      "source_repos": [
+        "opendataloader-project/opendataloader-pdf"
+      ],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "RAG-X003",
+      "level": "X",
+      "kind": "idea",
+      "difficulty": "较难",
+      "tags": [
+        "知识图谱",
+        "多跳推理",
+        "架构选型"
+      ],
+      "concepts": [
+        "rag.graph_rag"
+      ],
+      "prereq": [
+        "RAG-F002",
+        "RAG-F003",
+        "RAG-F005"
+      ],
+      "q_cn": "与普通切块 RAG 相比，GraphRAG 何时值得用？代价是什么？",
+      "q_en": "When does GraphRAG make sense over standard chunk-based RAG, and what trade-offs come with it?",
+      "gist": {
+        "cn": "补齐切块检索在多跳追查与全库归纳上的盲区；但建图贵更新重，单点查事实别滥用。",
+        "en": "GraphRAG solves multi-hop relational chains and global corpus synthesis where chunk lookup fails, at higher indexing and update cost."
+      },
+      "points": [
+        {
+          "cn": "传统切块检索只擅长局部单点查事实，抓不住跨多篇文档的隐含链路",
+          "en": "isolated local passages"
+        },
+        {
+          "cn": "痛点一是跨文档多跳追查（如断供波及哪些产线与客户合同）",
+          "en": "multi-hop relational queries"
+        },
+        {
+          "cn": "痛点二是全库宏观归纳（如半年客诉主线），零散片段难代表全局",
+          "en": "global corpus sensemaking"
+        },
+        {
+          "cn": "纯文本靠模型抽图谱烧钱且增量去重难，日常问答仍首选混合检索",
+          "en": "multiplies offline token spend"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在文本切块、向量嵌入与混合检索之上。标准切块 RAG 本质是「局部碎片搜寻」，遇到跨多份档案串联线索的多跳追问，或要求鸟瞰全库提炼主线的全局问题就会失灵。图谱增强检索（GraphRAG）通过抽取实体与关系边支持顺藤摸瓜的路径遍历，并借助社区聚类预生成多级全局摘要。顺带一提，结构化代码库可直接靠语法树本地零成本解析精确调用图，而非结构化文档用大模型抽图谱成本高昂且实体去重复杂，须按需克制选用。",
+        "en": "This question builds on text chunking, vector embeddings, and hybrid search. Standard chunk-based RAG performs local snippet lookups, failing when answers require chaining clues across distant files or synthesizing themes across an entire repository. GraphRAG extracts entity-relationship edges for multi-hop path traversal and builds hierarchical community summaries for global sensemaking. Notably, structured codebases can parse exact dependency graphs locally via ASTs at zero LLM cost, whereas unstructured prose requires costly LLM extraction and entity deduplication."
+      },
+      "a_pairs": [
+        {
+          "en": "Standard chunk-based RAG works great for single-fact lookups, but it's limited because it only fetches isolated local passages.",
+          "cn": "标准切块 RAG 应付单点事实查询非常顺手，但它存在明显短板——每次只能捞出彼此孤立的局部文本碎片。"
+        },
+        {
+          "en": "That limitation creates blind spots on two high-value enterprise tasks: multi-hop relational queries and global corpus sensemaking.",
+          "cn": "这个局限在两类高价值企业任务上会直接失灵：一是跨文档多跳关系追查，二是全库级别的宏观主题归纳。"
+        },
+        {
+          "en": "Think of asking which client contracts are exposed if Supplier A halts shipments, or summarizing the main complaint themes across six months of tickets: Top-5 snippets often can't connect the dots on their own, unless you add iterative or agentic retrieval.",
+          "cn": "试想你问「供应商 A 断供会波及哪些客户合同」，或者「归纳过去半年全部客诉的核心主线」：光靠前五条零散片段往往串不起链路，除非再加上多轮迭代或智能体式检索。"
+        },
+        {
+          "en": "GraphRAG addresses both by extracting entities and relationship edges for multi-hop path traversal, while clustering closely linked nodes into hierarchical community summaries.",
+          "cn": "GraphRAG 靠两手抓破局：一边抽取实体与关系边支持顺藤摸瓜的多跳路径遍历，一边把紧密相连的节点聚类成多层级社区摘要来回答全局问题。"
+        },
+        {
+          "en": "However, unless you're parsing structured code where syntax trees give explicit edges for free, running LLMs over unstructured prose multiplies offline token spend.",
+          "cn": "不过，除非你处理的是能靠语法树零成本精准提取调用边的结构化代码，否则拿大模型去啃非结构化长文抽图谱，会让离线 Token 账单成倍飙升。"
+        },
+        {
+          "en": "It also complicates incremental updates and entity deduplication, so I'd never treat it as a drop-in replacement when documents change often.",
+          "cn": "同时它还会显著加重增量更新与实体去重负担，所以面对高频变动的常规文档，我绝不会把它当成无脑平替。"
+        },
+        {
+          "en": "My rule of thumb: default to hybrid RAG for everyday fact lookups, and reserve GraphRAG for multi-hop investigations or bird's-eye synthesis.",
+          "cn": "我的经验法则：日常单点查事实默认用混合检索，只有遇到多跳追查或全库鸟瞰综述时才动用 GraphRAG。"
+        }
+      ],
+      "a_en": "Standard chunk-based RAG works great for single-fact lookups, but it's limited because it only fetches isolated local passages. That limitation creates blind spots on two high-value enterprise tasks: multi-hop relational queries and global corpus sensemaking. Think of asking which client contracts are exposed if Supplier A halts shipments, or summarizing the main complaint themes across six months of tickets: Top-5 snippets often can't connect the dots on their own, unless you add iterative or agentic retrieval. GraphRAG addresses both by extracting entities and relationship edges for multi-hop path traversal, while clustering closely linked nodes into hierarchical community summaries. However, unless you're parsing structured code where syntax trees give explicit edges for free, running LLMs over unstructured prose multiplies offline token spend. It also complicates incremental updates and entity deduplication, so I'd never treat it as a drop-in replacement when documents change often. My rule of thumb: default to hybrid RAG for everyday fact lookups, and reserve GraphRAG for multi-hop investigations or bird's-eye synthesis.",
+      "a_cn": "标准切块 RAG 应付单点事实查询非常顺手，但它存在明显短板——每次只能捞出彼此孤立的局部文本碎片。这个局限在两类高价值企业任务上会直接失灵：一是跨文档多跳关系追查，二是全库级别的宏观主题归纳。试想你问「供应商 A 断供会波及哪些客户合同」，或者「归纳过去半年全部客诉的核心主线」：光靠前五条零散片段往往串不起链路，除非再加上多轮迭代或智能体式检索。GraphRAG 靠两手抓破局：一边抽取实体与关系边支持顺藤摸瓜的多跳路径遍历，一边把紧密相连的节点聚类成多层级社区摘要来回答全局问题。不过，除非你处理的是能靠语法树零成本精准提取调用边的结构化代码，否则拿大模型去啃非结构化长文抽图谱，会让离线 Token 账单成倍飙升。同时它还会显著加重增量更新与实体去重负担，所以面对高频变动的常规文档，我绝不会把它当成无脑平替。我的经验法则：日常单点查事实默认用混合检索，只有遇到多跳追查或全库鸟瞰综述时才动用 GraphRAG。",
+      "key_phrases": [
+        {
+          "en": "isolated local passages",
+          "cn": "彼此孤立的局部段落",
+          "type": "搭配",
+          "usage": "点破普通向量与关键词检索缺乏跨文档全局连接视图的短板"
+        },
+        {
+          "en": "multi-hop relational queries",
+          "cn": "多跳关系型查询",
+          "type": "词汇",
+          "usage": "multi-hop 指需跨多步串联线索，单步直查则叫 single-hop"
+        },
+        {
+          "en": "global corpus sensemaking",
+          "cn": "全库宏观归纳理解",
+          "type": "搭配",
+          "usage": "指跨成百上千篇文档提炼整体趋势、核心脉络的全局型任务"
+        },
+        {
+          "en": "hierarchical community summaries",
+          "cn": "多层级社区聚类摘要",
+          "type": "搭配",
+          "usage": "GraphRAG 核心机制：按连接密度分群并预先生成由细到粗的群组摘要"
+        },
+        {
+          "en": "bird's-eye synthesis",
+          "cn": "鸟瞰式全局综述",
+          "type": "搭配",
+          "usage": "与单点细节查找相对，形象表达站在高处纵览全库全貌的汇总能力"
+        }
+      ],
+      "basics": [
+        {
+          "term": "多跳路径遍历",
+          "term_en": "multi-hop traversal",
+          "explain": "顺着图谱里「供应商—供应零件—用于产线—履约客户」的关系连线一步步跨文档追踪，即使首尾两份文档没有任何共同词汇也能精准串起因果链。",
+          "analogy": "经侦办案顺着资金转账关系网连查三层账户，揪出幕后关联方。"
+        },
+        {
+          "term": "图社区聚类摘要",
+          "term_en": "community clustering summary",
+          "explain": "利用图算法把关系紧密的实体自动抱团划分成若干「主题社区」，离线提前为每个社区写好综述，线上问宏观大势时直接汇总社区报告作答。",
+          "analogy": "人口普查先由街道汇总社区简报、再由区县汇总全市总览。"
+        },
+        {
+          "term": "抽象语法树",
+          "term_en": "AST (abstract syntax tree)",
+          "explain": "编程语言自带的确定性代码结构解析树，不用调大模型就能在本地毫秒级提取「哪个函数调用了哪个模块」的精确依赖关系边。",
+          "analogy": "看建筑施工蓝图，水电管线怎么连本来就标得一清二楚。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "觉得图谱更高级，连考勤报销这类常规单点制度问答也全量硬上知识图谱。",
+          "why": "考勤报销大多是「出差餐补多少钱」这类单点条款查询，硬上图谱不仅抬高建库与维护成本，多一跳推理还会拖慢线上响应。",
+          "right": "先统计真实问题分布：单点查事实为主就打磨混合检索加精排，仅对复杂关联模块叠加图谱。"
+        },
+        {
+          "wrong": "让大模型逐块抽取实体建图后直接入库，不做跨文档实体对齐与增量清理。",
+          "why": "不同文档里同一对象常写成简称、全称或英文缩写，不去重会让同一家客户裂变成十几个孤立节点，文件删除后还会残留幽灵旧关系。",
+          "right": "建图管线必须配套同名异写实体归一化去重，并按文件哈希实现增量更新与删档节点清理。"
+        }
+      ],
+      "walkthrough": [
+        "划定盲区：指出局部切块检索只能做单点查事实，无法跨文档串线或代表全库分布。",
+        "立两大核心适用场景：结合供应链波及与半年客诉综述，讲清多跳关系追查与全库宏观归纳。",
+        "拆图谱双引擎：靠实体边做路径遍历、分层社区摘要答全局（区分代码语法树免成本与长文抽图）。",
+        "压工程成本红线：点明离线账单与增量去重代价，立住「日常混合检索、重关联叠图谱」边界。"
+      ],
+      "method": {
+        "name": "查询形态选图法",
+        "steps": [
+          "分单点多跳与全局问法",
+          "判结构化或纯文本源",
+          "算离线抽图与更新账",
+          "混合检索打底按需叠图"
+        ],
+        "transfer": "适用于供应链断供影响推演、大型代码库跨文件架构梳理、金融尽调关联方穿透及海量工单舆情复盘。"
+      },
+      "approach": "采分点是先切中普通切块检索「局部孤岛」命门，用具体业务例子立住「多跳关联」与「全局归纳」两大刚需，再冷静算清非结构化文本抽图谱的离线账单与增量去重代价。会失分的是把 GraphRAG 吹成替代一切向量库的银弹。",
+      "tips": "必备术语 multi-hop queries、global sensemaking、community summaries。可延伸：混合图谱。",
+      "source_repos": [
+        "Graphify-Labs/graphify"
+      ],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "RAG-X004",
+      "level": "X",
+      "kind": "case",
+      "difficulty": "较难",
+      "tags": [
+        "企业级RAG",
+        "权限隔离",
+        "多源连接器"
+      ],
+      "concepts": [
+        "rag.hybrid_rerank",
+        "rag.vector_db"
+      ],
+      "prereq": [
+        "RAG-F001",
+        "RAG-F004",
+        "RAG-F005"
+      ],
+      "q_cn": "以 Onyx 为例：企业知识库如何做好多源同步与检索权限隔离？",
+      "q_en": "Using Onyx as a case study, how does an enterprise RAG platform handle multi-source syncing and permission isolation?",
+      "gist": {
+        "cn": "后台队列同步多源数据与权限，片段进模型前按权限过滤，以预建混合索引替代实时轮询。",
+        "en": "Onyx syncs 50+ connectors with ACLs in background queues, filters restricted passages before the LLM, and serves hybrid search."
+      },
+      "points": [
+        {
+          "cn": "企业知识散落数十个系统且权限森严，静态上传演示根本跑不通",
+          "en": "scattered across dozens of SaaS apps"
+        },
+        {
+          "cn": "后台任务队列同步源文档时，一并拉取元数据与用户及群组权限列表",
+          "en": "alongside metadata and user or group permissions"
+        },
+        {
+          "cn": "每次查询套用同一套访问控制，无权片段进模型前就被滤掉",
+          "en": "filtered out before they reach the LLM"
+        },
+        {
+          "cn": "预建向量加关键词混合索引，免去智能体实时轮询的高延迟高消耗",
+          "en": "unified vector-plus-keyword hybrid index"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在检索增强生成、向量数据库与混合检索之上。实验室 RAG 演示只管传几份公开 PDF，而真实企业知识散落在文档库、工单、聊天群等五十多个系统里，且财务薪酬与高管纪要严禁跨权限泄露。以开源企业知识平台 Onyx 为例，其可复用的三大生产范式是：后台工作队列从各连接器同步正文与权限控制列表（ACL）；在检索查库阶段前置硬过滤无权文档；并用统一的向量加关键词混合索引替代高延迟、狂烧 Token 的实时多工具轮询。",
+        "en": "This question builds on retrieval-augmented generation, vector databases, and hybrid search. Toy RAG demos ingest a few public PDFs, whereas real enterprise knowledge lives across 50+ constantly changing SaaS apps with strict HR, finance, and team access boundaries. Using the open-source platform Onyx as a case study reveals three transferable patterns: background worker queues that sync documents alongside source ACLs, strict index-level permission filtering before chunks ever touch the LLM, and a unified vector-plus-keyword index that beats slow, token-heavy live connector polling."
+      },
+      "a_pairs": [
+        {
+          "en": "Toy RAG demos look easy on five static PDFs, but they won't survive enterprise reality where knowledge is scattered across dozens of SaaS apps with strict access boundaries.",
+          "cn": "拿五份静态 PDF 搭个 RAG 演示很简单，但一进真实企业——资料散落在几十个办公软件里且权限森严——玩具方案根本活不过上线。"
+        },
+        {
+          "en": "Using Onyx as a case study, I'd highlight three production patterns that turn a prototype into a governed enterprise knowledge layer.",
+          "cn": "以开源企业知识平台 Onyx 为例，我会提炼出三个把原型升级为受控企业知识底座的核心工程范式。"
+        },
+        {
+          "en": "First, Onyx runs background job queues and workers to sync documents from over fifty connectors alongside metadata and user or group permissions.",
+          "cn": "第一，Onyx 用后台任务队列与工作进程对接五十多个应用连接器，在同步文档正文的同时，把元数据和用户及群组权限一并同步入库。"
+        },
+        {
+          "en": "Second, it applies the same access controls to every query, so restricted passages are filtered out before they reach the LLM; telling a prompt 'don't leak HR salaries' isn't real security.",
+          "cn": "第二，它对每次查询都套用同一套访问控制，让无权阅读的片段在进入大模型之前就被过滤掉；靠提示词叮嘱「别泄露薪资」根本算不上安全。"
+        },
+        {
+          "en": "Third, instead of having an agent search dozens of live tools one by one and burn thousands of tokens per question, Onyx serves a unified vector-plus-keyword hybrid index.",
+          "cn": "第三，它没有让智能体每次提问都去几十个在线工具里挨个搜索、白烧几千个 Token，而是统一维护一套预建的「向量 + 关键词」混合索引。"
+        },
+        {
+          "en": "Paired with self-hosted deployment and query audit logs, that pre-indexed layer delivers low-latency, low-cost answers without sacrificing data sovereignty.",
+          "cn": "再配合私有化自托管部署与查询审计日志，这套预建索引底座既做到低延迟、低成本响应，又守住了企业数据主权。"
+        },
+        {
+          "en": "Bottom line for any enterprise rollout: sync permissions with the data, filter before the prompt, and pre-index what agents read often.",
+          "cn": "归根结底，任何企业级落地都要做到：权限随数据同步，过滤挡在进提示词之前，高频读取的知识一定要预建索引。"
+        }
+      ],
+      "a_en": "Toy RAG demos look easy on five static PDFs, but they won't survive enterprise reality where knowledge is scattered across dozens of SaaS apps with strict access boundaries. Using Onyx as a case study, I'd highlight three production patterns that turn a prototype into a governed enterprise knowledge layer. First, Onyx runs background job queues and workers to sync documents from over fifty connectors alongside metadata and user or group permissions. Second, it applies the same access controls to every query, so restricted passages are filtered out before they reach the LLM; telling a prompt 'don't leak HR salaries' isn't real security. Third, instead of having an agent search dozens of live tools one by one and burn thousands of tokens per question, Onyx serves a unified vector-plus-keyword hybrid index. Paired with self-hosted deployment and query audit logs, that pre-indexed layer delivers low-latency, low-cost answers without sacrificing data sovereignty. Bottom line for any enterprise rollout: sync permissions with the data, filter before the prompt, and pre-index what agents read often.",
+      "a_cn": "拿五份静态 PDF 搭个 RAG 演示很简单，但一进真实企业——资料散落在几十个办公软件里且权限森严——玩具方案根本活不过上线。以开源企业知识平台 Onyx 为例，我会提炼出三个把原型升级为受控企业知识底座的核心工程范式。第一，Onyx 用后台任务队列与工作进程对接五十多个应用连接器，在同步文档正文的同时，把元数据和用户及群组权限一并同步入库。第二，它对每次查询都套用同一套访问控制，让无权阅读的片段在进入大模型之前就被过滤掉；靠提示词叮嘱「别泄露薪资」根本算不上安全。第三，它没有让智能体每次提问都去几十个在线工具里挨个搜索、白烧几千个 Token，而是统一维护一套预建的「向量 + 关键词」混合索引。再配合私有化自托管部署与查询审计日志，这套预建索引底座既做到低延迟、低成本响应，又守住了企业数据主权。归根结底，任何企业级落地都要做到：权限随数据同步，过滤挡在进提示词之前，高频读取的知识一定要预建索引。",
+      "key_phrases": [
+        {
+          "en": "governed enterprise knowledge layer",
+          "cn": "受控治理的企业知识底座",
+          "type": "搭配",
+          "usage": "产品架构汇报高频词，强调不仅能搜到、还具备权限与审计治理"
+        },
+        {
+          "en": "background job queues",
+          "cn": "后台异步任务队列",
+          "type": "词汇",
+          "usage": "系统设计通用词，常搭 run 或 offload work to 表异步解耦"
+        },
+        {
+          "en": "applies the same access controls",
+          "cn": "套用同一套访问控制",
+          "type": "搭配",
+          "usage": "强调权限规则对每次查询一视同仁，而不是靠提示词自觉保密"
+        },
+        {
+          "en": "burn thousands of tokens",
+          "cn": "白白烧掉几千个 Token",
+          "type": "搭配",
+          "usage": "burn tokens 口语形容大模型反复调用、无谓消耗上下文额度"
+        },
+        {
+          "en": "data sovereignty",
+          "cn": "数据主权",
+          "type": "词汇",
+          "usage": "政企采购高频词；注意拼写：sovereignty 中间 g 不发音"
+        }
+      ],
+      "basics": [
+        {
+          "term": "权限随文档同步（ACL 继承）",
+          "term_en": "connector ACL inheritance",
+          "explain": "同步飞书、网盘或工单系统里的文件时，不只抓文字，还把原系统里「谁能看、哪个部门能看」的访问控制列表一并写入向量库的过滤字段。",
+          "analogy": "机密档案归总库时，把原档案袋的借阅级别封条原样贴过去。"
+        },
+        {
+          "term": "检索前置权限过滤",
+          "term_en": "pre-retrieval permission filtering",
+          "explain": "员工发问时先查验其身份所属群组，在向量和关键词索引底层只扫描该员工有权访问的文档子集，从物理源头杜绝模型看到越权内容。",
+          "analogy": "先验工牌确认能进哪间阅览室再找书，绝不全搬出来再捂眼。"
+        },
+        {
+          "term": "单点登录与角色权限",
+          "term_en": "SSO & RBAC",
+          "explain": "企业统一登录认证（SSO）与按岗位角色分配访问权（RBAC）的标准权限体系，让知识库直接复用公司现有组织架构与离职注销状态。",
+          "analogy": "一张公司门禁卡自动决定你能刷开哪几层楼的办公区。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "全员共用无权限大向量库，只在提示词里叮嘱「不准向员工透露高管纪要」。",
+          "why": "只要高管纪要片段被检索塞进了上下文窗口，用户用简单的角色扮演或追问话术就能轻松绕过提示词防线套出机密，酿成严重安全事故。",
+          "right": "把用户身份与文档权限列表一并同步入库，在检索条件里做硬性前置过滤。"
+        },
+        {
+          "wrong": "觉得有了实时工具调用接口就不必建索引，让模型每次现场轮询十几个办公软件。",
+          "why": "外部 SaaS 搜索接口语义能力弱且限流严，来回试错改词几十轮不仅等待长达数十秒，单次问答消耗的上下文账单更是天文数字。",
+          "right": "对高频跨源企业知识采用后台统一预建混合索引查事实，仅将实时写操作或极低频状态查询留给在线工具调用。"
+        }
+      ],
+      "walkthrough": [
+        "点破原型与生产鸿沟：指出真实企业面临五十多个数据源碎片化更新与严苛内部权限红线。",
+        "拆连接器与权限同步：说明后台队列如何将源系统正文、元数据与用户群组权限列表一并同步入库。",
+        "立检索层安全铁律：强调在索引查询内部前置拦截无权片段，绝不依赖脆弱的提示词口头保密。",
+        "比预建与轮询：讲明统一混合索引在延迟、成本与数据主权上的压倒优势。"
+      ],
+      "method": {
+        "name": "企业知识三层治理",
+        "steps": [
+          "多源队列同步带权限",
+          "索引层前置硬过滤",
+          "预建混合库替实时轮询",
+          "私有部署留审计日志"
+        ],
+        "transfer": "适用于集团跨事业部知识中台、研发代码与文档统一助手、投行合规隔离智库及多租户 SaaS 客服底座。"
+      },
+      "approach": "采分点是跳出功能罗列，紧扣企业落地的三大生死线拆解 Onyx：多源后台队列连同 ACL 同步、检索阶段前置硬过滤防越权、以及预建混合索引相比实时轮询外部接口的低延迟低成本优势。会失分的是背部署脚本命令。",
+      "tips": "必备术语 ACL inheritance、access control、data sovereignty。可延伸：离职调岗时的权限实时吊销同步策略。",
+      "source_repos": [
+        "onyx-dot-app/onyx"
+      ],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "RAG-X005",
+      "level": "X",
+      "kind": "method",
+      "difficulty": "中等",
+      "tags": [
+        "RAG评测",
+        "错误归因",
+        "离线评测集"
+      ],
+      "concepts": [
+        "rag.retrieval_eval",
+        "llm.hallucination"
+      ],
+      "prereq": [
+        "LLM-F008",
+        "RAG-F001",
+        "RAG-F007"
+      ],
+      "q_cn": "如何围绕「RAG 三元组」搭建离线评测集，精准定位答错根源？",
+      "q_en": "How do you build an offline evaluation pipeline around the RAG Triad to pinpoint why answers fail?",
+      "gist": {
+        "cn": "建含拒答陷阱的黄金评测集，独立拆评上下文相关、忠实度与答案相关三边精准归因。",
+        "en": "Curate a golden set with refusal traps, then score Context Relevance, Faithfulness, and Answer Relevance separately to isolate failures."
+      },
+      "points": [
+        {
+          "cn": "只看最终回答对错属于黑盒盲调，分不清是没搜到还是模型瞎编",
+          "en": "leaves teams debugging blind"
+        },
+        {
+          "cn": "沉淀含真实问题、标准答案、必中证据块及无解拒答题的黄金评测集",
+          "en": "curate a golden evaluation set"
+        },
+        {
+          "cn": "测上下文相关性（问↔块）：分低说明进噪音或漏召回，修检索",
+          "en": "Context Relevance"
+        },
+        {
+          "cn": "测忠实度（块↔答）与答案相关（问↔答）：分抓胡编与答非所问",
+          "en": "Faithfulness checks"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在大模型幻觉、检索增强生成与检索评测指标之上。线上 RAG 答错一道题，可能是检索漏了文档，可能是塞进太多废话干扰了模型，也可能是证据就在眼前模型却顺嘴胡编。只盯着最终答案打分就像蒙眼修车。围绕「问题、召回片段、生成回答」三个顶点拆出「RAG 三元组」独立打分——上下文相关性查检索准度、忠实度查模型有据作答、答案相关性查意图对齐——再配上覆盖拒答边界的黄金评测集，才能指哪打哪。",
+        "en": "This question builds on LLM hallucination, retrieval-augmented generation, and retrieval evaluation metrics. When a RAG system answers poorly, retrieval might have missed the passage, stuffed noisy distractors, or handed over clean evidence that the LLM ignored or fabricated beyond. Grading only the final answer leaves teams guessing. Scoring the three edges of the RAG Triad—Context Relevance, Faithfulness, and Answer Relevance—on a golden dataset with refusal traps isolates the exact failing component."
+      },
+      "a_pairs": [
+        {
+          "en": "Grading only the final answer in a RAG system leaves teams debugging blind—you'll waste weeks tweaking prompts when retrieval actually missed the document.",
+          "cn": "评测 RAG 如果只给最终回答打总分，团队就等于在蒙眼盲调——明明是检索漏了文档，你却花好几周在提示词上白费劲。"
+        },
+        {
+          "en": "To pinpoint failures systematically, I'd first curate a golden evaluation set pairing real user questions with reference answers and ground-truth evidence chunks, plus unanswerable trap questions to test honest refusal.",
+          "cn": "为了系统化定位病根，我会先沉淀一套黄金评测集：把真实用户问题配对标准答案与必中原文证据块，再专门混入知识库无解的陷阱题检验坦诚拒答。"
+        },
+        {
+          "en": "Then, on every pipeline change, we score the three edges of the RAG Triad independently using an LLM-as-a-judge rubric.",
+          "cn": "接着在每次迭代上线前，我们用裁判模型按明确量表对「RAG 三元组」的三条边分别独立打分。"
+        },
+        {
+          "en": "First, Context Relevance compares the question against retrieved chunks; if it's low, your retriever fetched noise, and Recall@K on the ground-truth chunks tells you whether evidence was missed, so you fix chunking, hybrid search, or reranking.",
+          "cn": "第一条边「上下文相关性」比对问题与召回片段；如果得分低，说明检索器捞进了噪音，再用标准证据块算 Recall@K 判断是否漏了证据，然后去修切块、混合检索或重排。"
+        },
+        {
+          "en": "Second, Faithfulness checks the answer against retrieved chunks; if claims aren't backed by those passages, you tighten grounding instructions, require citations, and enforce refusal rules.",
+          "cn": "第二条边「忠实度」比对生成回答与召回片段；如果答出了片段里没有的断言，就收紧只依据片段作答的指令，强制附引用并执行拒答规则。"
+        },
+        {
+          "en": "Third, Answer Relevance compares the answer back to the user's question; if a faithful answer still misses the point, you fix query rewriting or output formatting.",
+          "cn": "第三条边「答案相关性」回头比对回答与原始提问；如果回答紧扣了片段却答非所问，就去修多轮查询改写或输出结构指令。"
+        },
+        {
+          "en": "Bottom line: never tune RAG end-to-end in the dark—isolate retrieval, faithfulness, and intent so every fix hits the real bottleneck.",
+          "cn": "一句话总结：绝不在黑盒里端到端乱调 RAG，把检索、忠实度与意图拆开体检，才能对症下药，打在真瓶颈上。"
+        }
+      ],
+      "a_en": "Grading only the final answer in a RAG system leaves teams debugging blind—you'll waste weeks tweaking prompts when retrieval actually missed the document. To pinpoint failures systematically, I'd first curate a golden evaluation set pairing real user questions with reference answers and ground-truth evidence chunks, plus unanswerable trap questions to test honest refusal. Then, on every pipeline change, we score the three edges of the RAG Triad independently using an LLM-as-a-judge rubric. First, Context Relevance compares the question against retrieved chunks; if it's low, your retriever fetched noise, and Recall@K on the ground-truth chunks tells you whether evidence was missed, so you fix chunking, hybrid search, or reranking. Second, Faithfulness checks the answer against retrieved chunks; if claims aren't backed by those passages, you tighten grounding instructions, require citations, and enforce refusal rules. Third, Answer Relevance compares the answer back to the user's question; if a faithful answer still misses the point, you fix query rewriting or output formatting. Bottom line: never tune RAG end-to-end in the dark—isolate retrieval, faithfulness, and intent so every fix hits the real bottleneck.",
+      "a_cn": "评测 RAG 如果只给最终回答打总分，团队就等于在蒙眼盲调——明明是检索漏了文档，你却花好几周在提示词上白费劲。为了系统化定位病根，我会先沉淀一套黄金评测集：把真实用户问题配对标准答案与必中原文证据块，再专门混入知识库无解的陷阱题检验坦诚拒答。接着在每次迭代上线前，我们用裁判模型按明确量表对「RAG 三元组」的三条边分别独立打分。第一条边「上下文相关性」比对问题与召回片段；如果得分低，说明检索器捞进了噪音，再用标准证据块算 Recall@K 判断是否漏了证据，然后去修切块、混合检索或重排。第二条边「忠实度」比对生成回答与召回片段；如果答出了片段里没有的断言，就收紧只依据片段作答的指令，强制附引用并执行拒答规则。第三条边「答案相关性」回头比对回答与原始提问；如果回答紧扣了片段却答非所问，就去修多轮查询改写或输出结构指令。一句话总结：绝不在黑盒里端到端乱调 RAG，把检索、忠实度与意图拆开体检，才能对症下药，打在真瓶颈上。",
+      "key_phrases": [
+        {
+          "en": "debugging blind",
+          "cn": "蒙眼盲调、摸黑排障",
+          "type": "搭配",
+          "usage": "形象批评没有分阶段监控指标、全靠猜来改提示词或切块的做法"
+        },
+        {
+          "en": "golden evaluation set",
+          "cn": "黄金基准评测集",
+          "type": "词汇",
+          "usage": "常搭动词 curate（精心筛编）而非随手 build，突显人工校准质量"
+        },
+        {
+          "en": "unanswerable trap questions",
+          "cn": "无解拒答陷阱题",
+          "type": "搭配",
+          "usage": "专门测试知识库没有答案时系统能否守住底线不乱编的反例题"
+        },
+        {
+          "en": "claims aren't backed by",
+          "cn": "论断缺乏……的证据支撑",
+          "type": "句型",
+          "usage": "be backed by X 地道表达模型输出的结论在原文片段里有据可查"
+        },
+        {
+          "en": "misses the point",
+          "cn": "偏离重点、答非所问",
+          "type": "搭配",
+          "usage": "描述回答虽然没编造假事实，却没有正面回应用户真实核心诉求"
+        }
+      ],
+      "basics": [
+        {
+          "term": "RAG 评测三元组",
+          "term_en": "the RAG Triad",
+          "explain": "把「用户提问、检索片段、模型回答」画成一个三角形，沿着三条边分别检查「搜得准不准、答得老不老实、有没有切题」，把一笔糊涂账拆成三张体检单。",
+          "analogy": "菜难吃先分清是买菜不鲜、厨师乱放料，还是端错了菜。"
+        },
+        {
+          "term": "忠实度（有据度）",
+          "term_en": "faithfulness / groundedness",
+          "explain": "只核查回答里的每个数字和结论能否在当次召回片段里找到依据，靠预训练记忆蒙对也算违规；TruLens 里叫 Groundedness。",
+          "analogy": "宣判只认当庭证供，法官私下听说的真事也不能写进判决书。"
+        },
+        {
+          "term": "裁判模型打分",
+          "term_en": "LLM-as-a-judge rubric",
+          "explain": "请能力更强的大模型对照人工制定的评分量表，批量核查几百条测试回答是否紧扣召回片段、是否正面切题，把人工抽检升级为自动化流水线。",
+          "analogy": "请资深阅卷组长拿着标准采分细则批量批改模拟卷。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "让大模型对着文档自动生成几百道顺原文抄的简单题，当成唯一评测集。",
+          "why": "顺着单段原文倒推出来的问题用词与文档高度重合，测出来的召回率虚高一片，一上线遇到真实用户的口语黑话、跨段追问和超纲提问照样全线崩溃。",
+          "right": "评测集必须以脱敏后的真实线上高频与答错日志为主，辅以业务专家构造的多跳题与无解拒答题。"
+        },
+        {
+          "wrong": "评测集只收单轮独立提问，不测多轮指代追问与新旧版本冲突文档。",
+          "why": "线上大量差评恰恰出在第二轮「那怎么退」搜空，或搜出三年前作废老制度误导用户；只测干净单轮题会漏掉最致命的线上断点。",
+          "right": "按真实会话比例纳入多轮上下文追问，并在测试库中保留带时间戳的历史旧版文档检验过滤能力。"
+        }
+      ],
+      "walkthrough": [
+        "破黑盒盲调痛点：点明只看最终回答好坏无法区分「检索漏召回」与「生成端乱编」，极易南辕北辙。",
+        "建黄金评测基准：组合真实问题、标准答案、必中原文块，并特意加入超纲无解题考察诚实拒答。",
+        "拆三元组逐边归因：依次讲透上下文相关性（问↔块）、忠实度（块↔答）、答案相关性（问↔答）各自的指标含义。",
+        "连闭环调优动作：将三条边的低分精准映射到修切块重排、紧指令强引用、或改查询改写模板的具体处方。"
+      ],
+      "method": {
+        "name": "三元组归因评测法",
+        "steps": [
+          "攒真实含陷阱黄金集",
+          "查问块相关修检索",
+          "核块答忠实压幻觉",
+          "对问答切题调改写"
+        ],
+        "transfer": "适用于企业知识库上线前门禁回归、模型降本替换AB评测、客服机器人周度坏例复盘及法务医疗高敏问答审计。"
+      },
+      "approach": "采分点是把「评测集怎么建」与「三元组怎么导流排障」扣成闭环：先提包含拒答陷阱题的黄金评测集，再按「上下文相关性 → 忠实度 → 答案相关性」逐边给出低分对应的具体工程处方。会失分的是背完三个名词却不说低了该改哪儿。",
+      "tips": "必备术语 golden evaluation set、Context Relevance、Faithfulness。可延伸：裁判模型校准。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    }
+  ]
+}

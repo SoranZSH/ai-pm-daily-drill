@@ -1,0 +1,738 @@
+{
+  "agent-framework": {
+    "domain": "AGT",
+    "topics": [
+      "agent",
+      "ai-agents",
+      "agentic",
+      "agent-framework"
+    ],
+    "prerequisites": [
+      "agt.tool_calling",
+      "agt.agent_loop",
+      "agt.planning"
+    ],
+    "keywords": {
+      "zh": [
+        "智能体框架",
+        "智能体"
+      ],
+      "ja": [
+        "エージェントフレームワーク",
+        "エージェント"
+      ],
+      "ko": [
+        "에이전트 프레임워크"
+      ],
+      "ru": [
+        "фреймворк для агентов"
+      ],
+      "es": [
+        "framework de agentes"
+      ],
+      "fr": [
+        "framework d'agents"
+      ],
+      "de": [
+        "Agenten-Framework"
+      ],
+      "pt": [
+        "framework de agentes de IA"
+      ]
+    }
+  },
+  "multi-agent": {
+    "domain": "AGT",
+    "topics": [
+      "multi-agent",
+      "multi-agent-systems"
+    ],
+    "prerequisites": [
+      "agt.agent_loop",
+      "agt.multi_agent"
+    ],
+    "keywords": {
+      "zh": [
+        "多智能体"
+      ],
+      "ja": [
+        "マルチエージェント"
+      ],
+      "ko": [
+        "멀티 에이전트"
+      ],
+      "ru": [
+        "мультиагентные системы"
+      ],
+      "es": [
+        "sistemas multiagente"
+      ],
+      "fr": [
+        "systèmes multi-agents"
+      ],
+      "de": [
+        "Multi-Agenten"
+      ],
+      "pt": [
+        "sistemas multiagentes"
+      ]
+    }
+  },
+  "coding-agent": {
+    "domain": "AGT",
+    "topics": [
+      "coding-agent",
+      "code-generation",
+      "ai-coding"
+    ],
+    "prerequisites": [
+      "agt.tool_calling",
+      "agt.coding_agent"
+    ],
+    "keywords": {
+      "zh": [
+        "编程智能体",
+        "AI 编程"
+      ],
+      "ja": [
+        "コーディングエージェント"
+      ],
+      "ko": [
+        "코딩 에이전트"
+      ],
+      "ru": [
+        "агент для программирования"
+      ],
+      "es": [
+        "agente de programación"
+      ],
+      "fr": [
+        "agent de programmation"
+      ],
+      "de": [
+        "KI-Programmierassistent"
+      ],
+      "pt": [
+        "agente de programação"
+      ]
+    }
+  },
+  "computer-use": {
+    "domain": "AGT",
+    "topics": [
+      "computer-use",
+      "browser-automation",
+      "gui-agent"
+    ],
+    "prerequisites": [
+      "agt.tool_calling",
+      "agt.computer_use"
+    ],
+    "keywords": {
+      "zh": [
+        "浏览器智能体"
+      ],
+      "ja": [
+        "ブラウザエージェント"
+      ],
+      "ko": [
+        "브라우저 에이전트"
+      ],
+      "ru": [
+        "агент для браузера"
+      ],
+      "es": [
+        "agente de navegador"
+      ],
+      "fr": [
+        "agent navigateur"
+      ],
+      "de": [
+        "Browser-Automatisierung"
+      ],
+      "pt": [
+        "agente de navegação web"
+      ]
+    }
+  },
+  "agent-memory": {
+    "domain": "AGT",
+    "topics": [
+      "memory",
+      "long-term-memory",
+      "agent-memory"
+    ],
+    "prerequisites": [
+      "rag.embedding",
+      "agt.memory"
+    ],
+    "keywords": {
+      "zh": [
+        "智能体记忆",
+        "长期记忆"
+      ],
+      "ja": [
+        "長期記憶"
+      ],
+      "ko": [
+        "장기 기억"
+      ],
+      "ru": [
+        "долгосрочная память"
+      ],
+      "es": [
+        "memoria a largo plazo"
+      ],
+      "fr": [
+        "mémoire à long terme"
+      ],
+      "de": [
+        "Langzeitgedächtnis"
+      ],
+      "pt": [
+        "memória de longo prazo"
+      ]
+    }
+  },
+  "mcp-tools": {
+    "domain": "AGT",
+    "topics": [
+      "mcp",
+      "model-context-protocol",
+      "mcp-server"
+    ],
+    "prerequisites": [
+      "agt.tool_calling",
+      "agt.mcp"
+    ],
+    "keywords": {
+      "zh": [
+        "MCP 服务",
+        "MCP 工具"
+      ],
+      "ja": [
+        "MCPサーバー"
+      ],
+      "ko": [
+        "MCP 서버"
+      ],
+      "ru": [
+        "MCP-сервер"
+      ],
+      "es": [],
+      "fr": [],
+      "de": [],
+      "pt": []
+    }
+  },
+  "rag": {
+    "domain": "RAG",
+    "topics": [
+      "rag",
+      "retrieval-augmented-generation",
+      "vector-search"
+    ],
+    "prerequisites": [
+      "rag.embedding",
+      "rag.vector_db",
+      "rag.chunking",
+      "rag.hybrid_rerank",
+      "rag.retrieval_eval"
+    ],
+    "keywords": {
+      "zh": [
+        "检索增强",
+        "RAG 知识库",
+        "向量检索"
+      ],
+      "ja": [
+        "検索拡張",
+        "ナレッジベース"
+      ],
+      "ko": [
+        "검색 증강",
+        "지식 베이스"
+      ],
+      "ru": [
+        "поиск по базе знаний"
+      ],
+      "es": [
+        "generación aumentada",
+        "base de conocimiento"
+      ],
+      "fr": [
+        "génération augmentée",
+        "base de connaissances"
+      ],
+      "de": [
+        "Wissensdatenbank"
+      ],
+      "pt": [
+        "geração aumentada",
+        "base de conhecimento"
+      ]
+    }
+  },
+  "prompt-context": {
+    "domain": "PRM",
+    "topics": [
+      "prompt-engineering",
+      "context-engineering",
+      "prompts"
+    ],
+    "prerequisites": [
+      "prm.prompt_structure",
+      "prm.context_engineering"
+    ],
+    "keywords": {
+      "zh": [
+        "提示词工程",
+        "上下文工程"
+      ],
+      "ja": [
+        "プロンプトエンジニアリング"
+      ],
+      "ko": [
+        "프롬프트 엔지니어링"
+      ],
+      "ru": [
+        "промпт-инжиниринг"
+      ],
+      "es": [
+        "ingeniería de prompts"
+      ],
+      "fr": [
+        "ingénierie de prompts"
+      ],
+      "de": [],
+      "pt": [
+        "engenharia de prompts"
+      ]
+    }
+  },
+  "inference-serving": {
+    "domain": "INF",
+    "topics": [
+      "llm-inference",
+      "llm-serving",
+      "inference-engine"
+    ],
+    "prerequisites": [
+      "inf.latency_throughput",
+      "inf.kv_cache",
+      "inf.serving"
+    ],
+    "keywords": {
+      "zh": [
+        "推理加速",
+        "推理引擎"
+      ],
+      "ja": [
+        "推論高速化"
+      ],
+      "ko": [
+        "추론 가속"
+      ],
+      "ru": [
+        "ускорение инференса"
+      ],
+      "es": [
+        "inferencia optimizada"
+      ],
+      "fr": [
+        "inférence optimisée"
+      ],
+      "de": [
+        "LLM-Inferenz"
+      ],
+      "pt": [
+        "inferência otimizada"
+      ]
+    }
+  },
+  "local-llm": {
+    "domain": "INF",
+    "topics": [
+      "local-llm",
+      "on-device-ai",
+      "llama-cpp"
+    ],
+    "prerequisites": [
+      "inf.quantization",
+      "inf.local_llm"
+    ],
+    "keywords": {
+      "zh": [
+        "大模型本地部署",
+        "端侧"
+      ],
+      "ja": [
+        "ローカルLLM"
+      ],
+      "ko": [
+        "로컬 LLM"
+      ],
+      "ru": [
+        "локальная LLM"
+      ],
+      "es": [
+        "modelos de lenguaje locales"
+      ],
+      "fr": [
+        "modèles de langage locaux"
+      ],
+      "de": [
+        "lokales LLM"
+      ],
+      "pt": [
+        "rodar LLM localmente"
+      ]
+    }
+  },
+  "fine-tuning": {
+    "domain": "TRN",
+    "topics": [
+      "fine-tuning",
+      "lora",
+      "rlhf",
+      "post-training"
+    ],
+    "prerequisites": [
+      "trn.fine_tuning",
+      "trn.preference"
+    ],
+    "keywords": {
+      "zh": [
+        "微调"
+      ],
+      "ja": [
+        "ファインチューニング"
+      ],
+      "ko": [
+        "파인튜닝"
+      ],
+      "ru": [
+        "дообучение"
+      ],
+      "es": [
+        "ajuste fino"
+      ],
+      "fr": [],
+      "de": [
+        "Feinabstimmung"
+      ],
+      "pt": [
+        "ajuste fino de modelos de linguagem"
+      ]
+    }
+  },
+  "rl-reasoning": {
+    "domain": "TRN",
+    "topics": [
+      "reinforcement-learning",
+      "grpo",
+      "reasoning"
+    ],
+    "prerequisites": [
+      "llm.reasoning_model",
+      "trn.rl_verifiable"
+    ],
+    "keywords": {
+      "zh": [
+        "强化学习",
+        "推理模型"
+      ],
+      "ja": [
+        "強化学習"
+      ],
+      "ko": [
+        "강화 학습"
+      ],
+      "ru": [
+        "обучение с подкреплением"
+      ],
+      "es": [
+        "aprendizaje por refuerzo"
+      ],
+      "fr": [
+        "apprentissage par renforcement"
+      ],
+      "de": [
+        "bestärkendes Lernen"
+      ],
+      "pt": [
+        "aprendizado por reforço"
+      ]
+    }
+  },
+  "data-synthesis": {
+    "domain": "TRN",
+    "topics": [
+      "synthetic-data",
+      "data-generation",
+      "dataset"
+    ],
+    "prerequisites": [
+      "trn.synthetic_data"
+    ],
+    "keywords": {
+      "zh": [
+        "合成数据",
+        "合成数据集"
+      ],
+      "ja": [
+        "合成データ"
+      ],
+      "ko": [
+        "합성 데이터"
+      ],
+      "ru": [
+        "синтетические данные"
+      ],
+      "es": [
+        "datos sintéticos"
+      ],
+      "fr": [
+        "données synthétiques"
+      ],
+      "de": [
+        "synthetische Daten"
+      ],
+      "pt": [
+        "dados sintéticos"
+      ]
+    }
+  },
+  "evaluation": {
+    "domain": "EVL",
+    "topics": [
+      "llm-evaluation",
+      "evals",
+      "benchmark"
+    ],
+    "prerequisites": [
+      "evl.eval_set",
+      "evl.llm_judge",
+      "evl.benchmark"
+    ],
+    "keywords": {
+      "zh": [
+        "大模型评测"
+      ],
+      "ja": [
+        "LLM 評価"
+      ],
+      "ko": [
+        "LLM 평가"
+      ],
+      "ru": [
+        "оценка LLM"
+      ],
+      "es": [
+        "evaluación de LLM"
+      ],
+      "fr": [
+        "évaluation de LLM"
+      ],
+      "de": [
+        "LLM-Evaluierung"
+      ],
+      "pt": [
+        "avaliação de LLM"
+      ]
+    }
+  },
+  "guardrails-safety": {
+    "domain": "SAF",
+    "topics": [
+      "guardrails",
+      "llm-security",
+      "prompt-injection"
+    ],
+    "prerequisites": [
+      "saf.prompt_injection",
+      "saf.guardrails"
+    ],
+    "keywords": {
+      "zh": [
+        "提示注入",
+        "大模型安全"
+      ],
+      "ja": [
+        "プロンプトインジェクション"
+      ],
+      "ko": [
+        "프롬프트 인젝션"
+      ],
+      "ru": [
+        "инъекция промпта"
+      ],
+      "es": [
+        "inyección de prompt"
+      ],
+      "fr": [
+        "injection de prompt"
+      ],
+      "de": [
+        "Prompt-Injection-Angriffe"
+      ],
+      "pt": [
+        "injeção de prompt"
+      ]
+    }
+  },
+  "multimodal": {
+    "domain": "MMD",
+    "topics": [
+      "multimodal",
+      "vlm",
+      "vision-language-model"
+    ],
+    "prerequisites": [
+      "mmd.vlm"
+    ],
+    "keywords": {
+      "zh": [
+        "多模态"
+      ],
+      "ja": [
+        "マルチモーダル"
+      ],
+      "ko": [
+        "멀티모달"
+      ],
+      "ru": [
+        "мультимодальные модели"
+      ],
+      "es": [
+        "modelos multimodales"
+      ],
+      "fr": [
+        "modèles multimodaux"
+      ],
+      "de": [
+        "multimodale Modelle"
+      ],
+      "pt": [
+        "modelos multimodais"
+      ]
+    }
+  },
+  "image-video-gen": {
+    "domain": "MMD",
+    "topics": [
+      "diffusion",
+      "text-to-image",
+      "video-generation"
+    ],
+    "prerequisites": [
+      "mmd.diffusion"
+    ],
+    "keywords": {
+      "zh": [
+        "文生图",
+        "视频生成"
+      ],
+      "ja": [
+        "画像生成"
+      ],
+      "ko": [
+        "이미지 생성"
+      ],
+      "ru": [
+        "генерация изображений"
+      ],
+      "es": [
+        "generación de imágenes"
+      ],
+      "fr": [
+        "génération d'images"
+      ],
+      "de": [
+        "Bildgenerierung"
+      ],
+      "pt": [
+        "geração de imagens"
+      ]
+    }
+  },
+  "speech-voice": {
+    "domain": "MMD",
+    "topics": [
+      "tts",
+      "asr",
+      "speech",
+      "voice-agent"
+    ],
+    "prerequisites": [
+      "mmd.speech",
+      "mmd.realtime_voice"
+    ],
+    "keywords": {
+      "zh": [
+        "语音合成",
+        "语音识别"
+      ],
+      "ja": [
+        "音声合成"
+      ],
+      "ko": [
+        "음성 합성"
+      ],
+      "ru": [
+        "синтез речи"
+      ],
+      "es": [
+        "síntesis de voz"
+      ],
+      "fr": [
+        "synthèse vocale"
+      ],
+      "de": [
+        "Sprachsynthese"
+      ],
+      "pt": [
+        "síntese de voz"
+      ]
+    }
+  },
+  "ai-app": {
+    "domain": "PRD",
+    "topics": [
+      "chatbot",
+      "ai-assistant",
+      "llm-app"
+    ],
+    "prerequisites": [
+      "prd.ux_uncertainty",
+      "prd.human_in_loop"
+    ],
+    "keywords": {
+      "zh": [
+        "AI 应用",
+        "智能助手"
+      ],
+      "ja": [
+        "AIアプリ"
+      ],
+      "ko": [
+        "AI 앱"
+      ],
+      "ru": [
+        "AI-приложение"
+      ],
+      "es": [
+        "aplicación de IA"
+      ],
+      "fr": [
+        "application IA"
+      ],
+      "de": [
+        "KI-Anwendung"
+      ],
+      "pt": [
+        "aplicativo de IA"
+      ]
+    }
+  }
+}

@@ -1,0 +1,1673 @@
+{
+  "category": "大模型原理",
+  "category_en": "LLM Fundamentals",
+  "domain": "LLM",
+  "items": [
+    {
+      "id": "LLM-F001",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "Token",
+        "API计费",
+        "上下文预算"
+      ],
+      "concepts": [
+        "llm.token"
+      ],
+      "prereq": [],
+      "q_cn": "什么是 Token？为什么它同时决定了模型的计费与上下文上限？",
+      "q_en": "What is a token, and why does it determine both API billing and context limits?",
+      "gist": {
+        "cn": "Token 是分词切出的子词片段；算力与显存随它增长，故计费和窗口都按它算。",
+        "en": "Tokens are subword units that drive compute and memory costs, setting both API bills and context limits."
+      },
+      "points": [
+        {
+          "cn": "分词器将文本切成子词片段并转为数字编号",
+          "en": "splits text into subword pieces"
+        },
+        {
+          "cn": "英文长词拆多块，中文单字 Token 数视词表而定",
+          "en": "vary by tokenizer vocabulary"
+        },
+        {
+          "cn": "每多一个 Token 都增加计算量与运行显存占用",
+          "en": "takes up working memory"
+        },
+        {
+          "cn": "输入与输出按 Token 计费且共享同一窗口预算",
+          "en": "share one context window budget"
+        }
+      ],
+      "concept": {
+        "cn": "Token 是大语言模型读写文本的最小处理单元。模型并不直接认字，而是先由分词器将自然语言切分为子词片段并转为数字编号：英文常用词一般占一个 Token、长词拆成多块，中文每字占用的 Token 数则取决于分词器词表设计。每多处理一个 Token，模型不仅要多做一轮矩阵计算，还要在对话期间占用运行显存保存中间状态。因此，商业 API 的输入与输出均按 Token 精确计费，且提示词与生成回复必须共享同一个上下文窗口上限。",
+        "en": "A token is the smallest text unit a large language model reads and writes. Rather than reading raw characters directly, a tokenizer splits natural language into subword chunks mapped to numerical IDs: common English words are usually one token while longer words split into several, and Chinese token counts per character depend on the tokenizer's vocabulary. Each additional token requires extra computation and occupies runtime GPU memory to maintain conversation state. Consequently, commercial APIs bill strictly per input and output token, and prompts and replies must share a single context window ceiling."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd think of a token as the basic text chunk a language model actually reads and generates.",
+          "cn": "我会把 Token 理解为语言模型真正读取和生成的基本文本片段。"
+        },
+        {
+          "en": "Models don't read raw characters or whole words directly, because a tokenizer first splits text into subword pieces and maps them to numbers.",
+          "cn": "模型不会直接读取原始字符或整词，而是先由分词器把文本切成子词碎片并映射成数字编号。"
+        },
+        {
+          "en": "In English, common words are usually a single token while long words get split up, whereas in Chinese, tokens per character vary by tokenizer vocabulary.",
+          "cn": "在英文里常用词通常占一个 Token、长词会被拆成多块，而中文每个字占多少 Token 则因分词器词表而异。"
+        },
+        {
+          "en": "Every extra token requires another round of math and takes up working memory to keep track of conversation state.",
+          "cn": "每多处理一个 Token，模型既要多算一轮，又要在对话期间占用运行显存来保存状态。"
+        },
+        {
+          "en": "Because hardware costs scale directly with token volume, providers bill strictly per input and output token.",
+          "cn": "正因为硬件开销随 Token 数量直接增长，模型厂商才会严格按输入和输出的 Token 数计费。"
+        },
+        {
+          "en": "At the same time, it's a hard memory ceiling, so your prompt and the model's reply have to share one context window budget.",
+          "cn": "同时显存容量有硬上限，因此你的输入提示词和模型回复必须共享同一个上下文窗口预算。"
+        },
+        {
+          "en": "So my rule of thumb is simple: users think in words, and that's why product managers have to budget in tokens.",
+          "cn": "所以我的经验法则很简单：用户按字词思考，正因如此产品经理必须按 Token 做预算。"
+        }
+      ],
+      "a_en": "I'd think of a token as the basic text chunk a language model actually reads and generates. Models don't read raw characters or whole words directly, because a tokenizer first splits text into subword pieces and maps them to numbers. In English, common words are usually a single token while long words get split up, whereas in Chinese, tokens per character vary by tokenizer vocabulary. Every extra token requires another round of math and takes up working memory to keep track of conversation state. Because hardware costs scale directly with token volume, providers bill strictly per input and output token. At the same time, it's a hard memory ceiling, so your prompt and the model's reply have to share one context window budget. So my rule of thumb is simple: users think in words, and that's why product managers have to budget in tokens.",
+      "a_cn": "我会把 Token 理解为语言模型真正读取和生成的基本文本片段。模型不会直接读取原始字符或整词，而是先由分词器把文本切成子词碎片并映射成数字编号。在英文里常用词通常占一个 Token、长词会被拆成多块，而中文每个字占多少 Token 则因分词器词表而异。每多处理一个 Token，模型既要多算一轮，又要在对话期间占用运行显存来保存状态。正因为硬件开销随 Token 数量直接增长，模型厂商才会严格按输入和输出的 Token 数计费。同时显存容量有硬上限，因此你的输入提示词和模型回复必须共享同一个上下文窗口预算。所以我的经验法则很简单：用户按字词思考，正因如此产品经理必须按 Token 做预算。",
+      "key_phrases": [
+        {
+          "en": "I'd think of",
+          "cn": "我会把……理解为",
+          "type": "句型",
+          "usage": "I'd think of A as B：口语化下定义开场，比僵硬背诵概念更自然"
+        },
+        {
+          "en": "subword pieces",
+          "cn": "子词片段",
+          "type": "词汇",
+          "usage": "解释分词颗粒度时的核心词，也可替换为 subword chunks"
+        },
+        {
+          "en": "takes up working memory",
+          "cn": "占用运行显存",
+          "type": "搭配",
+          "usage": "take up 表示占据空间或资源，比 consumes 更口语自然"
+        },
+        {
+          "en": "scale directly with",
+          "cn": "随……直接成比例增长",
+          "type": "搭配",
+          "usage": "说明成本、延迟随数据量同步攀升，后接具体驱动变量"
+        },
+        {
+          "en": "budget in tokens",
+          "cn": "按 Token 做预算",
+          "type": "搭配",
+          "usage": "budget in + 计量单位：强调产品核算成本与容量时的计量口径"
+        }
+      ],
+      "basics": [
+        {
+          "term": "分词器",
+          "term_en": "Tokenizer",
+          "explain": "在模型读写文本前后负责查表转换的预处理组件，把句子按统计规律切成子词片段并译成数字编号，生成后再还原为文字。",
+          "analogy": "把整句语言拆成标准编号积木块的转换器。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "一个汉字或一个英文单词就固定等于一个 Token。",
+          "why": "英文长词或代码符号会被拆成多个子词片段，中文单字占用的 Token 数也随不同模型的词表大小显著波动。",
+          "right": "做成本测算与窗口截断时，必须用目标模型自带的分词器实测样本，不能直接拿字数估算。"
+        }
+      ],
+      "approach": "采分点是讲清子词切分机制，并打通「多算一轮且占显存 → 按量计费与共享窗口」的因果链。推荐结构：子词定义 → 中英分词差异 → 算力显存成因 → 计费与窗口共享。用「用户按词思考，产品按 Token 做预算」收尾。失分点是把 Token 等同于固定字数。",
+      "tips": "必备术语 tokenizer、subword、context window budget。成本核算与上下文裁剪题均可复用此落点。",
+      "source_repos": [],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "LLM-F002",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "自回归生成",
+        "模型参数",
+        "知识截断"
+      ],
+      "concepts": [
+        "llm.transformer",
+        "llm.scaling"
+      ],
+      "prereq": [
+        "LLM-F001"
+      ],
+      "q_cn": "大模型是如何逐词生成回答的？参数量（如 7B、70B）代表什么？",
+      "q_en": "How do LLMs generate answers token by token, and what do parameter counts like 7B or 70B mean?",
+      "gist": {
+        "cn": "模型并行读输入、接龙式猜下一词；参数量是常驻显存的权重数，记忆受限于截断日。",
+        "en": "Models generate replies one token at a time using billions of fixed weights frozen at their training cutoff."
+      },
+      "points": [
+        {
+          "cn": "读提示词可一次并行，写回答只能逐个猜词拼接循环",
+          "en": "predicts the single most likely next token"
+        },
+        {
+          "cn": "串行接龙机制解释了流式输出及输出比输入更慢更贵",
+          "en": "slower and pricier than input tokens"
+        },
+        {
+          "cn": "7B/70B 指常驻显存的连接权重数，决定能力上限与硬件成本",
+          "en": "learned connection weights"
+        },
+        {
+          "cn": "参数记忆止步于训练截断日，不含私有数据且无法精确溯源",
+          "en": "frozen at the model's knowledge cutoff"
+        }
+      ],
+      "concept": {
+        "cn": "大模型生成文本遵循「自回归」机制：读提示词可一次性并行算完，但写回复只能像接龙一样，每次预测下一个最可能的 Token，拼回末尾再猜下一个，因此界面呈流式吐字且输出比输入更慢、更贵。常说的 7B、70B 指模型内部含 70 亿或 700 亿个训练好的连接权重，推理时须常驻显存，规模越大通常能力上限越高、硬件开销也越大。需注意，参数记忆止步于训练知识截断日，不含企业私有数据，也无法精确标明出处。",
+        "en": "Large language models generate text autoregressively: while they read input prompts in parallel, they must write replies sequentially—predicting the next likely token, appending it to the text, and repeating the step. This explains why UIs stream text word by word and why output tokens are slower and more expensive than input tokens. Labels like 7B or 70B denote 7 billion or 70 billion learned connection weights that must stay in GPU memory during inference; more parameters raise the capability ceiling alongside hardware costs. Parametric memory stops at the training knowledge cutoff, excludes private company data, and cannot cite exact sources."
+      },
+      "a_pairs": [
+        {
+          "en": "When an LLM answers a prompt, it reads your input all at once, but it can't write the whole reply in one shot.",
+          "cn": "大模型回答问题时，能一次性并行读完你的输入，但没法一口气写出整段回复。"
+        },
+        {
+          "en": "Instead, it works autoregressively: it predicts the single most likely next token, appends it to the sequence, and repeats that loop.",
+          "cn": "相反，它采用自回归方式运作：每次只预测下一个最可能的 Token，拼回序列末尾，再循环猜下一个。"
+        },
+        {
+          "en": "That sequential loop is why chat interfaces stream text word by word, and why output tokens are slower and pricier than input tokens.",
+          "cn": "这种串行循环正是聊天界面流式吐字，以及输出 Token 比输入更慢、更贵的根本原因。"
+        },
+        {
+          "en": "As for labels like 7B or 70B, they stand for seven billion or seventy billion learned connection weights inside the neural network.",
+          "cn": "至于 7B 或 70B 这样的标签，代表神经网络内部拥有 70 亿或 700 亿个训练好的连接权重数字。"
+        },
+        {
+          "en": "All those weights must sit in GPU memory during inference, so larger models generally offer a higher capability ceiling at a steeper hardware cost.",
+          "cn": "推理时这些权重都必须常驻显卡显存，因此大参数模型通常能力上限更高，但硬件开销也高得多。"
+        },
+        {
+          "en": "Crucially, parametric memory is frozen at the model's knowledge cutoff, so it doesn't know your private company data and can't cite exact sources.",
+          "cn": "关键在于，存在参数里的记忆止步于知识截断日，因此它不知道企业私有数据，也无法精确标明出处。"
+        },
+        {
+          "en": "So in practice, it's smart to pick model size for reasoning needs, not as a substitute for live enterprise search.",
+          "cn": "所以在实战中，明智的做法是按推理复杂度选模型尺寸，而不是拿大参数模型替代实时企业检索。"
+        }
+      ],
+      "a_en": "When an LLM answers a prompt, it reads your input all at once, but it can't write the whole reply in one shot. Instead, it works autoregressively: it predicts the single most likely next token, appends it to the sequence, and repeats that loop. That sequential loop is why chat interfaces stream text word by word, and why output tokens are slower and pricier than input tokens. As for labels like 7B or 70B, they stand for seven billion or seventy billion learned connection weights inside the neural network. All those weights must sit in GPU memory during inference, so larger models generally offer a higher capability ceiling at a steeper hardware cost. Crucially, parametric memory is frozen at the model's knowledge cutoff, so it doesn't know your private company data and can't cite exact sources. So in practice, it's smart to pick model size for reasoning needs, not as a substitute for live enterprise search.",
+      "a_cn": "大模型回答问题时，能一次性并行读完你的输入，但没法一口气写出整段回复。相反，它采用自回归方式运作：每次只预测下一个最可能的 Token，拼回序列末尾，再循环猜下一个。这种串行循环正是聊天界面流式吐字，以及输出 Token 比输入更慢、更贵的根本原因。至于 7B 或 70B 这样的标签，代表神经网络内部拥有 70 亿或 700 亿个训练好的连接权重数字。推理时这些权重都必须常驻显卡显存，因此大参数模型通常能力上限更高，但硬件开销也高得多。关键在于，存在参数里的记忆止步于知识截断日，因此它不知道企业私有数据，也无法精确标明出处。所以在实战中，明智的做法是按推理复杂度选模型尺寸，而不是拿大参数模型替代实时企业检索。",
+      "key_phrases": [
+        {
+          "en": "in one shot",
+          "cn": "一次性；一口气",
+          "type": "搭配",
+          "usage": "对比并行处理与逐步循环时很地道，可替换 all at once"
+        },
+        {
+          "en": "appends it to the sequence",
+          "cn": "把它拼接到序列末尾",
+          "type": "搭配",
+          "usage": "描述自回归每轮把新生成词接回输入末尾的标准动作"
+        },
+        {
+          "en": "sit in GPU memory",
+          "cn": "常驻显卡显存",
+          "type": "搭配",
+          "usage": "口语中用 sit in 比 reside in VRAM 更直白好懂"
+        },
+        {
+          "en": "knowledge cutoff",
+          "cn": "知识截断日",
+          "type": "词汇",
+          "usage": "指模型训练语料截止的时间点，评估实时信息需求时常用"
+        },
+        {
+          "en": "not as a substitute for",
+          "cn": "而不是作为……的替代品",
+          "type": "句型",
+          "usage": "not as a substitute for + 名词：明确划清方案能力边界"
+        }
+      ],
+      "basics": [
+        {
+          "term": "自回归生成",
+          "term_en": "Autoregressive Generation",
+          "explain": "每一步都把前面已经生成的词当作已知条件，只预测紧接着的下一个词，再把新词拼回去继续下一轮预测的串行生成方式。",
+          "analogy": "多人成语接龙，必须等前一个人说出尾字，下一个人才能接。"
+        },
+        {
+          "term": "显存",
+          "term_en": "VRAM (Video RAM)",
+          "explain": "显卡自带的高速运行内存，推理时模型的所有参数权重和对话中间状态都必须装在里面，容量不够模型就跑不起来。",
+          "analogy": "厨师手边的操作台面，食材和工具都得摆得下才能开火做菜。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "换个 70B 甚至更大的模型，它自然就知道最新行业政策和我们公司的业务了。",
+          "why": "参数变大只提升通用推理与语言能力，参数里的静态记忆仍停留在训练截断日，更不可能包含未公开的企业内部资料。",
+          "right": "涉及最新动态、私有文档或要求标明出处的需求，无论模型多大都必须外接检索系统提供实时依据。"
+        }
+      ],
+      "approach": "采分点是串起「并行读但逐词写 → 流式与输出单价高」和「参数常驻显存 → 能力与成本同步涨且有记忆边界」。推荐结构：自回归接龙机制 → 输出慢贵原因 → 7B/70B 物理含义 → 知识截断边界。会失分的说法是以为参数越大知识就越实时。",
+      "tips": "必备术语 autoregressive、connection weights、knowledge cutoff。可延伸至混合专家架构与检索增强选型。",
+      "source_repos": [],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "LLM-F003",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "自注意力",
+        "QKV机制",
+        "长文本代价"
+      ],
+      "concepts": [
+        "llm.transformer"
+      ],
+      "prereq": [
+        "LLM-F001",
+        "LLM-F002"
+      ],
+      "q_cn": "什么是自注意力机制？大模型靠它怎么读懂上下文关系？",
+      "q_en": "What is self-attention, and how does an LLM use it to understand context?",
+      "gist": {
+        "cn": "阅读输入时让所有词并行互找线索、按关联度传递语义，代价是计算量随长度平方增长。",
+        "en": "Self-attention lets input tokens link clues in parallel, trading quadratic compute cost for deep context."
+      },
+      "points": [
+        {
+          "cn": "阅读输入提示词时并行处理全序列，打破顺序阅读限制",
+          "en": "processes the entire input prompt in parallel"
+        },
+        {
+          "cn": "句内通过查询、键、值互找线索并按关联权重聚合语义",
+          "en": "pulls in matching Values"
+        },
+        {
+          "cn": "结合上下文消除一词多义，并跨句锁定代词指代对象",
+          "en": "link straight back to the right noun"
+        },
+        {
+          "cn": "全序列两两比对使计算开销随输入长度呈平方级增长",
+          "en": "compute grows quadratically"
+        }
+      ],
+      "concept": {
+        "cn": "自注意力机制是 Transformer 阅读输入文本时理解上下文的核心设计。它并行扫描整段输入，把每个 Token 映射为三种角色：当前词想找什么线索（Query）、其他词提供什么标签（Key）、实际传递什么语义（Value）。靠词与词两两比对匹配度，模型既能凭周围的「river」或「money」分辨「bank」词义，也能跨句锁定代词指代。但两两比对使计算量随长度呈平方级（O(N²)）增长，推高了长文本延迟与成本。",
+        "en": "Self-attention is the core design that lets a Transformer understand context when reading input text. Scanning the entire prompt in parallel, it projects every token into three roles: what clues the current token seeks (Query), what feature label another token offers (Key), and what semantic content it passes along (Value). By comparing every pair of tokens, the model disambiguates words like 'bank' using nearby clues such as 'river' or 'money' and resolves pronouns across sentences. However, all-pairs comparison makes compute scale quadratically (O(N²)) with sequence length, driving up long-context latency and cost."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd describe self-attention as the mechanism that lets a model connect clues between every pair of tokens when reading input text.",
+          "cn": "我会把自注意力机制描述为：模型在阅读输入文本时，让每两个 Token 之间互相连接线索的机制。"
+        },
+        {
+          "en": "Unlike older models that read one word after another, a Transformer processes the entire input prompt in parallel.",
+          "cn": "不同于早年逐词顺序阅读的模型，Transformer 在读入提示词时会并行处理整段文本。"
+        },
+        {
+          "en": "Inside the sentence, each token sends out a Query for clues it needs, checks other tokens' Keys as labels, and pulls in matching Values.",
+          "cn": "在同一句话内部，每个词发出「查询」寻找所需线索，核对其他词的「键」标签，再按匹配度吸收对方的「值」语义。"
+        },
+        {
+          "en": "For instance, when the model sees 'bank', it checks nearby words like 'river' or 'money' so it doesn't confuse a riverbank with a financial bank.",
+          "cn": "比如模型读到「bank」时，会查看周围的「river」或「money」，这样就不会混淆河岸与银行。"
+        },
+        {
+          "en": "The same pairwise lookup lets a pronoun at the end of a paragraph link straight back to the right noun sentences earlier.",
+          "cn": "同样的两两比对机制，也能让段落末尾的代词直接跨越好几句话，精准连回前文指代的名词。"
+        },
+        {
+          "en": "However, comparing every token against every other token means compute grows quadratically as input length doubles, and that's a steep bottleneck.",
+          "cn": "但让每个词都和所有词两两比对，意味着输入长度翻倍时计算量会呈平方级暴涨，这是个很陡的性能瓶颈。"
+        },
+        {
+          "en": "So my takeaway is simple: self-attention gives you rich context, and it's also why stuffing huge prompts gets slow and costly.",
+          "cn": "所以我的核心结论很简单：自注意力带来了细腻的语境理解，同时也是超长提示词既慢又贵的根源。"
+        }
+      ],
+      "a_en": "I'd describe self-attention as the mechanism that lets a model connect clues between every pair of tokens when reading input text. Unlike older models that read one word after another, a Transformer processes the entire input prompt in parallel. Inside the sentence, each token sends out a Query for clues it needs, checks other tokens' Keys as labels, and pulls in matching Values. For instance, when the model sees 'bank', it checks nearby words like 'river' or 'money' so it doesn't confuse a riverbank with a financial bank. The same pairwise lookup lets a pronoun at the end of a paragraph link straight back to the right noun sentences earlier. However, comparing every token against every other token means compute grows quadratically as input length doubles, and that's a steep bottleneck. So my takeaway is simple: self-attention gives you rich context, and it's also why stuffing huge prompts gets slow and costly.",
+      "a_cn": "我会把自注意力机制描述为：模型在阅读输入文本时，让每两个 Token 之间互相连接线索的机制。不同于早年逐词顺序阅读的模型，Transformer 在读入提示词时会并行处理整段文本。在同一句话内部，每个词发出「查询」寻找所需线索，核对其他词的「键」标签，再按匹配度吸收对方的「值」语义。比如模型读到「bank」时，会查看周围的「river」或「money」，这样就不会混淆河岸与银行。同样的两两比对机制，也能让段落末尾的代词直接跨越好几句话，精准连回前文指代的名词。但让每个词都和所有词两两比对，意味着输入长度翻倍时计算量会呈平方级暴涨，这是个很陡的性能瓶颈。所以我的核心结论很简单：自注意力带来了细腻的语境理解，同时也是超长提示词既慢又贵的根源。",
+      "key_phrases": [
+        {
+          "en": "in parallel",
+          "cn": "并行地；同时地",
+          "type": "搭配",
+          "usage": "对比串行处理（sequentially）的标准表达，说明一次批量计算"
+        },
+        {
+          "en": "pulls in matching Values",
+          "cn": "吸收匹配的值语义",
+          "type": "搭配",
+          "usage": "pull in 形象表达按权重汇聚上下文语义信息的动作"
+        },
+        {
+          "en": "pairwise lookup",
+          "cn": "两两比对查找",
+          "type": "词汇",
+          "usage": "概括序列内部每两个词之间互相核对关联度的机制"
+        },
+        {
+          "en": "grows quadratically",
+          "cn": "呈平方级增长",
+          "type": "搭配",
+          "usage": "说明长度翻倍时开销变四倍的复杂度特征，比直接念公式更自然"
+        },
+        {
+          "en": "So my takeaway is simple",
+          "cn": "所以我的核心结论很简单",
+          "type": "句型",
+          "usage": "收尾总结句型，适合在讲完复杂机制后提炼一句产品启示"
+        }
+      ],
+      "basics": [
+        {
+          "term": "查询、键、值",
+          "term_en": "QKV (Query, Key, Value)",
+          "explain": "同一段文本内词与词互相找线索的三要素：当前词提出自己要找什么特征（Q），核对句中其他词挂出的属性标签（K），再按相关度汇总对方的语义内容（V）。",
+          "analogy": "圆桌会提问找人（Q）、看胸牌（K）、听发言（V）。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "既然阅读输入是并行处理的，那大模型生成长回答也能一次性并行吐出来。",
+          "why": "阅读提示词时所有词都已知，才能并行互算注意力；而写回答时后面的词还没诞生，每步必须等前一个词确定后才能算下一个。",
+          "right": "严格区分两个阶段：读入提示词是并行预填充，生成回答则是串行逐词自回归解码。"
+        }
+      ],
+      "approach": "采分点是限定在「阅读输入并行处理」前提下，用句内找线索讲清 QKV、词义消歧与平方级算力代价。推荐结构：并行读输入 → QKV 句内匹配 → 多义词与代词消歧 → 平方级复杂度落点。会失分的说法是把句内自注意力误讲成去外部数据库搜索。",
+      "tips": "必备术语 self-attention、Query/Key/Value、quadratically。可自然延伸至长上下文瓶颈与 KV 缓存。",
+      "source_repos": [],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "LLM-F004",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "MoE架构",
+        "激活参数",
+        "部署选型"
+      ],
+      "concepts": [
+        "llm.moe",
+        "llm.transformer"
+      ],
+      "prereq": [
+        "LLM-F002",
+        "LLM-F003"
+      ],
+      "q_cn": "什么是混合专家架构（MoE）？总参数与激活参数有何区别？",
+      "q_en": "What is a Mixture-of-Experts (MoE) architecture, and how do total and active parameters differ?",
+      "gist": {
+        "cn": "每个词只唤醒少数专家；私有部署买显卡看总参数，单字生成速度看激活参数。",
+        "en": "MoE routes each token to a few experts: total parameters dictate GPU memory, while active parameters drive speed."
+      },
+      "points": [
+        {
+          "cn": "稠密模型每词调动全量参数，MoE 由路由器按词只唤醒少数专家",
+          "en": "wake up just a few experts"
+        },
+        {
+          "cn": "区分全网专家的「总参数」与单次推理实际计算的「激活参数」",
+          "en": "total parameters across all experts"
+        },
+        {
+          "cn": "私有化部署采购显卡看总参数，因全部专家均须常驻显存待命",
+          "en": "stay loaded in memory"
+        },
+        {
+          "cn": "单字生成速度与计算量看激活参数，极契合高并发云端 API",
+          "en": "follow the much smaller active count"
+        }
+      ],
+      "concept": {
+        "cn": "混合专家架构（MoE）把「知识总容量」与「单次计算量」解耦。传统稠密模型（Dense）每处理一个 Token 都要调动全部参数；而 MoE 将网络拆成多组细分专家，由门控路由器按当前 Token 特征只唤醒少数几个专家运算。由此分成两个关键指标：「总参数量」决定所有专家装进显存的硬件门槛，是私有化部署买显卡的依据；「激活参数量」决定单字计算量与生成速度，让高并发云端 API 能兼顾大模型容量与小模型速度。",
+        "en": "Mixture-of-Experts (MoE) is an architecture that decouples total knowledge capacity from per-token compute cost. Whereas a dense model activates every weight for every token, an MoE model divides feed-forward layers into specialized expert sub-networks and uses a gating router to wake up only a few experts per token. This creates two distinct metrics: total parameters determine the GPU memory needed to hold all experts—governing hardware sizing for private deployments—while active parameters determine per-token FLOPs and generation speed, enabling high-concurrency cloud APIs to combine large-model capacity with low latency."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd contrast Mixture-of-Experts, or MoE, directly against a standard dense model.",
+          "cn": "我会把混合专家架构（MoE）直接拿来和传统的稠密模型做对比。"
+        },
+        {
+          "en": "In a dense model, every single parameter wakes up to process every token, which quickly makes huge models slow and expensive.",
+          "cn": "在稠密模型里，每处理一个 Token 都要调动全部参数参与计算，这会让超大模型变得既慢又贵。"
+        },
+        {
+          "en": "An MoE model splits its network layers into many specialized expert groups and uses a lightweight router to wake up just a few experts per token.",
+          "cn": "而 MoE 模型把网络层拆成多组细分专家，靠一个轻量级门控路由器为每个 Token 只唤醒少数几个专家。"
+        },
+        {
+          "en": "That split creates two numbers: total parameters across all experts, and active parameters actually used for a single token.",
+          "cn": "这种拆分带来了两个指标：涵盖所有专家的「总参数量」，以及处理单个 Token 实际动用的「激活参数量」。"
+        },
+        {
+          "en": "If you're self-hosting on private servers, you still buy GPUs for total parameters because every expert has to stay loaded in memory.",
+          "cn": "如果你在私有服务器上本地部署，买显卡依然得看总参数量，因为所有专家都必须提前装进显存待命。"
+        },
+        {
+          "en": "Yet each token doesn't run through the whole network, so inference speed and compute cost follow the much smaller active count.",
+          "cn": "但每个 Token 并不跑完整张网络，因此单字推理速度与计算开销主要取决于小得多的激活参数量。"
+        },
+        {
+          "en": "And that's why MoE dominates high-traffic cloud APIs: it pairs big-model knowledge capacity with small-model latency.",
+          "cn": "这也正是 MoE 主导高并发云端 API 的原因：它兼具大模型的知识容量与小模型的响应速度。"
+        }
+      ],
+      "a_en": "I'd contrast Mixture-of-Experts, or MoE, directly against a standard dense model. In a dense model, every single parameter wakes up to process every token, which quickly makes huge models slow and expensive. An MoE model splits its network layers into many specialized expert groups and uses a lightweight router to wake up just a few experts per token. That split creates two numbers: total parameters across all experts, and active parameters actually used for a single token. If you're self-hosting on private servers, you still buy GPUs for total parameters because every expert has to stay loaded in memory. Yet each token doesn't run through the whole network, so inference speed and compute cost follow the much smaller active count. And that's why MoE dominates high-traffic cloud APIs: it pairs big-model knowledge capacity with small-model latency.",
+      "a_cn": "我会把混合专家架构（MoE）直接拿来和传统的稠密模型做对比。在稠密模型里，每处理一个 Token 都要调动全部参数参与计算，这会让超大模型变得既慢又贵。而 MoE 模型把网络层拆成多组细分专家，靠一个轻量级门控路由器为每个 Token 只唤醒少数几个专家。这种拆分带来了两个指标：涵盖所有专家的「总参数量」，以及处理单个 Token 实际动用的「激活参数量」。如果你在私有服务器上本地部署，买显卡依然得看总参数量，因为所有专家都必须提前装进显存待命。但每个 Token 并不跑完整张网络，因此单字推理速度与计算开销主要取决于小得多的激活参数量。这也正是 MoE 主导高并发云端 API 的原因：它兼具大模型的知识容量与小模型的响应速度。",
+      "key_phrases": [
+        {
+          "en": "I'd contrast",
+          "cn": "我会把……做对比",
+          "type": "句型",
+          "usage": "I'd contrast A against B：拿熟知方案做参照对比，条理更清晰"
+        },
+        {
+          "en": "dense model",
+          "cn": "稠密模型",
+          "type": "词汇",
+          "usage": "指每次推理激活全部参数的传统结构，常与 MoE 稀疏激活对照"
+        },
+        {
+          "en": "stay loaded in memory",
+          "cn": "常驻在显存中待命",
+          "type": "搭配",
+          "usage": "解释私有化部署硬件门槛的关键短语，点明静态显存占用不打折"
+        },
+        {
+          "en": "active count",
+          "cn": "激活参数规模",
+          "type": "词汇",
+          "usage": "active parameter count 的口语简写，避免在同一段重复长词组"
+        },
+        {
+          "en": "pairs big-model knowledge capacity with",
+          "cn": "将大模型知识容量与……结合",
+          "type": "搭配",
+          "usage": "pair A with B 表示兼顾两项优势，适合总结架构选型收益"
+        }
+      ],
+      "basics": [
+        {
+          "term": "门控路由器",
+          "term_en": "Gating Router",
+          "explain": "混合专家模型内部的轻量级调度层，负责给当前进来的每个 Token 快速打分，决定把它分派给哪几个最对口的专家网络处理。",
+          "analogy": "医院门诊分诊台，按症状把患者精准分流给对应专科医生。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "MoE 模型激活参数只有 37B，按 37B 买显卡就能本地部署了。",
+          "why": "路由器对每个新词挑的专家都不同，必须把几百亿甚至数千亿总参数全部预装进显存，否则推理时临时读盘会彻底卡死。",
+          "right": "私有化部署算硬件预算必须按「总参数量」配足显存；并发不高时，优先对比同显存体积的稠密模型。"
+        }
+      ],
+      "approach": "采分点是对比稠密模型讲清路由稀疏激活机制，并落到 AI PM 最核心的选型推论。推荐结构：对比稠密模型 → 路由拆出总参数与激活参数 → 私有部署买卡看总参数 → 云端高并发推理看激活参数。会失分的说法是误以为本地部署只需按激活参数配显存。",
+      "tips": "必备术语 dense model、router、total vs. active parameters。可延伸至私有化算力评估与选型。",
+      "source_repos": [],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "LLM-F005",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "采样参数",
+        "温度",
+        "Top-p"
+      ],
+      "concepts": [
+        "llm.sampling"
+      ],
+      "prereq": [
+        "LLM-F001",
+        "LLM-F002"
+      ],
+      "q_cn": "温度（Temperature）与 Top-p 是如何控制模型输出的？",
+      "q_en": "How do Temperature and Top-p control a language model's output?",
+      "gist": {
+        "cn": "温度改变概率曲线陡缓，Top-p 按累积概率截断长尾词；它们只调随机度而非智商。",
+        "en": "Temperature reshapes token probabilities and Top-p cuts the unlikely tail; both tune randomness, not intelligence."
+      },
+      "points": [
+        {
+          "cn": "每步对全词表打分并换算成总和 100% 的候选概率分布",
+          "en": "percentages adding up to one hundred percent"
+        },
+        {
+          "cn": "温度调节曲线陡缓：低温保确定性，高温增创意多样性",
+          "en": "how sharp or flat that probability curve looks"
+        },
+        {
+          "cn": "Top-p 按累积概率阈值动态截断低概率长尾冷门词",
+          "en": "cuts off the long tail"
+        },
+        {
+          "cn": "实战常只调其一且推理模型遵厂商建议；仅调随机度不增智商",
+          "en": "doesn't make the model any smarter"
+        }
+      ],
+      "concept": {
+        "cn": "温度（Temperature）与 Top-p 是控制大模型逐词抽样随机度的两个核心解码参数。模型每步预测下一词时，先给全词表候选词算出原始打分，再换算成总和为 100% 的概率分布。温度负责改变这条曲线的陡缓：低温放大头部词优势，适合代码与结构化抽取；高温拉平差距，适合创意发散。Top-p（核采样）则从高到低累加概率，达到阈值 p 后直接剔除尾部冷门词。工程上通常只调其一，推理模型则按厂商建议配置；需谨记采样参数只管随机度，不能提升模型智商。",
+        "en": "Temperature and Top-p are the two primary decoding parameters that control randomness when an LLM samples the next token. At each step, the model assigns raw scores across its vocabulary and converts them into a probability distribution summing to 100%. Temperature reshapes this curve: low values sharpen top choices for deterministic coding or extraction, while high values flatten differences for creative variety. Top-p (nucleus sampling) sums probabilities from highest to lowest and cuts off unlikely tail words once threshold p is reached. Practitioners typically tune only one knob and follow vendor defaults for reasoning models; these settings govern randomness, not intelligence."
+      },
+      "a_pairs": [
+        {
+          "en": "Every time an LLM predicts the next token, it scores its entire vocabulary and turns those scores into percentages adding up to one hundred percent.",
+          "cn": "大模型每预测下一个 Token 时，都会给整个词表的候选词打分，并换算成总和为 100% 的概率分布。"
+        },
+        {
+          "en": "Temperature controls how sharp or flat that probability curve looks before the model picks a word.",
+          "cn": "温度参数决定了模型真正抽词之前，这条概率分布曲线看起来有多陡峭或多平缓。"
+        },
+        {
+          "en": "A low temperature makes top candidates dominate, which is great for deterministic tasks like coding or data extraction, while a high temperature boosts variety.",
+          "cn": "低温会让排头的高概率词占绝对优势，适合写代码或信息抽取等确定性任务；高温则会增加表达多样性。"
+        },
+        {
+          "en": "Meanwhile, Top-p sorts words from most to least likely and cuts off the long tail once cumulative probability hits your threshold p.",
+          "cn": "与此同时，Top-p 把候选词从高到低排序，一旦累积概率达到设定的阈值 p，就直接截断后面的长尾冷门词。"
+        },
+        {
+          "en": "In practice, I'd usually adjust just one of the two, and for reasoning models it's best to follow the vendor's recommended defaults.",
+          "cn": "在实战中，我通常只调其中一个参数；而面对推理模型时，最好直接遵循厂商推荐的默认设置。"
+        },
+        {
+          "en": "After all, sampling settings can't inject missing facts or fix weak logic.",
+          "cn": "归根结底，采样设置没法凭空注入缺失的事实，也修不好薄弱的逻辑。"
+        },
+        {
+          "en": "So my rule of thumb is that temperature tunes how adventurous the phrasing gets, but it doesn't make the model any smarter.",
+          "cn": "所以我的经验法则是：温度调的是措辞有多敢发散，但并不会让模型变得更聪明。"
+        }
+      ],
+      "a_en": "Every time an LLM predicts the next token, it scores its entire vocabulary and turns those scores into percentages adding up to one hundred percent. Temperature controls how sharp or flat that probability curve looks before the model picks a word. A low temperature makes top candidates dominate, which is great for deterministic tasks like coding or data extraction, while a high temperature boosts variety. Meanwhile, Top-p sorts words from most to least likely and cuts off the long tail once cumulative probability hits your threshold p. In practice, I'd usually adjust just one of the two, and for reasoning models it's best to follow the vendor's recommended defaults. After all, sampling settings can't inject missing facts or fix weak logic. So my rule of thumb is that temperature tunes how adventurous the phrasing gets, but it doesn't make the model any smarter.",
+      "a_cn": "大模型每预测下一个 Token 时，都会给整个词表的候选词打分，并换算成总和为 100% 的概率分布。温度参数决定了模型真正抽词之前，这条概率分布曲线看起来有多陡峭或多平缓。低温会让排头的高概率词占绝对优势，适合写代码或信息抽取等确定性任务；高温则会增加表达多样性。与此同时，Top-p 把候选词从高到低排序，一旦累积概率达到设定的阈值 p，就直接截断后面的长尾冷门词。在实战中，我通常只调其中一个参数；而面对推理模型时，最好直接遵循厂商推荐的默认设置。归根结底，采样设置没法凭空注入缺失的事实，也修不好薄弱的逻辑。所以我的经验法则是：温度调的是措辞有多敢发散，但并不会让模型变得更聪明。",
+      "key_phrases": [
+        {
+          "en": "probability curve",
+          "cn": "概率分布曲线",
+          "type": "词汇",
+          "usage": "比数学术语 softmax distribution 更直观，向业务方解释抽样时常用"
+        },
+        {
+          "en": "deterministic tasks",
+          "cn": "确定性任务",
+          "type": "词汇",
+          "usage": "指标准答案唯一、容错率低的场景，如 JSON 抽取、SQL 生成"
+        },
+        {
+          "en": "cuts off the long tail",
+          "cn": "截断长尾部分",
+          "type": "搭配",
+          "usage": "cut off + 名词：形象描述按阈值一刀切剔除低概率冷门项"
+        },
+        {
+          "en": "cumulative probability",
+          "cn": "累积概率",
+          "type": "词汇",
+          "usage": "解释 Top-p 核采样机制的准确术语，指从高到低逐项相加的概率和"
+        },
+        {
+          "en": "doesn't make the model any smarter",
+          "cn": "并不会让模型变得更聪明",
+          "type": "句型",
+          "usage": "not...any + 比较级：口语中加强否定语气，澄清调参能力边界"
+        }
+      ],
+      "basics": [
+        {
+          "term": "核采样",
+          "term_en": "Nucleus Sampling (Top-p)",
+          "explain": "把候选词按概率从高到低排列并依次累加，一旦概率总和达到预设比例（如 0.9）就停止，只在入围的小圈子里随机抽词。",
+          "analogy": "挑餐厅只看好评率前 90% 的候选名单，彻底排除冷门踩雷店。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "模型回答不够有深度，把温度调高一点就能让它想得更透彻。",
+          "why": "调高温度只是让原本排在后面的低概率词更容易被抽中，完全不会增加模型的事实储备或推理深度，调太高反而容易胡言乱语。",
+          "right": "严谨任务调低温度求稳，推理模型按厂商建议保留默认采样；回答深度不足应靠优化提示词、补检索资料或换强模型解决。"
+        }
+      ],
+      "approach": "采分点是衔接逐词预测，用白话讲清「100% 概率分布 → 温度改陡缓 → Top-p 截长尾」及调参边界。推荐结构：候选概率分布 → 温度双向作用 → Top-p 累积截断 → 只调其一与不增智商落点。失分点是生抛公式或把温度当智商滑块。",
+      "tips": "必备术语 probability curve、deterministic、cumulative probability。可延伸至幻觉控制与评测可复现性。",
+      "source_repos": [],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "LLM-F006",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "上下文窗口",
+        "大海捞针",
+        "迷失在中间"
+      ],
+      "concepts": [
+        "llm.context_window"
+      ],
+      "prereq": [
+        "LLM-F001",
+        "LLM-F003"
+      ],
+      "q_cn": "什么是上下文窗口？为什么窗口大了仍有「大海捞针」难题？",
+      "q_en": "What is a context window, and why do large windows still struggle with finding a needle in a haystack?",
+      "gist": {
+        "cn": "窗口是输入加输出共享的上限；容量大不等于召回准，夹在长文中间的细节易漏掉。",
+        "en": "Window size caps combined input and output tokens, yet models still miss details buried in the middle."
+      },
+      "points": [
+        {
+          "cn": "单轮输入提示词与模型回复共同分享同一个硬性 Token 上限",
+          "en": "combining your input prompt and its generated reply"
+        },
+        {
+          "cn": "窗口账面容量不等于有效召回率，长文本检索存在准确率衰减",
+          "en": "isn't the same as effective recall"
+        },
+        {
+          "cn": "模型对开头和结尾利用最好，夹在中间的细节容易被漏掉",
+          "en": "buried in the middle often get overlooked"
+        },
+        {
+          "cn": "塞满窗口会分散注意力、拖慢首字响应并成倍推高单次成本",
+          "en": "drags down time to first token"
+        }
+      ],
+      "concept": {
+        "cn": "上下文窗口（Context Window）是大模型在单次交互中能够同时处理的输入与输出 Token 总量硬上限，超出部分会被截断或报错。虽然主流模型的窗口已扩展至数十万乃至百万级，但「装得下」不等于「找得准」。实验发现，模型对位于长提示词最开头和最结尾的信息利用得最好，而夹在中间段落的细节准确率明显下滑，即「迷失在中间（Lost in the Middle）」现象。此外，盲目塞入整篇长文档会稀释自注意力权重、显著拖慢首字响应时间，并让每次请求成倍烧钱。",
+        "en": "The context window is the hard ceiling on combined input and output tokens an LLM can handle in a single call; anything beyond it is truncated or rejected. Although modern windows reach hundreds of thousands or millions of tokens, fitting text inside does not guarantee accurate recall. Empirical studies show that models use information best at the very beginning and end of long prompts while overlooking details in the middle—known as 'Lost in the Middle'. Stuffing entire raw documents also dilutes self-attention, slows time to first token, and multiplies per-request API costs."
+      },
+      "a_pairs": [
+        {
+          "en": "A context window is the hard limit on total tokens a model can handle in a single turn, combining your input prompt and its generated reply.",
+          "cn": "上下文窗口是模型在单轮交互中能处理的 Token 硬上限，由你的输入提示词和模型生成的回复共同占用。"
+        },
+        {
+          "en": "Even though flagship models now accept hundreds of thousands of tokens, raw window size isn't the same as effective recall.",
+          "cn": "尽管如今的主力模型已经能塞下几十万个 Token，但账面窗口容量并不等同于有效召回能力。"
+        },
+        {
+          "en": "Controlled studies show that models use facts best at the very start and end of a prompt, while details buried in the middle often get overlooked.",
+          "cn": "对照实验表明，模型对提示词最开头和最结尾的信息利用得最好，而夹在长文中间的细节很容易被漏掉。"
+        },
+        {
+          "en": "Researchers call this 'Lost in the Middle', and it's why 'needle in a haystack' tests remain tough under real noise.",
+          "cn": "研究者把这种现象称为「迷失在中间」，这也是为什么在真实噪声干扰下「大海捞针」依然很难。"
+        },
+        {
+          "en": "On top of that, stuffing the entire window dilutes attention, drags down time to first token, and multiplies your cost on every single call.",
+          "cn": "不仅如此，把窗口塞满还会分散注意力、拖慢首字响应速度，并让每一次调用的账单成倍上升。"
+        },
+        {
+          "en": "So you can't treat a big context window like a free database where you dump raw files.",
+          "cn": "因此你不能把大窗口当成免费数据库，什么原始文件都往里硬塞。"
+        },
+        {
+          "en": "My rule of thumb is simple: just because a whole document fits in the window doesn't mean you should send it all.",
+          "cn": "我的经验法则很简单：整份文档塞得进窗口，并不代表你就该整份发过去。"
+        }
+      ],
+      "a_en": "A context window is the hard limit on total tokens a model can handle in a single turn, combining your input prompt and its generated reply. Even though flagship models now accept hundreds of thousands of tokens, raw window size isn't the same as effective recall. Controlled studies show that models use facts best at the very start and end of a prompt, while details buried in the middle often get overlooked. Researchers call this 'Lost in the Middle', and it's why 'needle in a haystack' tests remain tough under real noise. On top of that, stuffing the entire window dilutes attention, drags down time to first token, and multiplies your cost on every single call. So you can't treat a big context window like a free database where you dump raw files. My rule of thumb is simple: just because a whole document fits in the window doesn't mean you should send it all.",
+      "a_cn": "上下文窗口是模型在单轮交互中能处理的 Token 硬上限，由你的输入提示词和模型生成的回复共同占用。尽管如今的主力模型已经能塞下几十万个 Token，但账面窗口容量并不等同于有效召回能力。对照实验表明，模型对提示词最开头和最结尾的信息利用得最好，而夹在长文中间的细节很容易被漏掉。研究者把这种现象称为「迷失在中间」，这也是为什么在真实噪声干扰下「大海捞针」依然很难。不仅如此，把窗口塞满还会分散注意力、拖慢首字响应速度，并让每一次调用的账单成倍上升。因此你不能把大窗口当成免费数据库，什么原始文件都往里硬塞。我的经验法则很简单：整份文档塞得进窗口，并不代表你就该整份发过去。",
+      "key_phrases": [
+        {
+          "en": "hard limit on",
+          "cn": "对……的硬性上限",
+          "type": "搭配",
+          "usage": "强调不可突破的物理或配额边界，可替换 hard ceiling on"
+        },
+        {
+          "en": "effective recall",
+          "cn": "有效召回能力",
+          "type": "词汇",
+          "usage": "与账面容量（raw size）对照，指真正找对并用上信息的能力"
+        },
+        {
+          "en": "buried in the middle",
+          "cn": "深埋在中间位置的",
+          "type": "搭配",
+          "usage": "描述关键事实被夹在冗长上下文中段，可替换 tucked in the middle"
+        },
+        {
+          "en": "time to first token",
+          "cn": "首字响应延迟",
+          "type": "词汇",
+          "usage": "衡量用户发问到看见第一个字蹦出来的等待时长，常缩写为 TTFT"
+        },
+        {
+          "en": "just because a whole document fits",
+          "cn": "仅仅因为整份文档塞得下",
+          "type": "句型",
+          "usage": "just because...doesn't mean...：反驳盲目堆资源的高频句式"
+        }
+      ],
+      "basics": [
+        {
+          "term": "大海捞针测试",
+          "term_en": "NIAH (Needle in a Haystack)",
+          "explain": "把一句孤立的关键事实随机藏进几万到几十万字无关长文的不同深度位置，测试模型能否抵抗干扰、精准找出这句话的压力测试。",
+          "analogy": "在几百页合同的随机一页夹进一行补充条款，考对方能不能翻到。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "模型都有百万窗口了，做知识库每次把所有手册全塞进去就行。",
+          "why": "每次全量重传几十万 Token 会让首字等待长达数秒甚至十几秒、单次成本暴涨，且夹在中段的细节很容易因注意力分散而漏检。",
+          "right": "长窗口不能无脑替代检索；日常问答应先筛选高相关片段送入模型，把大窗口留给跨章节汇总等全局任务。"
+        }
+      ],
+      "approach": "采分点是界定输入输出共享上限，再从「迷失在中间」和「延迟成本暴涨」两方面解释为何大窗口不等于高召回。推荐结构：共享窗口上限 → 首尾强中间弱实验现象 → 注意力稀释与首字延迟代价 → 克制使用原则。会失分的说法是堆砌位置编码缩写却不谈召回衰减。",
+      "tips": "必备术语 effective recall、Lost in the Middle、time to first token。可延伸至上下文工程。",
+      "source_repos": [],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "LLM-F007",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "预训练",
+        "指令微调",
+        "偏好对齐"
+      ],
+      "concepts": [
+        "llm.training_stages"
+      ],
+      "prereq": [
+        "LLM-F002"
+      ],
+      "q_cn": "预训练、指令微调与人类对齐三个阶段各自解决什么问题？",
+      "q_en": "What problem does each stage—pre-training, instruction fine-tuning, and alignment—solve?",
+      "gist": {
+        "cn": "预训练习得语言与常识，指令微调把续写变成问答助手，偏好对齐约束诚实与安全边界。",
+        "en": "Pre-training builds world knowledge, SFT teaches instruction-following, and alignment enforces helpfulness and safety."
+      },
+      "points": [
+        {
+          "cn": "预训练靠海量文本猜下一词习得常识，但底座只会续写文本",
+          "en": "raw base model only continues text"
+        },
+        {
+          "cn": "指令微调用高质量问答示范把续写模型变成听懂指令的助手",
+          "en": "turn text continuation into helpful conversation"
+        },
+        {
+          "cn": "偏好对齐（RLHF/DPO）塑造有用性、诚实度与安全拒答边界",
+          "en": "draw safety refusal lines"
+        },
+        {
+          "cn": "产品团队极少从头预训练，按需微调行为并持续把关安全对齐",
+          "en": "maps out our intervention layers"
+        }
+      ],
+      "concept": {
+        "cn": "现代对话大模型依次经历三个训练阶段。第一阶段是自监督预训练，模型在海量文本上练习预测下一词，习得语言规律与世界常识，但产出的底座模型（Base Model）只会顺着上文续写文本，不会回答提问。第二阶段是监督指令微调（SFT），用高质量指令问答示范把续写模型变成听懂指令的对话助手。第三阶段是偏好对齐（如 RLHF 或 DPO），用偏好对比约束有用性、诚实度与安全拒答边界。AI PM 极少从头预训练，主要把关微调与对齐。",
+        "en": "Modern chat LLMs are built across three sequential stages. First, self-supervised pre-training trains on massive unlabeled text via next-token prediction, consuming most of the compute to learn language patterns and world knowledge—yet the resulting base model merely continues text rather than answering questions. Second, supervised fine-tuning (SFT) uses curated instruction-response demonstrations so the model understands user intent and replies as an assistant. Third, preference alignment (such as RLHF or DPO) uses preference comparisons to enforce helpfulness, honesty, and safety refusal boundaries. AI PMs rarely pre-train, focusing instead on fine-tuning and alignment."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd compare these three stages to general schooling, job training, and workplace ethics.",
+          "cn": "我会把这三个阶段比作通识教育、岗前技能培训和职场行为准则。"
+        },
+        {
+          "en": "First, self-supervised pre-training feeds the model trillions of web tokens to predict the next word, building grammar and broad world knowledge.",
+          "cn": "第一阶段是自监督预训练，让模型在数万亿公网 Token 上练习预测下一词，从而习得语法和广泛的世界常识。"
+        },
+        {
+          "en": "But that raw base model only continues text, so if you ask a question, it might just write three more questions because it doesn't know it's an assistant.",
+          "cn": "但产出的底座模型只会顺着上文续写文本，所以你问它一个问题，它可能接着再写三个问题，因为它不知道自己是助手。"
+        },
+        {
+          "en": "Second, supervised fine-tuning, or SFT, trains on high-quality instruction-and-answer examples to turn text continuation into helpful conversation.",
+          "cn": "第二阶段是监督指令微调（SFT），用高质量的「指令—回答」示范样本训练模型，把纯文本续写变成听懂指令的对话。"
+        },
+        {
+          "en": "Third, preference alignment—using methods like RLHF or DPO—teaches the model which replies humans prefer and where to draw safety refusal lines.",
+          "cn": "第三阶段是偏好对齐，利用 RLHF 或 DPO 等方法教模型分辨人类更偏爱哪种回答，并划清安全拒答红线。"
+        },
+        {
+          "en": "For product teams, this pipeline maps out our intervention layers: we don't pre-train from scratch, we fine-tune behavior selectively, and we audit alignment constantly.",
+          "cn": "对产品团队而言，这套链路划清了介入层级：我们极少从头预训练，按需微调特定行为，但必须持续把关对齐与安全。"
+        },
+        {
+          "en": "So my rule of thumb is: pre-training gives capability, SFT shapes interaction, and alignment sets boundaries.",
+          "cn": "所以我的经验法则是：预训练给底层能力，SFT 塑交互形态，偏好对齐定安全边界。"
+        }
+      ],
+      "a_en": "I'd compare these three stages to general schooling, job training, and workplace ethics. First, self-supervised pre-training feeds the model trillions of web tokens to predict the next word, building grammar and broad world knowledge. But that raw base model only continues text, so if you ask a question, it might just write three more questions because it doesn't know it's an assistant. Second, supervised fine-tuning, or SFT, trains on high-quality instruction-and-answer examples to turn text continuation into helpful conversation. Third, preference alignment—using methods like RLHF or DPO—teaches the model which replies humans prefer and where to draw safety refusal lines. For product teams, this pipeline maps out our intervention layers: we don't pre-train from scratch, we fine-tune behavior selectively, and we audit alignment constantly. So my rule of thumb is: pre-training gives capability, SFT shapes interaction, and alignment sets boundaries.",
+      "a_cn": "我会把这三个阶段比作通识教育、岗前技能培训和职场行为准则。第一阶段是自监督预训练，让模型在数万亿公网 Token 上练习预测下一词，从而习得语法和广泛的世界常识。但产出的底座模型只会顺着上文续写文本，所以你问它一个问题，它可能接着再写三个问题，因为它不知道自己是助手。第二阶段是监督指令微调（SFT），用高质量的「指令—回答」示范样本训练模型，把纯文本续写变成听懂指令的对话。第三阶段是偏好对齐，利用 RLHF 或 DPO 等方法教模型分辨人类更偏爱哪种回答，并划清安全拒答红线。对产品团队而言，这套链路划清了介入层级：我们极少从头预训练，按需微调特定行为，但必须持续把关对齐与安全。所以我的经验法则是：预训练给底层能力，SFT 塑交互形态，偏好对齐定安全边界。",
+      "key_phrases": [
+        {
+          "en": "self-supervised pre-training",
+          "cn": "自监督预训练",
+          "type": "词汇",
+          "usage": "准确指出预训练无需人工打标签、直接拿原文下一词当答案的特征"
+        },
+        {
+          "en": "raw base model",
+          "cn": "原始底座模型",
+          "type": "词汇",
+          "usage": "指刚完成预训练、尚未经过指令微调与对齐的基座模型"
+        },
+        {
+          "en": "draw safety refusal lines",
+          "cn": "划定安全拒答边界",
+          "type": "搭配",
+          "usage": "draw lines 表示划清红线，比 set rules 更具边界感"
+        },
+        {
+          "en": "from scratch",
+          "cn": "从零开始；从头",
+          "type": "搭配",
+          "usage": "train/build from scratch 是讨论自研与复用选型的高频短语"
+        },
+        {
+          "en": "maps out our intervention layers",
+          "cn": "划清了我们的介入层级",
+          "type": "句型",
+          "usage": "map out + 名词：把技术阶段转化为产品团队职责分工的过渡句式"
+        }
+      ],
+      "basics": [
+        {
+          "term": "底座模型",
+          "term_en": "Base Model",
+          "explain": "只完成了海量文本预训练、还没学过对话格式的原始模型，擅长顺着你给的开头往下续写文章，但不会乖乖按指令回答问题。",
+          "analogy": "没受过客服培训的学者，见你写标题就顺手往下续写文章。"
+        },
+        {
+          "term": "偏好对齐（RLHF / DPO）",
+          "term_en": "Preference Alignment (RLHF / DPO)",
+          "explain": "给同一个问题准备一好一坏两个回答样本，通过强化学习（RLHF）或直接偏好优化（DPO）拉高好回答概率、压低坏回答概率。",
+          "analogy": "带徒弟看优秀范文与反面教材对比，帮他拿捏分寸与红线。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "把公司行业文档喂进底座模型继续预训练完，就能直接上线当智能客服了。",
+          "why": "底座模型的本能是顺着上文续写文本；用户发一句提问，它很可能接着续写更多同类问题，既不懂客服身份也没有安全拒答边界。",
+          "right": "上线对话产品必须使用经过指令微调与偏好对齐的对话版模型（Instruct/Chat），再配合检索或轻量微调适配业务。"
+        }
+      ],
+      "approach": "采分点是分清三个阶段各自的数据形态、核心产出与局限，特别是点明底座模型「只会续写文本」。推荐结构：教育递进类比 → 预训练建常识底座 → SFT 转对话助手 → 对齐定安全边界 → 产品介入层级收尾。会失分的说法是把微调和预训练的目标混为一谈。",
+      "tips": "必备术语 base model、SFT、preference alignment。可延伸至轻量微调、直接偏好优化与安全护栏。",
+      "source_repos": [],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "LLM-F008",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "大模型幻觉",
+        "概率生成",
+        "能力边界"
+      ],
+      "concepts": [
+        "llm.hallucination"
+      ],
+      "prereq": [
+        "LLM-F002",
+        "LLM-F005"
+      ],
+      "q_cn": "什么是大模型幻觉？为什么靠算法改进无法彻底根除它？",
+      "q_en": "What is LLM hallucination, and why can't algorithm upgrades eliminate it completely?",
+      "gist": {
+        "cn": "模型按统计规律猜顺口的词且参数记忆有损，创造力与幻觉同源，故只能靠外部工程治理。",
+        "en": "LLMs guess statistically fluent tokens from fuzzy weights, sharing one engine with creativity, so hallucination needs system-level controls."
+      },
+      "points": [
+        {
+          "cn": "区分违背客观事实的事实性幻觉与偏离给定资料的忠实性幻觉",
+          "en": "straying from the reference text"
+        },
+        {
+          "cn": "本质是按统计规律猜最顺口的词，知识被模糊压缩在参数里",
+          "en": "fuzzily compressed into billions of weights"
+        },
+        {
+          "cn": "模型不知道自己不知道，遇到盲区仍会顺着语言惯性自信作答",
+          "en": "doesn't naturally know what it doesn't know"
+        },
+        {
+          "cn": "发散创造力与幻觉共享同一套概率机制，须靠外部系统治理",
+          "en": "exact same engine driving creative generalization"
+        }
+      ],
+      "concept": {
+        "cn": "大模型幻觉是指模型输出语句通顺、语气笃定，内容却存在编造的现象，分为「事实性幻觉」（违背客观世界事实）和「忠实性幻觉」（偏离用户提供的参考资料）。靠底层算法改进无法彻底根除幻觉，原因有三：第一，模型本质是按统计规律猜下一个最顺口的词，而非检索精确数据库表格；第二，训练语料被模糊压缩在参数里，且模型天生不知道自己的知识边界；第三，驱动举一反三、创意写作的概率生成机制与制造幻觉是同一套引擎。因此产品上只能靠外部系统工程治理，不能指望零幻觉底模。",
+        "en": "LLM hallucination occurs when a model produces fluent, confident text that is fabricated, falling into two categories: factual hallucination (contradicting real-world truth) and faithfulness hallucination (deviating from provided source material). Algorithmic improvements alone cannot completely eradicate it for three reasons: first, the model guesses statistically plausible next tokens rather than querying exact database rows; second, training knowledge is fuzzily compressed into weights without built-in awareness of knowledge gaps; third, creative generalization and hallucination share the exact same probabilistic mechanism. Product teams must therefore manage it through external system engineering."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd split LLM hallucination into two types: making up facts that contradict reality, and straying from the reference text you gave it.",
+          "cn": "我会把大模型幻觉分成两类：编造违背客观现实的「事实性幻觉」，以及偏离给定参考资料的「忠实性幻觉」。"
+        },
+        {
+          "en": "Instead of looking up exact rows in a database, a language model isn't checking facts—it's guessing the next statistically smooth word.",
+          "cn": "语言模型并不是在数据库里按行核对事实，而是在按统计规律猜下一个最顺口的词。"
+        },
+        {
+          "en": "During training, world knowledge gets fuzzily compressed into billions of weights, so rare details easily blur together.",
+          "cn": "训练时海量知识被模糊压缩进数十亿个参数里，低频细节很容易彼此串味混淆。"
+        },
+        {
+          "en": "Worse yet, the model doesn't naturally know what it doesn't know, so when facts are missing, fluent patterns still push it to sound confident.",
+          "cn": "更麻烦的是，模型天生不知道自己不知道什么；一旦遇到知识盲区，流畅的语言惯性依然会推着它自信地编下去。"
+        },
+        {
+          "en": "Algorithm tweaks can't wipe this out completely because the probabilistic engine behind hallucination is the exact same engine driving creative generalization.",
+          "cn": "单靠算法改进无法彻底根除它，因为制造幻觉的概率生成机制，恰恰也是驱动模型发散联想与举一反三的同一套引擎。"
+        },
+        {
+          "en": "If you forced a model to never guess beyond exact memorized strings, you'd break its ability to write, summarize, and reason.",
+          "cn": "如果你强迫模型绝不跨出死记硬背的原句半步，它写作、总结和推理的实用能力也就跟着废掉了。"
+        },
+        {
+          "en": "So my rule of thumb is: don't wait for a zero-hallucination base model—wrap probabilistic models in external verification systems.",
+          "cn": "所以我的经验法则是：别指望等来零幻觉的底座模型，而要用外部核验系统把概率模型包裹起来。"
+        }
+      ],
+      "a_en": "I'd split LLM hallucination into two types: making up facts that contradict reality, and straying from the reference text you gave it. Instead of looking up exact rows in a database, a language model isn't checking facts—it's guessing the next statistically smooth word. During training, world knowledge gets fuzzily compressed into billions of weights, so rare details easily blur together. Worse yet, the model doesn't naturally know what it doesn't know, so when facts are missing, fluent patterns still push it to sound confident. Algorithm tweaks can't wipe this out completely because the probabilistic engine behind hallucination is the exact same engine driving creative generalization. If you forced a model to never guess beyond exact memorized strings, you'd break its ability to write, summarize, and reason. So my rule of thumb is: don't wait for a zero-hallucination base model—wrap probabilistic models in external verification systems.",
+      "a_cn": "我会把大模型幻觉分成两类：编造违背客观现实的「事实性幻觉」，以及偏离给定参考资料的「忠实性幻觉」。语言模型并不是在数据库里按行核对事实，而是在按统计规律猜下一个最顺口的词。训练时海量知识被模糊压缩进数十亿个参数里，低频细节很容易彼此串味混淆。更麻烦的是，模型天生不知道自己不知道什么；一旦遇到知识盲区，流畅的语言惯性依然会推着它自信地编下去。单靠算法改进无法彻底根除它，因为制造幻觉的概率生成机制，恰恰也是驱动模型发散联想与举一反三的同一套引擎。如果你强迫模型绝不跨出死记硬背的原句半步，它写作、总结和推理的实用能力也就跟着废掉了。所以我的经验法则是：别指望等来零幻觉的底座模型，而要用外部核验系统把概率模型包裹起来。",
+      "key_phrases": [
+        {
+          "en": "straying from",
+          "cn": "偏离……；脱离……",
+          "type": "搭配",
+          "usage": "描述模型未紧扣给定上下文依据（忠实性幻觉），比 deviating 更口语"
+        },
+        {
+          "en": "statistically smooth",
+          "cn": "统计上通顺流畅的",
+          "type": "搭配",
+          "usage": "点明大模型优先保证行文顺口而非事实真值的生成本质"
+        },
+        {
+          "en": "fuzzily compressed",
+          "cn": "被模糊压缩的",
+          "type": "搭配",
+          "usage": "解释参数化记忆有损、低频细节容易张冠李戴的直观说法"
+        },
+        {
+          "en": "creative generalization",
+          "cn": "创造性泛化；举一反三",
+          "type": "词汇",
+          "usage": "指模型跳出死记硬背、重组知识解决新问题的核心价值"
+        },
+        {
+          "en": "don't wait for",
+          "cn": "不要指望干等……",
+          "type": "句型",
+          "usage": "don't wait for A—do B：先排除被动等待，再引出工程落地方案"
+        }
+      ],
+      "basics": [
+        {
+          "term": "事实性幻觉与忠实性幻觉",
+          "term_en": "Factual vs. Faithfulness Hallucination",
+          "explain": "前者指模型凭空编造现实中不存在的事件或数据；后者指你已经给了参考文档，模型总结时却篡改原意或添油加醋。",
+          "analogy": "前者是闭卷瞎编历史年份，后者是做阅读理解时曲解原文。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "只要在提示词里写上「必须 100% 真实，严禁编造」，就能彻底堵住幻觉。",
+          "why": "提示词改变不了底层按概率猜词的机制；一旦缺乏可靠资料支撑，模型仍会顺着高概率句式编出看似像模像样的内容。",
+          "right": "提示词约束只能减少胡猜倾向，严肃场景必须配合检索外部资料、低温采样与输出核验机制共同设防。"
+        }
+      ],
+      "approach": "采分点是先拆出事实性与忠实性两类幻觉，再用大白话讲透「猜顺口词、模糊压缩、不知无知、与创造力同源」。推荐结构：两类幻觉定义 → 非数据库查表与模糊记忆 → 不知自身盲区 → 同源机制与外部治理落点。会失分的说法是堆砌晦涩数学词或认为升级模型就能清零幻觉。",
+      "tips": "必备术语 factual/faithfulness hallucination、fuzzily compressed。直接衔接幻觉风险分层治理方案。",
+      "source_repos": [],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "LLM-X001",
+      "level": "X",
+      "kind": "idea",
+      "difficulty": "较难",
+      "tags": [
+        "测试时算力",
+        "推理模型",
+        "模型分流"
+      ],
+      "concepts": [
+        "llm.reasoning_model",
+        "llm.scaling"
+      ],
+      "prereq": [
+        "LLM-F002",
+        "LLM-F007"
+      ],
+      "q_cn": "为什么说测试时算力是扩展能力的新维度？该如何做模型分流？",
+      "q_en": "Why is test-time compute a new scaling dimension, and how should you route traffic across models?",
+      "gist": {
+        "cn": "预训练扩规模边际递减，推理期多算思考链可破复杂难题；产品须按难度做快慢模型分流。",
+        "en": "Test-time compute trades inference latency for hard-task accuracy, requiring smart routing between fast and reasoning models."
+      },
+      "points": [
+        {
+          "cn": "高质量公网语料增速放缓，单纯扩大预训练面临边际收益递减",
+          "en": "hitting diminishing returns"
+        },
+        {
+          "cn": "区分训练期强化学习与推理期算力，作答前实时生成思考链验证",
+          "en": "spends tokens live per query"
+        },
+        {
+          "cn": "多步数学、复杂代码与严密逻辑走推理模型以换取高准确率",
+          "en": "boosts accuracy on multi-step math"
+        },
+        {
+          "cn": "简单分类、抽取与实时交互走常规快模型，严控延迟与账单",
+          "en": "put a lightweight router in front"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在「自回归逐词生成」与「训练三阶段」之上。过去行业主要靠扩大预训练参数和语料规模提升能力，但随着高质量公网语料增速放缓，单纯堆预训练面临边际收益递减。为此，业界一方面在训练期用可验证奖励强化学习（如 DeepSeek-R1 公开采用的路线）教会模型深度推演，另一方面在推理期开辟「测试时算力」维度——回答前先生成长思考链或多次采样核验。对 AI PM 而言，核心落地动作是设计快慢模型分流，防止简单请求拖垮延迟与账单。",
+        "en": "This question builds on autoregressive generation and the three training stages. Historically, labs scaled capability by expanding pre-training parameters and web corpora, which now faces diminishing returns as high-quality public text growth slows. In response, labs use reinforcement learning with verifiable rewards (as popularized by DeepSeek-R1) during training to instill reasoning habits, while opening a 'test-time compute' axis at inference—spending extra tokens on long reasoning chains or multi-sample verification before answering. For AI PMs, the key operational move is fast-vs-slow model routing to keep latency and bills under control."
+      },
+      "a_pairs": [
+        {
+          "en": "For years, AI labs scaled capability mainly by pre-training bigger models on more web text, but high-quality public data growth is slowing and hitting diminishing returns.",
+          "cn": "过去几年，AI 实验室主要靠堆更大参数和更多网页语料做预训练来提效，但如今高质量公网语料增速放缓，正面临边际收益递减。"
+        },
+        {
+          "en": "Test-time compute opens a second scaling axis: instead of answering right away, the model spends extra compute at inference time to think step by step.",
+          "cn": "测试时算力开辟了第二个扩展维度：模型不再立刻作答，而是在推理期额外消耗算力先做逐步推演。"
+        },
+        {
+          "en": "Note that training methods like reinforcement learning with verifiable rewards spend training compute to teach reasoning habits, whereas test-time compute spends tokens live per query.",
+          "cn": "要注意区分：可验证奖励强化学习花的是训练期算力去养成推理习惯，而测试时算力是在每次回答前实时消耗长思考链或多次采样验证。"
+        },
+        {
+          "en": "That extra thinking boosts accuracy on multi-step math, complex coding, and strict logic, yet a reasoning model doesn't come cheap.",
+          "cn": "这种额外思考大幅拉高了多步数学、复杂代码与严密逻辑任务的正确率，但推理模型的调用代价并不便宜。"
+        },
+        {
+          "en": "If you send every request there, internal thinking tokens will blow up both user wait time and your monthly API bill.",
+          "cn": "如果你把所有请求都往推理模型送，冗长的内部思考 Token 会瞬间撑爆用户等待延迟和月度 API 账单。"
+        },
+        {
+          "en": "So in production, I'd put a lightweight router in front: send complex planning and logic to reasoning models, while keeping simple classification, extraction, and live chat on fast models.",
+          "cn": "所以在生产环境中，我会在前置层做快慢分流：复杂规划和严密逻辑走推理模型，高频简单分类、信息抽取和实时对话留在常规快模型。"
+        },
+        {
+          "en": "My rule of thumb is simple: don't pay thinking-model prices for tasks that don't need deep thought.",
+          "cn": "我的经验法则很简单：别为不需要深度思考的简单任务支付推理模型的高昂账单。"
+        }
+      ],
+      "a_en": "For years, AI labs scaled capability mainly by pre-training bigger models on more web text, but high-quality public data growth is slowing and hitting diminishing returns. Test-time compute opens a second scaling axis: instead of answering right away, the model spends extra compute at inference time to think step by step. Note that training methods like reinforcement learning with verifiable rewards spend training compute to teach reasoning habits, whereas test-time compute spends tokens live per query. That extra thinking boosts accuracy on multi-step math, complex coding, and strict logic, yet a reasoning model doesn't come cheap. If you send every request there, internal thinking tokens will blow up both user wait time and your monthly API bill. So in production, I'd put a lightweight router in front: send complex planning and logic to reasoning models, while keeping simple classification, extraction, and live chat on fast models. My rule of thumb is simple: don't pay thinking-model prices for tasks that don't need deep thought.",
+      "a_cn": "过去几年，AI 实验室主要靠堆更大参数和更多网页语料做预训练来提效，但如今高质量公网语料增速放缓，正面临边际收益递减。测试时算力开辟了第二个扩展维度：模型不再立刻作答，而是在推理期额外消耗算力先做逐步推演。要注意区分：可验证奖励强化学习花的是训练期算力去养成推理习惯，而测试时算力是在每次回答前实时消耗长思考链或多次采样验证。这种额外思考大幅拉高了多步数学、复杂代码与严密逻辑任务的正确率，但推理模型的调用代价并不便宜。如果你把所有请求都往推理模型送，冗长的内部思考 Token 会瞬间撑爆用户等待延迟和月度 API 账单。所以在生产环境中，我会在前置层做快慢分流：复杂规划和严密逻辑走推理模型，高频简单分类、信息抽取和实时对话留在常规快模型。我的经验法则很简单：别为不需要深度思考的简单任务支付推理模型的高昂账单。",
+      "key_phrases": [
+        {
+          "en": "hitting diminishing returns",
+          "cn": "遭遇边际收益递减",
+          "type": "搭配",
+          "usage": "描述堆资源后投入产出比见顶，比 faces 更具动态口语感"
+        },
+        {
+          "en": "at inference time",
+          "cn": "在推理阶段；在线作答时",
+          "type": "搭配",
+          "usage": "与 during training 严格对仗，区分模型上线前后的算力消耗阶段"
+        },
+        {
+          "en": "doesn't come cheap",
+          "cn": "代价不菲；并不便宜",
+          "type": "搭配",
+          "usage": "口语高频转折短语，引出高准确率背后的延迟或账单成本"
+        },
+        {
+          "en": "lightweight router",
+          "cn": "轻量级分流路由器",
+          "type": "词汇",
+          "usage": "指部署在主模型前按意图或难度分派流量的低成本分类层"
+        },
+        {
+          "en": "don't pay thinking-model prices for",
+          "cn": "别为……支付推理模型的高价",
+          "type": "句型",
+          "usage": "don't pay A prices for B：点明资源按需匹配、反对大材小用"
+        }
+      ],
+      "basics": [
+        {
+          "term": "可验证奖励强化学习",
+          "term_en": "RLVR (Reinforcement Learning with Verifiable Rewards)",
+          "explain": "在数学、代码等有客观标准答案的任务上（如 DeepSeek-R1 路线），直接用做对与否发奖励信号，消耗训练算力激发模型自主演化出长链推理与验算能力。",
+          "analogy": "刷带标准答案的奥数题库，算对得分，自己悟出打草稿验算的方法。"
+        },
+        {
+          "term": "测试时算力",
+          "term_en": "Test-time Compute",
+          "explain": "不改模型参数，而是在用户提问后的在线推理阶段多花算力，比如先输出几千个内部思考 Token 反复推演，或生成多份候选答案择优后再回复。",
+          "analogy": "遇到压轴难题不急着落笔，先在草稿纸上多花十分钟推演验算。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "推理模型既然能力最强，把全站所有功能接口全切到推理模型体验肯定最好。",
+          "why": "推理模型每次都会先生成大段内部思考 Token，不仅全都按输出单价计费，还会把几百毫秒的实时交互拖慢到数秒甚至几十秒。",
+          "right": "必须按任务难度做快慢分流：简单分类、实体抽取和闲聊用常规快模型，多步数理逻辑与复杂规划再路由给推理模型。"
+        },
+        {
+          "wrong": "测试时算力就是在用户每次提问时，让模型现场做强化学习训练。",
+          "why": "强化学习发生在模型上线前的训练阶段，会更新模型权重；上线后处理用户提问时权重早已冻结，只是多生成思考文字来展开推理。",
+          "right": "分清两个阶段：训练期强化学习负责「学会怎么打草稿」，推理期测试时算力负责「答题时真的花时间写草稿」。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：前半问技术演进背景与机制边界，后半考 AI PM 控成本与保体验的流量调度能力。",
+        "辨析：说清预训练高质量公网语料见顶趋势，并严格区分训练期强化学习与推理期算力消耗。",
+        "算账：指出长思考链既按输出 Token 计费又拉长等待时间，全量接入会打穿利润与交互体验。",
+        "分流：按逻辑深度切分流量，重推理走慢思考模型，高频确定性抽取与实时对话留给快模型。"
+      ],
+      "method": {
+        "name": "快慢模型分流法",
+        "steps": [
+          "评估任务推理深度",
+          "核算出字延迟预算",
+          "前置路由动态分流"
+        ],
+        "transfer": "同样适用于大模型与小模型协同、云端旗舰模型与端侧本地模型分流，以及客服机器人简单问答与复杂工单升级调度。"
+      },
+      "approach": "采分点是讲清预训练边际递减、区分训练期强化学习与推理期测试时算力，并给出可落地的快慢模型分流方案。推荐结构：语料瓶颈背景 → 训练与推理算力辨析 → 延迟与账单代价 → 快慢路由策略。会失分的说法是不分场景盲目全量切推理模型。",
+      "tips": "必备术语 test-time compute、diminishing returns、router。可延伸至推理成本核算与网关路由设计。",
+      "source_repos": [],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "LLM-X002",
+      "level": "X",
+      "kind": "method",
+      "difficulty": "较难",
+      "tags": [
+        "幻觉治理",
+        "风险矩阵",
+        "分层防御"
+      ],
+      "concepts": [
+        "llm.hallucination"
+      ],
+      "prereq": [
+        "LLM-F005",
+        "LLM-F008"
+      ],
+      "q_cn": "AI 产品经理如何系统性评估并降低大模型幻觉的业务风险？",
+      "q_en": "How should an AI PM systematically evaluate and reduce the business risk of hallucinations?",
+      "gist": {
+        "cn": "先按容错度与后果可逆性分级，再从开卷检索、低温校验到引文拒答搭三层防线。",
+        "en": "Grade use cases by error tolerance and reversibility, then layer RAG evidence, inference checks, and UI fallbacks."
+      },
+      "points": [
+        {
+          "cn": "按「业务容错度 × 后果可逆性」构建矩阵对功能做风险分级",
+          "en": "error tolerance versus consequence reversibility"
+        },
+        {
+          "cn": "输入层用检索增强生成绑定可靠资料，让模型开卷作答",
+          "en": "connect external trusted docs through RAG"
+        },
+        {
+          "cn": "推理层用低温采样配合多次采样自洽核对或辅助校验拦截",
+          "en": "pair low-temperature sampling with multi-sample consistency checks"
+        },
+        {
+          "cn": "交互层展示原文引文出处，把握不足时主动拒答或转交人工",
+          "en": "show clickable source citations and degrade gracefully"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在「采样参数控制」与「大模型幻觉成因」之上。既然概率生成机制决定了底座模型无法做到零幻觉，AI 产品经理就应从单点调优转向系统风控。第一步先按「业务容错度 × 错误后果可逆性」建立风险矩阵，区分低危创意辅助与高危严肃决策；第二步针对高风险链路搭建三层防线：输入层用检索增强生成（RAG）提供可靠原文让模型开卷作答，推理层用低温采样结合自洽核对或辅助校验筛查无据断言，交互层透出原文出处并在低把握时主动拒答或转人工。",
+        "en": "This question builds on sampling controls and the root causes of LLM hallucination. Because probabilistic generation prevents any base model from reaching zero hallucination, AI PMs must shift from isolated prompt tweaks to system-level risk governance. Start by grading features on a matrix of error tolerance by consequence reversibility, separating low-risk creative drafting from high-stakes decisions. Then build three defense layers for critical flows: supply trusted source passages via RAG at the input layer, combine low-temperature sampling with consistency or verifier checks at inference, and display source citations with abstention or human handoff in the UI."
+      },
+      "a_pairs": [
+        {
+          "en": "Since we can't eliminate hallucination inside the weights, I'd manage it as a business risk using a two-part framework: risk grading plus three defense layers.",
+          "cn": "既然无法在模型参数内部根除幻觉，我会把它当成业务风险来管，用「风险分级 + 三层防线」的框架落地。"
+        },
+        {
+          "en": "First, I plot each feature on a matrix of error tolerance versus consequence reversibility—marketing copy is easy to edit, whereas medical or financial advice isn't.",
+          "cn": "第一步，我按「容错度 × 后果可逆性」给功能分级：营销文案改两句就行，而医疗或财务建议一旦出错极难挽回。"
+        },
+        {
+          "en": "For high-stakes workflows, layer one is the input side: we connect external trusted docs through RAG so it's an open-book exam, not guesswork.",
+          "cn": "针对高风险场景，第一层防线设在输入端：通过检索增强生成（RAG）接入外部可靠资料，让模型开卷作答而非凭空盲猜。"
+        },
+        {
+          "en": "Layer two happens during inference, where we pair low-temperature sampling with multi-sample consistency checks or a lightweight verifier to catch unsupported claims.",
+          "cn": "第二层设在推理端，用低温采样配合多次采样自洽核对，或加一道轻量校验模型，把缺乏依据的论断拦下来。"
+        },
+        {
+          "en": "Layer three is the user interface: we show clickable source citations and degrade gracefully—abstaining or handing off to a human when confidence is low.",
+          "cn": "第三层设在交互界面：展示可点击核对的原文出处，并在把握不足时平滑降级——主动拒答或转交人工客服。"
+        },
+        {
+          "en": "We also track faithfulness and citation accuracy continuously so bad cases feed back into our test suite.",
+          "cn": "同时我们持续监控答案忠实度与引用准确率，把线上坏案例不断回流进评测集。"
+        },
+        {
+          "en": "So my rule of thumb is simple: don't promise zero hallucination, and build a product where every error is traceable, catchable, and reversible.",
+          "cn": "所以我的经验法则很简单：别承诺零幻觉，而要做出让每一处错误都可溯源、可拦截、可挽回的产品。"
+        }
+      ],
+      "a_en": "Since we can't eliminate hallucination inside the weights, I'd manage it as a business risk using a two-part framework: risk grading plus three defense layers. First, I plot each feature on a matrix of error tolerance versus consequence reversibility—marketing copy is easy to edit, whereas medical or financial advice isn't. For high-stakes workflows, layer one is the input side: we connect external trusted docs through RAG so it's an open-book exam, not guesswork. Layer two happens during inference, where we pair low-temperature sampling with multi-sample consistency checks or a lightweight verifier to catch unsupported claims. Layer three is the user interface: we show clickable source citations and degrade gracefully—abstaining or handing off to a human when confidence is low. We also track faithfulness and citation accuracy continuously so bad cases feed back into our test suite. So my rule of thumb is simple: don't promise zero hallucination, and build a product where every error is traceable, catchable, and reversible.",
+      "a_cn": "既然无法在模型参数内部根除幻觉，我会把它当成业务风险来管，用「风险分级 + 三层防线」的框架落地。第一步，我按「容错度 × 后果可逆性」给功能分级：营销文案改两句就行，而医疗或财务建议一旦出错极难挽回。针对高风险场景，第一层防线设在输入端：通过检索增强生成（RAG）接入外部可靠资料，让模型开卷作答而非凭空盲猜。第二层设在推理端，用低温采样配合多次采样自洽核对，或加一道轻量校验模型，把缺乏依据的论断拦下来。第三层设在交互界面：展示可点击核对的原文出处，并在把握不足时平滑降级——主动拒答或转交人工客服。同时我们持续监控答案忠实度与引用准确率，把线上坏案例不断回流进评测集。所以我的经验法则很简单：别承诺零幻觉，而要做出让每一处错误都可溯源、可拦截、可挽回的产品。",
+      "key_phrases": [
+        {
+          "en": "consequence reversibility",
+          "cn": "后果可逆性",
+          "type": "词汇",
+          "usage": "评估 AI 出错后能否低成本撤回或修正的核心风控维度"
+        },
+        {
+          "en": "high-stakes workflows",
+          "cn": "高风险业务流程",
+          "type": "词汇",
+          "usage": "指一旦出错会造成资金损失、合规处罚或安全事故的严肃场景"
+        },
+        {
+          "en": "unsupported claims",
+          "cn": "缺乏依据的断言",
+          "type": "搭配",
+          "usage": "精准指代模型超出参考资料范围自行发挥的忠实性幻觉内容"
+        },
+        {
+          "en": "degrade gracefully",
+          "cn": "平滑降级",
+          "type": "搭配",
+          "usage": "系统在把握不足时主动退回安全模式（拒答或转人工）的工程表达"
+        },
+        {
+          "en": "don't promise zero hallucination",
+          "cn": "不要承诺零幻觉",
+          "type": "句型",
+          "usage": "管理业务方与客户预期时的关键表态，把重心拉回风控闭环"
+        }
+      ],
+      "basics": [
+        {
+          "term": "检索增强生成",
+          "term_en": "RAG (Retrieval-Augmented Generation)",
+          "explain": "不改动模型本身的参数，而是在模型回答前先从企业权威资料库里搜出相关原文段落，连同问题一起塞给模型，要求它严格照着参考资料回答。",
+          "analogy": "把闭卷默写改成开卷考试，允许翻权威教材并标明页码。"
+        },
+        {
+          "term": "自洽性核对",
+          "term_en": "Self-Consistency Check",
+          "explain": "对同一个关键问题让模型稍微带点随机度独立生成多份回答，比对核心结论是否一致；若几次说法互相矛盾，说明模型正在瞎猜。",
+          "analogy": "疑难杂症多挂两位专家号，结论一致才放心采纳。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "在页面底下加一行「AI 生成内容仅供参考」，就算把幻觉风险管住了。",
+          "why": "免责小字既没降低出错率，又把逐字核实的负担全甩给用户；在金融、医疗或合同场景下，一次严重误导就会直接摧毁产品信任。",
+          "right": "严肃场景必须由系统承担举证与拦截责任，把原文高亮溯源和低把握拒答做成产品的核心交互机制。"
+        },
+        {
+          "wrong": "上了检索增强生成（RAG），模型就绝对不会再出幻觉了。",
+          "why": "如果检索阶段找错了文档片段，或者模型在总结多个段落时张冠李戴，依然会产生偏离原文的忠实性幻觉。",
+          "right": "输入层检索必须配合推理层低温核验与交互层引文对照，三层防线环环相扣才能把风险压进可控区间。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：面试官考的不是单点调参技巧，而是面对概率不确定性时的业务分级与全链路风控设计。",
+        "分级：先用「容错度 × 后果可逆性」矩阵区分轻重缓急，避免在低风险场景过度投入高昂校验成本。",
+        "设防：按数据流向依次在输入端接可靠资料、推理端做低温与一致性校验、交互端加引文与降级出口。",
+        "闭环：上线后持续追踪忠实度指标并回流坏案例，把承诺从「零错误」转向「可溯源、可挽回」。"
+      ],
+      "method": {
+        "name": "风险分级三层防线",
+        "steps": [
+          "按容错与可逆分级",
+          "输入开卷结合推理校验",
+          "前端溯源与降级兜底"
+        ],
+        "transfer": "可迁移到智能体敏感工具调用审批、金融法律自动化审阅、企业智能客服上线评审等一切不确定性治理场景。"
+      },
+      "approach": "采分点是先做业务风险分级，再按输入、推理、交互搭三层防线，而非只谈提示词或免责声明。推荐结构：容错与可逆性矩阵 → 输入层 RAG 开卷 → 推理层低温与校验 → 交互层引文与平滑降级。用「错误可溯源、可拦截、可挽回」收尾最有力。",
+      "tips": "必备术语 consequence reversibility、RAG、degrade gracefully。可延伸至检索评测与人机协同设计。",
+      "source_repos": [],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "LLM-X003",
+      "level": "X",
+      "kind": "case",
+      "difficulty": "中等",
+      "tags": [
+        "MiniMind",
+        "全链路训练",
+        "超小模型"
+      ],
+      "concepts": [
+        "llm.training_stages",
+        "llm.moe"
+      ],
+      "prereq": [
+        "LLM-F001",
+        "LLM-F004",
+        "LLM-F007"
+      ],
+      "q_cn": "以 MiniMind 为例：超小模型如何跑通从分词到对齐的全流程？",
+      "q_en": "Using MiniMind as an example, how does an ultra-small model run the full pipeline from tokenization to alignment?",
+      "gist": {
+        "cn": "复用自带分词器在单卡跑通预训练、微调与 DPO，证明大小模型架构与步骤一致。",
+        "en": "MiniMind runs pre-training, SFT, and DPO on one GPU, proving parameter scale changes capacity ceilings, not stages."
+      },
+      "points": [
+        {
+          "cn": "单卡复现 64M 稠密与 198M-A64M 混合专家版",
+          "en": "a single consumer GPU"
+        },
+        {
+          "cn": "虽含分词训练代码但不建议重训以保兼容，主线直接复用自带分词器",
+          "en": "advises against retraining it"
+        },
+        {
+          "cn": "依次跑通预训练、指令微调（SFT）与偏好优化（DPO）",
+          "en": "chosen-versus-rejected reply pairs"
+        },
+        {
+          "cn": "大小模型架构与步骤完全一致，参数规模只改变能力上限而非流程",
+          "en": "parameter scale raises the capability ceiling"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在「Token 分词」、「混合专家架构」与「训练三阶段」之上。开源项目 MiniMind 在消费级单卡上复现了现代大模型全链路，涵盖 64M 稠密版与 198M-A64M 混合专家版。项目虽含分词器训练代码，但作者不建议重训以免破坏词表与生态兼容，主线直接复用自带分词器，依次跑通预训练、SFT 与直接偏好优化（DPO）。这证明大小模型的架构组件与训练步骤完全一致，参数规模改变的是能力上限而非流程本身。",
+        "en": "This question builds on tokenization, Mixture-of-Experts, and the three training stages. The open-source MiniMind project reproduces the modern LLM pipeline from scratch on a single consumer GPU, covering both a 64M dense model and a 198M-total, 64M-active MoE variant. Although it includes tokenizer training scripts, the author advises against retraining the tokenizer to avoid breaking vocabulary and ecosystem compatibility; the main pipeline reuses a compact built-in tokenizer and runs pre-training, SFT, and Direct Preference Optimization (DPO). MiniMind proves that tiny and frontier models share identical components and stages—scale raises capability ceilings, not the workflow."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd use the open-source MiniMind project as a clear sandbox because it builds both a 64M dense model and a 198M-total, 64M-active MoE model on a single consumer GPU.",
+          "cn": "我会把开源项目 MiniMind 当作极佳的观察沙盘，因为它在单张消费级显卡上同时复现了 64M 稠密版与总参数 198M、激活 64M 的混合专家版模型。"
+        },
+        {
+          "en": "First, although the repo includes tokenizer training code, the author advises against retraining it so you don't break vocabulary and ecosystem compatibility.",
+          "cn": "第一步在分词层，虽然仓库提供了分词器训练代码，但作者明确不建议重训，以免破坏词表与推理生态的兼容性。"
+        },
+        {
+          "en": "Instead, the main pipeline reuses its compact built-in tokenizer and moves straight into next-token pre-training to learn basic language structure.",
+          "cn": "因此主线流程直接复用自带的精简分词器，随即进入下一词预测预训练，让模型习得基础语言结构。"
+        },
+        {
+          "en": "Next, it runs supervised fine-tuning on multi-turn chat data so the raw base model learns to follow user instructions.",
+          "cn": "接着，它在多轮对话数据上跑监督指令微调（SFT），让原始底座模型学会听从用户指令作答。"
+        },
+        {
+          "en": "After that, it applies Direct Preference Optimization, or DPO, using chosen-versus-rejected reply pairs to align tone and helpfulness without heavy cluster setups.",
+          "cn": "随后，它利用「优选对比劣选」的回复样本对执行直接偏好优化（DPO），无需庞大集群就完成了语气与有用性对齐。"
+        },
+        {
+          "en": "What makes this valuable for product managers is seeing that a tiny model doesn't skip a single architectural block or training stage.",
+          "cn": "这对产品经理最大的启发在于亲眼看到：超小模型并没有跳过任何一个核心架构组件或训练阶段。"
+        },
+        {
+          "en": "So my takeaway is that parameter scale raises the capability ceiling, and it's not changing the underlying pipeline itself.",
+          "cn": "所以我的结论是：参数规模抬高的是模型的能力上限，而并没有改变底层的训练流水线本身。"
+        }
+      ],
+      "a_en": "I'd use the open-source MiniMind project as a clear sandbox because it builds both a 64M dense model and a 198M-total, 64M-active MoE model on a single consumer GPU. First, although the repo includes tokenizer training code, the author advises against retraining it so you don't break vocabulary and ecosystem compatibility. Instead, the main pipeline reuses its compact built-in tokenizer and moves straight into next-token pre-training to learn basic language structure. Next, it runs supervised fine-tuning on multi-turn chat data so the raw base model learns to follow user instructions. After that, it applies Direct Preference Optimization, or DPO, using chosen-versus-rejected reply pairs to align tone and helpfulness without heavy cluster setups. What makes this valuable for product managers is seeing that a tiny model doesn't skip a single architectural block or training stage. So my takeaway is that parameter scale raises the capability ceiling, and it's not changing the underlying pipeline itself.",
+      "a_cn": "我会把开源项目 MiniMind 当作极佳的观察沙盘，因为它在单张消费级显卡上同时复现了 64M 稠密版与总参数 198M、激活 64M 的混合专家版模型。第一步在分词层，虽然仓库提供了分词器训练代码，但作者明确不建议重训，以免破坏词表与推理生态的兼容性。因此主线流程直接复用自带的精简分词器，随即进入下一词预测预训练，让模型习得基础语言结构。接着，它在多轮对话数据上跑监督指令微调（SFT），让原始底座模型学会听从用户指令作答。随后，它利用「优选对比劣选」的回复样本对执行直接偏好优化（DPO），无需庞大集群就完成了语气与有用性对齐。这对产品经理最大的启发在于亲眼看到：超小模型并没有跳过任何一个核心架构组件或训练阶段。所以我的结论是：参数规模抬高的是模型的能力上限，而并没有改变底层的训练流水线本身。",
+      "key_phrases": [
+        {
+          "en": "consumer GPU",
+          "cn": "消费级显卡",
+          "type": "词汇",
+          "usage": "指个人电脑常用的游戏显卡（如 RTX 3090），与数据中心算力卡相对"
+        },
+        {
+          "en": "advises against",
+          "cn": "建议不要……；不推荐",
+          "type": "搭配",
+          "usage": "advise against + 名词或动名词：温和但明确地指出工程反模式"
+        },
+        {
+          "en": "ecosystem compatibility",
+          "cn": "生态兼容性",
+          "type": "词汇",
+          "usage": "指模型能否无缝接入主流推理引擎（如 vLLM、Ollama）与开源工具链"
+        },
+        {
+          "en": "moves straight into",
+          "cn": "直接进入（下一阶段）",
+          "type": "搭配",
+          "usage": "串联多步工作流或训练管线时的自然口语过渡短语"
+        },
+        {
+          "en": "raises the capability ceiling",
+          "cn": "抬高能力上限",
+          "type": "搭配",
+          "usage": "raise the ceiling 精准描述规模扩张拉高上限而非改变底层机制"
+        }
+      ],
+      "basics": [
+        {
+          "term": "直接偏好优化",
+          "term_en": "DPO (Direct Preference Optimization)",
+          "explain": "一种轻量化的偏好对齐算法：不用单独训练复杂的打分裁判模型，直接拿同一问题的「好回答」与「差回答」成对样本微调模型，拉高好回答输出概率。",
+          "analogy": "不请专职评委打分，直接把满分卷和错题卷摆一起对比纠偏。"
+        },
+        {
+          "term": "生态兼容性",
+          "term_en": "Ecosystem Compatibility",
+          "explain": "指模型的词表编号、特殊控制标记与权重命名遵循主流开源规范，无需重写底层代码就能直接放进现成推理软件里运行。",
+          "analogy": "用标准五号电池规格，随便买个市面上的充电器都能直接装进去用。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "几千万参数的超小模型只能当玩具，和千亿商用大模型的原理根本不是一回事。",
+          "why": "千万级模型与千亿级旗舰模型在分词、自注意力、MoE 路由以及预训练到对齐的步骤上完全一致，小模型只是剥离了跨机集群通信复杂度。",
+          "right": "把超小模型当作拆解黑盒的低成本沙盘，先摸透数据流转与阶段分工，再迁移到大规模模型选型中。"
+        },
+        {
+          "wrong": "既然从零训练全流程，第一步肯定要先自己重新训练一套专属分词器。",
+          "why": "随意改动词表和切分规则会导致数据格式、特殊控制标记与主流推理框架全部失配，迁移和部署成本反而大幅飙升。",
+          "right": "除非面对极特殊的冷门语种或符号体系，工程实践通常直接复用成熟词表以保障工具链生态兼容。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：借 MiniMind 真实案例，考查能否把零散的分词、架构与训练阶段串成一条完整工程流水线。",
+        "选起点：点明为何保留分词训练代码却不建议重训，体现对词表稳定性与推理生态兼容的工程认知。",
+        "串主线：沿 64M 稠密与 198M-A64M 混合专家双结构，依次走通预训练、SFT 与 DPO 对齐。",
+        "提规律：抽离出通用洞察——参数规模只改变能力上限而不改变流程，小沙盘最适合看清全貌。"
+      ],
+      "method": {
+        "name": "微缩沙盘拆解法",
+        "steps": [
+          "剥离集群规模噪音",
+          "逐环对照核心组件",
+          "区分流程与能力上限"
+        ],
+        "transfer": "适用于快速摸清陌生复杂系统的主干机制，例如用单机极简仓库拆解多模态训练管线、智能体编排框架或检索评测闭环。"
+      },
+      "approach": "采分点是讲准 64M 稠密与 198M-A64M 结构、不重训分词器的兼容考量，及预训练到 SFT、DPO 主线。推荐结构：单卡双结构定位 → 复用分词器原因 → 三阶段串联 → 规模改上限不改流程落点。失分点是夸大小模型实战能力。",
+      "tips": "必备术语 consumer GPU、ecosystem compatibility、DPO。可延伸至轻量级偏好对齐与模型蒸馏选型。",
+      "source_repos": [
+        "jingyaogong/minimind"
+      ],
+      "added": "2026-10-25"
+    },
+    {
+      "id": "LLM-X004",
+      "level": "X",
+      "kind": "idea",
+      "difficulty": "较难",
+      "tags": [
+        "能力涌现",
+        "评估指标",
+        "多步工作流"
+      ],
+      "concepts": [
+        "llm.scaling"
+      ],
+      "prereq": [
+        "LLM-F002",
+        "LLM-F007"
+      ],
+      "q_cn": "大模型的能力涌现究竟是真正质变，还是评估指标制造的假象？",
+      "q_en": "Are emergent abilities in LLMs a real phase shift, or an illusion created by evaluation metrics?",
+      "gist": {
+        "cn": "按逐词预测误差看进步平滑连续；断崖跃升源于全对才给分的评分与多步复合放大效应。",
+        "en": "Progress is smooth on token-level loss, while all-or-nothing grading and compounding steps create sudden usability jumps."
+      },
+      "points": [
+        {
+          "cn": "按连续的逐词预测误差衡量，模型能力随规模呈平滑连续进步",
+          "en": "continuous token-level loss"
+        },
+        {
+          "cn": "全对才给分的精确匹配评分掩盖了部分进步，制造断崖跃升假象",
+          "en": "exact-match scoring"
+        },
+        {
+          "cn": "单步由 70% 升 90%，十步串联从 3% 跳至 35%",
+          "en": "jumps from about three percent to thirty-five percent"
+        },
+        {
+          "cn": "按连续曲线理性预判演进，并通过拆短任务链路跨越可用门槛",
+          "en": "break long workflows into shorter steps"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在「自回归逐词生成」与「训练三阶段」之上。「能力涌现」指小模型在复杂任务上得分近乎为零、跨过某规模后成绩突然暴涨的现象。研究表明，若按连续的「逐词预测误差（Token-level Loss）」衡量，模型能力随规模呈平滑连续进步；陡峭断崖主要源于「精确匹配评分（全对才给分）」与多步复合放大——如单步准确率从 70% 平滑升至 90%，10 步串联成功率会从约 3% 跳升至约 35%。产品应按连续曲线预判演进并拆短任务链路。",
+        "en": "This question builds on autoregressive generation and the three training stages. 'Emergent abilities' describe tasks where small models score near zero until passing a scale threshold, after which accuracy spikes abruptly. Research shows that under continuous token-level loss, capability actually improves smoothly with scale; the apparent cliff largely comes from all-or-nothing exact-match scoring combined with multi-step probability compounding—for instance, raising per-step accuracy smoothly from 70% to 90% lifts 10-step end-to-end success from roughly 3% to 35%. PMs should forecast on smooth curves while shortening task chains to cross usability thresholds earlier."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd say it's mostly a metric artifact under the hood, yet it creates a very real usability jump for products.",
+          "cn": "我会说：在底层技术上它很大程度是评估指标制造的假象，但在产品体验上却带来了真实的可用性跃升。"
+        },
+        {
+          "en": "When researchers track continuous token-level loss, a model's next-word prediction improves smoothly and predictably as scale grows.",
+          "cn": "当研究者追踪连续的「逐词预测误差」时，模型预测下一词的能力其实随规模呈平滑、可预期的连续进步。"
+        },
+        {
+          "en": "The sudden cliff shows up when benchmarks use exact-match scoring, which gives zero credit unless every single step is right.",
+          "cn": "所谓的断崖式突变，往往出现在评测采用「精确匹配评分」时——只要中间错一步就直接得零分。"
+        },
+        {
+          "en": "You can see the compounding math clearly: if per-step accuracy rises smoothly from seventy to ninety percent, success across a ten-step chain jumps from about three percent to thirty-five percent.",
+          "cn": "算一下复合概率就很清楚：如果单步准确率从 70% 平滑升到 90%，一个 10 步串联任务的成功率就会从约 3% 跳升到约 35%。"
+        },
+        {
+          "en": "Users don't see smooth probability curves, because they only care whether the final answer works.",
+          "cn": "用户看不见底层的平滑概率曲线，因为他们只关心最终交付的结果到底能不能用。"
+        },
+        {
+          "en": "For product managers, this means we shouldn't treat new capabilities like unpredictable magic, nor leave ten brittle steps chained together.",
+          "cn": "对产品经理而言，这意味着我们既不该把新能力当成不可预测的玄学突变，也别把十几个脆弱步骤硬串在一起。"
+        },
+        {
+          "en": "So my rule of thumb is: forecast capability on smooth curves, and break long workflows into shorter steps to cross usability thresholds sooner.",
+          "cn": "所以我的经验法则是：按连续曲线理性预判能力演进，同时拆短任务链路以尽早跨过产品可用门槛。"
+        }
+      ],
+      "a_en": "I'd say it's mostly a metric artifact under the hood, yet it creates a very real usability jump for products. When researchers track continuous token-level loss, a model's next-word prediction improves smoothly and predictably as scale grows. The sudden cliff shows up when benchmarks use exact-match scoring, which gives zero credit unless every single step is right. You can see the compounding math clearly: if per-step accuracy rises smoothly from seventy to ninety percent, success across a ten-step chain jumps from about three percent to thirty-five percent. Users don't see smooth probability curves, because they only care whether the final answer works. For product managers, this means we shouldn't treat new capabilities like unpredictable magic, nor leave ten brittle steps chained together. So my rule of thumb is: forecast capability on smooth curves, and break long workflows into shorter steps to cross usability thresholds sooner.",
+      "a_cn": "我会说：在底层技术上它很大程度是评估指标制造的假象，但在产品体验上却带来了真实的可用性跃升。当研究者追踪连续的「逐词预测误差」时，模型预测下一词的能力其实随规模呈平滑、可预期的连续进步。所谓的断崖式突变，往往出现在评测采用「精确匹配评分」时——只要中间错一步就直接得零分。算一下复合概率就很清楚：如果单步准确率从 70% 平滑升到 90%，一个 10 步串联任务的成功率就会从约 3% 跳升到约 35%。用户看不见底层的平滑概率曲线，因为他们只关心最终交付的结果到底能不能用。对产品经理而言，这意味着我们既不该把新能力当成不可预测的玄学突变，也别把十几个脆弱步骤硬串在一起。所以我的经验法则是：按连续曲线理性预判能力演进，同时拆短任务链路以尽早跨过产品可用门槛。",
+      "key_phrases": [
+        {
+          "en": "under the hood",
+          "cn": "在底层；在内部机制上",
+          "type": "搭配",
+          "usage": "对比底层技术真相与前端用户感知的常用口语短语"
+        },
+        {
+          "en": "token-level loss",
+          "cn": "逐词预测误差",
+          "type": "词汇",
+          "usage": "衡量模型每步猜词偏离标准答案程度的连续训练与评估指标"
+        },
+        {
+          "en": "exact-match scoring",
+          "cn": "精确匹配评分",
+          "type": "词汇",
+          "usage": "要求最终输出与标准答案逐字吻合才给分、错一点即零分的评测方式"
+        },
+        {
+          "en": "zero credit",
+          "cn": "零分；完全不给分",
+          "type": "搭配",
+          "usage": "与 give/get 搭配，描述全对才得分、错一点即零分的计分规则"
+        },
+        {
+          "en": "cross usability thresholds",
+          "cn": "跨越可用性门槛",
+          "type": "搭配",
+          "usage": "把技术准确率指标转化为产品能否真正交付上线的商业拐点"
+        }
+      ],
+      "basics": [
+        {
+          "term": "逐词预测误差",
+          "term_en": "Token-level Loss",
+          "explain": "衡量模型每次预测下一个词时，给正确答案分配的概率离 100% 还差多远的连续指标；哪怕最终整题没全对，只要离正确答案更近，误差就会平滑下降。",
+          "analogy": "射箭按离靶心的毫米距离记成绩，每次微小进步都看得见。"
+        },
+        {
+          "term": "精确匹配评分",
+          "term_en": "Exact-Match Scoring",
+          "explain": "只看最终结果是否与标准答案丝毫不差的计分规则，哪怕十步推导做对了九步、最后一步算错一个数，整道题也直接判零分。",
+          "analogy": "十位密码锁必须十位全按对才弹开，按对九位锁依然纹丝不动。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "能力涌现说明大模型到了某个参数规模就会像生物进化一样突然觉醒。",
+          "why": "底层预测误差一直是平滑下降的，并没有发生神秘突变；所谓断崖只是严苛计分尺子与多步乘法效应共同造成的视觉假象。",
+          "right": "用连续进展的眼光做产品规划：今天准确率 60% 跑不通的功能，下一代模型平滑涨到 85% 时就可能跨过商用门槛。"
+        },
+        {
+          "wrong": "既然单步准确率已经做到 85% 了，让模型一口气串跑十几个步骤肯定很稳。",
+          "why": "多步串联的整体成功率是每步成功率的连乘（0.85 的十次方不到 20%），链路越长，微小误差累积崩盘的概率越高。",
+          "right": "工程落地时主动拆短单次任务链路，在关键中间节点加入确定性代码校验或人工确认，大幅抬高整体成功率。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：既要回答学术上「是不是度量假象」，又要回答产品上「为什么体验确实会突然质变」。",
+        "看底层：搬出连续的逐词预测误差曲线，说明模型猜词能力随规模一直是平滑提升的。",
+        "算乘法：结合全对才给分的精确匹配评分，用 70% 到 90% 的十步连乘算清 3% 到 35% 的跳升。",
+        "给策略：对未来能力按平滑曲线做理性预判，对当下产品靠拆短任务链路提前跨过可用门槛。"
+      ],
+      "method": {
+        "name": "单步与复合拆解法",
+        "steps": [
+          "还原单步连续进度",
+          "识别苛刻计分假象",
+          "拆短链路抬高成功率"
+        ],
+        "transfer": "直接适用于长链路智能体工作流设计、多跳检索问答拆解，以及自动化代码生成流水线的容错率测算。"
+      },
+      "approach": "采分点是用「逐词预测误差平滑」与「精确匹配加多步连乘跳升」两面作答，并落回拆短链路的产品动作。推荐结构：双层定性结论 → 连续误差对比精确匹配 → 十步连乘 3% 到 35% 算例 → 预判演进与拆短链路收尾。会失分的说法是将涌现当成玄学觉醒。",
+      "tips": "必备术语 token-level loss、exact-match scoring、usability threshold。可延伸至长链路智能体可靠性设计。",
+      "source_repos": [],
+      "added": "2026-10-25"
+    }
+  ]
+}

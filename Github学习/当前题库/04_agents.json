@@ -1,0 +1,2139 @@
+{
+  "category": "智能体与工具",
+  "category_en": "Agents & Tool Use",
+  "domain": "AGT",
+  "items": [
+    {
+      "id": "AGT-F001",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "智能体定义",
+        "工作流",
+        "自主决策"
+      ],
+      "concepts": [
+        "agt.agent_loop"
+      ],
+      "prereq": [
+        "LLM-F002",
+        "PRM-F001"
+      ],
+      "q_cn": "什么是 AI 智能体？它和聊天机器人、固定工作流有何区别？",
+      "q_en": "What is an AI agent, and how is it different from a chatbot or a fixed workflow?",
+      "gist": {
+        "cn": "智能体由模型在循环里自己决定下一步、调用工具直到达成目标；工作流的路径由人写死。",
+        "en": "An agent lets the model choose its next step and call tools in a loop until the goal is met."
+      },
+      "points": [
+        {
+          "en": "who decides the next step",
+          "cn": "判断标准：下一步由开发者写死还是由模型决定"
+        },
+        {
+          "en": "the developer hard-codes every step",
+          "cn": "聊天机器人只回消息，固定工作流的步骤全部写死"
+        },
+        {
+          "en": "runs in a loop",
+          "cn": "智能体拿目标和工具，在行动—看结果—再决策中循环"
+        },
+        {
+          "en": "harder to test",
+          "cn": "代价是更慢、更费 Token、更难测试"
+        },
+        {
+          "en": "use a workflow when you can draw the flowchart",
+          "cn": "画得出流程图用工作流，画不出来才用智能体"
+        }
+      ],
+      "concept": {
+        "cn": "AI 智能体（Agent）是让大模型在一个循环里自主决定下一步做什么的系统：它拿到的是目标和一组可用工具，而不是一套写死的步骤。每轮循环里，模型选择一个动作，例如查询订单或发送邮件，由程序执行后把结果交回模型，模型再据此决定继续、换路还是结束。与之对照，聊天机器人只做一问一答，固定工作流的每一步都由开发者预先编排。对产品经理而言，关键是按任务路径的可预测程度分配自主权：路径越确定，越该用工作流换取稳定、便宜和可测试。",
+        "en": "An AI agent is a system in which a large language model decides its own next step inside a loop: it receives a goal and a set of available tools rather than a hard-coded sequence of steps. In each round, the model picks an action, such as looking up an order or sending an email; the program executes it and hands the result back, and the model then decides whether to continue, change course, or stop. By contrast, a chatbot only answers one message at a time, and a fixed workflow has every step orchestrated by the developer in advance. For a product manager, the key is to allocate autonomy according to how predictable the task path is: the more certain the path, the more you should use a workflow to gain stability, lower cost, and testability."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd define an agent by one question: who decides the next step, the developer or the model?",
+          "cn": "我会用一个问题来界定智能体：下一步做什么，是开发者说了算，还是模型自己说了算？"
+        },
+        {
+          "en": "A chatbot answers one message at a time, and it can't act on anything outside the conversation.",
+          "cn": "聊天机器人一次只回一条消息，对话框之外的事它一件也做不了。"
+        },
+        {
+          "en": "A fixed workflow can call the model and other systems, but the developer hard-codes every step, like 'classify the ticket, then draft a reply'.",
+          "cn": "固定工作流虽然也能调用模型和其他系统，但每一步都由开发者写死，比如「先给工单分类，再起草回复」。"
+        },
+        {
+          "en": "An agent gets a goal and a set of tools, then runs in a loop: it picks an action, looks at the result, and decides what to do next.",
+          "cn": "智能体拿到的是一个目标和一组工具，然后在循环里运转：选一个动作、看执行结果、再决定下一步。"
+        },
+        {
+          "en": "That flexibility is the whole point when the path isn't predictable, such as investigating why a customer's refund failed.",
+          "cn": "当路径事先无法预测时，比如排查一位客户的退款为什么失败，这种灵活性正是它的价值所在。"
+        },
+        {
+          "en": "The price is that it's slower, costs more tokens, and is harder to test, because the same request can take a different route each time.",
+          "cn": "代价是它更慢、更费 Token、也更难测试，因为同一个请求每次走的路线都可能不一样。"
+        },
+        {
+          "en": "So I treat autonomy as a dial, not a switch, and I only turn it up when a fixed path keeps breaking.",
+          "cn": "所以我把自主程度看作一个旋钮而不是开关，只有固定路径总是走不通时才把它调高。"
+        },
+        {
+          "en": "My rule of thumb: use a workflow when you can draw the flowchart, and an agent when you can't.",
+          "cn": "我的经验法则是：画得出流程图就用工作流，画不出来再用智能体。"
+        }
+      ],
+      "a_en": "I'd define an agent by one question: who decides the next step, the developer or the model? A chatbot answers one message at a time, and it can't act on anything outside the conversation. A fixed workflow can call the model and other systems, but the developer hard-codes every step, like 'classify the ticket, then draft a reply'. An agent gets a goal and a set of tools, then runs in a loop: it picks an action, looks at the result, and decides what to do next. That flexibility is the whole point when the path isn't predictable, such as investigating why a customer's refund failed. The price is that it's slower, costs more tokens, and is harder to test, because the same request can take a different route each time. So I treat autonomy as a dial, not a switch, and I only turn it up when a fixed path keeps breaking. My rule of thumb: use a workflow when you can draw the flowchart, and an agent when you can't.",
+      "a_cn": "我会用一个问题来界定智能体：下一步做什么，是开发者说了算，还是模型自己说了算？聊天机器人一次只回一条消息，对话框之外的事它一件也做不了。固定工作流虽然也能调用模型和其他系统，但每一步都由开发者写死，比如「先给工单分类，再起草回复」。智能体拿到的是一个目标和一组工具，然后在循环里运转：选一个动作、看执行结果、再决定下一步。当路径事先无法预测时，比如排查一位客户的退款为什么失败，这种灵活性正是它的价值所在。代价是它更慢、更费 Token、也更难测试，因为同一个请求每次走的路线都可能不一样。所以我把自主程度看作一个旋钮而不是开关，只有固定路径总是走不通时才把它调高。我的经验法则是：画得出流程图就用工作流，画不出来再用智能体。",
+      "key_phrases": [
+        {
+          "en": "who decides the next step",
+          "cn": "谁来决定下一步",
+          "type": "句型",
+          "usage": "who decides + 名词，可换 who owns / controls"
+        },
+        {
+          "en": "hard-codes every step",
+          "cn": "把每一步写死",
+          "type": "搭配",
+          "usage": "hard-code 作动词指写死在代码里，反义 configurable"
+        },
+        {
+          "en": "the whole point",
+          "cn": "全部意义所在",
+          "type": "搭配",
+          "usage": "is the whole point 强调核心价值，比 main benefit 口语"
+        },
+        {
+          "en": "a dial, not a switch",
+          "cn": "旋钮而非开关",
+          "type": "句型",
+          "usage": "a X, not a Y 对比句，强调程度可调而非二选一"
+        }
+      ],
+      "basics": [
+        {
+          "term": "工具",
+          "term_en": "tool",
+          "explain": "开发者提供给模型的外部能力，比如查数据库、调接口、发邮件。模型只能提出使用请求，真正执行的是程序，结果再交回模型。",
+          "analogy": "像给助理配的电话和电脑，有了它们才能办事。"
+        },
+        {
+          "term": "固定工作流",
+          "term_en": "workflow",
+          "explain": "事先由开发者画好的一串步骤，每一步做什么、走哪条分支都写在代码里，模型只负责其中某几步的内容生成。",
+          "analogy": "流水线工位：每人只做自己那一道工序。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "只要接入了大模型、能多轮对话，产品就算是智能体了。",
+          "why": "是否智能体要看谁决定下一步：模型只负责生成文字、流程由代码写死的，仍是工作流或聊天机器人，自主循环才是本质。",
+          "right": "先问下一步由谁决定、能否调用工具改变外部状态；两项都满足、且任务确实需要自主时才算智能体。"
+        }
+      ],
+      "approach": "采分点是给出「谁决定下一步」这条判断标准，并讲清智能体的代价。推荐结构：判断标准 → 三者对比 → 智能体的循环机制 → 灵活性与成本风险的取舍。用「画得出流程图就用工作流」收尾最有力。会失分的是把能聊天、接了大模型就叫智能体。",
+      "tips": "必备术语 agent loop、workflow、autonomy。落点句可复用到所有「要不要上智能体」的选型讨论。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "AGT-F002",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "工具调用",
+        "函数调用",
+        "权限边界"
+      ],
+      "concepts": [
+        "agt.tool_calling"
+      ],
+      "prereq": [
+        "PRM-F003",
+        "AGT-F001"
+      ],
+      "q_cn": "工具调用是怎么运作的？模型真的亲手执行了工具吗？",
+      "q_en": "How does tool calling work, and does the model actually run the tool itself?",
+      "gist": {
+        "cn": "模型只输出结构化的调用请求，由程序校验并真正执行，再把结果交回模型继续作答。",
+        "en": "The model only writes a structured request; your code runs the tool and returns the result."
+      },
+      "points": [
+        {
+          "en": "the model never runs anything",
+          "cn": "模型从不亲手执行，只提出调用请求"
+        },
+        {
+          "en": "a schema for its parameters",
+          "cn": "开发者用名称、说明和参数格式描述工具"
+        },
+        {
+          "en": "sends the result back as a new message",
+          "cn": "程序校验执行后，把结果作为新消息回传"
+        },
+        {
+          "en": "permissions, validation, and logging all live in your code",
+          "cn": "权限、校验和日志都放在自己的系统里"
+        },
+        {
+          "en": "a vague tool description is a real bug",
+          "cn": "工具说明写得含糊就是实打实的缺陷"
+        }
+      ],
+      "concept": {
+        "cn": "工具调用（Tool Calling，也叫函数调用）是让大模型借助外部能力办事的标准机制。开发者先把每个工具的名称、用途说明和参数格式交给模型；遇到需要外部信息或动作的请求时，模型不直接回答，而是输出一条结构化的调用指令。应用程序负责校验并真正执行它，比如查询库存、创建工单，再把返回结果作为新消息交还模型，由模型组织最终答复。它把「想」和「做」分开：模型负责判断，程序负责执行与把关，这正是智能体能安全行动的基础。",
+        "en": "Tool calling, also known as function calling, is the standard mechanism that lets a large language model get things done through external capabilities. The developer first gives the model each tool's name, a description of its purpose, and its parameter format. When a request needs outside information or an action, the model does not answer directly; instead it outputs a structured call instruction. The application validates and actually executes it, for example checking inventory or creating a ticket, then hands the result back to the model as a new message so the model can compose the final reply. It separates thinking from doing: the model makes the judgment, while the program executes and guards the action, which is the foundation that lets agents act safely."
+      },
+      "a_pairs": [
+        {
+          "en": "Here's the key thing to get right: the model never runs anything itself, it only asks.",
+          "cn": "要想清楚的关键一点是：模型从不亲手执行任何操作，它只负责提出请求。"
+        },
+        {
+          "en": "First, the developer describes each tool with a name, a plain-language description, and a schema for its parameters.",
+          "cn": "第一步，开发者为每个工具写好名称、一段大白话说明，以及参数的格式规范。"
+        },
+        {
+          "en": "When a user asks about an order, the model replies with a structured call, like get_order_status with the order ID, instead of a sentence.",
+          "cn": "当用户问起订单时，模型回复的不是一句话，而是一条结构化调用，比如带上订单号的 get_order_status。"
+        },
+        {
+          "en": "Our own code checks that call, runs the real API, and sends the result back as a new message.",
+          "cn": "我们自己的代码先校验这条调用，再去调用真实接口，然后把结果作为一条新消息发回给模型。"
+        },
+        {
+          "en": "Only then does the model write the final answer, grounded in data it didn't have before.",
+          "cn": "直到这时模型才写出最终回答，而且答案紧扣它之前并不掌握的真实数据。"
+        },
+        {
+          "en": "That split matters for product decisions, because permissions, validation, and logging all live in your code, not in the model.",
+          "cn": "这种分工对产品决策很关键，因为权限、校验和日志都放在你自己的代码里，而不是放在模型里。"
+        },
+        {
+          "en": "That's also why a vague tool description is a real bug, since the model picks tools mainly by reading those descriptions.",
+          "cn": "这也是为什么工具说明写得含糊就是实打实的缺陷，因为模型主要靠读这些说明来挑选工具。"
+        },
+        {
+          "en": "Bottom line: the model decides what to call, and your system decides whether it actually happens.",
+          "cn": "一句话总结：调用什么由模型决定，真正执行与否由你的系统决定。"
+        }
+      ],
+      "a_en": "Here's the key thing to get right: the model never runs anything itself, it only asks. First, the developer describes each tool with a name, a plain-language description, and a schema for its parameters. When a user asks about an order, the model replies with a structured call, like get_order_status with the order ID, instead of a sentence. Our own code checks that call, runs the real API, and sends the result back as a new message. Only then does the model write the final answer, grounded in data it didn't have before. That split matters for product decisions, because permissions, validation, and logging all live in your code, not in the model. That's also why a vague tool description is a real bug, since the model picks tools mainly by reading those descriptions. Bottom line: the model decides what to call, and your system decides whether it actually happens.",
+      "a_cn": "要想清楚的关键一点是：模型从不亲手执行任何操作，它只负责提出请求。第一步，开发者为每个工具写好名称、一段大白话说明，以及参数的格式规范。当用户问起订单时，模型回复的不是一句话，而是一条结构化调用，比如带上订单号的 get_order_status。我们自己的代码先校验这条调用，再去调用真实接口，然后把结果作为一条新消息发回给模型。直到这时模型才写出最终回答，而且答案紧扣它之前并不掌握的真实数据。这种分工对产品决策很关键，因为权限、校验和日志都放在你自己的代码里，而不是放在模型里。这也是为什么工具说明写得含糊就是实打实的缺陷，因为模型主要靠读这些说明来挑选工具。一句话总结：调用什么由模型决定，真正执行与否由你的系统决定。",
+      "key_phrases": [
+        {
+          "en": "the key thing to get right",
+          "cn": "要弄对的关键",
+          "type": "句型",
+          "usage": "开场点出关键，可换 to watch / to avoid"
+        },
+        {
+          "en": "Only then does",
+          "cn": "直到那时才",
+          "type": "句型",
+          "usage": "Only then + 倒装语序，强调先后顺序"
+        },
+        {
+          "en": "grounded in data",
+          "cn": "以数据为依据",
+          "type": "搭配",
+          "usage": "grounded in 后接证据，表示答案有据可查"
+        },
+        {
+          "en": "live in your code",
+          "cn": "归属于你的代码层",
+          "type": "搭配",
+          "usage": "live in 表职责归属某层，如 live in the backend"
+        }
+      ],
+      "basics": [
+        {
+          "term": "参数格式规范",
+          "term_en": "JSON Schema",
+          "explain": "一份描述「这个工具需要哪些参数、各是什么类型、哪些必填」的格式说明，模型按它填写调用内容，程序按它检查填得对不对。",
+          "analogy": "像报销单模板：哪些栏必填、填什么格式都写清楚。"
+        },
+        {
+          "term": "接口",
+          "term_en": "API (application programming interface)",
+          "explain": "一个系统对外开放的标准办事窗口，别的程序按约定格式发请求，就能查数据或执行操作，不必了解系统内部怎么实现。",
+          "analogy": "银行柜台窗口：按规定填单递进去就能办业务。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "接了工具调用，模型就能自己上网查数据、自己下单了。",
+          "why": "模型只会生成调用请求的文字，真正联网、读库、下单的都是开发者的程序；程序不执行就什么也不会发生，风险也由程序把关。",
+          "right": "设计时把模型当作「提议者」，把执行、权限和日志放在系统侧，高风险动作执行前加校验或人工确认。"
+        }
+      ],
+      "approach": "采分点是讲清「模型只提请求、程序真正执行」这一分工，并说明它对权限与安全的意义。推荐结构：澄清误解 → 描述工具 → 生成调用 → 执行回传 → 产品含义。用「模型决定调什么，系统决定做不做」收尾。会失分的是说成模型自己联网、自己操作系统。",
+      "tips": "必备术语 tool calling、schema、validation。可延伸：MCP 如何统一工具接入、工具说明怎样影响模型选择。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "AGT-F003",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "ReAct",
+        "智能体循环",
+        "终止条件"
+      ],
+      "concepts": [
+        "agt.agent_loop"
+      ],
+      "prereq": [
+        "AGT-F001",
+        "AGT-F002",
+        "LLM-F006"
+      ],
+      "q_cn": "智能体的「思考—行动—观察」循环如何运转？它什么时候该停？",
+      "q_en": "How does an agent's think-act-observe loop work, and when should it stop?",
+      "gist": {
+        "cn": "每轮先推理、再调用工具、把结果追加进上下文；靠完成判断和步数、预算上限来停。",
+        "en": "Each round reasons, acts, and appends the result; explicit stop rules end the loop."
+      },
+      "points": [
+        {
+          "en": "picks one tool call",
+          "cn": "思考：盘点已知与缺口，选定一次工具调用"
+        },
+        {
+          "en": "appends the result to the conversation",
+          "cn": "观察：把执行结果追加进上下文供下一轮用"
+        },
+        {
+          "en": "change course",
+          "cn": "ReAct 让智能体能根据结果及时改道"
+        },
+        {
+          "en": "cost and latency grow with each step",
+          "cn": "每轮上下文变长，成本和延迟随步数增长"
+        },
+        {
+          "en": "hits a step or budget cap",
+          "cn": "停止条件：目标达成、触到上限、重复失败"
+        }
+      ],
+      "concept": {
+        "cn": "智能体循环是智能体运转的发动机，最常见的形式叫 ReAct（推理加行动）。每一轮里，模型先根据目标和已有信息推理还缺什么，再发起一次工具调用；程序执行后把结果作为「观察」追加回上下文，模型据此进入下一轮。因为大模型接口本身不记事，每一轮都要带上越来越长的历史，所以步数越多，成本和延迟越高。可靠的循环必须设计明确的终止条件：目标达成、触到步数或预算上限，或检测到原地打转。",
+        "en": "The agent loop is the engine that keeps an agent running, and its most common form is called ReAct (reasoning plus acting). In each round, the model first reasons about what is still missing given the goal and the information so far, then makes one tool call; the program executes it and appends the result to the context as an observation, and the model moves on to the next round. Because the model's API keeps no memory on its own, every round has to carry an ever-longer history, so more steps mean higher cost and latency. A reliable loop must have explicit stopping conditions: the goal is met, a step or budget cap is reached, or the agent is detected going in circles."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd describe the loop as three beats that repeat: think, act, and observe.",
+          "cn": "我会把这个循环描述成不断重复的三拍：思考、行动、观察。"
+        },
+        {
+          "en": "In the think step, the model reasons about what it knows and what's still missing, then picks one tool call.",
+          "cn": "在「思考」这一步，模型盘点自己已经知道什么、还缺什么，然后选定一次工具调用。"
+        },
+        {
+          "en": "The act step runs that tool, and the observe step appends the result to the conversation, so the next round can build on it.",
+          "cn": "「行动」这一步执行该工具，「观察」这一步把结果追加到对话里，让下一轮能在此基础上继续。"
+        },
+        {
+          "en": "This pattern is often called ReAct, short for reasoning plus acting, and it's what lets the agent change course when a search comes back empty.",
+          "cn": "这种模式常被称为 ReAct，即「推理加行动」，正是它让智能体在搜索结果为空时能及时改道。"
+        },
+        {
+          "en": "The catch is that every round makes the context longer, so cost and latency grow with each step.",
+          "cn": "问题在于每多一轮，上下文就变得更长，所以成本和延迟会随着步数一起增长。"
+        },
+        {
+          "en": "That's why the stopping rule matters as much as the loop itself.",
+          "cn": "正因如此，何时停下和循环本身同样重要。"
+        },
+        {
+          "en": "I'd stop when the model says the goal is met, when it hits a step or budget cap, or when it repeats the same failing action.",
+          "cn": "我会在三种情况下让它停：模型判断目标已完成、触到步数或预算上限，或者它反复执行同一个失败动作。"
+        },
+        {
+          "en": "My rule of thumb: I wouldn't ship an agent loop without a hard ceiling on steps and spend.",
+          "cn": "我的经验法则是：没给步数和花费设硬上限的智能体循环，我不会上线。"
+        }
+      ],
+      "a_en": "I'd describe the loop as three beats that repeat: think, act, and observe. In the think step, the model reasons about what it knows and what's still missing, then picks one tool call. The act step runs that tool, and the observe step appends the result to the conversation, so the next round can build on it. This pattern is often called ReAct, short for reasoning plus acting, and it's what lets the agent change course when a search comes back empty. The catch is that every round makes the context longer, so cost and latency grow with each step. That's why the stopping rule matters as much as the loop itself. I'd stop when the model says the goal is met, when it hits a step or budget cap, or when it repeats the same failing action. My rule of thumb: I wouldn't ship an agent loop without a hard ceiling on steps and spend.",
+      "a_cn": "我会把这个循环描述成不断重复的三拍：思考、行动、观察。在「思考」这一步，模型盘点自己已经知道什么、还缺什么，然后选定一次工具调用。「行动」这一步执行该工具，「观察」这一步把结果追加到对话里，让下一轮能在此基础上继续。这种模式常被称为 ReAct，即「推理加行动」，正是它让智能体在搜索结果为空时能及时改道。问题在于每多一轮，上下文就变得更长，所以成本和延迟会随着步数一起增长。正因如此，何时停下和循环本身同样重要。我会在三种情况下让它停：模型判断目标已完成、触到步数或预算上限，或者它反复执行同一个失败动作。我的经验法则是：没给步数和花费设硬上限的智能体循环，我不会上线。",
+      "key_phrases": [
+        {
+          "en": "build on it",
+          "cn": "在此基础上推进",
+          "type": "搭配",
+          "usage": "build on 指在已有成果上推进，别误作 build up"
+        },
+        {
+          "en": "change course",
+          "cn": "改变方向",
+          "type": "搭配",
+          "usage": "change course 指中途改道，也可用于策略调整"
+        },
+        {
+          "en": "The catch is that",
+          "cn": "问题在于",
+          "type": "句型",
+          "usage": "引出隐藏代价，比 the problem is 更口语"
+        },
+        {
+          "en": "a hard ceiling on",
+          "cn": "……的硬上限",
+          "type": "搭配",
+          "usage": "hard ceiling on 后接成本、步数等，表不可突破"
+        },
+        {
+          "en": "matters as much as",
+          "cn": "和……同样重要",
+          "type": "句型",
+          "usage": "X matters as much as Y，强调两者同等重要"
+        }
+      ],
+      "basics": [
+        {
+          "term": "观察结果",
+          "term_en": "observation",
+          "explain": "工具执行后返回给模型的内容，比如查到的订单状态或一条报错信息。它被追加进对话，成为模型下一轮思考的依据。",
+          "analogy": "侦探每查到一条线索，就记进笔记再推理。"
+        },
+        {
+          "term": "终止条件",
+          "term_en": "stopping condition",
+          "explain": "规定循环何时结束的规则，包括任务完成、达到最大步数、花费超出预算、连续失败等，防止智能体无限打转、白白烧钱。",
+          "analogy": "洗衣机的定时器：到点就停，不会一直转。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "让模型自己判断什么时候做完就行，不用另设上限。",
+          "why": "模型可能误以为没做完而反复重试，或在同一个报错上打转，一晚上就能烧掉大量 Token 预算，用户也一直等不到结果。",
+          "right": "除了模型自报完成，还要在系统侧设最大步数、花费上限和重复动作检测，一旦触发就停下并向用户说明。"
+        }
+      ],
+      "approach": "采分点是讲清三拍循环、观察结果如何回到上下文，以及终止条件的设计。推荐结构：三拍循环 → ReAct 带来的改道能力 → 上下文变长的代价 → 三类停止规则。用「不设硬上限的循环不上线」收尾。会失分的是只讲循环怎么转，不讲何时该停。",
+      "tips": "必备术语 ReAct、observation、stopping condition。可延伸：长程任务的上下文修剪、防失控机制设计。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "AGT-F004",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "任务规划",
+        "任务分解",
+        "重新规划"
+      ],
+      "concepts": [
+        "agt.planning"
+      ],
+      "prereq": [
+        "AGT-F003",
+        "PRM-F006"
+      ],
+      "q_cn": "智能体如何拆解复杂任务？先规划再执行和边做边想各适合什么？",
+      "q_en": "How does an agent break down a complex task, and when should it plan first versus think step by step?",
+      "gist": {
+        "cn": "路径清楚就先列计划再执行，环境多变就边做边想；最稳的是先计划、按结果重新规划。",
+        "en": "Plan up front when the path is clear, go step by step when it isn't, and always allow replanning."
+      },
+      "points": [
+        {
+          "en": "steps it can actually check off",
+          "cn": "规划把模糊目标变成可打勾的步骤"
+        },
+        {
+          "en": "easier to review",
+          "cn": "先规划再执行：省钱，计划可先给人审批"
+        },
+        {
+          "en": "can wander off track",
+          "cn": "边做边想：应对意外强，但容易跑偏"
+        },
+        {
+          "en": "replan whenever a result breaks an assumption",
+          "cn": "两者结合，结果推翻假设就重新规划"
+        },
+        {
+          "en": "doubles as a progress tracker",
+          "cn": "计划兼作进度表，防止长任务迷失"
+        }
+      ],
+      "concept": {
+        "cn": "任务规划与分解是智能体把复杂目标拆成可执行子任务的能力。常见有两种思路：一是「先规划再执行」，先生成完整步骤清单再逐项完成，便于审批、成本可控，但遇到意外容易僵化；二是「边做边想」，每轮只根据最新结果决定下一步，灵活却容易偏离目标。与顺序写死的分步提示链不同，智能体的计划由模型临场生成，可以随结果调整。工程上常把两者结合，在关键结果推翻原有假设时触发重新规划，并把计划当作长任务的进度表。",
+        "en": "Task planning and decomposition is an agent's ability to break a complex goal into executable subtasks. There are two common approaches. Plan-and-execute generates a complete list of steps first and then works through them, which makes approval easy and keeps cost under control, but it can become rigid when surprises occur. Step-by-step reasoning decides only the next move each round based on the latest result, which is flexible but prone to drifting off target. Unlike a prompt chain whose order is fixed in advance, an agent's plan is generated by the model on the fly and can change with the results. In engineering practice the two are often combined: replanning is triggered when a key result breaks an earlier assumption, and the plan doubles as a progress tracker for long tasks."
+      },
+      "a_pairs": [
+        {
+          "en": "Planning is how an agent turns a vague goal into steps it can actually check off.",
+          "cn": "规划就是智能体把一个模糊目标变成一步步可以打勾完成的事项。"
+        },
+        {
+          "en": "There are two basic styles, and the difference is when the thinking happens.",
+          "cn": "基本有两种风格，区别在于「想」发生在什么时候。"
+        },
+        {
+          "en": "Plan-and-execute writes the whole to-do list first, like 'pull last quarter's sales, compare regions, draft the summary', then works through it.",
+          "cn": "「先规划再执行」会先写出完整的待办清单，比如「拉取上季度销售数据、对比各区域、起草总结」，然后逐项完成。"
+        },
+        {
+          "en": "It's cheaper and easier to review, because a person can approve the plan before anything runs.",
+          "cn": "它更省钱也更好审查，因为在任何动作执行之前，人就可以先审批这份计划。"
+        },
+        {
+          "en": "Step-by-step reasoning decides only the next move each round, which handles surprises better but can wander off track.",
+          "cn": "「边做边想」每轮只决定下一步，更能应对意外，但也容易越走越偏。"
+        },
+        {
+          "en": "In practice, I'd combine them: draft a plan, execute a few steps, and replan whenever a result breaks an assumption.",
+          "cn": "实际中我会把两者结合：先起草计划，执行几步，一旦某个结果推翻了原先的假设就重新规划。"
+        },
+        {
+          "en": "The plan also doubles as a progress tracker, which helps both the user and the agent stay oriented on long tasks.",
+          "cn": "这份计划还兼作进度追踪表，在长任务中帮用户和智能体都不迷失方向。"
+        },
+        {
+          "en": "So my rule of thumb is: plan like a project manager, but don't treat the plan as a contract.",
+          "cn": "所以我的经验法则是：像项目经理一样做计划，但别把计划当成不可更改的合同。"
+        }
+      ],
+      "a_en": "Planning is how an agent turns a vague goal into steps it can actually check off. There are two basic styles, and the difference is when the thinking happens. Plan-and-execute writes the whole to-do list first, like 'pull last quarter's sales, compare regions, draft the summary', then works through it. It's cheaper and easier to review, because a person can approve the plan before anything runs. Step-by-step reasoning decides only the next move each round, which handles surprises better but can wander off track. In practice, I'd combine them: draft a plan, execute a few steps, and replan whenever a result breaks an assumption. The plan also doubles as a progress tracker, which helps both the user and the agent stay oriented on long tasks. So my rule of thumb is: plan like a project manager, but don't treat the plan as a contract.",
+      "a_cn": "规划就是智能体把一个模糊目标变成一步步可以打勾完成的事项。基本有两种风格，区别在于「想」发生在什么时候。「先规划再执行」会先写出完整的待办清单，比如「拉取上季度销售数据、对比各区域、起草总结」，然后逐项完成。它更省钱也更好审查，因为在任何动作执行之前，人就可以先审批这份计划。「边做边想」每轮只决定下一步，更能应对意外，但也容易越走越偏。实际中我会把两者结合：先起草计划，执行几步，一旦某个结果推翻了原先的假设就重新规划。这份计划还兼作进度追踪表，在长任务中帮用户和智能体都不迷失方向。所以我的经验法则是：像项目经理一样做计划，但别把计划当成不可更改的合同。",
+      "key_phrases": [
+        {
+          "en": "check off",
+          "cn": "打勾完成",
+          "type": "搭配",
+          "usage": "check off 指在清单上划掉，常与 list 连用"
+        },
+        {
+          "en": "wander off track",
+          "cn": "偏离方向",
+          "type": "搭配",
+          "usage": "off track 表偏离，可换 drift off course"
+        },
+        {
+          "en": "breaks an assumption",
+          "cn": "推翻某个前提",
+          "type": "搭配",
+          "usage": "break an assumption 指前提失效，近义 invalidate"
+        },
+        {
+          "en": "doubles as",
+          "cn": "兼作",
+          "type": "搭配",
+          "usage": "A doubles as B 指一物兼两用，突出额外价值"
+        },
+        {
+          "en": "don't treat the plan as a contract",
+          "cn": "别把计划当合同",
+          "type": "句型",
+          "usage": "don't treat X as Y 提醒别把某物看得太死"
+        }
+      ],
+      "basics": [
+        {
+          "term": "重新规划",
+          "term_en": "replanning",
+          "explain": "执行中途发现原计划的前提不成立，比如数据缺失或接口报错，就让模型基于新信息重写剩余步骤，而不是硬着头皮执行。",
+          "analogy": "导航遇到封路，自动重新算一条路线。"
+        },
+        {
+          "term": "子任务",
+          "term_en": "subtask",
+          "explain": "从大目标中拆出来、可以单独完成也能单独检查的小任务，比如「下载报表」「计算环比」，粒度以一两次工具调用能完成为宜。",
+          "analogy": "把办婚礼拆成订场地、发请柬等事项。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "计划越详细越好，让智能体严格按一开始的清单执行到底。",
+          "why": "执行中会不断冒出原计划没料到的情况，死守旧清单会在错误前提上一路做下去，产出看似完整实则全错。",
+          "right": "计划只写到当前能确定的粒度，给关键步骤设检查点，结果与预期不符就触发重新规划。"
+        }
+      ],
+      "approach": "采分点是讲清两种规划风格的取舍，以及「先计划、按结果重新规划」的组合解法。推荐结构：规划的作用 → 两种风格对比 → 组合与重新规划 → 计划兼作进度表。用「像项目经理一样计划，但别当合同」收尾。会失分的是只说把任务拆小，不谈何时调整。",
+      "tips": "必备术语 plan-and-execute、replanning、subtask。可延伸：多智能体分工、长程任务的检查点设计。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "AGT-F005",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "MCP",
+        "工具接入",
+        "协议标准"
+      ],
+      "concepts": [
+        "agt.mcp"
+      ],
+      "prereq": [
+        "AGT-F002"
+      ],
+      "q_cn": "什么是 MCP 协议？它解决了智能体接入工具的什么难题？",
+      "q_en": "What is the Model Context Protocol (MCP), and what problem does it solve for connecting agents to tools?",
+      "gist": {
+        "cn": "MCP 是 AI 应用接入外部工具与数据的通用标准，把乘法级的定制对接变成加法。",
+        "en": "MCP is a shared plug standard that turns apps-times-tools integrations into apps-plus-tools."
+      },
+      "points": [
+        {
+          "en": "an open standard for plugging AI apps into tools and data",
+          "cn": "MCP 是连接 AI 应用与工具数据的开放标准"
+        },
+        {
+          "en": "every app had to write its own connector for every service",
+          "cn": "没有标准时，每个应用要给每个工具单独对接"
+        },
+        {
+          "en": "wrapped once as an MCP server",
+          "cn": "工具封装一次，所有兼容应用都能复用"
+        },
+        {
+          "en": "three kinds of things",
+          "cn": "服务端提供工具、资源、提示模板三类能力"
+        },
+        {
+          "en": "vet third-party servers",
+          "cn": "只统一接入方式，不保证安全，需审查第三方"
+        }
+      ],
+      "concept": {
+        "cn": "模型上下文协议（MCP，Model Context Protocol）是一套开放标准，规定 AI 应用如何发现并使用外部工具与数据。它并不取代工具调用：模型仍只提出调用请求，只是工具清单由 MCP 服务端提供，请求也由 AI 应用转交服务端执行。服务端可提供三类能力：供模型调用的工具、供应用调取的资源和供用户选用的提示模板。它的价值在于把「每个应用对每个工具单独开发」的乘法关系变成加法，让工具生态可复用、可集中治理；但它并不负责判断工具是否可信。",
+        "en": "The Model Context Protocol (MCP) is an open standard that defines how AI applications discover and use external tools and data. It doesn't replace tool calling: the model still only proposes calls, but the tool list comes from MCP servers, and the AI app forwards each request to a server to execute. A server can offer three kinds of capabilities: tools for the model to call, resources for the app to pull in, and prompt templates for the user to choose. Its value lies in turning the multiplicative relationship of building a separate integration for every app-tool pair into an additive one, making the tool ecosystem reusable and centrally governable; however, it is not responsible for judging whether a tool can be trusted."
+      },
+      "a_pairs": [
+        {
+          "en": "MCP, the Model Context Protocol, is an open standard for plugging AI apps into tools and data, a bit like USB-C for agents.",
+          "cn": "MCP 即模型上下文协议，是一套把 AI 应用接入工具和数据的开放标准，有点像智能体世界的 USB-C 接口。"
+        },
+        {
+          "en": "Before it, every app had to write its own connector for every service, so five apps and twenty tools meant up to a hundred custom integrations.",
+          "cn": "在它之前，每个应用都得给每个服务单独写连接器，五个应用对二十个工具，最多要做一百套定制对接。"
+        },
+        {
+          "en": "With a shared protocol, each tool is wrapped once as an MCP server, and any compatible app can use it.",
+          "cn": "有了统一协议，每个工具只需封装一次成 MCP 服务端，任何兼容的应用都能直接用。"
+        },
+        {
+          "en": "So the math drops from apps times tools to apps plus tools, which is twenty-five pieces instead of a hundred.",
+          "cn": "于是对接数量从「应用乘以工具」降到「应用加上工具」，也就是二十五份而不是一百份。"
+        },
+        {
+          "en": "A server can expose three kinds of things: tools the model can call, resources the app can pull in, and prompt templates the user can pick.",
+          "cn": "一个服务端可以对外提供三类东西：模型能调用的工具、应用可调取的资源，以及用户可选用的提示模板。"
+        },
+        {
+          "en": "It doesn't make the model smarter, though; it just makes capabilities portable and easier to govern in one place.",
+          "cn": "不过它并不会让模型变聪明，只是让能力可以随处复用，也更方便集中管控。"
+        },
+        {
+          "en": "And since anyone can publish a server, I'd vet third-party servers the way I'd vet any software that touches company data.",
+          "cn": "而且因为任何人都能发布服务端，我会像审查任何接触公司数据的软件一样，去审查第三方服务端。"
+        },
+        {
+          "en": "Bottom line: MCP standardizes how tools plug in, not whether they're safe to use.",
+          "cn": "一句话总结：MCP 统一的是工具怎么接入，而不是它们用起来是否安全。"
+        }
+      ],
+      "a_en": "MCP, the Model Context Protocol, is an open standard for plugging AI apps into tools and data, a bit like USB-C for agents. Before it, every app had to write its own connector for every service, so five apps and twenty tools meant up to a hundred custom integrations. With a shared protocol, each tool is wrapped once as an MCP server, and any compatible app can use it. So the math drops from apps times tools to apps plus tools, which is twenty-five pieces instead of a hundred. A server can expose three kinds of things: tools the model can call, resources the app can pull in, and prompt templates the user can pick. It doesn't make the model smarter, though; it just makes capabilities portable and easier to govern in one place. And since anyone can publish a server, I'd vet third-party servers the way I'd vet any software that touches company data. Bottom line: MCP standardizes how tools plug in, not whether they're safe to use.",
+      "a_cn": "MCP 即模型上下文协议，是一套把 AI 应用接入工具和数据的开放标准，有点像智能体世界的 USB-C 接口。在它之前，每个应用都得给每个服务单独写连接器，五个应用对二十个工具，最多要做一百套定制对接。有了统一协议，每个工具只需封装一次成 MCP 服务端，任何兼容的应用都能直接用。于是对接数量从「应用乘以工具」降到「应用加上工具」，也就是二十五份而不是一百份。一个服务端可以对外提供三类东西：模型能调用的工具、应用可调取的资源，以及用户可选用的提示模板。不过它并不会让模型变聪明，只是让能力可以随处复用，也更方便集中管控。而且因为任何人都能发布服务端，我会像审查任何接触公司数据的软件一样，去审查第三方服务端。一句话总结：MCP 统一的是工具怎么接入，而不是它们用起来是否安全。",
+      "key_phrases": [
+        {
+          "en": "a bit like",
+          "cn": "有点像",
+          "type": "搭配",
+          "usage": "a bit like 引出类比，比 similar to 更口语"
+        },
+        {
+          "en": "drops from",
+          "cn": "从……降下来",
+          "type": "搭配",
+          "usage": "drops from A to B 描述数量下降，可换 falls"
+        },
+        {
+          "en": "makes capabilities portable",
+          "cn": "让能力可以随处复用",
+          "type": "搭配",
+          "usage": "make X portable 指能力可迁移复用，近义 reusable"
+        },
+        {
+          "en": "the way I'd vet",
+          "cn": "按我审查……的方式",
+          "type": "句型",
+          "usage": "do X the way I'd do Y，类比已有做法"
+        }
+      ],
+      "basics": [
+        {
+          "term": "协议",
+          "term_en": "protocol",
+          "explain": "多方事先约定好的沟通规则，规定消息长什么样、按什么顺序收发。双方都遵守，就能在互不了解内部实现的情况下顺利协作。",
+          "analogy": "快递面单格式：哪家快递都能读懂收件信息。"
+        },
+        {
+          "term": "MCP 服务端",
+          "term_en": "MCP server",
+          "explain": "把某个具体能力（比如查日历、读数据库）按 MCP 规则包装好的小程序，对外声明自己有哪些工具，等待 AI 应用来调用。",
+          "analogy": "给各国电器统一换上标准插头的转换器。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "接上 MCP 之后，模型更聪明了，工具也自动安全可靠了。",
+          "why": "MCP 只统一接入方式；模型选错工具、第三方服务端夹带恶意说明、越权读写数据，这些它都管不了。",
+          "right": "把 MCP 当作接口标准看待：能力好坏看模型与工具设计，安全靠权限控制、来源审查和调用审计。"
+        }
+      ],
+      "approach": "采分点是讲清从乘法对接到加法对接的价值，以及服务端的三类能力和安全边界。推荐结构：定义与类比 → 无标准时的对接困境 → 加法带来的复用 → 三类能力 → 安全提醒。用「统一的是怎么接，不是安不安全」收尾。会失分的是把 MCP 说成新模型或万能插件。",
+      "tips": "必备术语 MCP、server、portable。可延伸：工具说明与返回结果设计、第三方工具的提示注入风险。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "AGT-F006",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "短期记忆",
+        "长期记忆",
+        "记忆检索"
+      ],
+      "concepts": [
+        "agt.memory"
+      ],
+      "prereq": [
+        "AGT-F003",
+        "LLM-F006",
+        "PRM-F005"
+      ],
+      "q_cn": "智能体的短期记忆和长期记忆有何区别？分别存在哪里？",
+      "q_en": "What's the difference between an agent's short-term and long-term memory, and where does each live?",
+      "gist": {
+        "cn": "短期记忆就是上下文窗口里的当前任务信息；长期记忆存在模型外部，按需检索回来。",
+        "en": "Short-term memory sits in the context window; long-term memory lives outside and is retrieved on demand."
+      },
+      "points": [
+        {
+          "en": "by where it lives",
+          "cn": "按存放位置划分：窗口之内还是之外"
+        },
+        {
+          "en": "disappears when the session ends",
+          "cn": "短期记忆快而可靠，但会话结束即消失"
+        },
+        {
+          "en": "lives outside the model",
+          "cn": "长期记忆存在外部，保存偏好与经验"
+        },
+        {
+          "en": "the system has to write it down",
+          "cn": "写入与检索靠系统，模型自己记不住"
+        },
+        {
+          "en": "deciding what's worth saving and when to recall it",
+          "cn": "设计重点是存什么、何时调取"
+        }
+      ],
+      "concept": {
+        "cn": "智能体记忆是让智能体跨步骤、跨会话保持连续性的机制。短期记忆即当前上下文窗口中的内容，包括用户请求、计划和最近的工具结果，读取最快，但受窗口长度限制，会话结束便消失。长期记忆存放在模型外部的数据库或文件中，例如用户偏好、历史决策和经验教训，需要时由系统检索出相关片段放回提示词。大模型接口本身无状态，所以「记住」从来不是模型自带的本事，而是系统在写入、筛选与召回上的设计。",
+        "en": "Agent memory is the mechanism that lets an agent stay consistent across steps and across sessions. Short-term memory is whatever sits in the current context window, including the user's request, the plan, and recent tool results; it is the fastest to read but is limited by the window size and vanishes when the session ends. Long-term memory is stored outside the model in databases or files, such as user preferences, past decisions, and lessons learned, and the system retrieves the relevant pieces back into the prompt when needed. Because the model's API is stateless, remembering is never a built-in skill of the model; it is a matter of how the system is designed to write, filter, and recall information."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd split agent memory by where it lives: inside the context window or outside it.",
+          "cn": "我会按存放位置来划分智能体记忆：在上下文窗口之内，还是之外。"
+        },
+        {
+          "en": "Short-term memory is everything in the current window, like the user's request, the plan, and recent tool results.",
+          "cn": "短期记忆就是当前窗口里的一切，比如用户的请求、计划和最近的工具结果。"
+        },
+        {
+          "en": "It's fast and reliable for the current task, but it disappears when the session ends and gets squeezed as the window fills up.",
+          "cn": "对当前任务来说它又快又可靠，但会话一结束就消失，窗口快满时还会被挤压。"
+        },
+        {
+          "en": "Long-term memory lives outside the model, in a database or files, and holds things like user preferences or lessons from past tasks.",
+          "cn": "长期记忆存放在模型之外的数据库或文件里，保存的是用户偏好、过往任务的经验教训这类信息。"
+        },
+        {
+          "en": "The model doesn't remember any of it on its own; the system has to write it down and then retrieve the relevant pieces into the prompt.",
+          "cn": "模型自己记不住其中任何一条；系统得先把它写下来，需要时再把相关片段检索出来放进提示词。"
+        },
+        {
+          "en": "So the real design work is deciding what's worth saving and when to recall it, not just picking a database.",
+          "cn": "所以真正的设计功夫在于判断什么值得存、什么时候调出来，而不只是挑一个数据库。"
+        },
+        {
+          "en": "A support agent that recalls a customer's last complaint feels attentive, while one that recalls everything feels creepy and slows down.",
+          "cn": "能想起客户上次投诉的客服智能体会让人觉得贴心，而什么都记得的则让人发毛，速度也会变慢。"
+        },
+        {
+          "en": "My rule of thumb: keep the working set small, and treat long-term memory as a library you search, not a diary you reread.",
+          "cn": "我的经验法则是：工作区要保持精简，长期记忆要当成按需检索的图书馆，而不是从头重读的日记本。"
+        }
+      ],
+      "a_en": "I'd split agent memory by where it lives: inside the context window or outside it. Short-term memory is everything in the current window, like the user's request, the plan, and recent tool results. It's fast and reliable for the current task, but it disappears when the session ends and gets squeezed as the window fills up. Long-term memory lives outside the model, in a database or files, and holds things like user preferences or lessons from past tasks. The model doesn't remember any of it on its own; the system has to write it down and then retrieve the relevant pieces into the prompt. So the real design work is deciding what's worth saving and when to recall it, not just picking a database. A support agent that recalls a customer's last complaint feels attentive, while one that recalls everything feels creepy and slows down. My rule of thumb: keep the working set small, and treat long-term memory as a library you search, not a diary you reread.",
+      "a_cn": "我会按存放位置来划分智能体记忆：在上下文窗口之内，还是之外。短期记忆就是当前窗口里的一切，比如用户的请求、计划和最近的工具结果。对当前任务来说它又快又可靠，但会话一结束就消失，窗口快满时还会被挤压。长期记忆存放在模型之外的数据库或文件里，保存的是用户偏好、过往任务的经验教训这类信息。模型自己记不住其中任何一条；系统得先把它写下来，需要时再把相关片段检索出来放进提示词。所以真正的设计功夫在于判断什么值得存、什么时候调出来，而不只是挑一个数据库。能想起客户上次投诉的客服智能体会让人觉得贴心，而什么都记得的则让人发毛，速度也会变慢。我的经验法则是：工作区要保持精简，长期记忆要当成按需检索的图书馆，而不是从头重读的日记本。",
+      "key_phrases": [
+        {
+          "en": "gets squeezed",
+          "cn": "被挤压",
+          "type": "搭配",
+          "usage": "get squeezed 指被挤压，常形容空间或预算吃紧"
+        },
+        {
+          "en": "on its own",
+          "cn": "独自、自发地",
+          "type": "搭配",
+          "usage": "on its own 表示单靠自己，可换 by itself"
+        },
+        {
+          "en": "worth saving",
+          "cn": "值得保存",
+          "type": "搭配",
+          "usage": "worth + doing 表值得做，如 worth testing"
+        },
+        {
+          "en": "not just picking a database",
+          "cn": "不只是挑个数据库",
+          "type": "句型",
+          "usage": "not just doing X 纠正片面理解，引出真正重点"
+        },
+        {
+          "en": "feels creepy",
+          "cn": "让人发毛",
+          "type": "搭配",
+          "usage": "feel creepy 指过度关注让人不适，常用于隐私话题"
+        }
+      ],
+      "basics": [
+        {
+          "term": "检索",
+          "term_en": "retrieval",
+          "explain": "从外部存储里按当前问题找出最相关的几条信息，常用关键词匹配或语义相近匹配，再把找到的内容放进提示词交给模型。",
+          "analogy": "去图书馆按书目查书，而不是把整馆搬回家。"
+        },
+        {
+          "term": "工作集",
+          "term_en": "working set",
+          "explain": "当前这一步真正需要放进上下文的信息集合。工作集越精简，模型越不容易被无关内容干扰，每一轮的成本也越低。",
+          "analogy": "桌面上只摊开正在用的那几份文件。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "窗口够大，把所有聊天记录都塞进去，就等于有了长期记忆。",
+          "why": "窗口有上限且按 Token 计费，会话结束就清空；无关历史越多，模型越容易抓不住重点，成本和延迟也随之上升。",
+          "right": "当前任务信息留在窗口，跨会话的偏好与经验写入外部存储，用时按相关性检索少量片段。"
+        }
+      ],
+      "approach": "采分点是按「窗口内外」划分记忆，并说明长期记忆要靠系统写入与检索。推荐结构：划分标准 → 短期记忆特点 → 长期记忆的存放与召回 → 存什么的取舍。用「图书馆而不是日记本」收尾。会失分的是以为窗口越大就越不需要做记忆设计。",
+      "tips": "必备术语 short-term memory、retrieval、working set。可延伸：长期记忆的整合与遗忘、上下文修剪。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "AGT-F007",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "多智能体",
+        "编排模式",
+        "协作成本"
+      ],
+      "concepts": [
+        "agt.multi_agent"
+      ],
+      "prereq": [
+        "AGT-F003",
+        "AGT-F004"
+      ],
+      "q_cn": "什么是多智能体协作？常见的分工模式有哪几种？",
+      "q_en": "What is multi-agent collaboration, and what are the common ways to divide the work?",
+      "gist": {
+        "cn": "多个角色分明的智能体分工协作，常见主管派工、流水线、辩论三种模式，代价是更贵。",
+        "en": "Several role-focused agents split the work as manager-workers, a pipeline, or a debate, at extra cost."
+      },
+      "points": [
+        {
+          "en": "each with its own role, instructions, and tools",
+          "cn": "一份工作拆给角色、指令、工具各异的智能体"
+        },
+        {
+          "en": "hands pieces to worker agents",
+          "cn": "主管拆解任务、派给工人，再汇总结果"
+        },
+        {
+          "en": "a judge decides",
+          "cn": "另有流水线接力与正反辩论加裁判两种模式"
+        },
+        {
+          "en": "errors can get passed along the chain",
+          "cn": "好处是专注，代价是 Token 成本与错误传递"
+        },
+        {
+          "en": "start with one agent",
+          "cn": "先用单智能体，过载或可并行时再拆"
+        }
+      ],
+      "concept": {
+        "cn": "多智能体协作是把一项复杂工作拆给多个智能体共同完成的架构，每个智能体有独立的角色设定、指令和工具集。常见模式有三种：主管—工人式，由编排者拆任务、派活并汇总；流水线式，上一环的产出作为下一环的输入；辩论式，让持不同立场的智能体相互质询，再由裁判裁决。它的好处是让每个智能体的上下文更聚焦、可以并行，代价是 Token 消耗成倍增加、协调更复杂，且前一环的错误会被后一环放大。",
+        "en": "Multi-agent collaboration is an architecture in which a complex job is split across several agents, each with its own role definition, instructions, and toolset. There are three common patterns: manager-worker, where an orchestrator breaks down the task, assigns work, and merges the results; pipeline, where one stage's output becomes the next stage's input; and debate, where agents holding different positions challenge each other before a judge rules. The benefit is that each agent's context is more focused and work can run in parallel; the cost is that token usage multiplies, coordination gets harder, and an error made early in the chain can be amplified by later stages."
+      },
+      "a_pairs": [
+        {
+          "en": "Multi-agent means splitting one job across several agents, each with its own role, instructions, and tools.",
+          "cn": "多智能体就是把一份工作拆给几个智能体，各自有自己的角色、指令和工具。"
+        },
+        {
+          "en": "The most common pattern is an orchestrator that breaks down the task, hands pieces to worker agents, and then merges their results.",
+          "cn": "最常见的模式是由一个主管智能体拆解任务、把子任务派给工人智能体，再汇总它们的结果。"
+        },
+        {
+          "en": "A second pattern is a pipeline, where a researcher passes notes to a writer, who passes a draft to a reviewer.",
+          "cn": "第二种是流水线，研究员把笔记交给写手，写手再把草稿交给审核员。"
+        },
+        {
+          "en": "A third is a debate, where agents argue opposite sides and a judge decides, which helps when you want to surface risks.",
+          "cn": "第三种是辩论，几个智能体各执一方论点，由裁判来定夺，适合需要把风险摆上桌面的场景。"
+        },
+        {
+          "en": "The upside is focus: each agent gets a shorter prompt and a smaller toolset, so it's less likely to get confused.",
+          "cn": "好处是专注：每个智能体的提示词更短、工具更少，因而不容易搞混。"
+        },
+        {
+          "en": "The downside is cost and coordination, since agents burn tokens talking to each other and errors can get passed along the chain.",
+          "cn": "坏处是成本与协调，因为智能体之间的沟通要烧 Token，错误还可能沿着链条一路传下去。"
+        },
+        {
+          "en": "I'd start with one agent and only split when a single prompt is clearly overloaded or the subtasks can run in parallel; until then, it's extra cost.",
+          "cn": "我会先从单个智能体做起，只有当单个提示词明显不堪重负、或子任务可以并行跑时才拆分；在那之前，拆分只是额外成本。"
+        },
+        {
+          "en": "My rule of thumb: add agents to separate concerns, not to look sophisticated.",
+          "cn": "我的经验法则是：加智能体是为了分离职责，而不是为了显得高级。"
+        }
+      ],
+      "a_en": "Multi-agent means splitting one job across several agents, each with its own role, instructions, and tools. The most common pattern is an orchestrator that breaks down the task, hands pieces to worker agents, and then merges their results. A second pattern is a pipeline, where a researcher passes notes to a writer, who passes a draft to a reviewer. A third is a debate, where agents argue opposite sides and a judge decides, which helps when you want to surface risks. The upside is focus: each agent gets a shorter prompt and a smaller toolset, so it's less likely to get confused. The downside is cost and coordination, since agents burn tokens talking to each other and errors can get passed along the chain. I'd start with one agent and only split when a single prompt is clearly overloaded or the subtasks can run in parallel; until then, it's extra cost. My rule of thumb: add agents to separate concerns, not to look sophisticated.",
+      "a_cn": "多智能体就是把一份工作拆给几个智能体，各自有自己的角色、指令和工具。最常见的模式是由一个主管智能体拆解任务、把子任务派给工人智能体，再汇总它们的结果。第二种是流水线，研究员把笔记交给写手，写手再把草稿交给审核员。第三种是辩论，几个智能体各执一方论点，由裁判来定夺，适合需要把风险摆上桌面的场景。好处是专注：每个智能体的提示词更短、工具更少，因而不容易搞混。坏处是成本与协调，因为智能体之间的沟通要烧 Token，错误还可能沿着链条一路传下去。我会先从单个智能体做起，只有当单个提示词明显不堪重负、或子任务可以并行跑时才拆分；在那之前，拆分只是额外成本。我的经验法则是：加智能体是为了分离职责，而不是为了显得高级。",
+      "key_phrases": [
+        {
+          "en": "hands pieces to",
+          "cn": "把部分任务交给",
+          "type": "搭配",
+          "usage": "hand X to Y 表派活，可换 delegate X to Y"
+        },
+        {
+          "en": "surface risks",
+          "cn": "让风险浮出水面",
+          "type": "搭配",
+          "usage": "surface 作动词指揭示问题，如 surface issues"
+        },
+        {
+          "en": "The upside is",
+          "cn": "好处是",
+          "type": "句型",
+          "usage": "The upside / downside is… 成对使用讲利弊"
+        },
+        {
+          "en": "clearly overloaded",
+          "cn": "明显超负荷",
+          "type": "搭配",
+          "usage": "overloaded 指负担过重，近义 stretched thin"
+        },
+        {
+          "en": "separate concerns",
+          "cn": "分离职责",
+          "type": "搭配",
+          "usage": "源自软件设计原则，指各管各的职责"
+        }
+      ],
+      "basics": [
+        {
+          "term": "编排者",
+          "term_en": "orchestrator",
+          "explain": "多智能体系统里负责拆解任务、给其他智能体派活、收集并整合结果的那个智能体，相当于项目里的总负责人。",
+          "analogy": "装修队工长：分派水电木工，再统一验收。"
+        },
+        {
+          "term": "并行",
+          "term_en": "parallel execution",
+          "explain": "多个子任务同时进行而不是排队一个个做，比如三个分析员同时查不同资料，总耗时取决于最慢的那个。",
+          "analogy": "三个窗口同时办业务，排队时间大幅缩短。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "智能体拆得越多、角色分得越细，系统就越聪明、效果越好。",
+          "why": "每多一个智能体就多一轮沟通和 Token 消耗，信息在交接中会丢失或被曲解，前一环的错误还会被后面放大。",
+          "right": "先用单智能体跑通，只在提示词明显过载或子任务可并行时再拆分，并给每次交接定义清晰的格式。"
+        }
+      ],
+      "approach": "采分点是说清三种分工模式，并点出多智能体的成本与错误传递代价。推荐结构：定义 → 三种模式各举一例 → 专注的好处 → 成本与协调代价 → 何时才值得拆分。用「为分离职责而加，不为显得高级」收尾。会失分的是默认多智能体一定优于单智能体。",
+      "tips": "必备术语 orchestrator、pipeline、debate。可延伸：多角色辩论式协作的真实案例、任务规划与分解。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "AGT-F008",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "电脑操作",
+        "浏览器智能体",
+        "界面感知"
+      ],
+      "concepts": [
+        "agt.computer_use"
+      ],
+      "prereq": [
+        "AGT-F002",
+        "AGT-F003"
+      ],
+      "q_cn": "操作电脑和浏览器的智能体，是怎么「看见」并点击界面的？",
+      "q_en": "How do computer-use and browser agents see a screen and decide where to click?",
+      "gist": {
+        "cn": "靠看截图定坐标或读页面结构定元素，把点击输入变成工具调用；有接口时优先走接口。",
+        "en": "They read screenshots or page structure, turn clicks into tool calls, and should defer to APIs."
+      },
+      "points": [
+        {
+          "en": "the same agent loop",
+          "cn": "本质仍是智能体循环，工具换成鼠标键盘屏幕"
+        },
+        {
+          "en": "click at these coordinates",
+          "cn": "截图路线：视觉模型输出坐标级动作"
+        },
+        {
+          "en": "reading the page's structure",
+          "cn": "结构路线：读页面结构，按元素编号操作"
+        },
+        {
+          "en": "takes a fresh look",
+          "cn": "每步动作后重新观察，确认页面变化"
+        },
+        {
+          "en": "slow, costly per step",
+          "cn": "慢、贵、怕改版，且带着用户权限操作"
+        }
+      ],
+      "concept": {
+        "cn": "电脑与浏览器操作（Computer Use）是让智能体像人一样通过图形界面完成任务的能力。它沿用智能体循环，只是工具换成了截图、点击、输入和滚动。感知界面有两条路线：一是让视觉模型直接看截图，输出坐标级的鼠标键盘动作；二是读取网页结构或系统的无障碍信息，给可交互元素编号后按编号操作，定位通常更准，但复杂页面的结构文本同样很占上下文，不少产品两者并用。它能打通没有接口的老旧系统，但慢、单步成本高、怕弹窗和改版，且带着用户权限行动，须严控风险。",
+        "en": "Computer use is the ability of an agent to complete tasks through a graphical interface the way a person does. It keeps the agent loop, but its tools become screenshots, clicks, typing, and scrolling. There are two main ways to perceive the interface: a vision-capable model looks directly at screenshots and outputs mouse and keyboard actions at the coordinate level; or the agent reads the web page's structure or the system's accessibility information, numbers the interactive elements, and acts on them by number, which usually locates elements more precisely, though complex pages produce long structural text too, so many products combine both. It can open up legacy systems that have no API, but it is slow, costly per step, easily disrupted by pop-ups and redesigns, and acts with the user's permissions, so its risks must be tightly controlled."
+      },
+      "a_pairs": [
+        {
+          "en": "A computer-use agent is the same agent loop, except its tools are a mouse, a keyboard, and a screen.",
+          "cn": "电脑操作智能体用的还是同一套智能体循环，只不过它的工具换成了鼠标、键盘和屏幕。"
+        },
+        {
+          "en": "There are two main ways it can see the interface.",
+          "cn": "它「看」界面主要有两种方式。"
+        },
+        {
+          "en": "One is screenshots: a vision-capable model looks at the image and outputs actions like 'click at these coordinates' or 'type this text'.",
+          "cn": "一种是截图：具备视觉能力的模型看图，输出「点击这个坐标」或「输入这段文字」之类的动作。"
+        },
+        {
+          "en": "The other, common in browser agents, is reading the page's structure, so the model can say 'click button number seven' instead of guessing pixels.",
+          "cn": "另一种在浏览器智能体里很常见，是读取网页的结构，这样模型可以说「点第七个按钮」，而不用去猜像素位置。"
+        },
+        {
+          "en": "After each action, it takes a fresh look to confirm the page actually changed the way it expected.",
+          "cn": "每做完一个动作，它都会重新看一眼，确认页面确实按预期发生了变化。"
+        },
+        {
+          "en": "It's powerful for legacy systems with no API, but it's slow, costly per step, and breaks when a pop-up or redesign shows up.",
+          "cn": "对没有接口的老旧系统它很有用，但它慢、每一步都贵，一遇到弹窗或改版就容易出错。"
+        },
+        {
+          "en": "It also acts with the user's logged-in permissions, so I'd run it in a sandbox and ask before payments or form submissions.",
+          "cn": "它还是带着用户的登录权限在操作，所以我会让它在沙箱里运行，并在付款或提交表单前先征求确认。"
+        },
+        {
+          "en": "My rule of thumb: use an API whenever one exists, and fall back to the screen only when there's no other way in.",
+          "cn": "我的经验法则是：只要有接口就走接口，只有别无他路时才退回去操作屏幕。"
+        }
+      ],
+      "a_en": "A computer-use agent is the same agent loop, except its tools are a mouse, a keyboard, and a screen. There are two main ways it can see the interface. One is screenshots: a vision-capable model looks at the image and outputs actions like 'click at these coordinates' or 'type this text'. The other, common in browser agents, is reading the page's structure, so the model can say 'click button number seven' instead of guessing pixels. After each action, it takes a fresh look to confirm the page actually changed the way it expected. It's powerful for legacy systems with no API, but it's slow, costly per step, and breaks when a pop-up or redesign shows up. It also acts with the user's logged-in permissions, so I'd run it in a sandbox and ask before payments or form submissions. My rule of thumb: use an API whenever one exists, and fall back to the screen only when there's no other way in.",
+      "a_cn": "电脑操作智能体用的还是同一套智能体循环，只不过它的工具换成了鼠标、键盘和屏幕。它「看」界面主要有两种方式。一种是截图：具备视觉能力的模型看图，输出「点击这个坐标」或「输入这段文字」之类的动作。另一种在浏览器智能体里很常见，是读取网页的结构，这样模型可以说「点第七个按钮」，而不用去猜像素位置。每做完一个动作，它都会重新看一眼，确认页面确实按预期发生了变化。对没有接口的老旧系统它很有用，但它慢、每一步都贵，一遇到弹窗或改版就容易出错。它还是带着用户的登录权限在操作，所以我会让它在沙箱里运行，并在付款或提交表单前先征求确认。我的经验法则是：只要有接口就走接口，只有别无他路时才退回去操作屏幕。",
+      "key_phrases": [
+        {
+          "en": "instead of guessing pixels",
+          "cn": "而不用去猜像素",
+          "type": "搭配",
+          "usage": "instead of doing 对比两种做法，突出优选方案"
+        },
+        {
+          "en": "takes a fresh look",
+          "cn": "重新看一眼",
+          "type": "搭配",
+          "usage": "take a fresh look 指重新审视，也用于复盘"
+        },
+        {
+          "en": "legacy systems",
+          "cn": "老旧系统",
+          "type": "词汇",
+          "usage": "legacy system 指仍在服役的老系统，非遗产"
+        },
+        {
+          "en": "shows up",
+          "cn": "冒出来",
+          "type": "搭配",
+          "usage": "show up 表意外出现，比 appear 更口语"
+        },
+        {
+          "en": "whenever one exists",
+          "cn": "只要存在",
+          "type": "搭配",
+          "usage": "one 指代前文名词，表只要有就优先用"
+        }
+      ],
+      "basics": [
+        {
+          "term": "视觉语言模型",
+          "term_en": "VLM (vision-language model)",
+          "explain": "既能读文字又能看图片的大模型，可以理解截图里有哪些按钮、输入框和文字，并据此决定下一步该点哪里。",
+          "analogy": "既听得懂描述、又看得懂截图的远程客服。"
+        },
+        {
+          "term": "沙箱",
+          "term_en": "sandbox",
+          "explain": "一个与真实电脑隔离的运行环境，智能体在里面怎么操作都不会影响外面的文件和账户，出了问题直接销毁重来。",
+          "analogy": "驾校练车场：撞了桩也不会伤到路人。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "有了能操作界面的智能体，就不用再费劲对接系统接口了。",
+          "why": "界面操作每步都要截图和推理，速度慢、成本高，页面一改版就失灵；能用接口时它在稳定性、速度和成本上都明显吃亏。",
+          "right": "优先走接口或 MCP 工具，只把界面操作留给没有接口的老旧系统或一次性任务，并放在沙箱中运行。"
+        }
+      ],
+      "approach": "采分点是讲清截图与页面结构两条感知路线，以及界面操作的成本与权限风险。推荐结构：本质仍是循环 → 两种看法 → 每步重新确认 → 适用场景与代价 → 安全措施。用「有接口就走接口」收尾。会失分的是把界面操作说成能取代一切系统对接。",
+      "tips": "必备术语 computer use、legacy system、sandbox。可延伸：工具调用与 MCP、防失控的权限设计。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "AGT-F009",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "编码智能体",
+        "测试验证",
+        "代码补全"
+      ],
+      "concepts": [
+        "agt.coding_agent"
+      ],
+      "prereq": [
+        "AGT-F002",
+        "AGT-F003"
+      ],
+      "q_cn": "编码智能体和代码补全有何不同？它为什么特别依赖测试？",
+      "q_en": "How is a coding agent different from code autocomplete, and why does it depend so much on tests?",
+      "gist": {
+        "cn": "补全只续写光标处几行；编码智能体读代码、改多个文件、跑命令，靠测试结果自我纠错。",
+        "en": "Autocomplete predicts lines; a coding agent reads, edits, runs, and uses test results to fix itself."
+      },
+      "points": [
+        {
+          "en": "takes a whole task",
+          "cn": "补全只预测几行，智能体接手整个任务"
+        },
+        {
+          "en": "runs commands in a terminal",
+          "cn": "会搜索、读文件、改多处、跑命令"
+        },
+        {
+          "en": "a signal the agent can actually check",
+          "cn": "测试把「看起来对」变成可核验的信号"
+        },
+        {
+          "en": "the error message becomes the next observation",
+          "cn": "报错成为观察结果，驱动修复循环"
+        },
+        {
+          "en": "review the diff before merging",
+          "cn": "沙箱或独立分支运行，合并前审查差异"
+        }
+      ],
+      "concept": {
+        "cn": "编码智能体是专门完成软件开发任务的智能体。与只在光标处续写几行的代码补全不同，它接手的是完整任务：搜索代码库、阅读相关文件、跨多个文件修改，并在终端运行构建与测试命令。测试是它最核心的反馈来源：失败时的报错信息作为观察结果回到循环，驱动它定位问题、修改、再验证。编程之所以成为智能体落地最成熟的领域之一，正是因为代码环境能给出快速、客观、可重复的对错信号；缺少测试与审查，它的产出就难以信任。",
+        "en": "A coding agent is an agent specialized in software development tasks. Unlike autocomplete, which only continues a few lines at the cursor, it takes on a whole task: searching the codebase, reading the relevant files, editing across multiple files, and running build and test commands in a terminal. Tests are its most important source of feedback: when they fail, the error messages return to the loop as observations and drive it to locate the problem, edit, and verify again. Coding is one of the most mature fields for agents precisely because a code environment gives fast, objective, and repeatable right-or-wrong signals; without tests and review, its output is hard to trust."
+      },
+      "a_pairs": [
+        {
+          "en": "Autocomplete predicts the next few lines where your cursor is, while a coding agent takes a whole task, like 'add a refund button and make the tests pass'.",
+          "cn": "代码补全只是预测光标处接下来的几行，而编码智能体接手的是一整个任务，比如「加一个退款按钮并让测试通过」。"
+        },
+        {
+          "en": "To do that, it searches the codebase, reads the relevant files, edits several of them, and runs commands in a terminal.",
+          "cn": "为此它会搜索代码库、阅读相关文件、修改其中好几个，并在终端里运行命令。"
+        },
+        {
+          "en": "Tests matter because they turn 'looks right' into a signal the agent can actually check.",
+          "cn": "测试之所以关键，是因为它把「看起来对」变成了智能体真正能核验的信号。"
+        },
+        {
+          "en": "If a test fails, the error message becomes the next observation, and the agent fixes the code and runs it again.",
+          "cn": "测试一失败，报错信息就成了下一轮的观察结果，智能体据此修改代码再跑一遍。"
+        },
+        {
+          "en": "That's why coding is one of the places agents work best today: the environment gives fast, objective feedback.",
+          "cn": "这就是为什么编程是如今智能体表现最好的领域之一：环境能给出快速而客观的反馈。"
+        },
+        {
+          "en": "Without tests, the agent can't tell a working fix from one that only compiles, and you're left reviewing everything by hand.",
+          "cn": "没有测试，智能体就分不清真正修好的代码和仅仅能编译通过的代码，你只能逐行人工审查。"
+        },
+        {
+          "en": "Because it runs real commands, I'd keep it in a sandbox or a separate branch and review the diff before merging.",
+          "cn": "由于它会执行真实命令，我会把它放在沙箱或独立分支里运行，合并前先审查改动差异。"
+        },
+        {
+          "en": "Bottom line: a coding agent is only as reliable as the checks you give it.",
+          "cn": "一句话总结：编码智能体有多可靠，取决于你给它的检验手段有多可靠。"
+        }
+      ],
+      "a_en": "Autocomplete predicts the next few lines where your cursor is, while a coding agent takes a whole task, like 'add a refund button and make the tests pass'. To do that, it searches the codebase, reads the relevant files, edits several of them, and runs commands in a terminal. Tests matter because they turn 'looks right' into a signal the agent can actually check. If a test fails, the error message becomes the next observation, and the agent fixes the code and runs it again. That's why coding is one of the places agents work best today: the environment gives fast, objective feedback. Without tests, the agent can't tell a working fix from one that only compiles, and you're left reviewing everything by hand. Because it runs real commands, I'd keep it in a sandbox or a separate branch and review the diff before merging. Bottom line: a coding agent is only as reliable as the checks you give it.",
+      "a_cn": "代码补全只是预测光标处接下来的几行，而编码智能体接手的是一整个任务，比如「加一个退款按钮并让测试通过」。为此它会搜索代码库、阅读相关文件、修改其中好几个，并在终端里运行命令。测试之所以关键，是因为它把「看起来对」变成了智能体真正能核验的信号。测试一失败，报错信息就成了下一轮的观察结果，智能体据此修改代码再跑一遍。这就是为什么编程是如今智能体表现最好的领域之一：环境能给出快速而客观的反馈。没有测试，智能体就分不清真正修好的代码和仅仅能编译通过的代码，你只能逐行人工审查。由于它会执行真实命令，我会把它放在沙箱或独立分支里运行，合并前先审查改动差异。一句话总结：编码智能体有多可靠，取决于你给它的检验手段有多可靠。",
+      "key_phrases": [
+        {
+          "en": "make the tests pass",
+          "cn": "让测试通过",
+          "type": "搭配",
+          "usage": "开发常用语，pass 在此作不及物动词"
+        },
+        {
+          "en": "fast, objective feedback",
+          "cn": "快速而客观的反馈",
+          "type": "搭配",
+          "usage": "形容反馈质量，可换 quick, reliable"
+        },
+        {
+          "en": "tell a working fix from",
+          "cn": "区分真正的修复与",
+          "type": "句型",
+          "usage": "tell A from B 表区分两者，近义 distinguish"
+        },
+        {
+          "en": "by hand",
+          "cn": "手工地",
+          "type": "搭配",
+          "usage": "by hand 指人工完成，反义 automatically"
+        },
+        {
+          "en": "is only as reliable as",
+          "cn": "可靠程度取决于",
+          "type": "句型",
+          "usage": "X is only as good as Y 强调上限受某条件制约"
+        }
+      ],
+      "basics": [
+        {
+          "term": "自动化测试",
+          "term_en": "automated test",
+          "explain": "预先写好的检查程序，自动运行被测代码并比对结果是否符合预期，通过或失败一目了然，可以反复执行。",
+          "analogy": "出厂质检线：每件产品都过一遍，不合格亮红灯。"
+        },
+        {
+          "term": "改动差异",
+          "term_en": "diff",
+          "explain": "新旧两版代码之间逐行对比出来的变化清单，标明哪些行被删、哪些行被加，便于人快速审查到底改了什么。",
+          "analogy": "合同修订模式里标红的增删痕迹。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "编码智能体说已完成、代码也能跑起来，就可以直接上线。",
+          "why": "能运行不等于逻辑正确，没被测试覆盖的边界情况可能悄悄出错；智能体还可能顺手改了不该改的文件，甚至为了过测试去改测试本身。",
+          "right": "以测试结果和改动差异作为验收依据，关键改动人工审查，并要求它先补测试再改功能代码。"
+        }
+      ],
+      "approach": "采分点是对比补全与智能体的任务粒度，并讲透测试作为客观反馈的作用。推荐结构：二者区别 → 智能体的工作动作 → 测试驱动的修复循环 → 编程为何最先落地 → 沙箱与审查。用「可靠程度取决于检验手段」收尾。会失分的是只说它能写更多代码。",
+      "tips": "必备术语 coding agent、test、diff。可延伸：防失控机制设计、可验证奖励强化学习为何先在代码领域见效。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "AGT-X001",
+      "level": "X",
+      "kind": "idea",
+      "difficulty": "较难",
+      "tags": [
+        "工具设计",
+        "上下文管理",
+        "错误反馈"
+      ],
+      "concepts": [
+        "agt.tool_calling",
+        "prm.context_engineering"
+      ],
+      "prereq": [
+        "AGT-F002",
+        "AGT-F003",
+        "PRM-F005"
+      ],
+      "q_cn": "为什么说工具的说明与返回结果设计，往往比工具数量更重要？",
+      "q_en": "Why does the design of tool descriptions and outputs often matter more to an agent than the number of tools?",
+      "gist": {
+        "cn": "模型靠说明选工具、靠返回值看世界；说明清楚、输出精简、报错可纠错，胜过堆数量。",
+        "en": "Agents see the world mainly through tool descriptions and outputs, so design beats quantity."
+      },
+      "points": [
+        {
+          "en": "the tool descriptions it reads and the results it gets back",
+          "cn": "智能体主要靠工具说明和返回结果认识世界"
+        },
+        {
+          "en": "overlapping or vague descriptions",
+          "cn": "工具多且说明重叠含糊，模型就会选错"
+        },
+        {
+          "en": "when to use it, when not to",
+          "cn": "说明写清何时用、何时不用，并附示例"
+        },
+        {
+          "en": "pass back only the summary",
+          "cn": "原样倾倒数据会撑爆上下文，应只回传要点"
+        },
+        {
+          "en": "lets the agent correct itself",
+          "cn": "报错要能指导纠正，空结果只会让它瞎猜"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在工具调用与上下文工程之上。除了用户输入和训练所得，智能体对外部世界的认知主要靠两处：调用前读到的工具说明，和调用后拿回的返回结果。说明决定它能否在正确时机选对工具，返回结果则直接占用宝贵的上下文窗口。工具一多、说明一重叠，模型就会犹豫或误选；返回整页网页、大段日志等原始数据，会挤掉任务关键信息并推高成本。因此工具层应像产品界面一样设计：说明写清边界并附示例，输出先筛选压缩，报错给出可执行的纠正提示。",
+        "en": "This question builds on tool calling and context engineering. Beyond user input and what it learned in training, an agent knows the outside world mainly through two places: the tool descriptions it reads before a call and the results it gets back afterward. Descriptions determine whether it picks the right tool at the right moment, while results directly occupy the precious context window. With many tools and overlapping descriptions, the model hesitates or picks the wrong one; returning raw data such as whole web pages or long logs crowds out the information the task depends on and drives up cost. The tool layer should therefore be designed like a product interface: descriptions state clear boundaries and include examples, outputs are filtered and compressed first, and errors give actionable hints for correction."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd argue that, beyond what the user tells it, an agent sees the outside world mainly through two things: the tool descriptions it reads and the results it gets back.",
+          "cn": "我认为，除了用户告诉它的内容，智能体认识外部世界主要靠两样东西：它读到的工具说明，和它拿回来的结果。"
+        },
+        {
+          "en": "On the input side, more tools isn't better, because overlapping or vague descriptions make the model pick the wrong one.",
+          "cn": "在输入端，工具并不是越多越好，因为说明重叠或含糊会让模型选错工具。"
+        },
+        {
+          "en": "I'd write each description like onboarding notes for a new hire: when to use it, when not to, and an example.",
+          "cn": "我会把每个工具说明写得像给新员工的入职须知：什么时候用、什么时候别用，再附一个例子。"
+        },
+        {
+          "en": "On the output side, dumping raw data is the bigger problem; one open-source tool layer reports that a single browser snapshot can eat 56 KB of context.",
+          "cn": "在输出端，原样倾倒数据是更大的问题；有个开源工具层统计过，一次浏览器页面快照就可能吃掉 56 KB 的上下文。"
+        },
+        {
+          "en": "Its fix is to keep raw output outside the context window and pass back only the summary or the lines that match the task.",
+          "cn": "它的解法是把原始输出留在上下文窗口之外，只把摘要或与任务相关的那几行传回来。"
+        },
+        {
+          "en": "Errors deserve the same care: a message like 'end date is before start date' lets the agent correct itself, while an empty result just leaves it guessing.",
+          "cn": "报错同样要用心设计：像「结束日期早于开始日期」这样的提示能让智能体自我纠正，而一个空结果只会让它瞎猜。"
+        },
+        {
+          "en": "So when an agent misbehaves, I'd audit the tool layer before blaming the model.",
+          "cn": "所以当智能体表现失常时，我会先排查工具层，再去怪模型。"
+        },
+        {
+          "en": "My rule of thumb: treat tools as a user interface for the model, because that's exactly what they are.",
+          "cn": "我的经验法则是：把工具当成给模型用的用户界面来设计，因为它本来就是。"
+        }
+      ],
+      "a_en": "I'd argue that, beyond what the user tells it, an agent sees the outside world mainly through two things: the tool descriptions it reads and the results it gets back. On the input side, more tools isn't better, because overlapping or vague descriptions make the model pick the wrong one. I'd write each description like onboarding notes for a new hire: when to use it, when not to, and an example. On the output side, dumping raw data is the bigger problem; one open-source tool layer reports that a single browser snapshot can eat 56 KB of context. Its fix is to keep raw output outside the context window and pass back only the summary or the lines that match the task. Errors deserve the same care: a message like 'end date is before start date' lets the agent correct itself, while an empty result just leaves it guessing. So when an agent misbehaves, I'd audit the tool layer before blaming the model. My rule of thumb: treat tools as a user interface for the model, because that's exactly what they are.",
+      "a_cn": "我认为，除了用户告诉它的内容，智能体认识外部世界主要靠两样东西：它读到的工具说明，和它拿回来的结果。在输入端，工具并不是越多越好，因为说明重叠或含糊会让模型选错工具。我会把每个工具说明写得像给新员工的入职须知：什么时候用、什么时候别用，再附一个例子。在输出端，原样倾倒数据是更大的问题；有个开源工具层统计过，一次浏览器页面快照就可能吃掉 56 KB 的上下文。它的解法是把原始输出留在上下文窗口之外，只把摘要或与任务相关的那几行传回来。报错同样要用心设计：像「结束日期早于开始日期」这样的提示能让智能体自我纠正，而一个空结果只会让它瞎猜。所以当智能体表现失常时，我会先排查工具层，再去怪模型。我的经验法则是：把工具当成给模型用的用户界面来设计，因为它本来就是。",
+      "key_phrases": [
+        {
+          "en": "onboarding notes for a new hire",
+          "cn": "给新员工的入职须知",
+          "type": "搭配",
+          "usage": "onboarding 指入职培训，可作名词修饰语"
+        },
+        {
+          "en": "the bigger problem",
+          "cn": "更大的问题",
+          "type": "搭配",
+          "usage": "比较两类风险时点出更关键的一个，语气比 worst 更有分寸"
+        },
+        {
+          "en": "deserve the same care",
+          "cn": "值得同样用心",
+          "type": "搭配",
+          "usage": "X deserves the same care 强调同等重视"
+        },
+        {
+          "en": "leaves it guessing",
+          "cn": "让它只能瞎猜",
+          "type": "搭配",
+          "usage": "leave sb guessing 指让人摸不着头脑"
+        },
+        {
+          "en": "before blaming the model",
+          "cn": "先别急着怪模型",
+          "type": "句型",
+          "usage": "audit X before blaming Y 表先自查再归因"
+        }
+      ],
+      "basics": [
+        {
+          "term": "上下文窗口",
+          "term_en": "context window",
+          "explain": "模型一次能看到的全部文字容量，以 Token 计。工具返回的内容也要放进去，占得越多，留给任务关键信息的空间就越少。",
+          "analogy": "一张办公桌：堆满杂物就摊不开要用的文件。"
+        },
+        {
+          "term": "工具层",
+          "term_en": "tool layer",
+          "explain": "夹在模型和真实系统之间的那层程序，负责描述工具、执行调用、整理返回结果和报错，决定了模型最终能看到什么。",
+          "analogy": "秘书：替老板接电话、过滤信息、只报要点。"
+        },
+        {
+          "term": "原始输出",
+          "term_en": "raw output",
+          "explain": "工具执行后未经处理的完整结果，比如整页网页代码、上千行日志。直接交给模型既费 Token，又会淹没真正有用的信息。",
+          "analogy": "把整箱快递原样堆给老板，而不只递合同。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "智能体能力不够，就多给它接几个工具。",
+          "why": "工具越多，说明越容易重叠，模型选择时更易犹豫和误选；所有工具说明还要常驻上下文，占用空间并推高每轮成本。",
+          "right": "先合并重叠工具、改写说明边界，用评测看选错率下降没有；只有确实缺少能力时才新增工具。"
+        },
+        {
+          "wrong": "工具返回越完整越好，让模型自己从全文里挑重点。",
+          "why": "大段原始数据会挤占上下文，关键指令和任务进度被淹没；模型读得越多越吃力，答错和遗忘的概率也随之增加。",
+          "right": "在工具层先过滤、摘要或按任务意图检索，只回传必要片段，并保留按需查看全文的入口。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：表面问工具数量，实际考能否把模型的「感官」当成产品界面来设计。",
+        "定位：智能体主要靠两处信息认识世界，即调用前的说明和调用后的返回，问题多出在这两端。",
+        "分端分析：输入端看说明是否重叠含糊，输出端看返回是否冗长、报错是否教它怎么改。",
+        "给排查顺序：智能体失常时，先审工具层的说明、输出与报错，再考虑换更强的模型。"
+      ],
+      "method": {
+        "name": "接口视角审查",
+        "steps": [
+          "把模型当用户",
+          "查输入端说明",
+          "查输出与报错"
+        ],
+        "transfer": "可迁移到 MCP 服务选型、检索结果拼装、多智能体交接格式设计，凡是喂给模型的信息都适用。"
+      },
+      "approach": "采分点是指出智能体主要透过说明与返回结果认识世界，并分输入、输出、报错三端给出设计原则。推荐结构：核心判断 → 说明怎么写 → 输出怎么减 → 报错怎么改 → 排查顺序。用「工具就是给模型用的界面」收尾。会失分的是把问题归结为模型不够强或工具不够多。",
+      "tips": "必备术语 tool description、raw output、error message。落点句可复用到 MCP 选型与多智能体交接设计。",
+      "source_repos": [
+        "mksglu/context-mode",
+        "TauricResearch/TradingAgents"
+      ],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "AGT-X002",
+      "level": "X",
+      "kind": "method",
+      "difficulty": "较难",
+      "tags": [
+        "防失控",
+        "权限控制",
+        "人工审批"
+      ],
+      "concepts": [
+        "agt.agent_loop",
+        "agt.tool_calling"
+      ],
+      "prereq": [
+        "AGT-F002",
+        "AGT-F003",
+        "AGT-F008"
+      ],
+      "q_cn": "如何为长时间自主运行的智能体设计防失控机制？",
+      "q_en": "How would you design safeguards so a long-running autonomous agent doesn't spiral out of control?",
+      "gist": {
+        "cn": "设预算与步数硬上限，用沙箱和最小权限控范围，不可逆动作先审批，全程留痕可回滚。",
+        "en": "Cap spend and steps, sandbox permissions, gate irreversible actions, and log everything for rollback."
+      },
+      "points": [
+        {
+          "en": "only about 36% of the time",
+          "cn": "单步成功率连乘，长任务大概率出错"
+        },
+        {
+          "en": "hard limits on steps, time, and spend",
+          "cn": "步数、时长、花费设硬上限并自动暂停"
+        },
+        {
+          "en": "only the permissions the task needs",
+          "cn": "沙箱运行，只给任务所需的最小权限"
+        },
+        {
+          "en": "approval gates before anything irreversible",
+          "cn": "不可逆动作前设人工审批关卡"
+        },
+        {
+          "en": "a full audit trail with checkpoints",
+          "cn": "全程留痕加检查点，可回滚可续跑"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在智能体循环与工具调用之上。长时间自主运行的智能体会连续执行几十步，每一步的小概率失误会层层叠加，还可能陷入重复循环或越权操作。防失控设计不指望模型永不出错，而是假设它会出错，再从四个维度限制损失：用步数、时长与花费上限止损；用沙箱与最小权限缩小影响范围；在付款、删除、对外发信等不可逆动作前设置人工审批；用完整日志与检查点支持追责、回滚和断点续跑。",
+        "en": "This question builds on the agent loop and tool calling. An agent that runs autonomously for a long time executes dozens of steps in a row; small chances of error at each step compound, and it may also fall into repeated loops or act beyond its permissions. Designing against runaway behavior does not count on the model never making mistakes; it assumes the model will fail and limits the damage along four dimensions: caps on steps, time, and spend stop losses; sandboxes and least privilege shrink the scope of impact; human approval is required before irreversible actions such as paying, deleting, or sending external messages; and full logs plus checkpoints support accountability, rollback, and resuming from where it stopped."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd start from the math: if each step succeeds 95% of the time and nothing catches the mistakes, a twenty-step task finishes cleanly only about 36% of the time.",
+          "cn": "我会先算一笔账：如果每一步的成功率是 95%，又没有任何机制兜住错误，一个二十步的任务能顺利跑完的概率只有约 36%。"
+        },
+        {
+          "en": "So I'd design for failure with four layers instead of hoping the model gets better.",
+          "cn": "所以我会用四层防线为失败做设计，而不是寄希望于模型变强。"
+        },
+        {
+          "en": "First, hard limits on steps, time, and spend, with an automatic pause, because a runaway loop can burn hundreds of dollars before anyone notices.",
+          "cn": "第一层是给步数、时长和花费设硬上限并自动暂停，因为一个失控的循环可能在没人察觉时就烧掉几百美元。"
+        },
+        {
+          "en": "Second, a small blast radius: run it in a sandbox with only the permissions the task needs, since it doesn't need your whole file system.",
+          "cn": "第二层是缩小爆炸半径：让它在沙箱里运行，只给任务所需的权限，因为它根本用不着你的整个文件系统。"
+        },
+        {
+          "en": "Third, approval gates before anything irreversible, like paying, deleting, or emailing a customer, while reversible steps run freely.",
+          "cn": "第三层是在任何不可逆动作前设审批关卡，比如付款、删除或给客户发邮件，而可逆的步骤则放手让它跑。"
+        },
+        {
+          "en": "Fourth, a full audit trail with checkpoints, so a human can see what happened, roll back a bad change, and resume from the last good state.",
+          "cn": "第四层是完整的操作留痕加检查点，让人能看清发生了什么、回滚错误改动，并从上一个正常状态继续。"
+        },
+        {
+          "en": "I'd tune these by risk and loosen them as the agent earns trust on real tasks.",
+          "cn": "我会按风险高低调节这些防线，并随着智能体在真实任务中赢得信任再逐步放宽。"
+        },
+        {
+          "en": "Bottom line: autonomy should be earned in small, reversible steps, not granted all at once.",
+          "cn": "一句话总结：自主权应该在小而可逆的步子里逐步赢得，而不是一次性全部交出去。"
+        }
+      ],
+      "a_en": "I'd start from the math: if each step succeeds 95% of the time and nothing catches the mistakes, a twenty-step task finishes cleanly only about 36% of the time. So I'd design for failure with four layers instead of hoping the model gets better. First, hard limits on steps, time, and spend, with an automatic pause, because a runaway loop can burn hundreds of dollars before anyone notices. Second, a small blast radius: run it in a sandbox with only the permissions the task needs, since it doesn't need your whole file system. Third, approval gates before anything irreversible, like paying, deleting, or emailing a customer, while reversible steps run freely. Fourth, a full audit trail with checkpoints, so a human can see what happened, roll back a bad change, and resume from the last good state. I'd tune these by risk and loosen them as the agent earns trust on real tasks. Bottom line: autonomy should be earned in small, reversible steps, not granted all at once.",
+      "a_cn": "我会先算一笔账：如果每一步的成功率是 95%，又没有任何机制兜住错误，一个二十步的任务能顺利跑完的概率只有约 36%。所以我会用四层防线为失败做设计，而不是寄希望于模型变强。第一层是给步数、时长和花费设硬上限并自动暂停，因为一个失控的循环可能在没人察觉时就烧掉几百美元。第二层是缩小爆炸半径：让它在沙箱里运行，只给任务所需的权限，因为它根本用不着你的整个文件系统。第三层是在任何不可逆动作前设审批关卡，比如付款、删除或给客户发邮件，而可逆的步骤则放手让它跑。第四层是完整的操作留痕加检查点，让人能看清发生了什么、回滚错误改动，并从上一个正常状态继续。我会按风险高低调节这些防线，并随着智能体在真实任务中赢得信任再逐步放宽。一句话总结：自主权应该在小而可逆的步子里逐步赢得，而不是一次性全部交出去。",
+      "key_phrases": [
+        {
+          "en": "design for failure",
+          "cn": "为失败做设计",
+          "type": "搭配",
+          "usage": "design for failure 指默认会出错再设防护"
+        },
+        {
+          "en": "blast radius",
+          "cn": "爆炸半径、波及范围",
+          "type": "词汇",
+          "usage": "源自运维，常与 limit / reduce 搭配"
+        },
+        {
+          "en": "approval gates",
+          "cn": "审批关卡",
+          "type": "词汇",
+          "usage": "gate 作名词指关卡，也可说 review gate"
+        },
+        {
+          "en": "roll back a bad change",
+          "cn": "回滚错误改动",
+          "type": "搭配",
+          "usage": "动词 roll back 分写，名词 rollback 连写"
+        },
+        {
+          "en": "not granted all at once",
+          "cn": "而非一次性授予",
+          "type": "句型",
+          "usage": "not X all at once 强调分步而非一步到位"
+        }
+      ],
+      "basics": [
+        {
+          "term": "爆炸半径",
+          "term_en": "blast radius",
+          "explain": "出问题时可能受影响的范围有多大。限制权限和运行环境，就是让智能体即使犯错，波及的文件、账户和数据也尽量少。",
+          "analogy": "厨房着火先关门，火就烧不到客厅。"
+        },
+        {
+          "term": "最小权限原则",
+          "term_en": "least privilege",
+          "explain": "只给完成当前任务必需的权限，多一分都不给。比如只读报表的智能体，就不该拥有删除数据或转账的权限。",
+          "analogy": "保洁只拿得到清洁区门卡，进不了财务室。"
+        },
+        {
+          "term": "检查点",
+          "term_en": "checkpoint",
+          "explain": "在任务的关键节点保存一份完整的状态快照。出错时可以回到最近一个正常节点重来，而不必从头再跑一遍。",
+          "analogy": "游戏存档：打输了从最近的存档点重来。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "等模型能力再强一点，智能体自然就不会失控了。",
+          "why": "即便单步准确率很高，几十步连乘后整体出错的概率依然可观；外部环境变化和意外输入也不会因为模型变强而消失。",
+          "right": "默认它一定会出错，用预算上限、权限隔离、审批关卡和回滚机制，把单次失误的损失控制在可承受范围内。"
+        },
+        {
+          "wrong": "为了安全，智能体的每一步都让人工点确认。",
+          "why": "每步都确认会让用户疲于点击，最后不看内容就放行，审批形同虚设，自动化的效率优势也被完全抵消。",
+          "right": "按可逆性分级：可撤销、低风险的步骤自动执行，只在不可逆或高金额动作前设置审批关卡。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：问的是防失控，实际考能否用概率与风险思维设计系统，而不是单纯信任模型。",
+        "算账：用单步成功率连乘说明长任务大概率出错，为「为失败做设计」提供依据。",
+        "分层：从止损、控范围、卡关键动作、可追溯四个维度，各给一个具体手段。",
+        "定节奏：按可逆性与金额分级审批，用真实表现逐步放权，避免审批疲劳。"
+      ],
+      "method": {
+        "name": "分层止损",
+        "steps": [
+          "先算失败概率",
+          "分层限制损失",
+          "按可逆性放权"
+        ],
+        "transfer": "可迁移到自动化交易风控、RPA 流程上线、新员工权限开通，凡是让系统或他人代为行动的场景都适用。"
+      },
+      "approach": "采分点是用连乘概率说明长任务大概率出错，再给出止损、控范围、卡关键动作、可追溯四层防线。推荐结构：算账 → 四层防线各举一例 → 按风险逐步放权。用「自主权要在小而可逆的步子里赢得」收尾。会失分的是只说加人工审核或等模型变强。",
+      "tips": "必备术语 blast radius、least privilege、audit trail。可延伸：人机协同设计、编码智能体的沙箱实践。",
+      "source_repos": [
+        "paperclipai/paperclip",
+        "OpenHands/OpenHands"
+      ],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "AGT-X003",
+      "level": "X",
+      "kind": "idea",
+      "difficulty": "较难",
+      "tags": [
+        "长期记忆",
+        "记忆整合",
+        "遗忘机制"
+      ],
+      "concepts": [
+        "agt.memory"
+      ],
+      "prereq": [
+        "AGT-F006",
+        "AGT-F003"
+      ],
+      "q_cn": "为什么智能体的长期记忆，不能只是把聊天记录全部存下来？",
+      "q_en": "Why can't an agent's long-term memory just be a full archive of past conversations?",
+      "gist": {
+        "cn": "原始记录噪声多、会过时还会矛盾；好记忆要提炼事实、整合成有证据的结论并能遗忘。",
+        "en": "Raw logs are noisy and go stale; useful memory extracts, consolidates, and updates facts with evidence."
+      },
+      "points": [
+        {
+          "en": "an archive, not a memory",
+          "cn": "全量存档只是档案，噪声多且越积越糟"
+        },
+        {
+          "en": "act on it confidently",
+          "cn": "事实会过时冲突，检索旧记录易照错执行"
+        },
+        {
+          "en": "extract facts with time stamps",
+          "cn": "存时提炼带时间戳的事实，取时多路检索"
+        },
+        {
+          "en": "refines a belief when new evidence arrives",
+          "cn": "整合成有证据的结论，新证据来时修正"
+        },
+        {
+          "en": "deciding what to forget",
+          "cn": "区分世界事实与自身经历，并设计遗忘"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在智能体短期记忆与长期记忆的区分之上。很多团队把长期记忆等同于「存下全部对话、需要时检索」，但原始记录里大部分是寒暄与过程噪声，用户偏好、业务事实还会随时间变化甚至相互矛盾，检索时很可能把过时信息当真。成熟的记忆系统把记忆当作流水线：写入时提炼带时间戳的事实与实体，区分世界知识和自身经历；后台把相关事实整合成附带证据的结论，并在新证据出现时修正；读取时多路检索，同时设计遗忘与隐私删除。",
+        "en": "This question builds on the distinction between an agent's short-term and long-term memory. Many teams equate long-term memory with storing every conversation and searching it when needed, but most of a raw transcript is small talk and process noise, while user preferences and business facts change over time and can even contradict each other, so retrieval may well treat outdated information as true. Mature memory systems treat memory as a pipeline: when writing, they extract time-stamped facts and entities and separate world knowledge from the agent's own experiences; in the background, they consolidate related facts into evidence-backed conclusions and revise them when new evidence appears; when reading, they retrieve through several methods at once, while also designing for forgetting and privacy deletion."
+      },
+      "a_pairs": [
+        {
+          "en": "Storing every transcript gives you an archive, not a memory, and it gets worse as it grows.",
+          "cn": "把每份对话记录都存下来，得到的是档案馆而不是记忆，而且越积越糟。"
+        },
+        {
+          "en": "Most of a chat is noise, and the useful facts conflict over time, like a user who preferred email in March but switched to WeChat in June.",
+          "cn": "大部分聊天内容都是噪声，而有用的事实还会随时间相互矛盾，比如一位用户三月偏好邮件，六月却改用微信。"
+        },
+        {
+          "en": "If you just search old transcripts, the agent may surface the outdated preference and act on it confidently.",
+          "cn": "如果只是检索旧记录，智能体可能翻出过时的偏好，还理直气壮地照着执行。"
+        },
+        {
+          "en": "Better systems treat memory as a pipeline: extract facts with time stamps when saving, then retrieve with several methods at once.",
+          "cn": "更好的系统把记忆当成一条流水线：存的时候提炼带时间戳的事实，取的时候同时用多种方法检索。"
+        },
+        {
+          "en": "One open-source memory engine, for example, merges related facts into consolidated beliefs, keeps the supporting quotes, and refines a belief when new evidence arrives instead of silently overwriting it.",
+          "cn": "举个例子，有个开源记忆引擎会把相关事实合并成整合后的结论，保留支撑它的原话，有新证据时去修正这条结论，而不是悄悄覆盖。"
+        },
+        {
+          "en": "It also separates facts about the world from the agent's own experiences, which helps an agent learn from what it's tried.",
+          "cn": "它还把关于世界的事实和智能体自身的经历分开存放，这有助于智能体从自己的尝试中学习。"
+        },
+        {
+          "en": "For a product, that also means deciding what to forget, both to cut noise and to respect privacy.",
+          "cn": "对产品来说，这还意味着要决定忘掉什么，既为了减少噪声，也为了尊重隐私。"
+        },
+        {
+          "en": "My rule of thumb: memory isn't storage, it's curation.",
+          "cn": "我的经验法则是：记忆不在于存了多少，而在于取舍和整理。"
+        }
+      ],
+      "a_en": "Storing every transcript gives you an archive, not a memory, and it gets worse as it grows. Most of a chat is noise, and the useful facts conflict over time, like a user who preferred email in March but switched to WeChat in June. If you just search old transcripts, the agent may surface the outdated preference and act on it confidently. Better systems treat memory as a pipeline: extract facts with time stamps when saving, then retrieve with several methods at once. One open-source memory engine, for example, merges related facts into consolidated beliefs, keeps the supporting quotes, and refines a belief when new evidence arrives instead of silently overwriting it. It also separates facts about the world from the agent's own experiences, which helps an agent learn from what it's tried. For a product, that also means deciding what to forget, both to cut noise and to respect privacy. My rule of thumb: memory isn't storage, it's curation.",
+      "a_cn": "把每份对话记录都存下来，得到的是档案馆而不是记忆，而且越积越糟。大部分聊天内容都是噪声，而有用的事实还会随时间相互矛盾，比如一位用户三月偏好邮件，六月却改用微信。如果只是检索旧记录，智能体可能翻出过时的偏好，还理直气壮地照着执行。更好的系统把记忆当成一条流水线：存的时候提炼带时间戳的事实，取的时候同时用多种方法检索。举个例子，有个开源记忆引擎会把相关事实合并成整合后的结论，保留支撑它的原话，有新证据时去修正这条结论，而不是悄悄覆盖。它还把关于世界的事实和智能体自身的经历分开存放，这有助于智能体从自己的尝试中学习。对产品来说，这还意味着要决定忘掉什么，既为了减少噪声，也为了尊重隐私。我的经验法则是：记忆不在于存了多少，而在于取舍和整理。",
+      "key_phrases": [
+        {
+          "en": "an archive, not a memory",
+          "cn": "是档案而非记忆",
+          "type": "句型",
+          "usage": "an X, not a Y 用对比纠正概念，简洁有力"
+        },
+        {
+          "en": "act on it confidently",
+          "cn": "理直气壮地照做",
+          "type": "搭配",
+          "usage": "act on 指依据某信息行动，后接 advice / data"
+        },
+        {
+          "en": "silently overwriting",
+          "cn": "悄无声息地覆盖",
+          "type": "搭配",
+          "usage": "silently 强调无提示地发生，常形容隐患"
+        },
+        {
+          "en": "learn from what it's tried",
+          "cn": "从尝试中学习",
+          "type": "搭配",
+          "usage": "learn from what sb has tried，it's 即 it has"
+        },
+        {
+          "en": "isn't storage, it's curation",
+          "cn": "不是存储而是取舍整理",
+          "type": "句型",
+          "usage": "X isn't A, it's B 先否定再重新定义"
+        }
+      ],
+      "basics": [
+        {
+          "term": "记忆整合",
+          "term_en": "memory consolidation",
+          "explain": "后台定期把零散的相关记录合并成一条更精炼的结论，并保留支撑它的原始证据，避免同一件事被重复存很多遍。",
+          "analogy": "把一周的会议纪要整理成一页决议。"
+        },
+        {
+          "term": "时间戳",
+          "term_en": "timestamp",
+          "explain": "给每条信息标上发生或记录的时间。有了它，系统才能判断两条矛盾的信息哪条更新，也能只查某段时间内发生的事。",
+          "analogy": "牛奶盒上的生产日期，一眼看出新旧。"
+        },
+        {
+          "term": "多路检索",
+          "term_en": "hybrid retrieval",
+          "explain": "同时用几种方法找记忆，比如按意思相近、按关键词、按时间范围、按人物关系，再把结果合并排序，减少漏找和找错。",
+          "analogy": "找人时同时翻通讯录、聊天记录和合影。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "存储很便宜，把所有对话原文都存下来，记忆就不会出错。",
+          "why": "问题不在存不下，而在取不准：噪声和过时信息越多，检索越容易命中错误片段，智能体就会自信地执行旧偏好。",
+          "right": "写入时就提炼事实并打时间戳，冲突时用新证据修正旧结论，检索时优先采用最新且有证据的条目。"
+        },
+        {
+          "wrong": "智能体记得越多越好，用户会觉得它更懂自己。",
+          "why": "记住不该记的内容会让用户觉得被监视，敏感信息长期留存还带来合规风险；记忆过载也会拖慢响应、干扰判断。",
+          "right": "明确哪些类别值得记、保存多久，给用户查看和删除记忆的入口，敏感信息默认不记。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：表面问存储方式，实际考能否看出「记得多」和「记得准」是两回事。",
+        "找病灶：原始记录有噪声多、会过时、会矛盾三大问题，检索时都会放大成错误行为。",
+        "给结构：按写入提炼、后台整合、多路读取、主动遗忘四个环节设计记忆流水线。",
+        "落到产品：遗忘与删除不只是技术问题，也是用户信任与隐私合规的要求。"
+      ],
+      "method": {
+        "name": "生命周期拆解",
+        "steps": [
+          "列出写入环节",
+          "补上整合更新",
+          "设计读取与遗忘"
+        ],
+        "transfer": "可迁移到知识库更新、用户画像标签维护、客服话术库管理，凡是信息会随时间变化的系统都适用。"
+      },
+      "approach": "采分点是指出全量存档的噪声、过时与矛盾问题，并给出提炼、整合、多路检索、遗忘的记忆流水线。推荐结构：核心判断 → 偏好变化的例子 → 写入与整合 → 区分事实与经历 → 遗忘与隐私。用「记忆不是存储，而是取舍」收尾。会失分的是只讨论选哪种数据库。",
+      "tips": "必备术语 consolidation、timestamp、curation。可延伸：上下文修剪、隐私与数据治理。",
+      "source_repos": [
+        "vectorize-io/hindsight"
+      ],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "AGT-X004",
+      "level": "X",
+      "kind": "case",
+      "difficulty": "较难",
+      "tags": [
+        "多智能体",
+        "角色辩论",
+        "分层审批"
+      ],
+      "concepts": [
+        "agt.multi_agent",
+        "agt.planning"
+      ],
+      "prereq": [
+        "AGT-F007",
+        "AGT-F004",
+        "AGT-F002"
+      ],
+      "q_cn": "以 TradingAgents 为例：多角色辩论式多智能体如何设计？",
+      "q_en": "Using TradingAgents as an example, how should you design a multi-agent system built around role-based debate?",
+      "gist": {
+        "cn": "照真实组织分角色并行取证，多空辩论限轮次，交易员提案、风控评估、组合经理拍板。",
+        "en": "Mirror a real firm: parallel analysts, a capped bull-bear debate, then layered approval before acting."
+      },
+      "points": [
+        {
+          "en": "copies how a trading firm makes decisions",
+          "cn": "照搬交易公司的组织架构分配角色"
+        },
+        {
+          "en": "work in parallel",
+          "cn": "四类分析师并行工作，各配数据工具"
+        },
+        {
+          "en": "forces the downside onto the table",
+          "cn": "多空研究员辩论逼出下行风险，轮次可配"
+        },
+        {
+          "en": "approves or rejects it",
+          "cn": "交易员提案、风控评估、组合经理审批"
+        },
+        {
+          "en": "look-ahead leaks",
+          "cn": "防前视泄漏：输入干净与角色设计同样重要"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在多智能体协作与任务分解之上。TradingAgents 是一个开源的多智能体金融交易研究框架，按真实交易公司的分工组织智能体：基本面、情绪、新闻、技术面四类分析师并行收集证据；看多与看空研究员围绕报告辩论，轮数可配置；交易员汇总形成交易提案，风控团队评估风险，最后由组合经理批准或否决，才向模拟交易所下单。它展示了多智能体设计的要点：角色对齐业务流程，用辩论对冲单一观点偏差，用分层审批明确责任，并严防未来数据泄漏。",
+        "en": "This question builds on multi-agent collaboration and task decomposition. TradingAgents is an open-source multi-agent research framework for financial trading that organizes agents after the division of labor in a real trading firm: four kinds of analysts, covering fundamentals, sentiment, news, and technicals, gather evidence in parallel; bullish and bearish researchers debate the reports, with a configurable number of rounds; a trader consolidates them into a trade proposal, a risk team assesses the risk, and a portfolio manager finally approves or rejects it before an order goes to the simulated exchange. It shows the essentials of multi-agent design: align roles with the business process, use debate to offset the bias of a single view, use layered approval to make accountability clear, and guard strictly against leaks of future data."
+      },
+      "a_pairs": [
+        {
+          "en": "TradingAgents is a research framework that copies how a trading firm makes decisions, and that org-chart idea is what I'd borrow.",
+          "cn": "TradingAgents 是一个研究用框架，照搬了交易公司做决策的方式，而这种按组织架构设计的思路正是我想借鉴的。"
+        },
+        {
+          "en": "First, specialist analysts for fundamentals, sentiment, news, and technicals work in parallel, each with its own data tools.",
+          "cn": "第一步，基本面、情绪、新闻和技术面几位专职分析师并行工作，各自配有自己的数据工具。"
+        },
+        {
+          "en": "Then a bullish and a bearish researcher debate the analysts' reports, which forces the downside onto the table instead of letting one optimistic view win.",
+          "cn": "接着，一位看多、一位看空的研究员围绕这些报告展开辩论，逼着把下行风险摆上桌面，而不是让一种乐观观点一家独大。"
+        },
+        {
+          "en": "The number of debate rounds is a setting, and that's important because every extra round costs tokens and time.",
+          "cn": "辩论轮数是可配置的参数，这一点很重要，因为每多一轮都要多花 Token 和时间。"
+        },
+        {
+          "en": "A trader turns the debate into a proposal, a risk team reviews it, and a portfolio manager approves or rejects it before any simulated order goes out.",
+          "cn": "交易员把辩论结果变成交易提案，风控团队评估，组合经理批准或否决，之后才会发出模拟订单。"
+        },
+        {
+          "en": "It's also set up so cheaper models handle routine analysis while a stronger one handles the deep thinking.",
+          "cn": "它还支持让便宜的模型处理常规分析，把更强的模型留给需要深度思考的环节。"
+        },
+        {
+          "en": "Its release notes keep fixing look-ahead leaks, where an agent could read data published after the decision date, so clean inputs matter as much as clever roles.",
+          "cn": "它的版本说明里反复在修「前视泄漏」，也就是智能体可能读到决策日之后才发布的数据，可见干净的输入和巧妙的角色同样重要。"
+        },
+        {
+          "en": "My rule of thumb: design a multi-agent system like an org chart, with clear roles, a capped debate, and one accountable decision-maker.",
+          "cn": "我的经验法则是：像设计组织架构一样设计多智能体系统，角色清晰、辩论限轮、最终有一个负责拍板的人。"
+        }
+      ],
+      "a_en": "TradingAgents is a research framework that copies how a trading firm makes decisions, and that org-chart idea is what I'd borrow. First, specialist analysts for fundamentals, sentiment, news, and technicals work in parallel, each with its own data tools. Then a bullish and a bearish researcher debate the analysts' reports, which forces the downside onto the table instead of letting one optimistic view win. The number of debate rounds is a setting, and that's important because every extra round costs tokens and time. A trader turns the debate into a proposal, a risk team reviews it, and a portfolio manager approves or rejects it before any simulated order goes out. It's also set up so cheaper models handle routine analysis while a stronger one handles the deep thinking. Its release notes keep fixing look-ahead leaks, where an agent could read data published after the decision date, so clean inputs matter as much as clever roles. My rule of thumb: design a multi-agent system like an org chart, with clear roles, a capped debate, and one accountable decision-maker.",
+      "a_cn": "TradingAgents 是一个研究用框架，照搬了交易公司做决策的方式，而这种按组织架构设计的思路正是我想借鉴的。第一步，基本面、情绪、新闻和技术面几位专职分析师并行工作，各自配有自己的数据工具。接着，一位看多、一位看空的研究员围绕这些报告展开辩论，逼着把下行风险摆上桌面，而不是让一种乐观观点一家独大。辩论轮数是可配置的参数，这一点很重要，因为每多一轮都要多花 Token 和时间。交易员把辩论结果变成交易提案，风控团队评估，组合经理批准或否决，之后才会发出模拟订单。它还支持让便宜的模型处理常规分析，把更强的模型留给需要深度思考的环节。它的版本说明里反复在修「前视泄漏」，也就是智能体可能读到决策日之后才发布的数据，可见干净的输入和巧妙的角色同样重要。我的经验法则是：像设计组织架构一样设计多智能体系统，角色清晰、辩论限轮、最终有一个负责拍板的人。",
+      "key_phrases": [
+        {
+          "en": "is what I'd borrow",
+          "cn": "是我想借鉴的",
+          "type": "句型",
+          "usage": "X is what I'd borrow 点出可借鉴之处，语气谦逊"
+        },
+        {
+          "en": "work in parallel",
+          "cn": "并行工作",
+          "type": "搭配",
+          "usage": "work in parallel 指并行，反义 in sequence"
+        },
+        {
+          "en": "forces the downside onto the table",
+          "cn": "逼出下行风险",
+          "type": "句型",
+          "usage": "force X onto the table 指逼出被回避的问题"
+        },
+        {
+          "en": "look-ahead leaks",
+          "cn": "前视泄漏",
+          "type": "词汇",
+          "usage": "look-ahead 指偷看未来数据，多见于回测"
+        },
+        {
+          "en": "accountable decision-maker",
+          "cn": "负责拍板的人",
+          "type": "词汇",
+          "usage": "accountable 指最终对结果负责的人，对应 RACI 中的 A"
+        }
+      ],
+      "basics": [
+        {
+          "term": "前视偏差",
+          "term_en": "look-ahead bias",
+          "explain": "回测或分析时不小心用到了决策当时还不存在的未来数据，导致结果看起来特别准，真实使用时却完全复现不了。",
+          "analogy": "考前偷看了答案，分数再高也不代表会做。"
+        },
+        {
+          "term": "回测",
+          "term_en": "backtesting",
+          "explain": "用历史数据模拟「如果当时按这个策略决策会怎样」，以此评估策略效果。前提是每个时间点只能看到当时已经公开的信息。",
+          "analogy": "用往年真题模拟考，检验复习方法管不管用。"
+        },
+        {
+          "term": "模型分层",
+          "term_en": "model tiering",
+          "explain": "按环节难度给不同智能体配不同档次的模型：常规整理用便宜快速的模型，关键推理与拍板用更强的模型，兼顾效果和成本。",
+          "analogy": "日常事务交给助理，重大决策才请专家。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "辩论轮数越多结论越周全，就让多空双方一直辩下去。",
+          "why": "每多一轮都要额外消耗 Token 与时间，而观点往往几轮后就开始重复；不设上限的辩论还可能陷入僵持，迟迟产不出决策。",
+          "right": "为辩论设定轮次上限，由明确的决策角色在限定轮次后拍板，并用评测找出收益开始递减的轮数。"
+        },
+        {
+          "wrong": "多智能体回测收益漂亮，说明可以直接拿去实盘赚钱。",
+          "why": "回测若混入决策日之后的数据会严重高估效果，模型输出还有随机性；该项目也声明仅供研究，不构成投资建议。",
+          "right": "先核查数据是否严格按时间点隔离，再用多次运行和样本外数据检验稳定性，把它当研究工具而非交易信号。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：这是案例题，要提炼的不是交易技巧，而是可迁移的多智能体组织设计。",
+        "画流程：按分析师并行、多空辩论、交易提案、风控与审批的顺序讲清信息怎样流动。",
+        "找设计意图：辩论对冲乐观偏差，分层审批明确责任，轮次上限与模型分层控制成本。",
+        "补隐患：指出前视泄漏这类数据问题，说明输入干净与角色设计同样决定结论可信度。"
+      ],
+      "method": {
+        "name": "组织映射法",
+        "steps": [
+          "照业务流程分角色",
+          "用辩论对冲偏差",
+          "设唯一拍板角色"
+        ],
+        "transfer": "可迁移到信贷审批、内容审核、招聘评估等多环节决策场景，用多角色分析、交叉质询、分层审批来设计流程。"
+      },
+      "approach": "采分点是讲清并行分析、多空辩论、提案审批的流程，并提炼角色对齐业务、辩论对冲偏差、分层拍板三条原则。推荐结构：项目定位 → 四步流程 → 成本控制 → 数据隐患 → 可迁移结论。用「像设计组织架构一样设计多智能体」收尾。会失分的是复述功能清单。",
+      "tips": "必备术语 debate、portfolio manager、look-ahead bias。可延伸：防失控审批关卡、模型分流与成本控制。",
+      "source_repos": [
+        "TauricResearch/TradingAgents"
+      ],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "AGT-X005",
+      "level": "X",
+      "kind": "case",
+      "difficulty": "较难",
+      "tags": [
+        "多智能体",
+        "组织与问责",
+        "智能体治理"
+      ],
+      "concepts": [
+        "agt.multi_agent",
+        "agt.tool_calling"
+      ],
+      "prereq": [
+        "AGT-F007",
+        "AGT-X002"
+      ],
+      "q_cn": "以 Paperclip 为例：智能体组队后，如何用组织架构分工追责？",
+      "q_en": "Using Paperclip as an example, once AI agents work as a team, how can an org chart divide the work and keep someone accountable?",
+      "gist": {
+        "cn": "按组织架构管智能体：角色与汇报线分工，任务沿汇报线委派，责任人随任务走。",
+        "en": "Treat agents like staff: roles and reporting lines, delegation along the chart, a named human owner, and scoped connections."
+      },
+      "points": [
+        {
+          "en": "borrow the org chart",
+          "cn": "借用组织架构图给智能体分工"
+        },
+        {
+          "en": "a role, a title, a reporting line, permissions, and a budget",
+          "cn": "每个智能体有角色、职位、汇报线、权限和预算"
+        },
+        {
+          "en": "delegated up and down that chart",
+          "cn": "任务沿组织图上下委派，主管拆解再分派"
+        },
+        {
+          "en": "traces back to a person",
+          "cn": "委派全程挂着责任人，每个动作可追溯到人"
+        },
+        {
+          "en": "which agents can reach it",
+          "cn": "连接按人和智能体分别授权，动作分三档"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在多智能体协作与智能体防失控设计之上。Paperclip 是一个管理 AI 智能体团队的开源项目，它把企业管理员工的方式搬到智能体上：每个智能体有角色、职位、汇报线、权限和预算，工作沿组织图上下委派；委派过程中始终关联一位负责的用户，便于追责；每个连接可分别设定哪些人能用、哪些智能体能访问，网关动作分为允许、先询问、关闭三档。它定位为控制面，负责编排而不亲自运行智能体。",
+        "en": "This question builds on multi-agent collaboration and safeguards for autonomous agents. Paperclip is an open-source project for managing teams of AI agents that carries over the way companies manage employees: each agent has a role, title, reporting line, permissions, and budget, and work is delegated up and down the org chart; a responsible user stays attached to the work through delegation, which keeps accountability clear; each connection can be limited to certain people and certain agents, and gateway actions can be set to allowed, ask first, or off. It positions itself as a control plane that orchestrates agents rather than running them."
+      },
+      "a_pairs": [
+        {
+          "en": "Once agents work as a team, the real question is who answers for the result, and Paperclip's answer is to borrow the org chart.",
+          "cn": "智能体一旦组成团队，真正的问题是结果由谁负责；Paperclip 的答案是借用组织架构图。"
+        },
+        {
+          "en": "In this open-source project, each agent gets a role, a title, a reporting line, permissions, and a budget, so it's managed much like a new hire.",
+          "cn": "在这个开源项目里，每个智能体都有角色、职位、汇报线、权限和预算，管理方式很像对待一名新员工。"
+        },
+        {
+          "en": "Work is delegated up and down that chart, so a manager agent can break a goal into tasks for the agents that report to it.",
+          "cn": "工作沿着这张组织图上下委派，所以一个主管智能体可以把目标拆成任务，交给向它汇报的智能体。"
+        },
+        {
+          "en": "Crucially, a responsible human stays attached to the work as it's delegated, so every action still traces back to a person who can answer for it.",
+          "cn": "关键在于，任务一路委派下去，负责的那个人始终跟着这项工作，所以每个动作都能追溯到一个能为它负责的人。"
+        },
+        {
+          "en": "Access is split, too: admins choose who can use each connection and which agents can reach it, and set gateway actions to allowed, ask first, or off.",
+          "cn": "权限也是拆开管的：管理员决定每个连接哪些人能用、哪些智能体能访问，并把网关动作设为允许、先询问或关闭。"
+        },
+        {
+          "en": "Paperclip also calls itself a control plane, not an execution plane: it orchestrates agents but doesn't run them.",
+          "cn": "Paperclip 还把自己定位为控制面而非执行面：它负责编排智能体，但不亲自运行它们。"
+        },
+        {
+          "en": "My rule of thumb: when agents work as a team, give each one a boss, a budget, and a named human who answers for its work.",
+          "cn": "我的经验法则是：智能体组队干活时，给每个智能体配一个上级、一份预算，以及一位为它的工作负责的具体的人。"
+        }
+      ],
+      "a_en": "Once agents work as a team, the real question is who answers for the result, and Paperclip's answer is to borrow the org chart. In this open-source project, each agent gets a role, a title, a reporting line, permissions, and a budget, so it's managed much like a new hire. Work is delegated up and down that chart, so a manager agent can break a goal into tasks for the agents that report to it. Crucially, a responsible human stays attached to the work as it's delegated, so every action still traces back to a person who can answer for it. Access is split, too: admins choose who can use each connection and which agents can reach it, and set gateway actions to allowed, ask first, or off. Paperclip also calls itself a control plane, not an execution plane: it orchestrates agents but doesn't run them. My rule of thumb: when agents work as a team, give each one a boss, a budget, and a named human who answers for its work.",
+      "a_cn": "智能体一旦组成团队，真正的问题是结果由谁负责；Paperclip 的答案是借用组织架构图。在这个开源项目里，每个智能体都有角色、职位、汇报线、权限和预算，管理方式很像对待一名新员工。工作沿着这张组织图上下委派，所以一个主管智能体可以把目标拆成任务，交给向它汇报的智能体。关键在于，任务一路委派下去，负责的那个人始终跟着这项工作，所以每个动作都能追溯到一个能为它负责的人。权限也是拆开管的：管理员决定每个连接哪些人能用、哪些智能体能访问，并把网关动作设为允许、先询问或关闭。Paperclip 还把自己定位为控制面而非执行面：它负责编排智能体，但不亲自运行它们。我的经验法则是：智能体组队干活时，给每个智能体配一个上级、一份预算，以及一位为它的工作负责的具体的人。",
+      "key_phrases": [
+        {
+          "en": "answers for the result",
+          "cn": "为结果负责",
+          "type": "搭配",
+          "usage": "answer for 指对后果负责，比 be responsible for 更口语"
+        },
+        {
+          "en": "delegated up and down",
+          "cn": "上下逐级委派",
+          "type": "搭配",
+          "usage": "delegate 指授权下放，up and down 强调沿层级双向流动"
+        },
+        {
+          "en": "traces back to a person",
+          "cn": "可追溯到具体的人",
+          "type": "句型",
+          "usage": "X traces back to Y 常用于讲审计与问责的来源追溯"
+        },
+        {
+          "en": "control plane",
+          "cn": "控制面",
+          "type": "词汇",
+          "usage": "源自网络架构：控制面管调度与规则，执行面真正干活"
+        },
+        {
+          "en": "ask first",
+          "cn": "先询问再执行",
+          "type": "词汇",
+          "usage": "权限三档 allowed、ask first、off 中的中间档"
+        }
+      ],
+      "basics": [
+        {
+          "term": "汇报线",
+          "term_en": "reporting line",
+          "explain": "组织中谁向谁负责、谁给谁分配工作的关系。它决定任务从哪里来、出了问题找谁、谁有权叫停。",
+          "analogy": "军队里的指挥链，命令逐级下达。"
+        },
+        {
+          "term": "控制面",
+          "term_en": "control plane",
+          "explain": "负责调度、规则和权限的管理层，决定谁做什么、能做什么，但不亲自干活；真正执行任务的部分叫执行面。",
+          "analogy": "机场塔台指挥飞机起降，但自己不开飞机。"
+        },
+        {
+          "term": "问责归属",
+          "term_en": "responsible-user attribution",
+          "explain": "把每项任务和动作关联到一位负责的人，任务被层层委派后，依然能查到最初是谁发起、谁授权的。",
+          "analogy": "快递转了几道手，面单上仍写着寄件人。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "智能体是软件，不需要组织架构和问责那一套。",
+          "why": "智能体会自主调用工具、花费预算、修改数据，没有角色和责任人，出错时既无法及时叫停，也说不清是谁授权的。",
+          "right": "为每个智能体定义角色、汇报线和预算，委派全程关联负责人，并保留可追溯的记录。"
+        },
+        {
+          "wrong": "为了安全，所有网关动作一律设成先询问。",
+          "why": "审批过多会让人疲于点击、最后不看就批，真正高风险的动作反而被淹没，智能体也失去自动化的意义。",
+          "right": "低风险可撤销的动作设为允许，高风险或不可逆的动作设为先询问，用不到的直接关闭。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：这是案例题，要提炼的是智能体组队后怎样用组织设计来分工和追责。",
+        "对照组织：角色、职位、汇报线、权限和预算，逐一对应到每个智能体的配置。",
+        "看委派：任务沿汇报线上下流转，全程挂着一位负责人，任何动作都能追溯到人。",
+        "看权限：连接按人和智能体分别授权，网关动作分允许、先询问、关闭三档。",
+        "提炼：控制面与执行面分离，治理规则不依赖某个智能体自身的实现。"
+      ],
+      "method": {
+        "name": "组织即架构",
+        "steps": [
+          "定角色与汇报线",
+          "沿汇报线委派",
+          "责任人随任务走",
+          "权限按档分级"
+        ],
+        "transfer": "可迁移到外包团队管理、RPA 机器人权限设计、SaaS 管理员权限设计等把工作委托出去的场景。"
+      },
+      "approach": "采分点是从案例中提炼「把智能体当员工管」的组织设计，并讲清委派与问责如何同时成立。推荐结构：项目定位 → 角色与汇报线 → 沿汇报线委派 → 责任人随任务走 → 连接与网关分级 → 控制面定位。会失分的是复述功能清单或只谈技术框架。",
+      "tips": "必备术语 reporting line、delegation、control plane。可延伸：RACI 责任矩阵、智能体防失控、工具网关审批粒度。",
+      "source_repos": [
+        "paperclipai/paperclip"
+      ],
+      "added": "2026-10-31"
+    }
+  ]
+}

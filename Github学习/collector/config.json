@@ -1,0 +1,25 @@
+{
+  "_说明": "改完保存即可生效。门槛与配额的含义见方案 M3/M4。",
+  "proxy": "",
+  "first_run_days": 7,
+  "min_hours_between_runs": 20,
+  "max_projects_per_pack": 10,
+  "max_candidates": 200,
+  "search_pages_per_query": 1,
+  "new_repo_min_stars": 30,
+  "revival_min_stars": 1000,
+  "min_gain_window": 20,
+  "packed_cooldown_days": 14,
+  "revisit_min_days": 30,
+  "per_direction_cap": 3,
+  "readme_max_chars": 12000,
+  "arch_doc_max_chars": 6000,
+  "release_max_chars": 3000,
+  "languages": {
+    "enabled": ["en", "zh", "ja", "ko", "ru", "es", "fr", "de", "pt"],
+    "min_non_english_share": 0.3,
+    "keyword_queries_per_run": 12,
+    "keyword_min_stars": {"default": 15, "zh": 20, "ja": 10, "ko": 10}
+  },
+  "heat": {"baseline_days": 60, "min_group_samples": 30, "min_heat_score": 1.0}
+}

@@ -1,0 +1,1817 @@
+{
+  "category": "需求分析与管理",
+  "category_en": "Requirements Analysis & Management",
+  "domain": "REQ",
+  "items": [
+    {
+      "id": "REQ-F001",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "需求层次",
+        "需求追溯"
+      ],
+      "concepts": [
+        "req.requirement_levels"
+      ],
+      "prereq": [],
+      "q_cn": "需求分哪几层？业务需求、用户需求和功能需求有何区别？",
+      "q_en": "What are the levels of requirements, and how do business, user, and functional requirements differ?",
+      "gist": {
+        "cn": "业务需求定为何做，用户需求定用户要完成什么，功能需求定系统做什么。",
+        "en": "Business requirements say why, user requirements say what users need to do, functional requirements say what the system does."
+      },
+      "points": [
+        {
+          "en": "three layers that answer three different questions",
+          "cn": "三层分别回答为何做、为谁做什么、系统做什么"
+        },
+        {
+          "en": "Business requirements state the goal",
+          "cn": "业务需求定目标，通常来自管理层"
+        },
+        {
+          "en": "what each role needs to get done",
+          "cn": "用户需求按角色描述要完成的任务"
+        },
+        {
+          "en": "Functional requirements spell out what the system does",
+          "cn": "功能需求写系统如何支撑，另有非功能需求"
+        },
+        {
+          "en": "trace back to the one above",
+          "cn": "层层可追溯，追溯不到目标的多是伪需求"
+        }
+      ],
+      "concept": {
+        "cn": "需求层次是把一句笼统的「我们要做个系统」拆成可管理、可追溯的几层。业务需求说明组织为什么要做，比如降本、提效、合规，通常由管理层或业务负责人提出；用户需求按角色描述各类用户要借助系统完成什么任务；功能需求进一步写明系统必须提供哪些具体行为；非功能需求则规定性能、安全、可用性等质量要求。各层自上而下逐级追溯，能帮产品经理判断每个功能服务哪个目标，也是评审优先级和范围的依据。",
+        "en": "Requirement levels break a vague 'we need a system' into layers that are manageable and traceable. Business requirements explain why the organization wants to do it, such as cutting cost, improving efficiency, or meeting compliance, and usually come from management or business owners. User requirements describe, role by role, what each kind of user needs to accomplish with the system. Functional requirements then spell out the specific behaviors the system must provide, while non-functional requirements set quality standards such as performance, security, and availability. Tracing each layer back to the one above helps a product manager see which goal every feature serves, and gives a basis for reviewing priority and scope."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd break requirements into three layers that answer three different questions: why we're doing it, who needs to get what done, and what the system must do.",
+          "cn": "我会把需求拆成三层，分别回答三个问题：我们为什么做、谁需要完成什么、系统必须做什么。"
+        },
+        {
+          "en": "Business requirements state the goal, like 'cut invoice processing time by half', and they usually come from management.",
+          "cn": "业务需求说明目标，比如「把发票处理时间缩短一半」，通常来自管理层。"
+        },
+        {
+          "en": "User requirements describe what each role needs to get done, such as 'a finance clerk can match an invoice to a purchase order'.",
+          "cn": "用户需求描述每个角色需要完成什么，比如「财务专员能把发票和采购订单对上」。"
+        },
+        {
+          "en": "Functional requirements spell out what the system does to support that, like auto-matching invoices by order number and flagging mismatches.",
+          "cn": "功能需求则写明系统要怎么支撑，比如按订单号自动匹配发票并标出不一致的地方。"
+        },
+        {
+          "en": "Alongside them sit non-functional requirements, such as speed, security, and availability, which describe how well the system must work.",
+          "cn": "与之并列的是非功能需求，比如速度、安全和可用性，描述系统要做到多好。"
+        },
+        {
+          "en": "The layers matter because each one should trace back to the one above, so you can tell which feature serves which goal.",
+          "cn": "分层之所以重要，是因为每一层都应能追溯到上一层，这样你才说得清哪个功能在服务哪个目标。"
+        },
+        {
+          "en": "When a feature can't be traced to any business goal, that's usually a sign it's someone's pet request, not a real need.",
+          "cn": "如果一个功能追溯不到任何业务目标，那往往说明它只是某个人的偏好，而不是真实需求。"
+        },
+        {
+          "en": "My rule of thumb: if you can't say which goal a feature serves, don't build it yet.",
+          "cn": "我的经验法则是：说不清一个功能服务哪个目标，就先别做。"
+        }
+      ],
+      "a_en": "I'd break requirements into three layers that answer three different questions: why we're doing it, who needs to get what done, and what the system must do. Business requirements state the goal, like 'cut invoice processing time by half', and they usually come from management. User requirements describe what each role needs to get done, such as 'a finance clerk can match an invoice to a purchase order'. Functional requirements spell out what the system does to support that, like auto-matching invoices by order number and flagging mismatches. Alongside them sit non-functional requirements, such as speed, security, and availability, which describe how well the system must work. The layers matter because each one should trace back to the one above, so you can tell which feature serves which goal. When a feature can't be traced to any business goal, that's usually a sign it's someone's pet request, not a real need. My rule of thumb: if you can't say which goal a feature serves, don't build it yet.",
+      "a_cn": "我会把需求拆成三层，分别回答三个问题：我们为什么做、谁需要完成什么、系统必须做什么。业务需求说明目标，比如「把发票处理时间缩短一半」，通常来自管理层。用户需求描述每个角色需要完成什么，比如「财务专员能把发票和采购订单对上」。功能需求则写明系统要怎么支撑，比如按订单号自动匹配发票并标出不一致的地方。与之并列的是非功能需求，比如速度、安全和可用性，描述系统要做到多好。分层之所以重要，是因为每一层都应能追溯到上一层，这样你才说得清哪个功能在服务哪个目标。如果一个功能追溯不到任何业务目标，那往往说明它只是某个人的偏好，而不是真实需求。我的经验法则是：说不清一个功能服务哪个目标，就先别做。",
+      "key_phrases": [
+        {
+          "en": "spell out",
+          "cn": "逐条写清",
+          "type": "搭配",
+          "usage": "spell out 指把细节逐条写清，比 explain 更具体"
+        },
+        {
+          "en": "trace back to",
+          "cn": "追溯到",
+          "type": "搭配",
+          "usage": "trace back to 表追溯来源，需求与数据都常用"
+        },
+        {
+          "en": "that's usually a sign",
+          "cn": "这通常说明",
+          "type": "句型",
+          "usage": "that's usually a sign + 从句，用来下判断"
+        },
+        {
+          "en": "pet request",
+          "cn": "个人偏爱的需求",
+          "type": "词汇",
+          "usage": "pet 作形容词指个人偏爱的，如 pet project"
+        }
+      ],
+      "basics": [
+        {
+          "term": "非功能需求",
+          "term_en": "non-functional requirement",
+          "explain": "描述系统要「做得多好」而不是「做什么」的要求，比如页面两秒内打开、数据加密存储、全年可用率达标，常被遗漏却直接决定体验。",
+          "analogy": "买车不只看能不能开，还看油耗和安全评级。"
+        },
+        {
+          "term": "需求追溯",
+          "term_en": "requirements traceability",
+          "explain": "为每条需求记下它来自哪个上层目标、对应哪些功能和测试，形成一张可上下查找的关系表，变更时能快速看清影响范围。",
+          "analogy": "族谱：随便找一个人都能查到祖辈和后代。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "业务方说要什么功能，直接记成功能需求排进开发就行。",
+          "why": "业务方提的往往是自己想到的解决方案，跳过业务目标和用户任务直接做功能，容易做出没人用、也说不清价值的东西。",
+          "right": "先追问它服务哪个业务目标、哪类用户要完成什么，再推导功能，并保留各层之间的追溯关系。"
+        }
+      ],
+      "approach": "采分点是讲清三层分别回答的问题，并点出层层追溯的价值。推荐结构：三层框架 → 用同一个发票例子贯穿三层 → 补充非功能需求 → 追溯的意义。用「说不清服务哪个目标就先别做」收尾。会失分的是只背定义，没有一个贯穿始终的业务例子。",
+      "tips": "必备术语 business requirement、traceability。可延伸：真实需求挖掘、需求文档结构。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "REQ-F002",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "真实需求",
+        "待办任务",
+        "追问"
+      ],
+      "concepts": [
+        "req.real_need"
+      ],
+      "prereq": [
+        "REQ-F001"
+      ],
+      "q_cn": "用户说「我要一个导出按钮」，怎么找到他真正的需求？",
+      "q_en": "When a user asks for an export button, how do you find the need behind the request?",
+      "gist": {
+        "cn": "把用户提的方案当线索，追问他要完成的任务和卡点，再选最合适的解法。",
+        "en": "Treat the request as a clue, uncover the job behind it, then choose the best solution."
+      },
+      "points": [
+        {
+          "en": "a clue to a problem",
+          "cn": "功能请求是问题的线索，不是需求规格"
+        },
+        {
+          "en": "Users describe solutions they can imagine",
+          "cn": "用户说的是方案，背后藏着别的任务"
+        },
+        {
+          "en": "what they do right after exporting",
+          "cn": "追问导出之后做什么、多久一次、哪里麻烦"
+        },
+        {
+          "en": "might serve them better than an export",
+          "cn": "弄清任务后再选更合适的解法"
+        },
+        {
+          "en": "sometimes the export really is the right answer",
+          "cn": "原方案也可能就是正解，目的不是推翻用户"
+        }
+      ],
+      "concept": {
+        "cn": "真实需求挖掘是指不把用户提出的功能当作需求本身，而是追问它背后要完成的任务和要解决的问题。用户通常只能描述自己想得到的解决方案，比如「加个导出按钮」，真正的目标可能是做周报、对账或向上汇报。常用方法有连续追问「为什么」，以及「待办任务」理论：把用户看成雇用产品来完成某项任务的人。找到任务后，产品经理才能在多个方案中选出成本更低、体验更好的那个，同时避免把个别人的偏好做成长期负担。",
+        "en": "Uncovering the real need means not treating the feature a user asks for as the requirement itself, but asking what task it is meant to accomplish and what problem it solves. Users can usually only describe solutions they can imagine, such as 'add an export button', while the real goal may be a weekly report, a reconciliation, or an update for their boss. Common methods include asking 'why' several times and the 'jobs to be done' lens, which sees users as hiring a product to get a job done. Once the job is clear, a product manager can choose, among several options, the one that costs less and works better, and avoid turning one person's preference into a long-term burden."
+      },
+      "a_pairs": [
+        {
+          "en": "I treat a feature request as a clue to a problem, not as the spec.",
+          "cn": "我把功能请求当成问题的线索，而不是现成的需求规格。"
+        },
+        {
+          "en": "Users describe solutions they can imagine, so an export button often hides a different job, like building a weekly report for their boss.",
+          "cn": "用户描述的是他们能想到的解决办法，所以一个导出按钮背后往往藏着别的任务，比如给老板做周报。"
+        },
+        {
+          "en": "I'd ask what they do right after exporting, how often they do it, and what goes wrong today.",
+          "cn": "我会问：导出之后紧接着做什么、多久做一次、现在哪里最麻烦。"
+        },
+        {
+          "en": "Asking 'why' a few times usually gets past the surface request to the real goal, and the 'jobs to be done' idea frames that goal as a job the user hires the product to do.",
+          "cn": "连问几次「为什么」，通常就能越过表面请求找到真正的目标，而「待办任务」理论会把这个目标看作用户「雇用」产品去完成的任务。"
+        },
+        {
+          "en": "If the real job is a weekly report, a scheduled dashboard or an automatic email might serve them better than an export.",
+          "cn": "如果真实任务是做周报，那么定时仪表盘或自动推送的邮件可能比导出更好用。"
+        },
+        {
+          "en": "That said, sometimes the export really is the right answer, for example when the data feeds another system you don't control.",
+          "cn": "话虽如此，有时导出确实是正解，比如数据要喂给一个你控制不了的系统。"
+        },
+        {
+          "en": "The point isn't to prove users wrong; it's to make sure you're solving the problem they actually have.",
+          "cn": "关键不是证明用户错了，而是确保你解决的是他们真正遇到的问题。"
+        },
+        {
+          "en": "My rule of thumb: listen to the request, but design for the job behind it.",
+          "cn": "我的经验法则是：认真听用户的请求，但按请求背后的任务去设计。"
+        }
+      ],
+      "a_en": "I treat a feature request as a clue to a problem, not as the spec. Users describe solutions they can imagine, so an export button often hides a different job, like building a weekly report for their boss. I'd ask what they do right after exporting, how often they do it, and what goes wrong today. Asking 'why' a few times usually gets past the surface request to the real goal, and the 'jobs to be done' idea frames that goal as a job the user hires the product to do. If the real job is a weekly report, a scheduled dashboard or an automatic email might serve them better than an export. That said, sometimes the export really is the right answer, for example when the data feeds another system you don't control. The point isn't to prove users wrong; it's to make sure you're solving the problem they actually have. My rule of thumb: listen to the request, but design for the job behind it.",
+      "a_cn": "我把功能请求当成问题的线索，而不是现成的需求规格。用户描述的是他们能想到的解决办法，所以一个导出按钮背后往往藏着别的任务，比如给老板做周报。我会问：导出之后紧接着做什么、多久做一次、现在哪里最麻烦。连问几次「为什么」，通常就能越过表面请求找到真正的目标，而「待办任务」理论会把这个目标看作用户「雇用」产品去完成的任务。如果真实任务是做周报，那么定时仪表盘或自动推送的邮件可能比导出更好用。话虽如此，有时导出确实是正解，比如数据要喂给一个你控制不了的系统。关键不是证明用户错了，而是确保你解决的是他们真正遇到的问题。我的经验法则是：认真听用户的请求，但按请求背后的任务去设计。",
+      "key_phrases": [
+        {
+          "en": "a clue to a problem",
+          "cn": "问题的线索",
+          "type": "搭配",
+          "usage": "a clue to 指线索，后接有待解开的问题"
+        },
+        {
+          "en": "gets past the surface",
+          "cn": "越过表面",
+          "type": "搭配",
+          "usage": "get past the surface 指越过表象，近义 dig deeper"
+        },
+        {
+          "en": "That said",
+          "cn": "话虽如此",
+          "type": "句型",
+          "usage": "That said 用于让步转折，比 however 更口语"
+        },
+        {
+          "en": "The point isn't to",
+          "cn": "关键不在于",
+          "type": "句型",
+          "usage": "The point isn't to X; it's to Y 先否定误解再点明目的"
+        },
+        {
+          "en": "design for the job behind it",
+          "cn": "按背后的任务设计",
+          "type": "句型",
+          "usage": "design for X 表按某目标设计，可换 build for"
+        }
+      ],
+      "basics": [
+        {
+          "term": "待办任务理论",
+          "term_en": "Jobs to Be Done (JTBD)",
+          "explain": "一种理解需求的视角：用户不是想要某个产品，而是「雇用」它来完成某项任务。弄清任务和场景，就能看出哪些方案都能替代它。",
+          "analogy": "人们要的不是电钻，而是墙上的那个孔。"
+        },
+        {
+          "term": "连续追问",
+          "term_en": "5 Whys",
+          "explain": "对一个问题连续追问几次「为什么」，一层层剥开表面原因，直到找到根本目标或根因，次数不必死守五次。",
+          "analogy": "剥洋葱，一层层剥到中心。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "用户要什么就做什么，最尊重用户，也最不会出错。",
+          "why": "用户只能提出自己想得到的方案，照单全收会做出很多零散功能，而真正的任务可能有更简单、可复用的解法。",
+          "right": "把请求当线索，追问它服务的任务、频率和现有痛点，再比较几种方案的成本与效果后决定。"
+        }
+      ],
+      "approach": "采分点是区分用户提出的方案和背后的任务，并给出追问的具体问题。推荐结构：请求只是线索 → 追问三个问题 → 用周报例子说明替代方案 → 承认有时原方案就是对的。用「听请求，按任务设计」收尾。会失分的是暗示用户都不懂、需求都要推翻。",
+      "tips": "必备术语 jobs to be done、root need、5 Whys。可延伸：B 端为何不能客户要什么就做什么、需求获取方法。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "REQ-F003",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "需求调研",
+        "访谈",
+        "跟岗观察"
+      ],
+      "concepts": [
+        "req.elicitation"
+      ],
+      "prereq": [
+        "REQ-F001"
+      ],
+      "q_cn": "需求调研有哪些方法？访谈和现场跟岗各适合什么场景？",
+      "q_en": "What methods can you use to gather requirements, and when should you use interviews versus on-site observation?",
+      "gist": {
+        "cn": "访谈问清目标和想法，跟岗看清真实操作；再用工作坊对齐分歧、用数据核实规模。",
+        "en": "Interviews reveal goals and opinions, observation reveals real behavior; combine them, then validate with data."
+      },
+      "points": [
+        {
+          "en": "based on what I need to learn",
+          "cn": "按想弄清的问题来选方法"
+        },
+        {
+          "en": "Interviews are best for goals, pain points, and decision logic",
+          "cn": "访谈适合了解目标、痛点与决策逻辑"
+        },
+        {
+          "en": "shows the workarounds nobody mentions",
+          "cn": "跟岗能看到没人提起的变通办法"
+        },
+        {
+          "en": "Workshops help when several departments own parts of a process",
+          "cn": "跨部门流程用工作坊对齐"
+        },
+        {
+          "en": "five users or five hundred",
+          "cn": "问卷和数据核实影响规模，先读现有资料"
+        }
+      ],
+      "concept": {
+        "cn": "需求获取是从业务方和用户那里系统地收集需求信息的过程，常见方法包括访谈、现场观察或跟岗、工作坊、问卷、文档分析和系统数据分析。不同方法擅长的信息不同：访谈擅长了解目标与想法，跟岗擅长发现真实操作与变通办法，工作坊擅长在多方之间对齐流程，问卷和数据擅长判断问题有多普遍。B 端场景用户角色多、流程长，单一方法容易以偏概全，通常需要组合使用，并先做资料准备再见人。",
+        "en": "Requirements elicitation is the process of systematically gathering requirement information from business stakeholders and users. Common methods include interviews, on-site observation or job shadowing, workshops, surveys, document analysis, and system data analysis. Each method is good at different things: interviews reveal goals and opinions, shadowing uncovers real operations and workarounds, workshops align several parties on one process, and surveys and data show how widespread a problem is. B2B settings have many roles and long processes, so relying on a single method easily gives a skewed picture; methods are usually combined, and documents are reviewed before meeting people."
+      },
+      "a_pairs": [
+        {
+          "en": "I pick the method based on what I need to learn: what people think, what they actually do, or how big the problem is.",
+          "cn": "我按想弄清的东西选方法：人们怎么想、实际怎么做，还是问题有多大。"
+        },
+        {
+          "en": "Interviews are best for goals, pain points, and decision logic, especially with managers who won't use the system every day.",
+          "cn": "访谈最适合了解目标、痛点和决策逻辑，尤其是那些不会天天用系统的管理者。"
+        },
+        {
+          "en": "But people describe their work in an idealized way, so for operational roles I'd rather sit next to them for half a day.",
+          "cn": "但人们描述自己的工作时会理想化，所以对一线操作岗位，我宁愿在旁边坐上半天看他们干活。"
+        },
+        {
+          "en": "Shadowing shows the workarounds nobody mentions, like a spreadsheet kept on the side because the system can't handle exceptions.",
+          "cn": "跟岗能看到没人提起的变通办法，比如因为系统处理不了特殊情况，旁边一直开着一张表格。"
+        },
+        {
+          "en": "Workshops help when several departments own parts of a process and need to agree on one version of it.",
+          "cn": "当一个流程由几个部门分段负责、需要对齐成一个版本时，工作坊很有用。"
+        },
+        {
+          "en": "Surveys and system data come next, to check whether a pain point affects five users or five hundred.",
+          "cn": "问卷和系统数据放在后面，用来核实一个痛点影响的是五个人还是五百个人。"
+        },
+        {
+          "en": "In B2B, I'd also read existing documents, like process manuals and past tickets, before meeting anyone, so I don't waste their time on basics.",
+          "cn": "在 B 端，我还会在见任何人之前先读现有资料，比如流程手册和历史工单，免得在基础问题上浪费对方时间。"
+        },
+        {
+          "en": "Bottom line: interviews tell you what people say, observation tells you what they do, and you need both.",
+          "cn": "一句话总结：访谈告诉你人们怎么说，观察告诉你人们怎么做，两者缺一不可。"
+        }
+      ],
+      "a_en": "I pick the method based on what I need to learn: what people think, what they actually do, or how big the problem is. Interviews are best for goals, pain points, and decision logic, especially with managers who won't use the system every day. But people describe their work in an idealized way, so for operational roles I'd rather sit next to them for half a day. Shadowing shows the workarounds nobody mentions, like a spreadsheet kept on the side because the system can't handle exceptions. Workshops help when several departments own parts of a process and need to agree on one version of it. Surveys and system data come next, to check whether a pain point affects five users or five hundred. In B2B, I'd also read existing documents, like process manuals and past tickets, before meeting anyone, so I don't waste their time on basics. Bottom line: interviews tell you what people say, observation tells you what they do, and you need both.",
+      "a_cn": "我按想弄清的东西选方法：人们怎么想、实际怎么做，还是问题有多大。访谈最适合了解目标、痛点和决策逻辑，尤其是那些不会天天用系统的管理者。但人们描述自己的工作时会理想化，所以对一线操作岗位，我宁愿在旁边坐上半天看他们干活。跟岗能看到没人提起的变通办法，比如因为系统处理不了特殊情况，旁边一直开着一张表格。当一个流程由几个部门分段负责、需要对齐成一个版本时，工作坊很有用。问卷和系统数据放在后面，用来核实一个痛点影响的是五个人还是五百个人。在 B 端，我还会在见任何人之前先读现有资料，比如流程手册和历史工单，免得在基础问题上浪费对方时间。一句话总结：访谈告诉你人们怎么说，观察告诉你人们怎么做，两者缺一不可。",
+      "key_phrases": [
+        {
+          "en": "decision logic",
+          "cn": "决策逻辑",
+          "type": "词汇",
+          "usage": "decision logic 指决策依据与规则，B 端访谈常用"
+        },
+        {
+          "en": "in an idealized way",
+          "cn": "理想化地",
+          "type": "搭配",
+          "usage": "指描述比现实美好，可换 paint a rosy picture"
+        },
+        {
+          "en": "workarounds",
+          "cn": "变通办法",
+          "type": "词汇",
+          "usage": "名词 workaround 连写，动词短语 work around 分写"
+        },
+        {
+          "en": "I'd rather",
+          "cn": "我宁愿",
+          "type": "句型",
+          "usage": "I'd rather + 动词原形，表达更倾向的做法"
+        },
+        {
+          "en": "waste their time on basics",
+          "cn": "在基础问题上浪费对方时间",
+          "type": "搭配",
+          "usage": "waste time on 后接名词或动名词"
+        }
+      ],
+      "basics": [
+        {
+          "term": "跟岗观察",
+          "term_en": "job shadowing",
+          "explain": "到用户实际工作的地方，在旁边观察他们一段时间怎么完成任务，边看边问，能发现用户自己没意识到或不愿提的操作细节。",
+          "analogy": "学做菜，看厨师做一遍比听他讲更准。"
+        },
+        {
+          "term": "需求工作坊",
+          "term_en": "requirements workshop",
+          "explain": "把相关部门的人召集在一起，在主持人带领下一起梳理流程、澄清分歧、确认优先级，适合多方共同负责一件事的场景。",
+          "analogy": "装修前业主、设计师和施工队开现场会。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "访谈了几位领导，需求就算调研清楚了。",
+          "why": "管理者讲的是目标和期望，一线人员的真实操作、例外情况和变通办法往往只有到现场才看得到，遗漏会导致上线后用不起来。",
+          "right": "访谈管理者明确目标，跟岗一线人员看真实流程，再用数据或问卷核实问题的普遍程度。"
+        }
+      ],
+      "approach": "采分点是按「想弄清什么」来选方法，并讲清访谈与跟岗的互补关系。推荐结构：选方法的标准 → 访谈的长处 → 跟岗看到的变通办法 → 工作坊与数据的作用 → 先读资料。用「访谈听说法，观察看做法」收尾。会失分的是只罗列方法名称，不讲各自适用场景。",
+      "tips": "必备术语 elicitation、shadowing、workaround。可延伸：真实需求挖掘、用例与异常流程。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "REQ-F004",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "基础",
+      "tags": [
+        "用户故事",
+        "验收标准",
+        "敏捷"
+      ],
+      "concepts": [
+        "req.user_story"
+      ],
+      "prereq": [
+        "REQ-F001"
+      ],
+      "q_cn": "什么是用户故事？好的验收标准长什么样？",
+      "q_en": "What is a user story, and what do good acceptance criteria look like?",
+      "gist": {
+        "cn": "用户故事说明谁、要做什么、为了什么；验收标准用具体场景写清做到什么算完成。",
+        "en": "A user story states who, what, and why; acceptance criteria define done with testable scenarios."
+      },
+      "points": [
+        {
+          "en": "as a role, I want something, so that I get a benefit",
+          "cn": "格式：作为某角色，我想要什么，以便获得什么"
+        },
+        {
+          "en": "a placeholder for a conversation",
+          "cn": "故事刻意写得轻，是讨论的占位符"
+        },
+        {
+          "en": "given-when-then format",
+          "cn": "验收标准让它可测试，常用假如—当—那么"
+        },
+        {
+          "en": "INVEST check",
+          "cn": "用 INVEST 六个标准检查故事质量"
+        },
+        {
+          "en": "the story isn't ready",
+          "cn": "读完仍问做到什么算完，就还没准备好"
+        }
+      ],
+      "concept": {
+        "cn": "用户故事是敏捷开发中描述需求的轻量方式，标准句式是「作为某角色，我想要某功能，以便实现某价值」，强调从用户视角说明谁需要、要什么、为什么。它刻意保持简短，细节在团队讨论中补全。验收标准则把「做到什么算完成」写成可检验的条件，常用「假如—当—那么」的场景格式，开发、测试和业务方据此对齐。好的故事还应满足 INVEST 原则：独立、可协商、有价值、可估算、足够小、可测试。",
+        "en": "A user story is a lightweight way to describe a requirement in agile development. Its standard form is 'as a role, I want a capability, so that I get a value', describing from the user's point of view who needs what and why. It is deliberately brief, and the details are filled in through team conversation. Acceptance criteria turn 'what counts as done' into checkable conditions, often written as given-when-then scenarios, so that developers, testers, and the business can align on them. A good story should also satisfy the INVEST principles: independent, negotiable, valuable, estimable, small, and testable."
+      },
+      "a_pairs": [
+        {
+          "en": "A user story is a short description of a need from the user's point of view: as a role, I want something, so that I get a benefit.",
+          "cn": "用户故事是从用户视角对一个需求的简短描述：作为某个角色，我想要某样东西，以便获得某种好处。"
+        },
+        {
+          "en": "For example, as a sales manager, I want to see deals stuck for over two weeks, so that I can step in before they're lost.",
+          "cn": "比如：作为销售经理，我想看到卡住超过两周的商机，以便在丢单前及时介入。"
+        },
+        {
+          "en": "The story is deliberately light; it's a placeholder for a conversation, not a full spec.",
+          "cn": "用户故事故意写得很轻，它是一次讨论的占位符，而不是完整的规格说明。"
+        },
+        {
+          "en": "Acceptance criteria are what make it testable, and I like the given-when-then format for them.",
+          "cn": "让它可以被测试的是验收标准，我喜欢用「假如—当—那么」的格式来写。"
+        },
+        {
+          "en": "Given a deal hasn't changed stage in fourteen days, when the manager opens the pipeline view, then that deal is highlighted with its owner's name.",
+          "cn": "假如一个商机十四天没有推进阶段，当经理打开销售漏斗视图时，那么这个商机会被高亮显示并标出负责人。"
+        },
+        {
+          "en": "Good stories also pass the INVEST check: independent, negotiable, valuable, estimable, small, and testable.",
+          "cn": "好的用户故事还要通过 INVEST 检查：独立、可协商、有价值、可估算、足够小、可测试。"
+        },
+        {
+          "en": "If developers and testers read the criteria and still ask what done means, the story isn't ready.",
+          "cn": "如果开发和测试读完验收标准还在问「做到什么算完」，这个故事就还没准备好。"
+        },
+        {
+          "en": "My rule of thumb: the story says why it matters, and the criteria say how we'll know it works.",
+          "cn": "我的经验法则是：故事说明为什么重要，验收标准说明我们怎么知道它管用。"
+        }
+      ],
+      "a_en": "A user story is a short description of a need from the user's point of view: as a role, I want something, so that I get a benefit. For example, as a sales manager, I want to see deals stuck for over two weeks, so that I can step in before they're lost. The story is deliberately light; it's a placeholder for a conversation, not a full spec. Acceptance criteria are what make it testable, and I like the given-when-then format for them. Given a deal hasn't changed stage in fourteen days, when the manager opens the pipeline view, then that deal is highlighted with its owner's name. Good stories also pass the INVEST check: independent, negotiable, valuable, estimable, small, and testable. If developers and testers read the criteria and still ask what done means, the story isn't ready. My rule of thumb: the story says why it matters, and the criteria say how we'll know it works.",
+      "a_cn": "用户故事是从用户视角对一个需求的简短描述：作为某个角色，我想要某样东西，以便获得某种好处。比如：作为销售经理，我想看到卡住超过两周的商机，以便在丢单前及时介入。用户故事故意写得很轻，它是一次讨论的占位符，而不是完整的规格说明。让它可以被测试的是验收标准，我喜欢用「假如—当—那么」的格式来写。假如一个商机十四天没有推进阶段，当经理打开销售漏斗视图时，那么这个商机会被高亮显示并标出负责人。好的用户故事还要通过 INVEST 检查：独立、可协商、有价值、可估算、足够小、可测试。如果开发和测试读完验收标准还在问「做到什么算完」，这个故事就还没准备好。我的经验法则是：故事说明为什么重要，验收标准说明我们怎么知道它管用。",
+      "key_phrases": [
+        {
+          "en": "from the user's point of view",
+          "cn": "从用户视角",
+          "type": "搭配",
+          "usage": "from sb's point of view 表从某人角度出发"
+        },
+        {
+          "en": "step in",
+          "cn": "介入",
+          "type": "搭配",
+          "usage": "step in 指及时出手干预，可换 intervene"
+        },
+        {
+          "en": "deliberately light",
+          "cn": "有意写得简略",
+          "type": "搭配",
+          "usage": "deliberately 强调有意为之，而非疏漏"
+        },
+        {
+          "en": "a placeholder for a conversation",
+          "cn": "讨论的占位符",
+          "type": "句型",
+          "usage": "X is a placeholder for Y 表先占位、后补全"
+        },
+        {
+          "en": "what done means",
+          "cn": "完成意味着什么",
+          "type": "搭配",
+          "usage": "done 作名词指完成标准，常说 definition of done"
+        }
+      ],
+      "basics": [
+        {
+          "term": "验收标准",
+          "term_en": "acceptance criteria",
+          "explain": "一条需求被认为「做完」必须满足的具体条件，写得足够明确，测试人员可以据此逐条判断通过或不通过。",
+          "analogy": "装修验收单：墙面平整、插座通电才签字。"
+        },
+        {
+          "term": "INVEST 原则",
+          "term_en": "INVEST",
+          "explain": "检验用户故事质量的六个标准的首字母：独立、可协商、有价值、可估算、足够小、可测试，帮团队发现写得太大或太空的故事。",
+          "analogy": "体检表上的六项指标，一项不过就复查。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "用户故事写好了「作为…我想要…」，就可以直接开发了。",
+          "why": "句式只说明了谁要什么，没有验收标准时开发、测试和业务方对完成的理解各不相同，常在验收时才发现做偏了。",
+          "right": "每个故事至少配几条可测试的验收标准，覆盖主流程和关键例外，开发前和团队一起确认。"
+        }
+      ],
+      "approach": "采分点是讲清故事的三要素、它作为讨论占位符的定位，以及验收标准如何让它可测试。推荐结构：句式 → 销售例子 → 假如—当—那么 → INVEST → 准备就绪的判断。用「故事说为什么，标准说怎么验证」收尾。会失分的是把用户故事等同于功能清单。",
+      "tips": "必备术语 user story、acceptance criteria。可延伸：PRD 结构、把 AI 需求写成可验收标准。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "REQ-F005",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "用例",
+        "系统边界",
+        "异常流程"
+      ],
+      "concepts": [
+        "req.use_case"
+      ],
+      "prereq": [
+        "REQ-F001"
+      ],
+      "q_cn": "用例怎样描述系统边界？主流程和异常流程为何都要写？",
+      "q_en": "How does a use case define a system's boundary, and why write both the main flow and the exceptions?",
+      "gist": {
+        "cn": "用例写清参与者与系统的交互步骤；主流程定边界，异常流程决定上线后稳不稳。",
+        "en": "A use case maps actor-system interactions; the happy path sets scope, exceptions decide whether it holds up."
+      },
+      "points": [
+        {
+          "en": "interacts with your system to reach one goal",
+          "cn": "用例描述参与者与系统交互达成一个目标"
+        },
+        {
+          "en": "draws the boundary",
+          "cn": "列出参与者和目标就画出系统边界"
+        },
+        {
+          "en": "the main flow is the happy path",
+          "cn": "主流程是一切顺利的路径"
+        },
+        {
+          "en": "They fail on the exceptions",
+          "cn": "项目往往栽在异常流程上"
+        },
+        {
+          "en": "Each exception needs a defined behavior",
+          "cn": "每种异常都要有明确的处理方式"
+        }
+      ],
+      "concept": {
+        "cn": "用例是描述系统功能的一种场景化方法：围绕一个参与者想达成的目标，写出参与者与系统之间一步步的交互。参与者可以是人，也可以是外部系统。把所有参与者和目标列出来，就明确了系统的边界，哪些归本系统负责、哪些交给别的系统或人工处理。每个用例包含主成功流程，以及各种扩展和异常流程，例如数据缺失、审批人缺席、超出权限。B 端系统的复杂度大多藏在异常里，写清它们才能避免开发靠猜、上线后频繁出问题。",
+        "en": "A use case is a scenario-based way to describe system functionality: around the goal an actor wants to reach, it writes out the step-by-step interaction between the actor and the system. An actor can be a person or an external system. Listing all actors and goals makes the system boundary clear: what this system is responsible for, and what is handed to other systems or manual work. Each use case contains a main success flow plus various extensions and exception flows, such as missing data, an absent approver, or exceeding permissions. Most of the complexity of a B2B system hides in the exceptions; writing them down prevents developers from guessing and avoids frequent problems after launch."
+      },
+      "a_pairs": [
+        {
+          "en": "A use case describes how an actor, a person or another system, interacts with your system to reach one goal.",
+          "cn": "用例描述的是一个参与者，也就是一个人或另一个系统，如何与你的系统交互来达成一个目标。"
+        },
+        {
+          "en": "Listing the actors and their goals draws the boundary: anything outside it is someone else's system or a manual step.",
+          "cn": "列出参与者和他们的目标，就画出了边界：边界之外的，要么是别人的系统，要么是人工步骤。"
+        },
+        {
+          "en": "Take 'submit an expense claim': the main flow is the happy path, where the employee uploads a receipt, the manager approves, and finance pays.",
+          "cn": "以「提交报销」为例：主流程就是一切顺利的路径，员工上传发票、经理审批、财务付款。"
+        },
+        {
+          "en": "That path is usually obvious, so it's not where projects fail.",
+          "cn": "这条路径通常显而易见，所以项目一般不会栽在这里。"
+        },
+        {
+          "en": "They fail on the exceptions: the receipt is blurry, the manager is on leave, or the amount exceeds a limit and needs a second approver.",
+          "cn": "项目往往栽在异常上：发票模糊、经理休假，或者金额超限需要第二个人审批。"
+        },
+        {
+          "en": "Each exception needs a defined behavior, otherwise developers will guess and users won't know what to do.",
+          "cn": "每种异常都需要明确的处理方式，否则开发只能靠猜，用户也不知道该怎么办。"
+        },
+        {
+          "en": "In B2B systems, exceptions often take up most of the design effort, even though they're a small share of daily volume.",
+          "cn": "在 B 端系统里，异常流程往往只占日常业务量的一小部分，却会耗掉大部分设计精力。"
+        },
+        {
+          "en": "My rule of thumb: the happy path proves the idea, but the exceptions decide whether it survives real users.",
+          "cn": "我的经验法则是：主流程证明想法可行，异常流程决定它能不能经受住真实用户。"
+        }
+      ],
+      "a_en": "A use case describes how an actor, a person or another system, interacts with your system to reach one goal. Listing the actors and their goals draws the boundary: anything outside it is someone else's system or a manual step. Take 'submit an expense claim': the main flow is the happy path, where the employee uploads a receipt, the manager approves, and finance pays. That path is usually obvious, so it's not where projects fail. They fail on the exceptions: the receipt is blurry, the manager is on leave, or the amount exceeds a limit and needs a second approver. Each exception needs a defined behavior, otherwise developers will guess and users won't know what to do. In B2B systems, exceptions often take up most of the design effort, even though they're a small share of daily volume. My rule of thumb: the happy path proves the idea, but the exceptions decide whether it survives real users.",
+      "a_cn": "用例描述的是一个参与者，也就是一个人或另一个系统，如何与你的系统交互来达成一个目标。列出参与者和他们的目标，就画出了边界：边界之外的，要么是别人的系统，要么是人工步骤。以「提交报销」为例：主流程就是一切顺利的路径，员工上传发票、经理审批、财务付款。这条路径通常显而易见，所以项目一般不会栽在这里。项目往往栽在异常上：发票模糊、经理休假，或者金额超限需要第二个人审批。每种异常都需要明确的处理方式，否则开发只能靠猜，用户也不知道该怎么办。在 B 端系统里，异常流程往往只占日常业务量的一小部分，却会耗掉大部分设计精力。我的经验法则是：主流程证明想法可行，异常流程决定它能不能经受住真实用户。",
+      "key_phrases": [
+        {
+          "en": "draws the boundary",
+          "cn": "划定边界",
+          "type": "搭配",
+          "usage": "draw the boundary 指划定范围，可换 set the scope"
+        },
+        {
+          "en": "the happy path",
+          "cn": "顺利路径",
+          "type": "词汇",
+          "usage": "happy path 指一切顺利的主流程，与异常流程相对"
+        },
+        {
+          "en": "fail on the exceptions",
+          "cn": "栽在异常上",
+          "type": "搭配",
+          "usage": "fail on 强调失败发生在哪个环节"
+        },
+        {
+          "en": "a small share of",
+          "cn": "一小部分",
+          "type": "搭配",
+          "usage": "a small share of 表占比很小，后接总量名词"
+        },
+        {
+          "en": "survives real users",
+          "cn": "经受住真实用户",
+          "type": "搭配",
+          "usage": "survive 原指幸存，这里指经受住考验"
+        }
+      ],
+      "basics": [
+        {
+          "term": "参与者",
+          "term_en": "actor",
+          "explain": "在用例中与系统交互、想通过系统达成目标的一方，可以是某个岗位的人，也可以是另一个系统，比如支付网关或企业财务系统。",
+          "analogy": "顾客和供应商都在厨房外，却都要和厨房打交道。"
+        },
+        {
+          "term": "异常流程",
+          "term_en": "exception flow",
+          "explain": "主流程之外，出现错误、数据不全、条件不满足等情况时系统应该怎么处理的步骤，例如重新上传、转交他人、提示后终止。",
+          "analogy": "航班取消后的改签、退票与住宿安排。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "先把主流程做出来上线，异常情况等用户反馈了再补。",
+          "why": "异常没有定义时开发会各自猜测处理方式，上线后用户卡在审批人请假、数据不全等环节，业务直接中断，返工代价远高于事前设计。",
+          "right": "主流程定下后逐步列出每一步可能出错的情况，先为高频和高风险的异常定义处理方式。"
+        }
+      ],
+      "approach": "采分点是讲清参与者与目标如何划定边界，以及异常流程的分量。推荐结构：用例定义 → 边界 → 报销例子的主流程 → 三种异常 → 异常需要明确行为。用「主流程证明想法，异常决定能否经受真实用户」收尾。会失分的是只讲画用例图，不讲异常流程。",
+      "tips": "必备术语 actor、happy path、exception flow。可延伸：业务状态机、PRD 中的业务规则。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "REQ-F006",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "非功能需求",
+        "质量属性"
+      ],
+      "concepts": [
+        "req.nfr"
+      ],
+      "prereq": [
+        "REQ-F001"
+      ],
+      "q_cn": "什么是非功能需求？为什么它常被漏掉又最致命？",
+      "q_en": "What are non-functional requirements, and why are they often missed yet so costly?",
+      "gist": {
+        "cn": "非功能需求规定系统要做得多好；没人主动提，却决定上线能否扛住、过审、被信任。",
+        "en": "Non-functional requirements define how well a system works; nobody asks, but they decide launch success."
+      },
+      "points": [
+        {
+          "en": "how well it has to do it",
+          "cn": "非功能需求说明系统必须做到多好"
+        },
+        {
+          "en": "response time, availability, security",
+          "cn": "包括响应时间、可用性、安全等"
+        },
+        {
+          "en": "business users rarely ask for them",
+          "cn": "业务方默认不提，所以常被漏掉"
+        },
+        {
+          "en": "changes the architecture, not just a screen",
+          "cn": "后期补要改架构，代价高"
+        },
+        {
+          "en": "make each one measurable",
+          "cn": "每条都写成可衡量的指标"
+        }
+      ],
+      "concept": {
+        "cn": "非功能需求描述的是系统在质量上必须达到的标准，而不是具体功能，常见类别包括性能、可用性、安全、可扩展性、易用性、合规与数据保存等。它们之所以常被遗漏，是因为业务方很少主动提出，往往默认系统理应快速、稳定、安全。但这类要求经常决定技术架构、部署方式和供应商选择，后期补救代价极高。好的非功能需求必须可衡量，例如写明响应时间的百分位目标或可用率，否则无法验收。",
+        "en": "Non-functional requirements describe the quality standards a system must meet rather than specific functions. Common categories include performance, availability, security, scalability, usability, compliance, and data retention. They are often missed because the business rarely raises them and simply assumes the system will be fast, stable, and safe. Yet these requirements frequently determine the technical architecture, deployment model, and vendor choice, so fixing them late is very expensive. Good non-functional requirements must be measurable, for example by stating a percentile target for response time or an availability rate; otherwise they cannot be accepted or rejected."
+      },
+      "a_pairs": [
+        {
+          "en": "Functional requirements say what the system does; non-functional requirements say how well it has to do it.",
+          "cn": "功能需求说明系统做什么，非功能需求说明它必须做到多好。"
+        },
+        {
+          "en": "They cover things like response time, availability, security, data retention, and how many users it can handle at once.",
+          "cn": "它包括响应时间、可用性、安全、数据保存期限，以及能同时承载多少用户等。"
+        },
+        {
+          "en": "They're easy to miss because business users rarely ask for them; they just assume the system will be fast and safe.",
+          "cn": "它们容易被漏掉，因为业务用户很少主动提，他们只是默认系统会又快又安全。"
+        },
+        {
+          "en": "But they're expensive to add late, since meeting them often changes the architecture, not just a screen.",
+          "cn": "但事后再补代价很高，因为满足它们往往要改架构，而不只是改一个页面。"
+        },
+        {
+          "en": "For example, a bank client may require data to stay in the country, which can rule out a vendor's standard cloud setup.",
+          "cn": "比如，一家银行客户可能要求数据不出境，这可能直接排除某个供应商的标准云部署方案。"
+        },
+        {
+          "en": "So I ask about them early, and I make each one measurable, like 'search returns in under two seconds for ninety-five percent of requests'.",
+          "cn": "所以我会尽早询问，并把每一条写成可衡量的，比如「百分之九十五的搜索请求在两秒内返回」。"
+        },
+        {
+          "en": "Vague wording like 'the system should be fast' can't be tested, so it isn't really a requirement.",
+          "cn": "像「系统要快」这样含糊的说法无法测试，所以算不上真正的需求。"
+        },
+        {
+          "en": "Bottom line: users notice features, but they leave because of slowness, outages, and broken trust.",
+          "cn": "一句话总结：用户注意到的是功能，但让他们离开的往往是慢、宕机和信任受损。"
+        }
+      ],
+      "a_en": "Functional requirements say what the system does; non-functional requirements say how well it has to do it. They cover things like response time, availability, security, data retention, and how many users it can handle at once. They're easy to miss because business users rarely ask for them; they just assume the system will be fast and safe. But they're expensive to add late, since meeting them often changes the architecture, not just a screen. For example, a bank client may require data to stay in the country, which can rule out a vendor's standard cloud setup. So I ask about them early, and I make each one measurable, like 'search returns in under two seconds for ninety-five percent of requests'. Vague wording like 'the system should be fast' can't be tested, so it isn't really a requirement. Bottom line: users notice features, but they leave because of slowness, outages, and broken trust.",
+      "a_cn": "功能需求说明系统做什么，非功能需求说明它必须做到多好。它包括响应时间、可用性、安全、数据保存期限，以及能同时承载多少用户等。它们容易被漏掉，因为业务用户很少主动提，他们只是默认系统会又快又安全。但事后再补代价很高，因为满足它们往往要改架构，而不只是改一个页面。比如，一家银行客户可能要求数据不出境，这可能直接排除某个供应商的标准云部署方案。所以我会尽早询问，并把每一条写成可衡量的，比如「百分之九十五的搜索请求在两秒内返回」。像「系统要快」这样含糊的说法无法测试，所以算不上真正的需求。一句话总结：用户注意到的是功能，但让他们离开的往往是慢、宕机和信任受损。",
+      "key_phrases": [
+        {
+          "en": "how well",
+          "cn": "做得多好",
+          "type": "搭配",
+          "usage": "how well 强调程度与质量，区别于 what"
+        },
+        {
+          "en": "easy to miss",
+          "cn": "容易被忽略",
+          "type": "搭配",
+          "usage": "easy to miss 可换 easily overlooked"
+        },
+        {
+          "en": "rule out",
+          "cn": "排除",
+          "type": "搭配",
+          "usage": "rule out 表排除某种可能，常接 option / vendor"
+        },
+        {
+          "en": "make each one measurable",
+          "cn": "把每条都写成可衡量的",
+          "type": "句型",
+          "usage": "make X measurable 指把要求改写成可量化验收的指标"
+        },
+        {
+          "en": "broken trust",
+          "cn": "信任受损",
+          "type": "搭配",
+          "usage": "broken trust 常与 rebuild / restore 搭配"
+        }
+      ],
+      "basics": [
+        {
+          "term": "可用性",
+          "term_en": "availability",
+          "explain": "系统在约定时间内能正常提供服务的时间比例，常用百分比表示，比如全年可用率，数字越高，允许的停机时间越短。",
+          "analogy": "便利店承诺全天营业，实际开着门的比例。"
+        },
+        {
+          "term": "百分位指标",
+          "term_en": "percentile",
+          "explain": "把所有请求的耗时从快到慢排开，第九十五百分位就是九成五请求都不超过的那个时间，比平均值更能反映多数人的真实体验。",
+          "analogy": "快递说九成五三天达，比说平均两天更靠谱。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "性能和安全是技术的事，产品经理只管功能就行。",
+          "why": "性能、安全、合规往往决定架构和部署方案，业务方又默认它们理所当然；产品经理不提，就会在上线或客户审计时才暴露，补救代价极高。",
+          "right": "需求阶段就和业务、技术一起列出非功能需求清单，每条写成可测的数字目标并纳入验收。"
+        }
+      ],
+      "approach": "采分点是区分「做什么」和「做得多好」，并解释为何易漏、为何代价高。推荐结构：定义 → 常见类别 → 易漏原因 → 银行数据不出境的例子 → 写成可衡量指标。用「功能吸引用户，质量留住用户」收尾。会失分的是只罗列性能、安全几个名词。",
+      "tips": "必备术语 availability、percentile、measurable。可延伸：可用性与 SLA、部署形态选择。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "REQ-F007",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "优先级",
+        "MoSCoW",
+        "Kano"
+      ],
+      "concepts": [
+        "req.prioritization"
+      ],
+      "prereq": [
+        "REQ-F001"
+      ],
+      "q_cn": "MoSCoW、RICE 和 Kano 各解决什么排序问题？",
+      "q_en": "What prioritization problems do MoSCoW, RICE, and the Kano model each solve?",
+      "gist": {
+        "cn": "MoSCoW 定范围，RICE 比投入产出，Kano 看满意度，按问题选工具。",
+        "en": "MoSCoW sets scope, RICE compares value per effort, and Kano shows impact on satisfaction."
+      },
+      "points": [
+        {
+          "en": "tools for three different questions",
+          "cn": "三个工具回答三个不同的问题"
+        },
+        {
+          "en": "agreeing on the scope of a release",
+          "cn": "MoSCoW 分四类，用于敲定版本范围"
+        },
+        {
+          "en": "divided by effort",
+          "cn": "RICE＝覆盖×影响×把握度÷工作量"
+        },
+        {
+          "en": "how a feature affects satisfaction",
+          "cn": "Kano 看功能对满意度的影响"
+        },
+        {
+          "en": "MoSCoW to lock the release",
+          "cn": "组合：Kano 找底线、RICE 排序、MoSCoW 锁范围"
+        }
+      ],
+      "concept": {
+        "cn": "需求优先级排序是在资源有限时决定先做什么的方法。MoSCoW 把需求分为必须有、应该有、可以有和这次不做四类，主要用于和干系人协商某个版本的范围；RICE 用「覆盖人数 × 影响 × 把握度 ÷ 工作量」给想法打分，便于横向比较；Kano 模型从用户满意度出发，区分基本型、期望型和兴奋型需求，提醒产品经理先守住缺了就会引发不满的底线。三者回答的问题不同，常组合使用，但都无法替代对业务目标的判断。",
+        "en": "Requirement prioritization is how you decide what to do first when resources are limited. MoSCoW sorts requirements into must have, should have, could have, and won't have this time, and is mainly used to negotiate the scope of a release with stakeholders. RICE scores ideas as reach times impact times confidence, divided by effort, which makes them easy to compare side by side. The Kano model starts from user satisfaction and separates basic, performance, and delighter needs, reminding product managers to secure the basics whose absence causes dissatisfaction. The three answer different questions and are often combined, but none of them replaces judgment about business goals."
+      },
+      "a_pairs": [
+        {
+          "en": "I see them as tools for three different questions, so I'd pick one based on what's being decided.",
+          "cn": "我把它们看成回答三个不同问题的工具，所以会根据要决定的事来选。"
+        },
+        {
+          "en": "MoSCoW sorts items into must have, should have, could have, and won't have this time, which is useful for agreeing on the scope of a release with stakeholders.",
+          "cn": "MoSCoW 把需求分成必须有、应该有、可以有、这次不做四类，适合和干系人敲定一个版本的范围。"
+        },
+        {
+          "en": "RICE scores each idea by reach, impact, and confidence, divided by effort, so you can compare very different ideas on one scale.",
+          "cn": "RICE 用覆盖人数、影响程度和把握度相乘，再除以工作量来打分，让差异很大的想法能放在同一把尺子上比较。"
+        },
+        {
+          "en": "Its weak spot is that the inputs are estimates, so the score looks precise even when the guesses aren't.",
+          "cn": "它的弱点是输入都是估计值，所以哪怕猜测不准，分数看起来也很精确。"
+        },
+        {
+          "en": "Kano asks how a feature affects satisfaction: basic needs only get noticed when they're missing, performance needs scale with quality, and delighters surprise people.",
+          "cn": "Kano 关注一个功能如何影响满意度：基本型需求只有缺了才会被注意到，期望型需求越好越满意，兴奋型需求则让人惊喜。"
+        },
+        {
+          "en": "That's useful because a missing basic, like single sign-on for an enterprise buyer, can kill a deal no matter how many delighters you add.",
+          "cn": "这一点很有用，因为缺一个基本型需求，比如企业客户要的单点登录，不管加多少惊喜功能都可能丢单。"
+        },
+        {
+          "en": "In practice, I'd use Kano to spot the basics, RICE to rank the rest, and MoSCoW to lock the release.",
+          "cn": "实际中我会用 Kano 找出基本型需求，用 RICE 给其余需求排序，再用 MoSCoW 锁定版本范围。"
+        },
+        {
+          "en": "My rule of thumb: frameworks structure the debate, but they don't replace judgment.",
+          "cn": "我的经验法则是：框架能让讨论有条理，但替代不了判断。"
+        }
+      ],
+      "a_en": "I see them as tools for three different questions, so I'd pick one based on what's being decided. MoSCoW sorts items into must have, should have, could have, and won't have this time, which is useful for agreeing on the scope of a release with stakeholders. RICE scores each idea by reach, impact, and confidence, divided by effort, so you can compare very different ideas on one scale. Its weak spot is that the inputs are estimates, so the score looks precise even when the guesses aren't. Kano asks how a feature affects satisfaction: basic needs only get noticed when they're missing, performance needs scale with quality, and delighters surprise people. That's useful because a missing basic, like single sign-on for an enterprise buyer, can kill a deal no matter how many delighters you add. In practice, I'd use Kano to spot the basics, RICE to rank the rest, and MoSCoW to lock the release. My rule of thumb: frameworks structure the debate, but they don't replace judgment.",
+      "a_cn": "我把它们看成回答三个不同问题的工具，所以会根据要决定的事来选。MoSCoW 把需求分成必须有、应该有、可以有、这次不做四类，适合和干系人敲定一个版本的范围。RICE 用覆盖人数、影响程度和把握度相乘，再除以工作量来打分，让差异很大的想法能放在同一把尺子上比较。它的弱点是输入都是估计值，所以哪怕猜测不准，分数看起来也很精确。Kano 关注一个功能如何影响满意度：基本型需求只有缺了才会被注意到，期望型需求越好越满意，兴奋型需求则让人惊喜。这一点很有用，因为缺一个基本型需求，比如企业客户要的单点登录，不管加多少惊喜功能都可能丢单。实际中我会用 Kano 找出基本型需求，用 RICE 给其余需求排序，再用 MoSCoW 锁定版本范围。我的经验法则是：框架能让讨论有条理，但替代不了判断。",
+      "key_phrases": [
+        {
+          "en": "on one scale",
+          "cn": "用同一把尺子",
+          "type": "搭配",
+          "usage": "on one scale 指用同一标准衡量，可换 like for like"
+        },
+        {
+          "en": "Its weak spot is that",
+          "cn": "它的弱点是",
+          "type": "句型",
+          "usage": "X's weak spot is that… 先承认局限再补充"
+        },
+        {
+          "en": "kill a deal",
+          "cn": "导致丢单",
+          "type": "搭配",
+          "usage": "kill a deal 是 B 端销售常用说法"
+        },
+        {
+          "en": "lock the release",
+          "cn": "锁定版本",
+          "type": "搭配",
+          "usage": "lock 指锁定范围，也常说 lock scope"
+        },
+        {
+          "en": "don't replace judgment",
+          "cn": "替代不了判断",
+          "type": "搭配",
+          "usage": "replace judgment 常用于讨论工具的局限"
+        }
+      ],
+      "basics": [
+        {
+          "term": "基本型需求",
+          "term_en": "must-be quality (Kano)",
+          "explain": "Kano 模型中用户认为理所当然的功能，具备时不会加分，缺失时会强烈不满，比如企业软件的权限控制和数据导出。",
+          "analogy": "酒店有热水不会被夸，没有就会被投诉。"
+        },
+        {
+          "term": "RICE 评分",
+          "term_en": "RICE score",
+          "explain": "覆盖人数×影响×把握度÷工作量：影响常取 3、2、1、0.5、0.25 五档，把握度取百分之百、八十或五十，工作量按人月计。",
+          "analogy": "比性价比：受益人数乘效果，再除以要花的力气。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "用 RICE 算出分数，按分数从高到低排就是最客观的优先级。",
+          "why": "RICE 的每个输入都是估计，分数的精确只是表象；它也不区分「缺了就丢单」的基本型需求，单靠分数可能把底线功能排到后面。",
+          "right": "先用 Kano 识别基本型需求单独保障，其余再用 RICE 比较，最后和干系人用 MoSCoW 确认范围。"
+        }
+      ],
+      "approach": "采分点是说清三个框架各自回答的问题，并给出组合使用的顺序。推荐结构：总判断 → MoSCoW 定范围 → RICE 打分与弱点 → Kano 与单点登录例子 → 组合用法。用「框架让讨论有条理，但替代不了判断」收尾。会失分的是只背缩写含义。",
+      "tips": "必备术语 MoSCoW、RICE、Kano model。可延伸：B 端为何不能客户要什么就做什么、需求变更控制。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "REQ-F008",
+      "level": "F",
+      "kind": "knowledge",
+      "difficulty": "中等",
+      "tags": [
+        "PRD",
+        "需求文档"
+      ],
+      "concepts": [
+        "req.prd"
+      ],
+      "prereq": [
+        "REQ-F004",
+        "REQ-F005",
+        "REQ-F006"
+      ],
+      "q_cn": "一份合格的 PRD 应该包含哪些部分？",
+      "q_en": "What should a good product requirements document include?",
+      "gist": {
+        "cn": "好 PRD 讲清为何做、做与不做、流程规则和验收标准，让各方能独立开工。",
+        "en": "A good PRD explains why, scope, flows, rules, and acceptance so each team can work independently."
+      },
+      "points": [
+        {
+          "en": "without chasing me for answers",
+          "cn": "判断标准：各方能否不追问就开工"
+        },
+        {
+          "en": "the background and goals",
+          "cn": "背景目标与期望改变的指标"
+        },
+        {
+          "en": "explicit out-of-scope list",
+          "cn": "写清范围，并附明确的不做清单"
+        },
+        {
+          "en": "user flows and business rules",
+          "cn": "用户流程、业务规则与异常处理"
+        },
+        {
+          "en": "acceptance criteria and open questions",
+          "cn": "验收标准、待定问题与变更记录"
+        }
+      ],
+      "concept": {
+        "cn": "产品需求文档（PRD）是产品经理向设计、研发、测试和业务方传递需求的核心载体。一份合格的 PRD 通常包括：背景与目标及衡量指标、范围与明确不做的内容、用户角色与使用场景、用户流程与业务规则（含异常处理）、原型或线框图、非功能需求与数据埋点需求、验收标准，以及待定问题和变更记录。它的价值不在篇幅，而在于让各方不必反复追问就能独立推进，并在范围争议时有据可查。",
+        "en": "A product requirements document (PRD) is the main vehicle through which a product manager communicates requirements to design, engineering, QA, and the business. A good PRD usually includes background, goals, and success metrics; scope and what is explicitly out of scope; user roles and scenarios; user flows and business rules, including exception handling; prototypes or wireframes; non-functional and tracking requirements; acceptance criteria; and open questions with a change log. Its value is not its length but that it lets every team move forward independently without repeated questions, and provides a reference when scope is disputed."
+      },
+      "a_pairs": [
+        {
+          "en": "I judge a PRD by one test: can design, engineering, and QA each start work from it without chasing me for answers?",
+          "cn": "我用一个标准判断 PRD：设计、开发和测试能不能各自拿着它开工，而不用追着我问。"
+        },
+        {
+          "en": "To pass that test, it opens with the background and goals, including the metric we expect to move.",
+          "cn": "要过这一关，它开头要写背景和目标，包括我们期望改变的那个指标。"
+        },
+        {
+          "en": "Then it states the scope clearly, and I always include an explicit out-of-scope list, because that's where most arguments start.",
+          "cn": "然后要写清范围，我总会附上一张明确的「不做清单」，因为大多数争执都从这里开始。"
+        },
+        {
+          "en": "The core is the user flows and business rules, with the exceptions written out, plus wireframes where words aren't enough.",
+          "cn": "核心是用户流程和业务规则，异常情况要写全，文字说不清的地方配上线框图。"
+        },
+        {
+          "en": "Non-functional requirements and data needs come next, like permissions, performance targets, and which events to track.",
+          "cn": "接下来是非功能需求和数据需求，比如权限、性能目标和要埋哪些点。"
+        },
+        {
+          "en": "It ends with acceptance criteria and open questions, so everyone can see what's settled and what isn't.",
+          "cn": "最后是验收标准和待定问题，让每个人都清楚哪些已经定了、哪些还没定。"
+        },
+        {
+          "en": "I keep it as a living document with a change log, rather than a contract that's signed once and forgotten.",
+          "cn": "我把它当作一份带变更记录的活文档，而不是签一次就被遗忘的合同。"
+        },
+        {
+          "en": "My rule of thumb: a PRD is good when it answers questions before people have to ask them.",
+          "cn": "我的经验法则是：好的 PRD 能在别人开口之前就回答他们的问题。"
+        }
+      ],
+      "a_en": "I judge a PRD by one test: can design, engineering, and QA each start work from it without chasing me for answers? To pass that test, it opens with the background and goals, including the metric we expect to move. Then it states the scope clearly, and I always include an explicit out-of-scope list, because that's where most arguments start. The core is the user flows and business rules, with the exceptions written out, plus wireframes where words aren't enough. Non-functional requirements and data needs come next, like permissions, performance targets, and which events to track. It ends with acceptance criteria and open questions, so everyone can see what's settled and what isn't. I keep it as a living document with a change log, rather than a contract that's signed once and forgotten. My rule of thumb: a PRD is good when it answers questions before people have to ask them.",
+      "a_cn": "我用一个标准判断 PRD：设计、开发和测试能不能各自拿着它开工，而不用追着我问。要过这一关，它开头要写背景和目标，包括我们期望改变的那个指标。然后要写清范围，我总会附上一张明确的「不做清单」，因为大多数争执都从这里开始。核心是用户流程和业务规则，异常情况要写全，文字说不清的地方配上线框图。接下来是非功能需求和数据需求，比如权限、性能目标和要埋哪些点。最后是验收标准和待定问题，让每个人都清楚哪些已经定了、哪些还没定。我把它当作一份带变更记录的活文档，而不是签一次就被遗忘的合同。我的经验法则是：好的 PRD 能在别人开口之前就回答他们的问题。",
+      "key_phrases": [
+        {
+          "en": "chasing me for answers",
+          "cn": "追着我要答案",
+          "type": "搭配",
+          "usage": "chase sb for sth 指追着要，如 chase for updates"
+        },
+        {
+          "en": "out-of-scope list",
+          "cn": "不做清单",
+          "type": "词汇",
+          "usage": "out of scope 作定语时加连字符，反义 in scope"
+        },
+        {
+          "en": "where words aren't enough",
+          "cn": "文字不够用之处",
+          "type": "句型",
+          "usage": "where X isn't enough 指某手段不够用的地方"
+        },
+        {
+          "en": "a living document",
+          "cn": "持续更新的文档",
+          "type": "词汇",
+          "usage": "living document 指不断更新，反义 static"
+        },
+        {
+          "en": "what's settled",
+          "cn": "已经定下的事",
+          "type": "搭配",
+          "usage": "settled 指已定下来，可接 decision / scope"
+        }
+      ],
+      "basics": [
+        {
+          "term": "线框图",
+          "term_en": "wireframe",
+          "explain": "用简单线条和方框表示页面布局与元素位置的草图，不追求视觉美观，重点表达页面上有什么、怎么排、点了之后去哪儿。",
+          "analogy": "房子的户型图，只画格局不画装修。"
+        },
+        {
+          "term": "变更记录",
+          "term_en": "change log",
+          "explain": "按时间记录文档每次改了什么、为什么改、谁确认的清单，让参与者快速知道最新版和上一版的差别。",
+          "analogy": "合同的补充协议清单，每次改动都有据可查。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "PRD 写得越长越细越专业，最好一次把所有细节写全。",
+          "why": "篇幅不等于清晰，关键规则和不做清单被淹没在长文里，各方仍要反复追问；需求还会变化，一次写死的长文很快过时。",
+          "right": "按目标、范围、流程规则、非功能、验收的结构写清关键决策，标出待定问题，并持续用变更记录更新。"
+        }
+      ],
+      "approach": "采分点是给出「各方能否独立开工」的判断标准，再按结构列出关键部分。推荐结构：判断标准 → 背景目标 → 范围与不做清单 → 流程规则 → 非功能与数据 → 验收与待定 → 活文档。用「在别人开口前回答问题」收尾。会失分的是只背目录、说不清为什么。",
+      "tips": "必备术语 PRD、out of scope、acceptance criteria。可延伸：需求变更控制、AI 需求的验收标准。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "REQ-X001",
+      "level": "X",
+      "kind": "method",
+      "difficulty": "较难",
+      "tags": [
+        "需求变更",
+        "范围控制",
+        "干系人信任"
+      ],
+      "concepts": [
+        "req.change_control",
+        "req.prioritization"
+      ],
+      "prereq": [
+        "REQ-F007",
+        "REQ-F008"
+      ],
+      "q_cn": "需求频繁变更时，如何控制范围又不失去业务方信任？",
+      "q_en": "When requirements keep changing, how do you control scope without losing the business's trust?",
+      "gist": {
+        "cn": "不拒绝变更，而是让每次变更都过影响评估，用取舍换新增，并把决策过程透明化。",
+        "en": "Don't block change; make every change pass an impact check and trade something to add something."
+      },
+      "points": [
+        {
+          "en": "the cost of change is invisible",
+          "cn": "变更正常，问题在于提出方看不见代价"
+        },
+        {
+          "en": "we agree on a baseline",
+          "cn": "先约定范围、日期、验收标准的基线"
+        },
+        {
+          "en": "its impact on time, cost, and risk",
+          "cn": "变更统一入口，先评估对时间成本风险的影响"
+        },
+        {
+          "en": "what should come out if this goes in",
+          "cn": "用取舍换新增，让业务方自己决定"
+        },
+        {
+          "en": "a visible change log",
+          "cn": "公开变更记录，紧急事项走快速通道"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在需求优先级排序与需求文档之上。需求变更在 B 端项目中几乎不可避免：业务环境变化、干系人认识加深、上线前发现遗漏都会带来变更。变更控制的目标不是阻止变化，而是让变化可见、可评估、可追责。常见做法包括：确立范围基线，设统一的变更入口，对每个变更评估时间、成本与风险的影响，由业务方在固定产能下做取舍，并保留变更记录；对监管等真正紧急的事项设快速通道。",
+        "en": "This question builds on requirement prioritization and the requirements document. Requirement changes are almost unavoidable in B2B projects: shifts in the business environment, stakeholders understanding more, and gaps discovered before launch all bring changes. The goal of change control is not to stop change but to make it visible, assessable, and accountable. Common practices include setting a scope baseline, a single entry point for changes, an assessment of each change's impact on time, cost, and risk, letting the business make trade-offs within fixed capacity, and keeping a change log, with a fast lane for genuinely urgent items such as regulatory deadlines."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd start by accepting that requirements will change; the real problem is that the cost of change is invisible to the people asking.",
+          "cn": "我会先接受需求一定会变这一点；真正的问题在于，提需求的人看不见变更的代价。"
+        },
+        {
+          "en": "So first, we agree on a baseline: the scope, dates, and acceptance criteria everyone signed off on.",
+          "cn": "所以第一步，我们先约定一个基线：大家确认过的范围、日期和验收标准。"
+        },
+        {
+          "en": "After that, every change comes through one channel, and I assess its impact on time, cost, and risk before saying yes or no.",
+          "cn": "此后，每个变更都从同一个入口进来，我在答应或拒绝之前先评估它对时间、成本和风险的影响。"
+        },
+        {
+          "en": "Instead of refusing, I ask the business what should come out if this goes in, since the team's capacity is fixed.",
+          "cn": "我不直接拒绝，而是问业务方：如果加进这个，什么应该拿出来，因为团队的产能是固定的。"
+        },
+        {
+          "en": "That turns me from a gatekeeper into someone who's helping them make a trade-off they own.",
+          "cn": "这样我就从「把门的人」变成了帮他们做取舍的人，而这个取舍由他们自己拍板。"
+        },
+        {
+          "en": "I also keep a visible change log, so when a date slips, everyone can see which decisions caused it, and it's not my word against theirs.",
+          "cn": "我还会维护一份公开的变更记录，这样一旦延期，大家都能看到是哪些决策导致的，而不是各执一词。"
+        },
+        {
+          "en": "Genuinely urgent changes, like a regulatory deadline, get a fast lane, but they still go on the log.",
+          "cn": "真正紧急的变更，比如监管截止日期，可以走快速通道，但同样要记录在案。"
+        },
+        {
+          "en": "Bottom line: trust comes from making trade-offs visible, not from saying yes to everything.",
+          "cn": "一句话总结：信任来自让取舍变得透明，而不是对什么都说好。"
+        }
+      ],
+      "a_en": "I'd start by accepting that requirements will change; the real problem is that the cost of change is invisible to the people asking. So first, we agree on a baseline: the scope, dates, and acceptance criteria everyone signed off on. After that, every change comes through one channel, and I assess its impact on time, cost, and risk before saying yes or no. Instead of refusing, I ask the business what should come out if this goes in, since the team's capacity is fixed. That turns me from a gatekeeper into someone who's helping them make a trade-off they own. I also keep a visible change log, so when a date slips, everyone can see which decisions caused it, and it's not my word against theirs. Genuinely urgent changes, like a regulatory deadline, get a fast lane, but they still go on the log. Bottom line: trust comes from making trade-offs visible, not from saying yes to everything.",
+      "a_cn": "我会先接受需求一定会变这一点；真正的问题在于，提需求的人看不见变更的代价。所以第一步，我们先约定一个基线：大家确认过的范围、日期和验收标准。此后，每个变更都从同一个入口进来，我在答应或拒绝之前先评估它对时间、成本和风险的影响。我不直接拒绝，而是问业务方：如果加进这个，什么应该拿出来，因为团队的产能是固定的。这样我就从「把门的人」变成了帮他们做取舍的人，而这个取舍由他们自己拍板。我还会维护一份公开的变更记录，这样一旦延期，大家都能看到是哪些决策导致的，而不是各执一词。真正紧急的变更，比如监管截止日期，可以走快速通道，但同样要记录在案。一句话总结：信任来自让取舍变得透明，而不是对什么都说好。",
+      "key_phrases": [
+        {
+          "en": "the cost of change",
+          "cn": "变更的代价",
+          "type": "搭配",
+          "usage": "the cost of + 名词，强调隐性代价"
+        },
+        {
+          "en": "signed off on",
+          "cn": "签字确认",
+          "type": "搭配",
+          "usage": "sign off on 指正式确认，名词 sign-off"
+        },
+        {
+          "en": "from a gatekeeper into",
+          "cn": "从把门人变成",
+          "type": "句型",
+          "usage": "turn sb from A into B 表角色转换"
+        },
+        {
+          "en": "my word against theirs",
+          "cn": "各执一词",
+          "type": "句型",
+          "usage": "it's my word against yours 指双方说法无从对证"
+        },
+        {
+          "en": "a fast lane",
+          "cn": "快速通道",
+          "type": "词汇",
+          "usage": "fast lane 原指快车道，引申为加急通道"
+        }
+      ],
+      "basics": [
+        {
+          "term": "范围基线",
+          "term_en": "scope baseline",
+          "explain": "各方在某个时间点正式确认的范围、计划和验收标准版本，之后的任何改动都以它为参照来衡量影响。",
+          "analogy": "装修合同签字版图纸，改动都对照它算钱。"
+        },
+        {
+          "term": "影响评估",
+          "term_en": "impact analysis",
+          "explain": "在答应一项变更前，系统评估它会影响哪些功能、文档、测试、上线日期和成本，以及带来哪些新风险，作为决策依据。",
+          "analogy": "改航线前先算油量、时间和备降机场。"
+        },
+        {
+          "term": "范围蔓延",
+          "term_en": "scope creep",
+          "explain": "项目范围在没有相应增加时间和资源的情况下被一点点扩大，最终导致延期、超支或质量下降的现象。",
+          "analogy": "出门买瓶酱油，结果推回一整车东西。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "范围一旦确定，就要坚决拒绝一切需求变更。",
+          "why": "一味拒绝会让业务方绕开产品团队私下找开发，或认为产品不理解业务，真正必要的变化被压住后，会在上线后以更高代价爆发。",
+          "right": "接受变更但要求走评估流程，把代价说清楚，让业务方在固定产能下决定换掉什么。"
+        },
+        {
+          "wrong": "业务方是客户，变更都答应下来，加班赶一赶总能做完。",
+          "why": "每次默默吸收变更，团队产能被透支，延期和质量问题最终仍会出现，而业务方看不到原因，反而更不信任团队。",
+          "right": "把每次变更的影响写进公开的变更记录，延期时能追溯到具体决策，而不是团队默默承担。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：表面问控制范围，实际考在冲突中维护关系、让代价可见的能力。",
+        "定前提：先承认变更是正常的，问题在于提出方看不见代价，而不是变更本身。",
+        "建机制：基线、统一入口、影响评估、以取舍换新增，四步把变更流程化。",
+        "守信任：用公开的变更记录和紧急快速通道，既保持透明又不显得官僚。"
+      ],
+      "method": {
+        "name": "代价可视化",
+        "steps": [
+          "先定基线",
+          "再评影响",
+          "让对方取舍"
+        ],
+        "transfer": "可迁移到预算追加、项目延期谈判、客户定制需求评估，凡是资源固定却被不断加码的场景都适用。"
+      },
+      "approach": "采分点是把「拒绝或答应」的二选一转化为「让代价可见的取舍」。推荐结构：接受变更 → 约定基线 → 统一入口与影响评估 → 以取舍换新增 → 变更记录与快速通道。用「信任来自透明的取舍」收尾。会失分的是只说「坚决拒绝」或「加班满足」。",
+      "tips": "必备术语 baseline、impact analysis、trade-off。落点句可复用到预算与排期类冲突题。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "REQ-X002",
+      "level": "X",
+      "kind": "idea",
+      "difficulty": "较难",
+      "tags": [
+        "B端产品",
+        "产品化",
+        "需求筛选"
+      ],
+      "concepts": [
+        "req.real_need",
+        "req.prioritization"
+      ],
+      "prereq": [
+        "REQ-F002",
+        "REQ-F007"
+      ],
+      "q_cn": "B 端产品为什么不能「客户要什么就做什么」？",
+      "q_en": "Why shouldn't a B2B product simply build whatever each customer asks for?",
+      "gist": {
+        "cn": "逐个满足会把产品做成一堆定制项目；要找共性问题，用标准能力服务多数客户。",
+        "en": "Building every request turns a product into custom projects; find shared jobs and serve them once."
+      },
+      "points": [
+        {
+          "en": "a shared problem underneath",
+          "cn": "关键看请求背后有没有共性问题"
+        },
+        {
+          "en": "a pile of custom projects",
+          "cn": "逐个照做，产品会变成一堆定制项目"
+        },
+        {
+          "en": "every one-off feature adds maintenance",
+          "cn": "每个一次性功能都给所有客户加成本"
+        },
+        {
+          "en": "how many customers share the need",
+          "cn": "按客户覆盖、收入和方向筛选"
+        },
+        {
+          "en": "early on a need the rest of the market will have",
+          "cn": "大客户若只是更早遇到共性需求，可有意先做"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在真实需求挖掘与需求优先级排序之上。B 端产品服务的是多家企业客户，单个大客户的需求往往具体、急迫且附带商业压力。如果逐一照做，产品会退化为一套代码上的多个定制项目，维护、测试和升级成本随客户数增长，最终拖慢所有客户。成熟的做法是从具体请求中提炼多家客户共有的问题，按影响客户数、收入和战略匹配度筛选，并把小众但合理的需求交给配置、开放接口或合作伙伴解决。",
+        "en": "This question builds on uncovering real needs and requirement prioritization. A B2B product serves many business customers, and a single large customer's requests are often specific, urgent, and backed by commercial pressure. If each one is built as asked, the product degrades into several custom projects on one codebase, with maintenance, testing, and upgrade costs growing with the number of customers and eventually slowing everyone down. The mature approach is to extract the problem shared by many customers from specific requests, filter by how many customers are affected, revenue, and strategic fit, and handle niche but reasonable needs through configuration, open APIs, or partners."
+      },
+      "a_pairs": [
+        {
+          "en": "In B2B, the loudest request often comes from the biggest customer, and that's exactly why I don't take it at face value.",
+          "cn": "在 B 端，声音最大的请求往往来自最大的客户，这恰恰是我不按字面接受它的原因。"
+        },
+        {
+          "en": "What matters is whether there's a shared problem underneath that other customers have too.",
+          "cn": "关键在于它底下有没有一个其他客户也有的共性问题。"
+        },
+        {
+          "en": "If you build every request as asked, the product slowly becomes a pile of custom projects with one codebase.",
+          "cn": "如果每个请求都照做，产品会慢慢变成共用一套代码的一堆定制项目。"
+        },
+        {
+          "en": "And every one-off feature adds maintenance, testing, and upgrade cost for every customer, not just the one who asked.",
+          "cn": "而每个一次性功能都会增加维护、测试和升级成本，影响的是所有客户，而不只是提需求的那一家。"
+        },
+        {
+          "en": "So I filter requests by how many customers share the need, how much revenue is at stake, and whether it fits our direction.",
+          "cn": "所以我会用三条筛选请求：有多少客户有同样需求、涉及多少收入、是否符合产品方向。"
+        },
+        {
+          "en": "That said, I'll sometimes build for one big customer on purpose, if they're just early on a need the rest of the market will have.",
+          "cn": "话虽如此，我有时也会有意先为一家大客户做，前提是他们只是比市场其他客户更早遇到了一个共性需求。"
+        },
+        {
+          "en": "Saying no well also matters: explain the reasoning and offer something they can live with, like a configuration option or an API.",
+          "cn": "体面地说「不」同样重要：讲清理由，并给出对方能接受的替代办法，比如一个配置项或一个开放接口。"
+        },
+        {
+          "en": "So my rule of thumb is: build for the pattern, not for the loudest customer.",
+          "cn": "所以我的经验法则是：为共性需求而做，而不是为声音最大的客户而做。"
+        }
+      ],
+      "a_en": "In B2B, the loudest request often comes from the biggest customer, and that's exactly why I don't take it at face value. What matters is whether there's a shared problem underneath that other customers have too. If you build every request as asked, the product slowly becomes a pile of custom projects with one codebase. And every one-off feature adds maintenance, testing, and upgrade cost for every customer, not just the one who asked. So I filter requests by how many customers share the need, how much revenue is at stake, and whether it fits our direction. That said, I'll sometimes build for one big customer on purpose, if they're just early on a need the rest of the market will have. Saying no well also matters: explain the reasoning and offer something they can live with, like a configuration option or an API. So my rule of thumb is: build for the pattern, not for the loudest customer.",
+      "a_cn": "在 B 端，声音最大的请求往往来自最大的客户，这恰恰是我不按字面接受它的原因。关键在于它底下有没有一个其他客户也有的共性问题。如果每个请求都照做，产品会慢慢变成共用一套代码的一堆定制项目。而每个一次性功能都会增加维护、测试和升级成本，影响的是所有客户，而不只是提需求的那一家。所以我会用三条筛选请求：有多少客户有同样需求、涉及多少收入、是否符合产品方向。话虽如此，我有时也会有意先为一家大客户做，前提是他们只是比市场其他客户更早遇到了一个共性需求。体面地说「不」同样重要：讲清理由，并给出对方能接受的替代办法，比如一个配置项或一个开放接口。所以我的经验法则是：为共性需求而做，而不是为声音最大的客户而做。",
+      "key_phrases": [
+        {
+          "en": "take it at face value",
+          "cn": "按字面接受",
+          "type": "搭配",
+          "usage": "take sth at face value 指只按表面意思理解"
+        },
+        {
+          "en": "a pile of",
+          "cn": "一大堆",
+          "type": "搭配",
+          "usage": "a pile of 表一大堆，常带贬义"
+        },
+        {
+          "en": "one-off feature",
+          "cn": "一次性功能",
+          "type": "词汇",
+          "usage": "one-off 指仅此一次、不可复用的"
+        },
+        {
+          "en": "is at stake",
+          "cn": "利害攸关",
+          "type": "搭配",
+          "usage": "at stake 表处于风险中，前接金额或声誉"
+        },
+        {
+          "en": "can live with",
+          "cn": "能接受",
+          "type": "搭配",
+          "usage": "can live with 表勉强可以接受，语气务实"
+        }
+      ],
+      "basics": [
+        {
+          "term": "定制开发",
+          "term_en": "custom development",
+          "explain": "专门为某一个客户写的、其他客户用不上的功能或代码。它能解一时之急，但会长期增加产品的维护和升级负担。",
+          "analogy": "餐厅为一位熟客单开一道菜，从此多备一份料。"
+        },
+        {
+          "term": "配置项",
+          "term_en": "configuration option",
+          "explain": "产品预先留好的开关或参数，客户可以自行调整系统行为，比如审批层级、字段是否必填，而不需要改动代码。",
+          "analogy": "空调遥控器上的温度和风速，不用拆机就能调。"
+        },
+        {
+          "term": "战略匹配",
+          "term_en": "strategic fit",
+          "explain": "一个需求与公司想服务的客户群、想打造的核心能力是否一致。匹配度低的需求即使带来收入，也可能把产品拉向错误方向。",
+          "analogy": "健身房不会因为一位会员要求就开火锅店。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "大客户贡献收入最多，他们提的需求就应该优先做。",
+          "why": "大客户的需求常带有其组织特有的流程，照做会让产品偏向一家公司，其他客户用不上还要承担复杂度，长期收入反而受损。",
+          "right": "先看需求在多少客户中普遍存在，再结合收入和方向判断；特有部分用配置或接口满足。"
+        },
+        {
+          "wrong": "拒绝客户需求会丢单，所以最好都先答应下来。",
+          "why": "先答应再拖延或做不好，比讲清理由更伤信任；大量承诺还会挤占真正共性需求的开发资源。",
+          "right": "解释判断依据，给出替代方案或排期预期，把客户的问题解决到可接受的程度。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：问能不能照做，实际考产品化思维，即个体需求与多数客户之间如何取舍。",
+        "看后果：照单全收会让一套代码承载多个定制项目，成本由所有客户共同承担。",
+        "给筛子：用影响客户数、收入、方向三个维度筛选，避免只看谁的声音大。",
+        "留出口：大客户若只是更早遇到共性需求可有意先做，其余体面说不并给替代方案。"
+      ],
+      "method": {
+        "name": "从个案到共性",
+        "steps": [
+          "找背后问题",
+          "看普遍程度",
+          "选最轻解法"
+        ],
+        "transfer": "可迁移到客户成功转来的需求、销售为签单做的承诺、内部部门要报表，凡是个别诉求要进入标准产品时都适用。"
+      },
+      "approach": "采分点是指出照单全收的长期代价，并给出筛选维度与替代解法。推荐结构：大客户请求的陷阱 → 定制项目化的后果 → 三维筛选 → 识别领先需求 → 体面拒绝并给替代方案。用「为共性而做，不为最大声的客户」收尾。会失分的是说成「客户都不懂」。",
+      "tips": "必备术语 one-off、configuration、strategic fit。可延伸：SaaS 标准化与定制化、需求优先级排序。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "REQ-X003",
+      "level": "X",
+      "kind": "method",
+      "difficulty": "较难",
+      "tags": [
+        "AI需求",
+        "验收标准",
+        "兜底机制"
+      ],
+      "concepts": [
+        "req.user_story",
+        "req.nfr"
+      ],
+      "prereq": [
+        "REQ-F004",
+        "REQ-F006",
+        "LLM-F008"
+      ],
+      "q_cn": "如何把「用 AI 提效」这种模糊需求拆成可验收的需求？",
+      "q_en": "How do you turn a vague request like 'use AI to boost efficiency' into requirements you can accept or reject?",
+      "gist": {
+        "cn": "先锁定任务和现状基线，再把 AI 输出写成带通过率门槛、兜底和约束的验收标准。",
+        "en": "Pin down one task and its baseline, then write acceptance criteria with quality thresholds and fallbacks."
+      },
+      "points": [
+        {
+          "en": "a specific task",
+          "cn": "先把「提效」落到一个具体任务"
+        },
+        {
+          "en": "measure today's baseline",
+          "cn": "测出现状基线作为对比"
+        },
+        {
+          "en": "a pass rate on a test set",
+          "cn": "AI 输出不确定，用样本通过率验收"
+        },
+        {
+          "en": "what happens when it's wrong",
+          "cn": "写清出错时的兜底与人工复核"
+        },
+        {
+          "en": "latency, cost per request, and where the data can go",
+          "cn": "补上时延、单次成本、数据边界"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在用户故事与验收标准、非功能需求和大模型幻觉之上。「用 AI 提效」只是一个方向，无法直接开发或验收。拆解时要先把它落到具体任务和可测量的现状基线，再面对 AI 的核心差异：同样的输入可能产生不同输出，偶尔还会出错，因此验收不能靠单次演示，而要在有代表性的测试样本上设定通过率门槛。同时必须写清出错时的兜底与人工复核机制，以及时延、成本、数据边界等非功能要求，并用基线对比证明业务价值。",
+        "en": "This question builds on user stories and acceptance criteria, non-functional requirements, and LLM hallucination. 'Use AI to boost efficiency' is only a direction and can be neither built nor accepted as it stands. Breaking it down starts with a specific task and a measurable baseline of today's performance, then faces AI's core difference: the same input can produce different outputs and is occasionally wrong, so acceptance cannot rely on a single demo and must instead set a pass-rate threshold on a representative test set. The requirements must also spell out fallback and human-review mechanisms for when the output is wrong, plus non-functional limits on latency, cost, and data boundaries, and prove business value by comparison with the baseline."
+      },
+      "a_pairs": [
+        {
+          "en": "I'd start by turning 'efficiency' into a specific task, like drafting first replies to customer tickets.",
+          "cn": "我会先把「提效」落到一个具体任务上，比如为客户工单起草第一版回复。"
+        },
+        {
+          "en": "Then I'd measure today's baseline: how long agents take per ticket and how often replies get reopened.",
+          "cn": "然后测量现状基线：客服处理每张工单要多久、回复被重新打开的比例有多高。"
+        },
+        {
+          "en": "The tricky part is that AI output isn't deterministic, so 'it works' can't be one yes-or-no check.",
+          "cn": "难点在于 AI 的输出不是确定的，所以「能用」不能靠一次是或否的检查来判断。"
+        },
+        {
+          "en": "Instead, the acceptance criterion becomes a pass rate on a test set, for example ninety percent of drafts need only minor edits across two hundred real tickets.",
+          "cn": "验收标准要改成在一组测试样本上的通过率，比如在两百张真实工单上，九成草稿只需小改。"
+        },
+        {
+          "en": "I also write down what happens when it's wrong: the draft is never sent automatically, sensitive cases like refunds or complaints go straight to a human, and agents can flag bad answers.",
+          "cn": "我还会写清出错时怎么办：草稿永远不自动发送，退款、投诉这类敏感情况直接转人工，客服可以标记糟糕的回答。"
+        },
+        {
+          "en": "Non-functional requirements matter even more here, such as latency, cost per request, and where the data can go.",
+          "cn": "在这里非功能需求更加重要，比如响应时延、单次请求成本，以及数据可以流向哪里。"
+        },
+        {
+          "en": "Finally, I tie success back to the baseline, so the business can see whether handling time actually dropped.",
+          "cn": "最后，我把成功标准和基线挂钩，让业务方看得到处理时长是否真的下降了。"
+        },
+        {
+          "en": "My rule of thumb: you can't accept an AI feature with one demo, only with a test set and a fallback.",
+          "cn": "我的经验法则是：AI 功能不能靠一次演示验收，只能靠一组测试样本加一套兜底方案。"
+        }
+      ],
+      "a_en": "I'd start by turning 'efficiency' into a specific task, like drafting first replies to customer tickets. Then I'd measure today's baseline: how long agents take per ticket and how often replies get reopened. The tricky part is that AI output isn't deterministic, so 'it works' can't be one yes-or-no check. Instead, the acceptance criterion becomes a pass rate on a test set, for example ninety percent of drafts need only minor edits across two hundred real tickets. I also write down what happens when it's wrong: the draft is never sent automatically, sensitive cases like refunds or complaints go straight to a human, and agents can flag bad answers. Non-functional requirements matter even more here, such as latency, cost per request, and where the data can go. Finally, I tie success back to the baseline, so the business can see whether handling time actually dropped. My rule of thumb: you can't accept an AI feature with one demo, only with a test set and a fallback.",
+      "a_cn": "我会先把「提效」落到一个具体任务上，比如为客户工单起草第一版回复。然后测量现状基线：客服处理每张工单要多久、回复被重新打开的比例有多高。难点在于 AI 的输出不是确定的，所以「能用」不能靠一次是或否的检查来判断。验收标准要改成在一组测试样本上的通过率，比如在两百张真实工单上，九成草稿只需小改。我还会写清出错时怎么办：草稿永远不自动发送，退款、投诉这类敏感情况直接转人工，客服可以标记糟糕的回答。在这里非功能需求更加重要，比如响应时延、单次请求成本，以及数据可以流向哪里。最后，我把成功标准和基线挂钩，让业务方看得到处理时长是否真的下降了。我的经验法则是：AI 功能不能靠一次演示验收，只能靠一组测试样本加一套兜底方案。",
+      "key_phrases": [
+        {
+          "en": "isn't deterministic",
+          "cn": "不是确定性的",
+          "type": "搭配",
+          "usage": "deterministic 指同输入必同输出，反义 probabilistic"
+        },
+        {
+          "en": "a pass rate on",
+          "cn": "……上的通过率",
+          "type": "搭配",
+          "usage": "pass rate on 指在某批样本上的通过比例"
+        },
+        {
+          "en": "go straight to a human",
+          "cn": "直接转人工",
+          "type": "搭配",
+          "usage": "go straight to 表直接转交，可换 escalate to"
+        },
+        {
+          "en": "tie success back to",
+          "cn": "把成功标准挂回到",
+          "type": "句型",
+          "usage": "tie X back to Y 表把结果与起点挂钩"
+        },
+        {
+          "en": "flag bad answers",
+          "cn": "标记糟糕的回答",
+          "type": "搭配",
+          "usage": "flag 作动词指标记待查，如 flag an issue"
+        }
+      ],
+      "basics": [
+        {
+          "term": "基线",
+          "term_en": "baseline",
+          "explain": "改进之前现状的测量值，比如每张工单的平均处理时长；它和需求变更里的范围基线不是一回事，没有它就证明不了提升。",
+          "analogy": "减肥前先称体重，才知道瘦了多少。"
+        },
+        {
+          "term": "测试样本集",
+          "term_en": "evaluation set",
+          "explain": "一组有代表性的真实输入，配上期望结果和评判标准，用来反复检验 AI 输出质量；改提示词或换模型后重跑就能比较好坏。",
+          "analogy": "驾考的固定题库，每个学员都考同一套。"
+        },
+        {
+          "term": "兜底机制",
+          "term_en": "fallback",
+          "explain": "AI 不确定或出错时系统自动采取的安全做法，比如转人工处理、只给草稿不自动发送，保证最坏情况下业务也不受损。",
+          "analogy": "自动驾驶没把握时提醒司机接管。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "演示时 AI 回答得很好，就可以按这个标准验收上线了。",
+          "why": "演示挑的是顺利的例子，AI 输出有随机性，换一批真实工单表现可能明显下降；单次演示无法反映整体质量和出错比例。",
+          "right": "用一批有代表性的真实样本跑评测，设定通过率门槛和不可接受的错误类型，达标后再分阶段上线。"
+        },
+        {
+          "wrong": "AI 需求的验收标准只看准确率就够了。",
+          "why": "即使准确率达标，响应太慢、单次成本太高或数据流向不合规，同样会让功能无法上线或亏本运行。",
+          "right": "把时延、单次成本、数据边界和兜底机制一起写进验收标准，与准确率并列考核。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：表面问需求拆解，实际考能否意识到 AI 输出不确定、验收方式必须改变。",
+        "落地：把模糊方向缩到一个具体任务，并先测出现状基线作为对比。",
+        "改验收：用测试样本上的通过率替代单次对错，并写清兜底与人工复核。",
+        "补约束：加上时延、成本、数据边界，最后用基线对比证明业务价值。"
+      ],
+      "method": {
+        "name": "概率型验收",
+        "steps": [
+          "定任务与基线",
+          "设通过率门槛",
+          "写兜底与约束"
+        ],
+        "transfer": "可迁移到推荐算法、风控模型、智能客服等输出不确定的功能验收，也适用于外包 AI 项目的合同验收条款。"
+      },
+      "approach": "采分点是指出 AI 输出不确定带来的验收变化，并给出任务、基线、通过率、兜底、约束五个环节。推荐结构：落到任务 → 测基线 → 通过率验收 → 兜底 → 非功能约束 → 基线对比。用「一次演示验收不了 AI」收尾。会失分的是照搬传统功能的一次性验收。",
+      "tips": "必备术语 baseline、pass rate、fallback。可延伸：大模型幻觉的风险评估、离线评测集设计。",
+      "source_repos": [],
+      "added": "2026-10-31"
+    },
+    {
+      "id": "REQ-X004",
+      "level": "X",
+      "kind": "case",
+      "difficulty": "较难",
+      "tags": [
+        "规格驱动",
+        "AI编程",
+        "需求文档"
+      ],
+      "concepts": [
+        "req.user_story",
+        "req.prd"
+      ],
+      "prereq": [
+        "REQ-F004",
+        "REQ-F008"
+      ],
+      "q_cn": "以 OpenSpec 为例：AI 写代码时，需求规格该怎么写？",
+      "q_en": "Using OpenSpec as an example, how should requirements be written when AI writes the code?",
+      "gist": {
+        "cn": "先在轻量规格里对齐再写代码：每个变更一个文件夹，需求配场景，团队共享一份。",
+        "en": "Agree on a lightweight spec before code: one folder per change, requirements with scenarios, shared across teams."
+      },
+      "points": [
+        {
+          "en": "requirements live only in chat history",
+          "cn": "需求只在聊天记录里时，结果不可预测"
+        },
+        {
+          "en": "proposal, specs, design, and tasks",
+          "cn": "每个变更一个文件夹：提案、规格、设计、任务"
+        },
+        {
+          "en": "a WHEN and THEN scenario",
+          "cn": "需求用 SHALL 陈述加 WHEN/THEN 场景"
+        },
+        {
+          "en": "one source of truth across repos",
+          "cn": "团队共享同一份需求来源"
+        },
+        {
+          "en": "exactly where a PM adds value",
+          "cn": "AI 起草规格、人审方案，正是 PM 的价值所在"
+        }
+      ],
+      "concept": {
+        "cn": "本题建立在用户故事与验收标准、需求文档之上。OpenSpec 是一个面向 AI 编程助手的开源规格框架，主张在写代码之前，先让人和 AI 在一层轻量规格上对齐要做什么。每个变更有独立的文件夹，包含提案、规格、设计和任务；需求用普通 Markdown 书写，采用 SHALL 陈述加 WHEN/THEN 场景的格式，与场景化的验收标准十分相似。面向团队，它提供可跨代码库共享的规格仓库（测试版），并强调随时迭代，而非设置僵硬的阶段关卡。",
+        "en": "This question builds on user stories with acceptance criteria and the requirements document. OpenSpec is an open-source spec framework for AI coding assistants that advocates aligning humans and AI on a lightweight spec layer before any code is written. Each change has its own folder containing a proposal, specs, design, and tasks; requirements are written in plain Markdown as a SHALL statement plus WHEN/THEN scenarios, very similar to scenario-based acceptance criteria. For teams, it offers spec stores that can be shared across repositories (in beta), and it emphasizes iterating at any time rather than imposing rigid phase gates."
+      },
+      "a_pairs": [
+        {
+          "en": "OpenSpec is an open-source spec framework for AI coding assistants, and it starts from a problem PMs will recognize: results get unpredictable when requirements live only in chat history.",
+          "cn": "OpenSpec 是一个面向 AI 编程助手的开源规格框架，它的出发点是产品经理都熟悉的问题：需求只存在聊天记录里时，结果就变得不可预测。"
+        },
+        {
+          "en": "Its answer is a lightweight spec layer, so humans and the AI agree on what to build before any code gets written.",
+          "cn": "它的解法是加一层轻量的规格，让人和 AI 在写任何代码之前先就做什么达成一致。"
+        },
+        {
+          "en": "Each change gets its own folder with a proposal, specs, design, and tasks, which is basically a mini PRD per change.",
+          "cn": "每个变更都有自己的文件夹，里面放提案、规格、设计和任务，基本上就是每个变更一份迷你 PRD。"
+        },
+        {
+          "en": "In their example, a requirement is a plain Markdown statement using SHALL, followed by a WHEN and THEN scenario, much like acceptance criteria written as scenarios.",
+          "cn": "在官方示例里，需求是一句带 SHALL 的普通 Markdown 陈述，后面跟一个 WHEN 和 THEN 的场景，这和用场景写成的验收标准非常相似。"
+        },
+        {
+          "en": "For teams, a beta feature lets a platform team own the specs as one source of truth across repos.",
+          "cn": "面向团队，一项测试版功能让平台团队统一维护规格，作为跨代码库的唯一可信来源。"
+        },
+        {
+          "en": "The AI drafts these specs, a person reviews the plan before any code is written, and that's exactly where a PM adds value.",
+          "cn": "这些规格由 AI 起草，再由人在写代码之前审核方案，而这恰恰是产品经理发挥价值的地方。"
+        },
+        {
+          "en": "What I'd take from it is that AI doesn't remove the need for requirements; it makes vague ones go wrong faster and at scale.",
+          "cn": "我从中得到的启发是：AI 没有让需求变得多余，只是让含糊的需求错得更快、错得更大。"
+        },
+        {
+          "en": "My rule of thumb: if an agent is going to build it, write the spec so a stranger could test it.",
+          "cn": "我的经验法则是：如果要让 AI 来做，就把规格写到一个陌生人也能据此测试的程度。"
+        }
+      ],
+      "a_en": "OpenSpec is an open-source spec framework for AI coding assistants, and it starts from a problem PMs will recognize: results get unpredictable when requirements live only in chat history. Its answer is a lightweight spec layer, so humans and the AI agree on what to build before any code gets written. Each change gets its own folder with a proposal, specs, design, and tasks, which is basically a mini PRD per change. In their example, a requirement is a plain Markdown statement using SHALL, followed by a WHEN and THEN scenario, much like acceptance criteria written as scenarios. For teams, a beta feature lets a platform team own the specs as one source of truth across repos. The AI drafts these specs, a person reviews the plan before any code is written, and that's exactly where a PM adds value. What I'd take from it is that AI doesn't remove the need for requirements; it makes vague ones go wrong faster and at scale. My rule of thumb: if an agent is going to build it, write the spec so a stranger could test it.",
+      "a_cn": "OpenSpec 是一个面向 AI 编程助手的开源规格框架，它的出发点是产品经理都熟悉的问题：需求只存在聊天记录里时，结果就变得不可预测。它的解法是加一层轻量的规格，让人和 AI 在写任何代码之前先就做什么达成一致。每个变更都有自己的文件夹，里面放提案、规格、设计和任务，基本上就是每个变更一份迷你 PRD。在官方示例里，需求是一句带 SHALL 的普通 Markdown 陈述，后面跟一个 WHEN 和 THEN 的场景，这和用场景写成的验收标准非常相似。面向团队，一项测试版功能让平台团队统一维护规格，作为跨代码库的唯一可信来源。这些规格由 AI 起草，再由人在写代码之前审核方案，而这恰恰是产品经理发挥价值的地方。我从中得到的启发是：AI 没有让需求变得多余，只是让含糊的需求错得更快、错得更大。我的经验法则是：如果要让 AI 来做，就把规格写到一个陌生人也能据此测试的程度。",
+      "key_phrases": [
+        {
+          "en": "agree on what to build",
+          "cn": "就做什么达成一致",
+          "type": "搭配",
+          "usage": "agree on 后接决定内容，agree with 后接人"
+        },
+        {
+          "en": "a mini PRD per change",
+          "cn": "每个变更一份迷你 PRD",
+          "type": "句型",
+          "usage": "a mini X per Y 表每个单位配一份精简版"
+        },
+        {
+          "en": "one source of truth",
+          "cn": "唯一可信来源",
+          "type": "词汇",
+          "usage": "常说 single source of truth，指唯一权威数据源"
+        },
+        {
+          "en": "doesn't remove the need for",
+          "cn": "并没有省掉……的必要",
+          "type": "句型",
+          "usage": "X doesn't remove the need for Y 纠正新工具万能论"
+        },
+        {
+          "en": "so a stranger could test it",
+          "cn": "让陌生人也能测试",
+          "type": "句型",
+          "usage": "so a stranger could… 表写到外人也能执行"
+        }
+      ],
+      "basics": [
+        {
+          "term": "规格",
+          "term_en": "specification",
+          "explain": "对系统应该做什么的正式、具体描述，比用户故事更细，写明规则、场景和预期结果，开发和测试都以它为准。",
+          "analogy": "菜谱写清用料克数和火候，而不只是菜名。"
+        },
+        {
+          "term": "AI 编程助手",
+          "term_en": "AI coding assistant",
+          "explain": "能读懂代码库、根据自然语言指令编写和修改代码的 AI 工具。指令越含糊，它越容易按自己的理解做出偏差。",
+          "analogy": "手艺好但第一天上岗的装修工，得看清图纸。"
+        },
+        {
+          "term": "唯一可信来源",
+          "term_en": "single source of truth",
+          "explain": "同一类信息只在一个地方维护，其他人和系统都从这里读取，避免多份副本各改各的、互相矛盾。",
+          "analogy": "公司只认人事系统里那份员工名册。"
+        }
+      ],
+      "pitfalls": [
+        {
+          "wrong": "有了 AI 写代码，在对话里描述需求就行，不用再写需求文档。",
+          "why": "对话里的需求零散且会随上下文丢失，AI 会按自己的理解补全细节，多轮之后实现与预期偏离，也难以追溯当初约定了什么。",
+          "right": "把需求沉淀为带场景的规格文件，先审规格再让 AI 实现，规格随每次变更一起更新。"
+        },
+        {
+          "wrong": "规格要一次写完整、评审通过后冻结，才能保证 AI 不出错。",
+          "why": "需求理解会在实现中不断加深，冻结的规格很快过时，团队要么绕开它，要么被迫按错误的规格交付。",
+          "right": "每个变更单独写轻量规格，允许随实现迭代更新，但每次更新都留痕并重新确认。"
+        }
+      ],
+      "walkthrough": [
+        "拆题：这是案例题，要提炼的是 AI 编程时代需求管理怎么变，而不是工具用法。",
+        "找痛点：需求只在聊天记录里时，AI 的理解偏差看不见，结果也就不可预测。",
+        "看解法：按变更建文件夹，用 SHALL 加场景写需求，团队共享同一份规格来源。",
+        "提炼：AI 不会让需求文档消失，反而要求它更具体、可测试、可迭代。"
+      ],
+      "method": {
+        "name": "规格先行",
+        "steps": [
+          "先写可测规格",
+          "审规格再实现",
+          "随变更更新"
+        ],
+        "transfer": "可迁移到外包开发验收、跨团队接口约定、提示词与智能体任务说明，凡是由他人或机器执行的工作都适用。"
+      },
+      "approach": "采分点是从案例中提炼出「AI 写代码让需求更需要具体、可测、可迭代」这一结论。推荐结构：痛点 → 每变更一夹 → SHALL 加场景 → 团队共享规格 → AI 起草人审 → 启发。用「写到陌生人也能测试」收尾。会失分的是复述安装命令或功能清单。",
+      "tips": "必备术语 spec、scenario、single source of truth。可延伸：编码智能体、用户故事与验收标准。",
+      "source_repos": [
+        "Fission-AI/OpenSpec"
+      ],
+      "added": "2026-10-31"
+    }
+  ]
+}
