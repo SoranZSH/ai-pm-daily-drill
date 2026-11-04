@@ -7,16 +7,20 @@ on:
 jobs:
   python:
     runs-on: windows-latest
+    env:
+      # 目录名含中文：让 Python 在 Windows 控制台统一用 UTF-8 输出
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: utf-8
     defaults:
       run:
         shell: pwsh
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Install collector dependencies
-        run: python -m pip install -r Github学习/collector/requirements.txt
+        run: python -m pip install --progress-bar off -r Github学习/collector/requirements.txt
       - name: Daily app tests
         run: python -m unittest discover -s tests -v
       - name: Collector tests
@@ -26,10 +30,11 @@ jobs:
   go:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
         with:
           go-version-file: Github学习/工具源码/题库更新/go.mod
+          cache: false   # 无第三方依赖，没有 go.sum
       - name: Bank updater tests
         working-directory: Github学习/工具源码/题库更新
         run: go test ./...
