@@ -65,7 +65,7 @@ class QuietDaemonTest(unittest.TestCase):
         self.reason = [None]
         self.patches = [
             mock.patch.object(quiet, "busy_reason", lambda *a, **k: self.reason[0]),
-            mock.patch.object(self.app.Daemon, "show", lambda daemon: self._count_show()),
+            mock.patch.object(self.app.Daemon, "show", lambda daemon, *a, **k: self._count_show()),
             mock.patch.object(self.app, "idle_seconds", lambda: 0.0),
             mock.patch.object(self.app.time, "monotonic", lambda: self.clock[0]),
         ]

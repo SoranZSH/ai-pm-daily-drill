@@ -26,7 +26,10 @@ _QUNS = {
 }
 
 # 这些窗口铺满屏幕也不算全屏程序（桌面、任务栏）
-_SHELL_CLASSES = {"Progman", "WorkerW", "Shell_TrayWnd", "Shell_SecondaryTrayWnd"}
+_SHELL_CLASSES = {"Progman", "WorkerW", "Shell_TrayWnd", "Shell_SecondaryTrayWnd",
+                  # 任务视图（Win+Tab）/ Alt+Tab 切换界面：铺满屏幕但只停留几秒，不是全屏程序
+                  "XamlExplorerHostIslandWindow", "MultitaskingViewFrame", "TaskSwitcherWnd"}
+_SHELL_TITLES = {"任务视图", "Task View", "任务切换", "Task Switching"}
 
 _CAPS = {"microphone": "麦克风", "webcam": "摄像头"}
 _CAP_ROOT = r"Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore"
@@ -94,6 +97,8 @@ def foreground_fullscreen(own_pid=None):
             title = ctypes.create_unicode_buffer(256)
             u.InternalGetWindowText(hwnd, title, 256)
             name = title.value.strip()[:30] or buf.value
+            if name in _SHELL_TITLES:
+                return None
             return f"前台窗口全屏（{name}）"
         return None
     except Exception:

@@ -22,6 +22,7 @@ This project was built by one person acting as **product owner**, working with s
 | **8 · Review loop** | Review of the first domain found a wrong compounding-probability example (0.9¹⁰ ≈ 35%, not "0 → 1"), overclaims, and temporary IDs leaking into answer text. The updater gained a check so that last one can't recur. | Approved fix-then-import |
 | **9 · Operations** | Logs showed the daemon had been silent for 8 days while the collector kept running. Root cause was narrowed to a Win32 call that can block forever, plus no restart path. Fixed with a non-blocking API, an in-process watchdog and a scheduled relaunch task. | Asked for a health check; accepted the reliability changes |
 | **10 · Beyond AI topics** | Extended the bank to general B2B/SaaS PM skills (requirements, business architecture, information systems), scoped to my target roles. | Trimmed overly niche topics; kept the bank aligned to my job search |
+| **11 · Reading the logs again** | Four weeks of the app's own log explained most of the days I missed. A practice window left open silenced reminders for the rest of the day (3 of 10 missed days). 19 of 50 reminders fired just after midnight, because the "day" changed at 00:00. 14 of 29 snoozes were popups nobody saw. Fixed with a reminder for the abandoned window, a study day that starts at 4 a.m., a shorter retry after a timeout, and reminders timed to the moment I return to the desk. Added a tray icon, a settings panel, several questions a day, and atomic writes with daily backups. | Asked for the review; chose the 4 a.m. boundary, "remembered, not merely seen" as the unlock rule, the *consolidate first* stop rule and the tray icon as the entry point; deferred the statistics page |
 
 ### What I learned about working with AI agents
 
@@ -62,6 +63,7 @@ This project was built by one person acting as **product owner**, working with s
 | **8 · 审题闭环** | 第一个领域的审阅发现：复合概率例子算错（0.9¹⁰ ≈ 35%，不是「从 0 到 1」）、说法过头、临时编号混进正文。更新工具随即加了检查，防止最后这类问题再次出现 | 批准「改后导入」 |
 | **9 · 运维** | 日志显示采集程序照常运行，后台提醒却静默了 8 天。原因收敛到一个可能永久阻塞的 Win32 调用，加上没有任何重启机制。修复为不阻塞的接口、程序内看门狗和定时拉起任务 | 要求做健康检查；接受可靠性改造 |
 | **10 · 扩展到 AI 以外** | 题库扩展到 B2B / SaaS 产品经理的通用能力（需求分析、业务架构、信息系统），范围对准我的目标岗位 | 删去过于小众的主题，让题库服务于求职方向 |
+| **11 · 再读一次日志** | 程序自己四周的日志解释了大部分没学成的日子：练习窗口开着没做完，之后当天就不再提醒（没学成的 10 天里占 3 天）；50 次提醒里有 19 次出现在零点刚过，因为「一天」在 00:00 切换；29 次稍后里有 14 次其实是弹窗没人看见。对应的修复：窗口被晾着时再提醒、学习日改从凌晨 4 点开始、没人理时缩短重试间隔、挑我回到电脑前的那一刻提醒。同时加了托盘图标、设置面板、一天多题，以及带每日备份的安全写入 | 提出要做这次检查；决定凌晨 4 点换日、拓展题「记住了才解锁」、「贪多嚼不烂」的停止规则，以及用托盘图标作常驻入口；统计页先放一放 |
 
 ### 和 AI 助手协作的体会
 

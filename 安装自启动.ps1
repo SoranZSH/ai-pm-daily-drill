@@ -53,7 +53,9 @@ Get-CimInstance Win32_Process -Filter "Name='pythonw.exe'" |
     Where-Object { $_.CommandLine -like "*app.pyw*" } |
     ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }
 
-Start-Process -FilePath $pythonw -ArgumentList "`"$app`"" -WorkingDirectory $root
-Write-Host "  提醒程序已在后台运行，约 90 秒后会第一次敲门。" -ForegroundColor Green
+# --force：今天在托盘里点过「退出」的话，这里明确要求重新启动
+Start-Process -FilePath $pythonw -ArgumentList "`"$app`" --force" -WorkingDirectory $root
+Write-Host "  提醒程序已在后台运行，任务栏右下角会出现红色「题」字图标（左键学一题，右键菜单）。" -ForegroundColor Green
+Write-Host "  用电脑约 10 分钟后，会在你离开一会儿又回来的时候第一次敲门。" -ForegroundColor Green
 Write-Host "  想马上看效果:  python app.pyw --test" -ForegroundColor DarkGray
 Write-Host ""

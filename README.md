@@ -35,7 +35,7 @@ So I designed a small system that **collects, curates, sequences and delivers** 
 | 🛰 | **Collector** (`Github学习/collector`) | Every day, scans GitHub in **9 languages**, ranks projects by star growth relative to their own language community, classifies them into 19 AI directions, and writes a daily pack plus a long-term library. |
 | 📚 | **Question bank** (`Github学习/当前题库`) | 85 bilingual questions across 7 domains (LLMs, prompting, RAG, agents, requirements, business architecture, information systems), built on a 137-concept knowledge map. Every question is either **F**oundation or e**X**tension, and every X question names its prerequisites. |
 | 🧰 | **Bank updater** (`Github学习/工具源码/题库更新`, Go) | Validates an update file, assigns permanent IDs (never reused), checks the prerequisite graph for cycles and missing links, previews, backs up, then writes. |
-| 🔔 | **Daily app** (`app.pyw`, `ui/`) | A background daemon that counts *active* computer time, stays silent during full-screen apps, presentations and microphone/camera use, then offers today's question. The answer screen is designed for self-checking first, deep explanation second. |
+| 🔔 | **Daily app** (`app.pyw`, `ui/`) | A background daemon with a tray icon. It counts *active* computer time, stays silent during full-screen apps, presentations and microphone/camera use, and knocks when you come back from a short break. One question a day by default; a settings panel turns on several a day, and an immersive session lets you keep going. The answer screen is designed for self-checking first, deep explanation second. |
 
 <table>
 <tr>
@@ -82,7 +82,8 @@ The two halves share **only a folder and two JSON contracts**. The practice app 
 <summary><b>1 · Prerequisite-aware curriculum (F / X levels)</b></summary>
 
 - Every question is **F** (one concept: what it is, how it works) or **X** (trade-offs, methods, cases built on top).
-- An X question must list at least one F question as a prerequisite. The app only pushes it after all prerequisites have been practised, so I never meet "context engineering for agents" before "what is a token".
+- An X question must list at least one F question as a prerequisite. The app only pushes it after every prerequisite has been **remembered** (the last self-grade was a pass), not merely seen, so I never meet "context engineering for agents" before "what is a token".
+- A question learned today unlocks what depends on it from the next study day. When everything left is waiting on today's questions, the app stops with 贪多嚼不烂，夯实基础下次继续 (*don't bite off more than you can chew; consolidate first*) instead of padding the session with old questions.
 - The bank updater rejects cycles, dangling prerequisites and deleting a question that others depend on.
 - IDs such as `AGT-X002` are assigned by the tool and **never reused**, because learning history is keyed by ID.
 </details>
@@ -100,9 +101,13 @@ The two halves share **only a folder and two JSON contracts**. The practice app 
 <summary><b>3 · Respectful nudging</b></summary>
 
 - The reminder counts **active** time (keyboard/mouse within the last 2 minutes), not wall-clock time.
+- **Timing:** after a warm-up it waits for the moment you return from a few minutes away, the cheapest moment to interrupt, and falls back to a plain reminder if no such gap comes within 30 active minutes.
+- The popup stays out of the taskbar and never takes keyboard focus, so it can't break a sentence you are typing.
 - Do-not-disturb: Windows notification state (full-screen, presentation, focus assist), a foreground window covering the monitor (e.g. a browser-based online test), and **microphone or camera in use** (video interviews are often not full-screen).
-- Snoozing resets a 1.5-hour active-time counter; "swap question" is allowed once a day and then turns into "skip today", to tell *the question doesn't appeal* apart from *I don't feel like it*.
-- Reliability: an in-process watchdog dumps all thread stacks and restarts the daemon if the main loop stalls for 5 minutes; a scheduled task relaunches it if it crashes. This came from a real 8-day silent outage, found by reading the logs.
+- "Later" waits a full interval (1 hour by default). A popup that simply timed out was probably not seen, so it retries after 25 minutes. "Swap question" is allowed once a day and then turns into "skip today", to tell *the question doesn't appeal* apart from *I don't feel like it*.
+- A practice window left open unfinished gets its own reminder after 20 minutes and is put away at the day change. It used to silence the app for the rest of the day.
+- The study day starts at 4 a.m., so a session that runs past midnight counts for the evening it belongs to.
+- Reliability: an in-process watchdog dumps all thread stacks and restarts the daemon if the main loop stalls for 5 minutes; a scheduled task relaunches it if it crashes. This came from a real 8-day silent outage, found by reading the logs. Learning history is written atomically, backed up once a day, and restored from the backup if the file is ever corrupt.
 </details>
 
 <details>
@@ -112,6 +117,7 @@ The two halves share **only a folder and two JSON contracts**. The practice app 
 - Model answer with **sentence-aligned Chinese** (toggle) and key phrases underlined in place (hover for meaning and usage).
 - **Layer 2 — understand it:** basics for terms a beginner would trip on, the concept itself, a common misconception (*wrong → why → right*), a step-by-step walkthrough of the reasoning, a reusable thinking pattern, and phrases typed as vocabulary / collocation / sentence pattern.
 - Layer 2 opens by default for X and hard questions, and stays folded for basics.
+- **More than one a day:** an immersive session moves to the next question as soon as you grade one, and ends with a short summary when you say you are done. A multi-question mode keeps nudging at the normal interval instead. Either way, a question never comes back on the day it was practised, and new questions are capped per day (reviews are not).
 
 <p align="center"><img src="docs/images/reveal_walkthrough.png" width="680" alt="Walkthrough and thinking pattern"></p>
 </details>
@@ -132,8 +138,8 @@ The two halves share **only a folder and two JSON contracts**. The practice app 
 | Questions | 85 (55 Foundation · 30 Extension), all bilingual, 7 domains |
 | Knowledge map | 137 concept keys |
 | Library | 168 projects, 72 non-English, refreshed daily |
-| Tests | 23 (app) · 176 (collector, fully offline with fixtures) · 13 (Go updater) |
-| Code | ~11k lines of Python and Go |
+| Tests | 55 (app) · 176 (collector, fully offline with fixtures) · 13 (Go updater) |
+| Code | ~13k lines of Python and Go |
 
 ## Quick start
 
@@ -149,6 +155,8 @@ python app.pyw --test
 # Install: auto-start at login + a watchdog task (no admin needed)
 .\重装自启动.bat
 ```
+
+Once installed, a red 题 icon sits in the system tray: left-click to practise now, right-click for an immersive session, pausing reminders, settings, or quitting for the day.
 
 Optional — run the collector (needs a GitHub token):
 
@@ -173,16 +181,19 @@ Run the tests:
 ```powershell
 python -m unittest discover -s tests
 cd Github学习\collector; python -m unittest discover -s tests
+
+# Windows end-to-end smoke test: tray icon, every window, screenshots (temporary data only)
+python tests\win_smoke.py
 ```
 
 ## Repository layout
 
 ```
 .
-├── app.pyw                  # background daemon: active time, do-not-disturb, watchdog
+├── app.pyw                  # background daemon: active time, do-not-disturb, tray, watchdog
 ├── practice.pyw             # open today's question directly
 ├── daily.py                 # CLI: browse, search, spaced repetition, Anki export
-├── ui/                      # nudge popup, practice window, quiet-hours detection
+├── ui/                      # nudge popup, practice window, tray icon, settings panel, quiet-hours detection
 ├── tests/
 ├── 题库路径.json             # where the app reads the bank (the only link between halves)
 ├── Github学习/

@@ -17,7 +17,7 @@ sys.path.insert(0, ROOT)
 import daily  # noqa: E402
 from ui import state  # noqa: E402
 
-TODAY = dt.date.today()
+TODAY = daily.logical_date()      # 学习日（凌晨 4 点换日）
 
 
 def d(n):
@@ -73,11 +73,12 @@ class PickTest(unittest.TestCase):
         h = self.hist()
         self.assertEqual(self.pick_many(h, items), {"AGT-F001"})
 
-    # 2 前置练完后拓展题解锁
+    # 2 前置题「记住了」之后拓展题解锁
     def test_02_unlocked_after_prereq(self):
         items = [q("AGT-F001"), q("AGT-X001", "X", ["AGT-F001"])]
         self.write_bank(items)
-        h = self.hist(studied=[("AGT-F001", d(1))])
+        h = self.hist(studied=[("AGT-F001", d(1))],
+                      srs={"AGT-F001": {"level": 1, "due": d(-2), "reps": 1, "last_grade": 4}})
         self.assertEqual(state._pick(items, h)["id"], "AGT-X001")
 
     # 3 前置已不在题库 → 视为已解锁

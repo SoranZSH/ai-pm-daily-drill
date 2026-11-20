@@ -5,6 +5,7 @@ import ctypes
 import datetime as dt
 import math
 import random
+import time
 import tkinter as tk
 
 from . import state
@@ -24,6 +25,7 @@ PAD = 34
 GWL_EXSTYLE = -20
 WS_EX_TOOLWINDOW = 0x00000080
 WS_EX_APPWINDOW = 0x00040000
+WS_EX_NOACTIVATE = 0x08000000
 SW_HIDE, SW_SHOW, SW_MINIMIZE, SW_RESTORE = 0, 5, 6, 9
 
 
@@ -65,9 +67,64 @@ def show_in_taskbar(win, title):
         pass
 
 
+def _exstyle_api():
+    u = ctypes.windll.user32
+    try:
+        get_l, set_l = u.GetWindowLongPtrW, u.SetWindowLongPtrW
+    except AttributeError:                # 32 位 Python 没有 Ptr 版本
+        get_l, set_l = u.GetWindowLongW, u.SetWindowLongW
+    get_l.restype = ctypes.c_ssize_t
+    get_l.argtypes = [ctypes.c_void_p, ctypes.c_int]
+    set_l.restype = ctypes.c_ssize_t
+    set_l.argtypes = [ctypes.c_void_p, ctypes.c_int, ctypes.c_ssize_t]
+    return u, get_l, set_l
+
+
+def no_activate(win):
+    """右下角的提醒弹窗用：不进任务栏、不进 Alt+Tab，弹出和被点击时都不抢键盘焦点
+    （你正在别的窗口里打字，不会被它打断）。弹窗一直置顶、到时自动收起，不怕找不回来。"""
+    try:
+        u, get_l, set_l = _exstyle_api()
+        h = hwnd_of(win)
+        style = get_l(h, GWL_EXSTYLE)
+        set_l(h, GWL_EXSTYLE, (style & ~WS_EX_APPWINDOW) | WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE)
+    except Exception:
+        pass
+
+
+def work_area(win):
+    """主显示器除去任务栏后的可用区域 (left, top, right, bottom)；取不到就用整个屏幕。"""
+    try:
+        class RECT(ctypes.Structure):
+            _fields_ = [("left", ctypes.c_long), ("top", ctypes.c_long),
+                        ("right", ctypes.c_long), ("bottom", ctypes.c_long)]
+        r = RECT()
+        if ctypes.windll.user32.SystemParametersInfoW(0x0030, 0, ctypes.byref(r), 0):  # SPI_GETWORKAREA
+            if r.right > r.left and r.bottom > r.top:
+                return r.left, r.top, r.right, r.bottom
+    except Exception:
+        pass
+    return 0, 0, win.winfo_screenwidth(), win.winfo_screenheight()
+
+
 def minimize(win):
     try:
         ctypes.windll.user32.ShowWindow(hwnd_of(win), SW_MINIMIZE)
+    except Exception:
+        pass
+
+
+def bring_front(win):
+    """把窗口从最小化 / 被别的窗口盖住的状态拉回眼前。"""
+    try:
+        ctypes.windll.user32.ShowWindow(hwnd_of(win), SW_RESTORE)
+    except Exception:
+        pass
+    try:
+        win.lift()
+        win.attributes("-topmost", True)
+        win.after(300, lambda: win.attributes("-topmost", False))
+        win.focus_force()
     except Exception:
         pass
 
@@ -96,14 +153,35 @@ def autotext(parent, content, font, fg, bg=CARD, spacing=7):
 
 
 class Practice:
-    def __init__(self, master=None, on_close=None):
+    """练习窗口。
+
+    session=False  练完一题就庆祝、收起（庆祝页上可以点「再来一道」转成连着学）。
+    session=True   沉浸学习：点完「记住了 / 没记住」自动进入下一题，直到主动退出
+                   （学累了，今天到这）或今天没有可练的题。
+
+    关闭后守护进程通过 graded（本次练完的题）和 stopped（是否主动收工）判断接下来怎么提醒。
+    """
+
+    def __init__(self, master=None, on_close=None, session=False, item=None):
         self.owns_root = master is None
         self.on_close = on_close
+        self.session = session
+        self.graded = []            # 本次窗口里练完的 (题号, 分数)
+        self.stopped = False        # 主动说了「今天到这」
+        self.summary_shown = False
+        self.finishing = False
+        self.ended = False
+        self._close_job = None
+        self.next_item = None
         self.hist = state.load()
-        self.item = state.today_question(self.hist, state.bank())
+        bank = state.bank()
+        self.item = item or state.current_question(self.hist, bank)[0] \
+            or state.today_question(self.hist, bank)
         self.revealed = False
         self.timer_left = 0
         self.timer_job = None
+        self.opened = time.monotonic()   # 这道题从什么时候开始看的
+        self.spoke = False               # 这道题有没有启动过口述计时
 
         self.win = tk.Tk() if self.owns_root else tk.Toplevel(master)
         w = self.win
@@ -180,10 +258,13 @@ class Practice:
         for i in range(barh):
             strip.create_line(0, i, px(4), i, fill=mix(accent, VIOLET_HI, i / barh))
 
-        lbl = tk.Label(bar, text="  每日一题", bg=CARD_HI, fg=TEXT, font=f(11, "bold"))
+        lbl = tk.Label(bar, text="  每日一题 · 沉浸学习" if self.session else "  每日一题",
+                       bg=CARD_HI, fg=TEXT, font=f(11, "bold"))
         lbl.pack(side="left", padx=(px(8), 0))
         drag_bind(self.win, lbl)
-        d = tk.Label(bar, text=dt.date.today().strftime("  %Y年%m月%d日"),
+        n_today = state.count_today(self.hist)
+        d = tk.Label(bar, text=dt.date.today().strftime("  %Y年%m月%d日")
+                     + (f"  ·  今天第 {n_today + 1} 题" if n_today or self.session else ""),
                      bg=CARD_HI, fg=TEXT_MUTE, font=f(9))
         d.pack(side="left")
         drag_bind(self.win, d)
@@ -321,6 +402,7 @@ class Practice:
             self._draw_ring(1.0, "90")
             self.timer_btn.set_text("开始计时")
         else:
+            self.spoke = True
             self.timer_left = 90
             self.timer_btn.set_text("重新计时")
             self._tick()
@@ -477,11 +559,11 @@ class Practice:
         if n == 0:
             info, sug, col = "点击勾选你刚才说到的要点", "", TEXT_MUTE
         elif n == total:
-            info, sug, col = f"答到 {n}/{total} 个要点 · 完整", "建议：完成，明天见", MINT
+            info, sug, col = f"答到 {n}/{total} 个要点 · 完整", "建议：" + self.ok_name, MINT
         elif good:
-            info, sug, col = f"答到 {n}/{total} 个要点 · 没勾的再看一眼", "建议：完成，明天见", MINT
+            info, sug, col = f"答到 {n}/{total} 个要点 · 没勾的再看一眼", "建议：" + self.ok_name, MINT
         else:
-            info, sug, col = f"答到 {n}/{total} 个要点", "建议：这题还没记住", CORAL
+            info, sug, col = f"答到 {n}/{total} 个要点", "建议：" + self.no_name, CORAL
         self.point_info.config(text=info, fg=col)
         if getattr(self, "sug", None) is not None:
             self.sug.config(text=("   " + sug) if sug else self.sug_default, fg=col if sug else TEXT_MUTE)
@@ -798,11 +880,25 @@ class Practice:
     def _fill_foot(self):
         row = tk.Frame(self.foot, bg=CARD_HI)
         row.pack(expand=True)
-        GlowButton(row, "完成，明天见", lambda: self.finish(4), w=132, h=40,
+        first = state.count_today(self.hist) == 0
+        if self.session:
+            self.ok_name, self.no_name = "记住了", "没记住"
+            ok, no, wo, wn = "记住了，下一题  →", "没记住，下一题", 160, 128
+        elif first and state.settings()["mode"] == "single":
+            self.ok_name, self.no_name = "完成，明天见", "这题还没记住"
+            ok, no, wo, wn = self.ok_name, self.no_name, 132, 112
+        else:
+            self.ok_name, self.no_name = "记住了", "这题还没记住"
+            ok, no, wo, wn = self.ok_name, self.no_name, 132, 112
+        GlowButton(row, ok, lambda: self.finish(4), w=wo, h=40,
                    accent=MINT, bg=CARD_HI, font=f(11, "bold")).pack(side="left")
-        GlowButton(row, "这题还没记住", lambda: self.finish(1), w=112, h=40,
+        GlowButton(row, no, lambda: self.finish(1), w=wn, h=40,
                    accent=TEXT_DIM, bg=CARD_HI, filled=False,
                    font=f(9)).pack(side="left", padx=px(8))
+        if self.session:
+            GlowButton(row, "学累了，今天到这", self.close, w=128, h=40,
+                       accent=CORAL, bg=CARD_HI, filled=False,
+                       font=f(9)).pack(side="left", padx=(0, px(8)))
         self.sug_default = "   没记住的明天再出现，记住的隔几天再来"
         self.sug = tk.Label(row, text=self.sug_default, bg=CARD_HI, fg=TEXT_MUTE,
                             font=f(9 if self.point_vars_any() else 8))
@@ -828,16 +924,60 @@ class Practice:
         widget.bind("<Enter>", on, add="+")
         widget.bind("<Leave>", off, add="+")
 
-    # ── 完成 → 庆祝 → 关闭 ───────────────────────────────────────────────
+    # ── 完成 → 庆祝 / 下一题 / 小结 → 关闭 ────────────────────────────────
     def finish(self, g):
-        st = state.grade(self.hist, self.item["id"], g)
-        self._celebrate(f"下次复习 {st['due']}")
+        if self.finishing:                  # 连点两下只记一次
+            return
+        self.finishing = True
+        self.hist = state.load()            # 窗口可能开了很久：打分前重读，不拿旧数据覆盖期间的变更
+        first_today = state.count_today(self.hist) == 0
+        st = state.grade(self.hist, self.item["id"], g,
+                         secs=int(time.monotonic() - self.opened), spoke=self.spoke,
+                         mode="session" if self.session else "single")
+        self.graded.append((self.item["id"], g))
+        self.hist = state.load()
+        try:
+            nxt, why = state.current_question(self.hist, state.bank())
+        except SystemExit:
+            nxt, why = None, "empty"
+        self.next_item = nxt
+        msg = f"下次复习 {st['due']}"
+        if self.session:
+            if nxt is None:
+                self._summary(why)
+            elif first_today:
+                self._celebrate(msg, then=lambda: self._load(nxt), hold=1500, bye="下一题马上来")
+            else:
+                self._interlude(msg, then=lambda: self._load(nxt))
+            return
+        multi = state.settings()["mode"] == "multi"
+        if nxt is None and (multi or not first_today):
+            bye = state.NO_MORE.get(why, "明天见 👋")
+        else:
+            bye = "过一会儿再来一道" if multi and nxt is not None else "明天见 👋"
+        self._celebrate(msg, then=self._end, hold=4200 if nxt is not None else 1900,
+                        bye=bye, offer_next=nxt is not None)
 
-    def _celebrate(self, msg):
+    def _overlay(self):
         ov = tk.Frame(self.win, bg=CARD)
         ov.place(x=0, y=0, relwidth=1, relheight=1)
         c = tk.Canvas(ov, bg=CARD, highlightthickness=0, bd=0)
         c.pack(fill="both", expand=True)
+        return ov, c
+
+    def _after_close(self, ms, fn):
+        self._close_job = self.win.after(ms, fn)
+
+    def _cancel_close(self):
+        if self._close_job:
+            try:
+                self.win.after_cancel(self._close_job)
+            except Exception:
+                pass
+            self._close_job = None
+
+    def _celebrate(self, msg, then=None, hold=1900, bye="明天见 👋", offer_next=False):
+        ov, c = self._overlay()
         cx, cy = self.W / 2, self.H / 2 - px(30)
 
         total, cur, best = state.stats(self.hist)
@@ -850,7 +990,11 @@ class Practice:
                            + ("  ·  新纪录！" if record else ""),
                       fill=GOLD if record else TEXT_DIM, font=f(10))
         c.create_text(cx, cy + px(80), text=msg, fill=TEXT_DIM, font=f(10))
-        c.create_text(cx, cy + px(112), text="明天见 👋", fill=TEXT_MUTE, font=f(9))
+        c.create_text(cx, cy + px(112), text=bye, fill=TEXT_MUTE, font=f(9))
+        if offer_next:
+            b = GlowButton(ov, "再来一道  →", self._continue, w=132, h=40,
+                           accent=self.accent, bg=CARD, font=f(11, "bold"))
+            b.place(x=cx - b.w / 2, y=cy + px(136))
 
         parts = []
         for _ in range(46):
@@ -862,6 +1006,8 @@ class Practice:
                           random.uniform(2.5, 5) * theme.S])
 
         def step(n=0):
+            if not c.winfo_exists():
+                return
             c.delete("p")
             alive = False
             for p in parts:
@@ -876,9 +1022,99 @@ class Practice:
                 c.after(16, lambda: step(n + 1))
 
         step()
-        self.win.after(1900, self.close)
+        self._after_close(hold, then or self._end)
 
+    def _continue(self):
+        """庆祝页上点了「再来一道」：从这里开始连着学。"""
+        if self.next_item is None:
+            return
+        self._cancel_close()
+        self.session = True
+        self._load(self.next_item)
+
+    def _interlude(self, msg, then):
+        """连着学时两题之间的短暂过渡。"""
+        ov, c = self._overlay()
+        cx, cy = self.W / 2, self.H / 2 - px(20)
+        c.create_text(cx, cy - px(14), text="✓  已记录", fill=MINT, font=f(19, "bold"))
+        c.create_text(cx, cy + px(22), text=f"今天第 {state.count_today(self.hist)} 题  ·  {msg}",
+                      fill=TEXT_DIM, font=f(10))
+        self._after_close(800, then)
+
+    def _summary(self, why):
+        """连着学结束时的小结：学了几题、为什么停。"""
+        self._cancel_close()
+        self.summary_shown = True
+        if why == "tired" and not self.stopped:
+            self.stopped = True
+            try:
+                self.hist = state.load()
+                state.stop_today(self.hist)
+            except Exception:
+                pass
+        ov, c = self._overlay()
+        cx, cy = self.W / 2, self.H / 2 - px(40)
+        good = sum(1 for _, g in self.graded if g >= 3)
+        total, cur, best = state.stats(self.hist)
+        c.create_text(cx, cy - px(52), text="🌙" if why == "tired" else "🌱",
+                      font=("Segoe UI Emoji", 36))
+        c.create_text(cx, cy + px(8), text=f"今天学了 {state.count_today(self.hist)} 题",
+                      fill=TEXT, font=f(19, "bold"))
+        c.create_text(cx, cy + px(42),
+                      text=f"这一轮记住 {good} 题  ·  没记住 {len(self.graded) - good} 题"
+                           f"  ·  连续 {cur} 天",
+                      fill=TEXT_DIM, font=f(10))
+        c.create_text(cx, cy + px(74), text=state.NO_MORE.get(why, state.NO_MORE["tired"]),
+                      fill=GOLD, font=f(11, "bold"))
+        b = GlowButton(ov, "好的", self._end, w=132, h=40, accent=MINT, bg=CARD,
+                       font=f(11, "bold"))
+        b.place(x=cx - b.w / 2, y=cy + px(104))
+        self._after_close(9000, self._end)
+
+    def _load(self, item):
+        """在同一个窗口里换成下一题。"""
+        self._cancel_close()
+        self._hide_tip()
+        if self.timer_job:
+            self.win.after_cancel(self.timer_job)
+        for child in self.win.winfo_children():
+            child.destroy()
+        self.item = item
+        self.hist = state.load()
+        self.revealed = False
+        self.finishing = False
+        self.timer_left, self.timer_job = 0, None
+        self.opened, self.spoke = time.monotonic(), False
+        self.point_vars, self.sug = [], None
+        self.H = self.H_gate
+        self.y = self._center_y(self.H)
+        self.win.geometry(f"{self.W}x{self.H}+{self.x}+{self.y}")
+        round_window(self.win, self.W, self.H, px(RADIUS))
+        self._build()
+
+    # ── 给守护进程用 ─────────────────────────────────────────────────────
+    def is_foreground(self):
+        """练习窗口现在是不是正拿着键盘焦点（用来判断它是不是被晾在一边了）。"""
+        try:
+            return self.win.focus_displayof() is not None
+        except Exception:
+            return False
+
+    def bring_front(self):
+        bring_front(self.win)
+
+    # ── 关闭 ─────────────────────────────────────────────────────────────
     def close(self):
+        """✕ / Esc /「学累了，今天到这」。连着学并且已经练了题：先给小结，记为今天收工。"""
+        if self.session and self.graded and not self.summary_shown:
+            return self._summary("tired")
+        self._end()
+
+    def _end(self):
+        if self.ended:                      # 连按两次 Esc 也只收一次
+            return
+        self.ended = True
+        self._cancel_close()
         self._hide_tip()
         try:
             self.win.unbind_all("<MouseWheel>")
@@ -895,8 +1131,28 @@ class Practice:
             self.on_close()
 
 
-def open_practice(master=None, on_close=None):
-    p = Practice(master, on_close)
+def no_more_notice(master, why, on_close=None):
+    """今天没有可练的题：右下角告知一句（比如「贪多嚼不烂，夯实基础下次继续」）。"""
+    from .nudge import Nudge                # 放在函数里，避免和 nudge.py 互相导入
+    done = (lambda *a, **k: on_close()) if on_close else (lambda *a, **k: None)
+    return Nudge(master, done, done, done, kind="notice",
+                 text=(state.NO_MORE.get(why, state.NO_MORE["empty"]), "今天先到这里"))
+
+
+def open_practice(master=None, on_close=None, session=False):
+    if master is None:
+        # 直接双击 practice.pyw：今天没有可练的题时只告知一句，不硬塞旧题
+        try:
+            it, why = state.current_question(state.load(), state.bank(), peek=True)
+        except SystemExit:
+            it, why = True, None
+        if it is None:
+            root = tk.Tk()
+            root.withdraw()
+            no_more_notice(root, why, on_close=lambda: root.after(300, root.destroy))
+            root.mainloop()
+            return None
+    p = Practice(master, on_close, session=session)
     if p.owns_root:
         p.win.mainloop()
     return p

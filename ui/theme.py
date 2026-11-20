@@ -191,6 +191,11 @@ class GlowButton(tk.Canvas):
         self.txt = t
         self._draw()
 
+    def set_filled(self, on):
+        """切换实心 / 描边两种样子（分段选择里表示「选中 / 未选中」）。"""
+        self.filled = bool(on)
+        self._draw()
+
 
 # ── 小组件 ────────────────────────────────────────────────────────────────
 def chip(parent, text, color, bg=CARD, pad=9, size=9):
