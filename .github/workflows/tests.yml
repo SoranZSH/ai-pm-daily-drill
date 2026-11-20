@@ -22,10 +22,25 @@ jobs:
       - name: Install collector dependencies
         run: python -m pip install --progress-bar off -r Github学习/collector/requirements.txt
       - name: Daily app tests
-        run: python -m unittest discover -s tests -v
+        run: |
+          python -m unittest discover -s tests -v 2>&1 | Tee-Object -FilePath app-tests.log
+          $code = $LASTEXITCODE
+          if ($code -ne 0) {
+            # 把失败的用例和断言信息写成注解，不登录也能在运行页上看到
+            Select-String -Path app-tests.log -Pattern '^(FAIL|ERROR): ', 'Error: ' |
+              Select-Object -First 10 | ForEach-Object { Write-Output "::error title=app tests::$($_.Line)" }
+            exit $code
+          }
       - name: Collector tests
         working-directory: Github学习/collector
-        run: python -m unittest discover -s tests -v
+        run: |
+          python -m unittest discover -s tests -v 2>&1 | Tee-Object -FilePath collector-tests.log
+          $code = $LASTEXITCODE
+          if ($code -ne 0) {
+            Select-String -Path collector-tests.log -Pattern '^(FAIL|ERROR): ', 'Error: ' |
+              Select-Object -First 10 | ForEach-Object { Write-Output "::error title=collector tests::$($_.Line)" }
+            exit $code
+          }
 
   go:
     runs-on: ubuntu-latest

@@ -132,7 +132,7 @@ flowchart LR
 | 题目 | 85 道（基础 55 · 拓展 30），全部中英双语，7 个领域 |
 | 知识地图 | 137 个概念键 |
 | 资料库 | 168 个项目，其中 72 个非英文，每日更新 |
-| 测试 | 每日一题 55 条 · 采集程序 176 条（全部离线夹具）· 题库更新工具 13 条 |
+| 测试 | 每日一题 56 条 · 采集程序 176 条（全部离线夹具）· 题库更新工具 13 条 |
 | 代码 | 约 1.3 万行 Python 与 Go |
 
 ## 快速开始
@@ -140,7 +140,7 @@ flowchart LR
 环境：Windows 10/11，Python 3.11+。只有重新编译更新工具时才需要 Go 1.24。
 
 ```powershell
-git clone https://github.com/MichaelZSH9898/ai-pm-daily-drill.git
+git clone https://github.com/SoranZSH/ai-pm-daily-drill.git
 cd ai-pm-daily-drill
 
 # 立刻预览提醒弹窗和练习窗口
@@ -213,7 +213,7 @@ python tests\win_smoke.py
 ## 相关项目
 
 - **浑天图谱 · Armillary**：用同一批采集数据画出 AI 应用所依赖的开源「地基」3D 星图（开发中）。
-- **[大水理论督察员 · Big Water Inspector](https://github.com/MichaelZSH9898/Big-water-inspector)**：复用本项目勿扰逻辑的喝水提醒。
+- **[大水理论督察员 · Big Water Inspector](https://github.com/SoranZSH/Big-water-inspector)**：复用本项目勿扰逻辑的喝水提醒。
 
 ## 许可证
 

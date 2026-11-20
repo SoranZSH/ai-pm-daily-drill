@@ -6,7 +6,7 @@
 
 [中文说明](README.zh-CN.md) · [Architecture](#architecture) · [Design decisions](#design-decisions) · [How it was built](docs/ai-collaboration.md)
 
-[![tests](https://github.com/MichaelZSH9898/ai-pm-daily-drill/actions/workflows/tests.yml/badge.svg)](https://github.com/MichaelZSH9898/ai-pm-daily-drill/actions/workflows/tests.yml)
+[![tests](https://github.com/SoranZSH/ai-pm-daily-drill/actions/workflows/tests.yml/badge.svg)](https://github.com/SoranZSH/ai-pm-daily-drill/actions/workflows/tests.yml)
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
 ![Go](https://img.shields.io/badge/Go-1.24-00ADD8?logo=go&logoColor=white)
 ![Platform](https://img.shields.io/badge/platform-Windows-0078D6?logo=windows&logoColor=white)
@@ -138,7 +138,7 @@ The two halves share **only a folder and two JSON contracts**. The practice app 
 | Questions | 85 (55 Foundation · 30 Extension), all bilingual, 7 domains |
 | Knowledge map | 137 concept keys |
 | Library | 168 projects, 72 non-English, refreshed daily |
-| Tests | 55 (app) · 176 (collector, fully offline with fixtures) · 13 (Go updater) |
+| Tests | 56 (app) · 176 (collector, fully offline with fixtures) · 13 (Go updater) |
 | Code | ~13k lines of Python and Go |
 
 ## Quick start
@@ -146,7 +146,7 @@ The two halves share **only a folder and two JSON contracts**. The practice app 
 Requirements: Windows 10/11, Python 3.11+. Go 1.24 is only needed to rebuild the updater.
 
 ```powershell
-git clone https://github.com/MichaelZSH9898/ai-pm-daily-drill.git
+git clone https://github.com/SoranZSH/ai-pm-daily-drill.git
 cd ai-pm-daily-drill
 
 # Preview the nudge and the practice window right away
@@ -219,7 +219,7 @@ I built this as the product owner, working with AI coding agents (Claude, Haiku,
 ## Related projects
 
 - **浑天图谱 · Armillary** — a 3D map of the open-source "foundations" AI apps stand on, built from the same collected data (in progress).
-- **[大水理论督察员 · Big Water Inspector](https://github.com/MichaelZSH9898/Big-water-inspector)** — a hydration reminder that reuses this project's do-not-disturb logic.
+- **[大水理论督察员 · Big Water Inspector](https://github.com/SoranZSH/Big-water-inspector)** — a hydration reminder that reuses this project's do-not-disturb logic.
 
 ## License
 

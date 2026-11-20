@@ -104,7 +104,7 @@ _SETTINGS_RANGE = {
     "retry_min": (5, 600), "warmup_min": (0, 240), "popup_secs": (15, 600),
     "day_start_hour": (0, 12),
 }
-_settings_cache = (None, None, None)       # (路径, 修改时间, 内容)
+_settings_cache = (None, None, None)       # (路径, (修改时间, 大小), 内容)
 
 
 def settings_path():
@@ -112,11 +112,13 @@ def settings_path():
 
 
 def settings():
-    """读取设置（按文件修改时间缓存，守护进程每 15 秒调用一次也不费事）。"""
+    """读取设置（按文件的修改时间 + 大小缓存，守护进程每 15 秒调用一次也不费事）。
+    只看修改时间不够：有的文件系统时间戳很粗，紧挨着的两次写入会落在同一个时间戳里。"""
     global _settings_cache
     path = settings_path()
     try:
-        mtime = os.stat(path).st_mtime_ns
+        st = os.stat(path)
+        mtime = (st.st_mtime_ns, st.st_size)
     except OSError:
         mtime = None
     if _settings_cache[0] == path and _settings_cache[1] == mtime:
@@ -142,8 +144,10 @@ def settings():
 def save_settings(d):
     """只保存认识的键；不合法的值在读取时会被默认值替换。"""
     cur = settings()
+    global _settings_cache
     cur.update({k: v for k, v in d.items() if k in SETTINGS_DEFAULT})
     _atomic_write(settings_path(), cur)
+    _settings_cache = (None, None, None)       # 刚写过：下次一定重新读
     return settings()
 
 

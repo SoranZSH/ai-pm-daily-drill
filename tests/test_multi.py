@@ -215,6 +215,25 @@ class DayBoundaryTest(Base):
         self.assertEqual(daily.settings(), daily.SETTINGS_DEFAULT)
 
 
+    # 14b 紧挨着的两次写入落在同一个时间戳里（时间戳很粗的文件系统），也要读到新内容
+    def test_14b_same_timestamp_still_reloads(self):
+        os.makedirs(daily.DATA_DIR, exist_ok=True)
+        path = daily.settings_path()
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump({"interval_min": 45}, f)
+        os.utime(path, ns=(10 ** 18, 10 ** 18))
+        self.assertEqual(daily.settings()["interval_min"], 45)
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump({"interval_min": 120}, f)
+        os.utime(path, ns=(10 ** 18, 10 ** 18))       # 修改时间和上一次完全一样
+        self.assertEqual(daily.settings()["interval_min"], 120)
+        daily.save_settings({"interval_min": 30})
+        os.utime(path, ns=(10 ** 18, 10 ** 18))
+        daily.save_settings({"interval_min": 90})
+        os.utime(path, ns=(10 ** 18, 10 ** 18))
+        self.assertEqual(daily.settings()["interval_min"], 90)
+
+
 class SafeWriteTest(Base):
     # 15 保存不留临时文件；当天第一次保存前先备份
     def test_15_atomic_and_backup(self):
